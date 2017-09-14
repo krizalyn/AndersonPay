@@ -1,0 +1,101 @@
+﻿@model AndersonPay.Models.Employee
+@using System.Data;
+@using System.Data.Entity;
+@using AndersonPay.Models.InvoiceContext;
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/selects/select2.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/styling/switchery.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/notifications/jgrowl.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/ui/moment/moment.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/daterangepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/anytime.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/pickadate/picker.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/pickadate/legacy.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/buttons/ladda.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/views/form_bootstrap_select.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/views/createinvoice.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/views/picker_date.js"></script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="padding:20px;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
+
+            <h3>Edit Employee Information</h3>
+        </div>
+        <div class="panel-heading" style="padding:0px;">
+
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-calendar5"></i></span>
+                        @Html.TextBox("StartDate", DateTime.Now.ToLongDateString(), new { @class = "form-control pickadate text-center", @placeholder = "Start Date" })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-calendar5"></i></span>
+                        @Html.TextBox("EndDate", DateTime.Now.ToLongDateString(), new { @class = "form-control pickadate text-center", @placeholder = "End Date" })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="form-group form-group-material">
+                            <label>Job Selection: </label>
+                            @Html.DropDownList("JobName", null, "", new { @class = "select", @data_placeholder = "Jobs" })
+                            @Html.ValidationMessageFor(model => model.JobName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="form-group form-group-material">
+                            <label>Company Selection: </label>
+                            @Html.DropDownList("CompanyName", null, "", new { @class = "select", @data_placeholder = "Companies" })
+                            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

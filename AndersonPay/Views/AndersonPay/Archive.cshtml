@@ -1,0 +1,109 @@
+﻿@model IEnumerable<AndersonPay.Models.Archive>
+    @{ 
+        ViewBag.Title = "Archive";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<div class="content-wrapper">
+ 
+        <div class="page-header">
+            <div class="page-header-content">
+                <div class="page-title">
+                    <h4><i class="icon-upload position-left"></i> <span class="text-semibold">Anderson.Pay</span> - Database File Upload</h4>
+                </div>
+                <!-- Sidebar search -->
+
+                <div class="category-content">
+                    @using (Html.BeginForm("Archive", "AndersonPay", FormMethod.Post))
+                    {
+                        <div class="has-feedback has-feedback-left">
+
+                            @Html.TextBox("search", null, new { @class = "form-control", @placeholder = "SEARCH NAME" })
+                            @*@Html.TextBox("search") <input type="submit" value="Search" />*@
+
+                            <div class="form-control-feedback">
+                                <i class="icon-search4 text-size-base text-muted"></i>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- /sidebar search -->
+            </div>
+            <div class="content">
+                <table class="table table-bordered table-hover" style="margin-top:20px">
+                    <tr style="background-color:#53565b; color:white; font-family:arial,Verdana; font-size:18px">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Summary)
+                        </th>
+                        <th>Total Files</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-family:arial,Verdana; font-size:18px">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </td>
+                            <td>
+                                @if (item.FileDetails.Count() == 0)
+                                {
+                                    <span>No File</span>
+                                }
+                                else
+                                {
+                                    <span>@item.FileDetails.Count() File(s)</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditArchive", new { id = item.SupportId }) |
+                                <a href="javascript:void(0);" data-id="@item.SupportId" class="deleteItem">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <div class="text-right">
+                    <a href="/AndersonPay/CreateArchive" class="btn btn-primary" style="margin-top:20px">New Upload<i class="icon-upload position-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $('.deleteItem').click(function (e) {
+            e.preventDefault();
+            var $ctrl = $(this);
+            if (confirm('Do you really want to delete this item?')) {
+                $.ajax({
+                    url: '@Url.Action("DeleteArchive")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                }).done(function (data) {
+                    if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                    }
+                }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                })
+
+            }
+        });
+    </script>
+
+
+
+
+

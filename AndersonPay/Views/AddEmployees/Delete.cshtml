@@ -1,0 +1,62 @@
+﻿
+@model AndersonPay.Models.Employee
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="form-horizontal" style="padding:20px;">
+    <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
+
+        <h3>Are you sure you want to delete this?</h3>
+    </div>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FullName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.JobName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CompanyName)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        }
+    </div>
+</div>

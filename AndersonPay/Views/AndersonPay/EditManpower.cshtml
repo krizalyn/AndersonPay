@@ -1,0 +1,122 @@
+﻿@model AndersonPay.Models.SearchManpower.Manpower
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Use This To prevent the back option of the browser...pirated by lars again hekhek!-->
+<script type="text/javascript">
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+</script>
+
+@using (Html.BeginForm("EditManpower", "AndersonPay", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-pencil7 position-left"></i> <span class="text-semibold">Anderson.Pay</span> - Edit Employee File</h4>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Employee Files</h5>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.ManpowerId)
+
+                <div class="panel-body">
+
+
+                    <div class="editor-label" style="margin-top:20px;font-family:Arial,Verdana;font-size:18px">
+                        @Html.LabelFor(model => model.Name)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" }, })
+                        <i style="color:red;font-size:13px">@Html.ValidationMessageFor(model => model.Name)</i>
+                        <br />
+                    </div>
+                    <div class="editor-label" style="margin-top:20px;font-family:Arial,Verdana;font-size:18px">
+                        @Html.LabelFor(model => model.Detail)
+                    </div>
+
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Detail, new { @class = "form-control", @rows = 3 })
+                        <i style="color:red;font-size:13px">@Html.ValidationMessageFor(model => model.Detail)</i>
+                    </div>
+                    <div class="editor-label" style="margin-top:20px;font-family:Arial,Verdana;font-size:18px">
+                        <label>Files:</label>
+                    </div>
+
+                    <div class="editor-field ">
+                        <input type="file" name="file" multiple="multiple" class="file-styled" />
+                        <ul class="attachment">
+                            @foreach (var item in Model.ManpowerFiles)
+                            {
+                                <li>
+                                    <a class="title" href="/AndersonPay/Download/?p=@(item.Id + item.Annex)&d=@item.Filename">@item.Filename</a>
+                                    <b><a href="javascript:void(0);" data-id="@item.Id" class="deleteItem">X</a></b>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <p>
+                        <div class="text-right">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <a href="../Manpower" class="btn btn-primary" )>Back</a>
+                        </div>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+            $('.deleteItem').click(function (e) {
+                e.preventDefault();
+                var $ctrl = $(this);
+                if (confirm('Do you really want to delete this file?')) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteFile")',
+                        type: 'POST',
+                        data: { id: $(this).data('id') }
+                    }).done(function (data) {
+                        if (data.Result == "OK") {
+                            $ctrl.closest('li').remove();
+                        }
+                        else if (data.Result.Message) {
+                            alert(data.Result.Message);
+                        }
+                    }).fail(function () {
+                        alert("There is something wrong. Please try again.");
+                    })
+
+                }
+            });
+</script>
+
+

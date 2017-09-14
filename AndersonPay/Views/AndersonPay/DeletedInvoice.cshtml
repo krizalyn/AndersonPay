@@ -1,0 +1,230 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using AndersonPay.Models.InvoiceContext;
+
+@model IPagedList<AndersonPay.Models.invoice>
+
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+</script>
+
+@{
+    ViewBag.Title = "Anderson.Pay";
+
+}
+
+<!-- Other JS files -->
+
+<script type="text/javascript" src="~/Content/assets/js/views/dashboard.js"></script>
+
+<!-- /Other JS files -->
+<!-- Content -->
+@{
+    InvoiceContext db = new InvoiceContext();
+
+    <div class="content-wrapper">
+        <div class="content">
+
+            <!-- Detached content -->
+            <div class="container-detached">
+                <div class="content-detached">
+                    <div class="text-center content-group text-muted content-divider">
+                        <span class="pt-10 pb-10">Deleted Invoices</span>
+                    </div>
+                    @using (Html.BeginForm("DeletedInvoice", "AndersonPay", FormMethod.Post))
+                    {
+
+
+
+                        foreach (var item in Model)
+                        {
+                            if (item.Deleted == true)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel invoice-grid">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="text-semibold no-margin-top">@Html.DisplayFor(modelItem => item.CompanyName)</h6>
+                                                        <ul class="list list-unstyled">
+                                                            <li>Invoice #: &nbsp;@Html.DisplayFor(modelItem => item.invoiceId)</li>
+                                                            <li>Issued on: <span class="text-semibold">@Html.DisplayFor(modelItem => item.Date)</span></li>
+                                                            @*<li>Due Date on: <span class="text-semibold">@Html.DisplayFor(modelItem => item.DueDate)</span></li>*@
+                                                        </ul>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <h6 class="text-semibold text-right no-margin-top">@Html.DisplayFor(modelItem => item.Total)</h6>
+                                                        <ul class="list list-unstyled text-right">
+                                                            <li>Currency: <span class="text-semibold">@Html.DisplayFor(modelItem => item.Currency)</span></li>
+                                                            <li class="select">
+                                                                Status: &nbsp;
+
+                                                                @if (item.Status == "Pending")
+                                                                { <a href="#" class="label bg-orange-300 dropdown-toggle" data-toggle="dropdown">Pending <span class="caret"></span></a>
+                                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                                    <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOverdue, id = item.invoiceId })"><i class="icon-alert"></i> Overdue</a></li>
+                                                                    <li class="active"><a href="#"><i class="icon-alarm"></i> Pending</a></li>
+                                                                    <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPaid, id = item.invoiceId })"><i class="icon-checkmark3"></i> Paid</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOnHold, id = item.invoiceId })"><i class="icon-spinner2 spinner"></i> On hold</a></li>
+                                                                    <li><a href="@Url.Action("Index", new { status = ViewBag.StatusCanceled, id = item.invoiceId })"><i class="icon-cross2"></i> Canceled</a></li>
+                                                                </ul>
+                                                                }
+                                                                else if (item.Status == "Overdue")
+                                                                {
+                                                                    <a href="#" class="label bg-danger-400 dropdown-toggle" data-toggle="dropdown">Overdue <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li class="active"><a href="#"><i class="icon-alert"></i> Overdue</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPending, id = item.invoiceId })"><i class="icon-alarm"></i> Pending</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPaid, id = item.invoiceId })"><i class="icon-checkmark3"></i> Paid</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOnHold, id = item.invoiceId })"><i class="icon-spinner2 spinner"></i> On hold</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusCanceled, id = item.invoiceId })"><i class="icon-cross2"></i> Canceled</a></li>
+                                                                    </ul>
+                                                                }
+                                                                else if (item.Status == "On Hold")
+                                                                {
+                                                                    <a href="#" class="label bg-grey-300 dropdown-toggle" data-toggle="dropdown">On hold <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOverdue, id = item.invoiceId })"><i class="icon-alert"></i> Overdue</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPending, id = item.invoiceId })"><i class="icon-alarm"></i> Pending</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPaid, id = item.invoiceId })"><i class="icon-checkmark3"></i> Paid</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li class="active"><a href="#"><i class="icon-spinner2 spinner"></i> On hold</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusCanceled, id = item.invoiceId })"><i class="icon-cross2"></i> Canceled</a></li>
+                                                                    </ul>
+                                                                }
+                                                                else if (item.Status == "Canceled")
+                                                                {
+                                                                    <a href="#" class="label bg-slate-400 dropdown-toggle" data-toggle="dropdown">Canceled <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOverdue, id = item.invoiceId })"><i class="icon-alert"></i> Overdue</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPending, id = item.invoiceId })"><i class="icon-alarm"></i> Pending</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPaid, id = item.invoiceId })"><i class="icon-checkmark3"></i> Paid</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOnHold, id = item.invoiceId })"><i class="icon-spinner2 spinner"></i> On hold</a></li>
+                                                                        <li class="active"><a href="#"><i class="icon-cross2"></i> Canceled</a></li>
+                                                                    </ul>
+                                                                }
+                                                                else if (item.Status == "Paid")
+                                                                {
+                                                                    <a href="#" class="label bg-green dropdown-toggle" data-toggle="dropdown">Paid <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOverdue, id = item.invoiceId })"><i class="icon-alert"></i> Overdue</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusPending, id = item.invoiceId })"><i class="icon-alarm"></i> Pending</a></li>
+                                                                        <li class="active"><a href="#"><i class="icon-checkmark3"></i> Paid</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusOnHold, id = item.invoiceId })"><i class="icon-spinner2 spinner"></i> On hold</a></li>
+                                                                        <li><a href="@Url.Action("Index", new { status = ViewBag.StatusCanceled, id = item.invoiceId })"><i class="icon-cross2"></i> Canceled</a></li>
+                                                                    </ul>
+                                                                }
+                                                                else if (item.Status == null)
+                                                                {
+                                                                    <a href="#" class="label bg-slate-400 dropdown-toggle" data-toggle="dropdown">NULL <span class="caret"></span></a>
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="#"><i class="icon-alert"></i> Overdue</a></li>
+                                                                        <li><a href="#"><i class="icon-alarm"></i> Pending</a></li>
+                                                                        <li><a href="#"><i class="icon-checkmark3"></i> Paid</a></li>
+                                                                        <li class="divider"></li>
+                                                                        <li><a href="#"><i class="icon-spinner2 spinner"></i> On hold</a></li>
+                                                                        <li class="active"><a href="#"><i class="icon-cross2"></i> Canceled</a></li>
+                                                                    </ul>
+                                                                }
+
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel-footer panel-footer-condensed">
+                                                <div class="heading-elements">
+                                                    <span class="heading-text">
+                                                        @if (item.Status == "Overdue")
+                                                        {
+                                                            <span class="status-mark border-danger position-left"></span>@Html.Raw("Due:")  <span class="text-semibold">@Html.DisplayFor(modelItem => item.StartPeriod)</span>
+                                                        }
+                                                        else if (item.Status == "Pending")
+                                                        {
+                                                            <span class="status-mark border-orange position-left"></span>@Html.Raw("Due:")<span class="text-semibold">@Html.DisplayFor(modelItem => item.StartPeriod)</span>
+                                                        }
+                                                        else if (item.Status == "On Hold")
+                                                        {
+                                                            <span class="status-mark border-grey-300 position-left"></span>@Html.Raw("Due:") <span class="text-semibold">@Html.DisplayFor(modelItem => item.StartPeriod)</span>
+                                                        }
+                                                        else if (item.Status == "Canceled")
+                                                        {
+                                                            <span class="status-mark border-slate-400 position-left"></span>@Html.Raw("Due:") <span class="text-semibold">@Html.DisplayFor(modelItem => item.StartPeriod)</span>
+                                                        }
+                                                        else if (item.Status == "Paid")
+                                                        {
+                                                            <span class="status-mark border-green position-left"></span>@Html.Raw("Due:") <span class="text-semibold">@Html.DisplayFor(modelItem => item.StartPeriod)</span>
+                                                        }
+
+                                                    </span>
+
+                                                    <ul class="list-inline list-inline-condensed heading-text pull-right">
+                                                        <li><a href="@Url.Action("PreviewModal", new { id = item.invoiceId })" class="text-default" data-toggle="modal"><i class="icon-eye8"></i></a></li>
+                                                        <li class="dropdown">
+                                                            <a href="#" class="text-default dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li><a href="@Url.Action("ExportPDF", new { id = item.invoiceId })"><i class="icon-file-download"></i> Download invoice</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="@Url.Action("DeleteInvoice", new { id = item.invoiceId })"><i class="glyphicon glyphicon-trash"></i> Delete Invoice</a></li>
+                                                                <li><a href="@Url.Action("RestoreInvoice", new { id = item.invoiceId })"><i class="glyphicon glyphicon-floppy-open"></i> Restore Invoice</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+                <!-- /invoice grid -->
+                <!-- Pagination -->
+                <div class="text-center content-group-lg pt-20">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, DisplayItemSliceAndTotal = true })
+                </div>
+                <!-- //Pagination -->
+
+
+            </div>
+            <!-- Footer -->
+            <div class="footer text-muted">
+                &copy; 2017. - Anderson Group BPO Inc. | <a href="#">Anderson.Pay</a> - Private and Confidential.
+            </div>
+            <!-- /footer -->
+
+        </div>
+        <!-- /content area -->
+
+    </div>
+
+    <!-- /main content -->
+}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+
+</div>

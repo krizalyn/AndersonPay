@@ -1,0 +1,156 @@
+﻿@model IEnumerable<AndersonPay.Models.typeofservice>
+@using AndersonPay.Models.InvoiceContext;
+@{
+    InvoiceContext db = new InvoiceContext();
+}
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+</script>
+
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+
+    #grad2 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #c61a1a, #ee9090);
+    }
+</style>
+
+<div class="content-wrapper" style="padding:50px;">
+
+    <!-- Button trigger modal -->
+    <p>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" href="@Url.Action("Create", "TypeOfServices" )">
+            <i class="glyphicon glyphicon-plus-sign"></i> Add Service
+        </button>
+    </p>
+
+    @{var ptrServiceDetails = 0; }
+    @foreach (var item in db.typeofservices.ToList())
+    {
+        <div class="panel panel-flat" id="grad1" style="padding:5px;margin-bottom:2px;padding-left:20px;">
+
+            <div class="row" style="margin-top:4px;">
+
+                <span class="col-xs-4 col-xs-offset-0" style="cursor:pointer;" data-toggle="collapse" data-target="#@ptrServiceDetails" aria-expanded="false" aria-controls="@ptrServiceDetails">
+                    @Html.DisplayFor(modelItem => item.NameOfService)
+                </span>
+
+                @*<span class="col-xs-4 col-xs-offset-0">@Html.DisplayFor(modelItem => item.NameOfService)</span>*@
+
+                <div class="col-xs-8 colxs-offset-8">
+                    <ul class="list-inline list-inline-condensed heading-text pull-right">
+                        <li class="dropdown">
+                            <a href="#" class="text-default dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-toggle="modal" data-target="#myModal" href="@Url.Action("Edit", "TypeOfServices", new { id = item.typeofserviceId })">
+                                        <i class="glyphicon glyphicon-pencil"></i> Edit
+                                    </a>
+                                </li>
+
+                                <li class="divider"></li>
+
+                                <li>
+                                    <a data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "TypeOfServices", new { id = item.typeofserviceId })">
+                                        <i class="glyphicon glyphicon-trash"></i> Delete
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="collapse" id="@ptrServiceDetails">
+            @{ ptrServiceDetails++;}
+            <div class="panel panel-flat" style="padding:10px;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <strong>
+                            <label><b>Name of Service</b></label>
+                            <span>: </span>
+                        </strong>
+                    </div>
+                    <span class="col-xs-5 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.NameOfService)</span>
+
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @*@Html.DisplayNameFor(model => model.Rate)*@
+                            <label><b>Currency</b></label>
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-5 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Currency)</span>
+
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @*@Html.DisplayNameFor(model => model.Rate)*@
+                            <label><b>Rate</b></label>
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-5 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Rate)</span>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @*@Html.DisplayNameFor(model => model.Rate)*@
+                            <label><b>Description</b></label>
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-5 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.ServiceDescription)</span>
+
+                </div>
+            </div>
+        </div>
+
+
+        
+       
+
+                }
+
+                </div>
+
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                        </div>
+                    </div>
+                </div>

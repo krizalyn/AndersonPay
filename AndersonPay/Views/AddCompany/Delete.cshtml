@@ -1,0 +1,106 @@
+﻿@model AndersonPay.Models.company
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="form-horizontal" style="padding:20px;">
+    <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
+
+        <h3>Permanently remove company?</h3>
+    </div>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Company Code")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyCode)
+            </dd>
+            <dt>
+                @Html.DisplayName("Company Name")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FORDO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FORDO)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tax)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Wtpercent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wtpercent)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TIN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TIN)
+            </dd>  
+            @*<dt>
+                @Html.DisplayNameFor(model => model.PEZA)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PEZA)
+            </dd>*@
+            <dt>
+                @Html.DisplayName("Telephone Number")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TelephoneNumber)
+            </dd>
+            <dt>
+                @Html.DisplayName("Contact Person")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactPerson)
+            </dd>
+        
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="padding-left:70px">
+                <br />
+                <input type="submit" value="Delete" class="btn btn-primary" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        }
+    </div>
+</div>
+

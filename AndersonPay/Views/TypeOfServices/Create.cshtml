@@ -1,0 +1,103 @@
+﻿@model AndersonPay.Models.typeofservice
+
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="padding:20px;">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
+            <h3>New Service</h3>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <br />
+               
+                <div class="col-md-4">
+                    <br />
+                    <label>Type of Service:</label>
+                </div>
+
+                <div class="col-md-8">
+                    <span>
+                        @Html.EditorFor(model => model.NameOfService, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter a new service" } })
+                        <i class="icon-magazine form-control-feedback"></i>
+                        @Html.ValidationMessageFor(model => model.NameOfService, "", new { @class = "text-danger" })
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <br />
+                <div class="col-md-4">
+                    <br />
+                    <label>Currency: </label>
+                </div>
+
+                <div class="col-md-8">
+                   
+                     @Html.DropDownList("Currency", new List<SelectListItem>
+                                                                {
+                                                                        new SelectListItem {Text="(₱) Philippine Peso" ,Value = "Philippine Peso", Selected = true},
+                                                                        new SelectListItem {Text="($) US Dollar" ,Value = "US Dollar"},
+                                                                        new SelectListItem {Text = "(£) UK Pound", Value = "UK Pounds" },
+                                                                }, "", new { @class = "form-control", @data_width = "46%" })
+                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+           
+                <div class="col-md-12">
+                    <br />
+                    <div class="col-md-4">
+                        <br />
+                       <label>Rate:</label>
+                    </div>
+
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @type = "number", @class = "form-control", @placeholder = "Service Rate" } })
+                        @*<i class="glyphicon glyphicon-star-empty form-control-feedback"></i>*@
+                        @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            <div class="col-md-12">
+                <br />
+                <div class="col-md-4">
+                    <br />
+                    <label>Description:</label>
+                </div>
+
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ServiceDescription, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
+                    @Html.ValidationMessageFor(model => model.ServiceDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-10">
+                    <center>
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </center>
+
+                </div>
+            </div>
+
+        </div>
+
+        }
+

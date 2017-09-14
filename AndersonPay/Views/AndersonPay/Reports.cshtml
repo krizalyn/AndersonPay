@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+}
+
+<script src="~/Content/assets/js/plugins/chartjs/Chart.js"></script>
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="panel panel-flat">
+            <div class="panel-heading" style="background-color:#609dff">
+                <h4>Bar Chart</h4>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <canvas id="BarChart" style="margin-top:30px"></canvas>
+                <div class="text-right">
+                    <button class="btn btn-primary"><i class="icon-printer position-left"></i>Print</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-flat">
+            <div class="panel-heading" style="background-color:#609dff">
+                <h4>Pie Chart</h4>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div style="height:500px;width:500px;margin-left:250px;margin-top:50px">
+                    <canvas id="PieChart"></canvas>
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-primary"><i class="icon-printer position-left"></i>Print</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-flat">
+            <div class="panel-heading" style="background-color:#609dff">
+                <h4>Line Chart</h4>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <canvas id="lineChart" style="margin-top:20px"></canvas>
+                <div class="text-right">
+                    <button class="btn btn-primary"><i class="icon-printer position-left"></i>Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/js/plugins/chartjs/ThisIsBarChart.js"></script>
+<script src="~/Content/assets/js/plugins/chartjs/ThisIsPieChart.js"></script>
+<script src="~/Content/assets/js/plugins/chartjs/ThisIsLineChart.js"></script>

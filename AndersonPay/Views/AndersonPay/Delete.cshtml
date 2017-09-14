@@ -1,0 +1,27 @@
+﻿@model AndersonPay.Models.invoice
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="form-horizontal" style="padding:20px;">
+    <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
+
+        <h3>Are you sure you want to remove this?</h3>
+    </div>
+    <div>
+
+        <hr />
+        
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        }
+    </div>
+</div>
+

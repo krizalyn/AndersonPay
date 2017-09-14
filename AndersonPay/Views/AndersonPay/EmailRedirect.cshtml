@@ -1,0 +1,56 @@
+﻿@model AndersonPay.Controllers.EmailClass.SendEmail
+@using AndersonPay.Models.InvoiceContext
+<!--Use This To prevent the back option of the browser...Fred was here HAkHAK!-->
+<script type="text/javascript">
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+</script>
+@{ 
+    //int ptr = 0;
+    //System.String emailReceipient;
+    //using (var db = new InvoiceContext())
+    //{
+    //    ptr = db.invoices.Max(p => p.invoiceId);
+    //    emailReceipient = db.invoices.Max(e => e.Recipients);
+    //}
+
+    var db = new InvoiceContext();
+    int ptr = db.invoices.Max(p => p.invoiceId);
+    string Month = db.invoices.Find(ptr).Date.ToString("MMMM");
+    AndersonPay.Controllers.EmailClass.SendEmail snd = new AndersonPay.Controllers.EmailClass.SendEmail();
+    snd.EmailReceipient = db.companies.Find(db.invoices.Find(ptr).CompanyName).Recipients;
+    snd.Message = "<div style=\"color:black;\"><p> Dear Valued Customer,</p><br/>" + db.invoices.Find(ptr).Comments + "<br/>"+
+                 "<p> Attached is your invoice for this month of " + Month + ".</p><br/>"+
+                 "<p> Should you have any queries, please feel free to contact us.</p><br/><br/>" +
+                 "<p> Regards,</p>" +
+                 "<h3><p> Anderson Group </p></h3>" +
+                 "<h4> This email is the property of Anderson Group.It is confidential and intended for the addressee only. If you are not the addressee and have received this email in error do not disclose, copy or distribute it, but please notify the sender by return email and delete the message from your computer. Use by anyone else for any purpose is prohibited. Opinions expressed in this email are those of the individual sender and not necessarily those of Anderson Group. Please note that email transmissions cannot be guaranteed to be secure or error - free and are subject to interception for operational and business reasons.</h4>" +
+                 "<br/>Comments: </ div >";
+    snd.EmailNotifications();
+
+}
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="row">
+            <div class="col-md-offset-1">
+                <h1>Your request has been submitted!</h1>
+                <p>Please wait for an email notification to be sent to the email address you provided</p>
+                <p>Thanks!</p>
+
+            </div>
+
+            <div class="col-xs-push-1">
+                <div class="content-group">
+                    <div class="text-right" style="margin-right:20px;">
+
+                        <button type="button" onclick="location.href='@Url.Action("PreviewModal", new { id = ptr })'" class="btn btn-primary btn-labeled text-right" ><b><i class="icon-file-eye2"></i></b> Preview</button>
+                    </div>
+                </div>
+            </div> 
+         </div>
+     </div>
+</div>

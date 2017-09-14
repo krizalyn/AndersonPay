@@ -1,0 +1,89 @@
+﻿@model AndersonPay.Models.typeofservice
+
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="padding:20px">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
+
+            <h3>Edit Service</h3>
+        </div>
+
+        <div class="panel-heading" style="padding:0px;">
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.typeofserviceId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5" style="padding-left:25px;">
+                        @Html.HiddenFor(model => model.typeofserviceId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.typeofserviceId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Type of Service", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8" style="padding-left:30px;">
+                        @Html.EditorFor(model => model.NameOfService, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                        <i class="fi-page-edit"></i>
+                        @Html.ValidationMessageFor(model => model.NameOfService, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8" style="padding-left:30px;">
+                        @Html.DropDownList("Currency", new List<SelectListItem>
+                                                                {
+                                                                        new SelectListItem {Text="(₱) Philippine Peso" ,Value = "Philippine Peso", Selected = true},
+                                                                        new SelectListItem {Text="($) US Dollar" ,Value = "US Dollar"},
+                                                                        new SelectListItem {Text = "(£) UK Pound", Value = "UK Pounds" },
+                                                                }, "", new { @class = "form-control", @data_width = "46%" })
+                        @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8" style="padding-left:30px;">
+                        @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                        <i class="fi-page-edit"></i>
+                        @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Service Description",  htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8" style="padding-left:30px;">
+                        @Html.EditorFor(model => model.ServiceDescription, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                        <i class="fi-page-edit"></i>
+                        @Html.ValidationMessageFor(model => model.ServiceDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <br />
+                    <div class="col-md-offset-7 col-md-12">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AndersonPay.Models.Employee>
+@using AndersonPay.Models.InvoiceContext;
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+</script>
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+<div class="content">
+    <table class="table table-bordered table-hover" style="margin-top:20px">
+        <tr style="background-color:#53565b; color:white; font-family:arial,Verdana; font-size:18px">
+            <th>
+               Employee Name
+                @*@Html.DisplayNameFor(model => model.FullName)*@
+            </th>
+            <th>
+               Job Position
+                @*@Html.DisplayNameFor(model => model.JobName)*@
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="font-family:arial,Verdana; font-size:18px">
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.FullName)</center>
+                </td>
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.JobName)</center>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>

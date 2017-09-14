@@ -1,0 +1,118 @@
+﻿* {
+    list-style-type: none;
+    max-width: 922px;
+    align-content: center;
+    -webkit-align-content: center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/* heading */
+
+img {
+    width: 180px;
+    height: 200px;
+    margin-left: 28px;
+    float: left;
+}
+
+.Head-Divide {
+    margin-left: 10%;
+    float: left;
+    text-align: right;
+}
+
+.Head-Divide-BILL-STATEMENT {
+    color: #174184;
+    /*margin-right: 250px;*/
+}
+
+.Invoice-number {
+    font-size: 24px;
+    /*margin-right:250px;*/
+}
+
+.date {
+    font-size: 20px;
+    /*margin-left: 10%;*/
+    text-align: left;
+    /*line-height: 5%;*/
+}
+
+
+
+/* AGPH contact */
+.AG {
+    font-size: 20px;
+    padding-left: 0px;
+    padding-top: 200px;
+    margin-bottom: 0;
+}
+
+.one {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+
+/* Table */
+table {
+    text-align: right;
+    border-color: #2364ce;
+    border: 1px solid blue;
+    border-collapse: collapse;
+    margin-left: 35px;
+    margin-top: 20px;
+    width: 90%;
+}
+
+th {
+    text-align: center;
+    background-color: #2460c1;
+    color: white;
+    border: 1px solid blue;
+    line-height: 0;
+}
+
+.blue-border-td {
+    text-align: center;
+    border: 1px solid blue;
+    height: 22px;
+}
+
+
+.payable, .Vatable_sales {
+    text-align: right;
+}
+
+/* bank details*/
+.Bank, .bankdetails {
+    margin-left: 35px;
+    line-height: 23px;
+    margin-right: 40%;
+}
+
+.currency {
+    margin-left: 65px;
+}
+
+.BankAddress {
+    margin-right: 50%;
+}
+
+.secondaddress {
+    margin-left: 120px;
+}
+
+/*signature*/
+.Signatory {
+    float: right;
+    margin-top: 135px;
+    margin-right: 6%;
+    font-size: 17.5px;
+}
+
+.SignFooter {
+    margin-left: 80px;
+}

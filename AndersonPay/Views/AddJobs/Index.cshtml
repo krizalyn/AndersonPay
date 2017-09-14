@@ -1,0 +1,125 @@
+﻿@model IEnumerable<AndersonPay.Models.jobs>
+@using AndersonPay.Models.InvoiceContext;
+@{
+    InvoiceContext db = new InvoiceContext();
+}
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+</script>
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+
+<div class="content-wrapper" style="padding:50px;">
+    <p>
+        <!-- Button trigger modal -->
+
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" href="@Url.Action("Create", "AddJobs")">
+            <i class="glyphicon glyphicon-plus-sign"></i> Add Job
+        </button>
+    </p>
+
+    @{var ptrjobsDetails = 0; }
+    @foreach (var item in db.jobs.ToList())
+    {
+
+        <div class="panel panel-flat" id="grad1" style="padding:5px;margin-bottom:2px;padding-left:20px;">
+
+
+            <div class="row" style="margin-top:4px;">
+
+
+                <span class="col-xs-4 col-xs-offset-0" style="cursor:pointer;" data-toggle="collapse" data-target="#@ptrjobsDetails" aria-expanded="false" aria-controls="@ptrjobsDetails">
+                    @Html.DisplayFor(modelItem => item.JobName)
+                </span>
+                <div class="col-xs-8 colxs-offset-8">
+                    <ul class="list-inline list-inline-condensed heading-text pull-right">
+                        x
+                        <li class="dropdown">
+                            <a href="#" class="text-default dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a data-toggle="modal" data-target="#myModal" href="@Url.Action("Edit", "AddJobs", new { id = item.JobName })"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
+                                <li class="divider"></li>
+                                <li><a data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "AddJobs", new { id = item.JobName })"><i class="glyphicon glyphicon-trash"></i> Delete</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="collapse" id="@ptrjobsDetails">
+            @{ ptrjobsDetails++;}
+            <div class="panel panel-flat" style="padding:10px;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayName("Job Position")
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.JobName)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Currency)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Currency)</span>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayName("Type of Pay")
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.RateType)</span>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Rate)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Rate)</span>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+                }
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+
+</div>

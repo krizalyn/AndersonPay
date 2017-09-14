@@ -1,0 +1,243 @@
+﻿@model IEnumerable<AndersonPay.Models.company>
+@using AndersonPay.Models.InvoiceContext;
+@{
+    InvoiceContext db = new InvoiceContext();
+
+}
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+
+</script>
+
+<style>
+    #grad1 {
+        color: white;
+        margin: 0px;
+        background: linear-gradient(to right, #159cf6, #97dded);
+    }
+</style>
+<div class="content-wrapper" style="padding:50px;">
+    <p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" href="@Url.Action("Create", "AddCompany")">
+            <i class="glyphicon glyphicon-plus-sign"></i> Add Company
+        </button>
+        <a class="btn btn-primary btn-lg" @*data-toggle="modal" data-target="#myModal"*@ href="@Url.Action("Index", "AddEmployees")">
+            <i class="glyphicon glyphicon-user"></i> Employee List</a>
+       
+        @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" href="@Url.Action("Create", "AddEmployees")">
+            <i class="glyphicon glyphicon-user"></i> Add Personnel  
+        </button>*@
+    </p>
+    @{var ptrCompanyDetails = 0; }
+    @foreach (var item in db.companies.ToList())
+    {
+
+        <div class="panel panel-flat" id="grad1" style="padding:5px;margin-bottom:2px;padding-left:20px;">
+
+
+            <div class="row" style="margin-top:4px;">
+
+
+                <span class="col-xs-4 col-xs-offset-0" style="cursor:pointer;" data-toggle="collapse" data-target="#@ptrCompanyDetails" aria-expanded="false" aria-controls="@ptrCompanyDetails">
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </span>
+
+                <div class="col-xs-8 colxs-offset-8">
+                    <ul class="list-inline list-inline-condensed heading-text pull-right">
+                        <li class="dropdown">
+                            <a href="#" class="text-default dropdown-toggle" data-toggle="dropdown"><i class="icon-menu7"></i> <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-toggle="modal" data-target="#myModal" href="/AddEmployees/Create?SubCategoryId=@item.FullName" @item.FullName>
+                                        <i class="glyphicon glyphicon-user"></i> Add Employee
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a data-toggle="modal" data-target="#myModal" href="@Url.Action("Edit", "AddCompany", new { id = item.CompanyName })"><i class="glyphicon glyphicon-pencil"></i> Edit</a></li>
+                                <li class="divider"></li>
+                                <li><a data-toggle="modal" data-target="#myModal" href="@Url.Action("Delete", "AddCompany", new { id = item.CompanyName })"><i class="glyphicon glyphicon-trash"></i> Delete</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse" id="@ptrCompanyDetails">
+            @{ ptrCompanyDetails++;}
+            <div class="panel panel-flat" style="padding:10px;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayName("Company Code")
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.CompanyCode)</span>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Address)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Address)</span>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Country)
+                            <span>: </span>
+                        </b>
+                        <asp:RequiredFieldValidator ControlToValidate=Country
+                                                    ErrorMessage="PLease select a country.">
+                            
+                        </asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator display=dynamic
+                                                        ControlToValidate="Country"
+                                                        ErrorMessage="Please select a Country" />
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Country)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.FORDO)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.FORDO)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Tax)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Tax)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Wtpercent)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Wtpercent)</span>
+                </div>
+                <br />
+                @*<div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.PEZA)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.PEZA)</span>
+                </div>
+                <br />*@
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.TIN)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.TIN)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.ContactPerson)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.ContactPerson)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.TelephoneNumber)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.TelephoneNumber)</span>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-4">
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <b>
+                            @Html.DisplayNameFor(model => model.Recipients)
+                            <span>: </span>
+                        </b>
+                    </div>
+                    <span class="col-xs-4 col-xs-offset-0"> @Html.DisplayFor(modelItem => item.Recipients)</span>
+                </div>
+                <br />
+                            <br/>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" data-target="#myModal" href="@Url.Action("List", "AddEmployees", new { compName = item.CompanyName })" class="btn btn-primary" style="margin-top:20px">List of Employees@*<i class="icon-upload position-right"></i>*@</a>
+                             
+              </div>
+       </div>
+        
+                }
+
+    </div>
+
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+
+    </div>

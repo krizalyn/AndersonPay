@@ -1,0 +1,409 @@
+﻿@model AndersonPay.Models.invoice
+@using System.Data;
+@using System.Data.Entity;
+@using AndersonPay.Models.InvoiceContext;
+
+@{
+    ViewBag.Title = "Anderson.Pay - Create Invoice";
+}
+
+<!-- Other JS files -->
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/selects/select2.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/styling/switchery.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/notifications/jgrowl.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/ui/moment/moment.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/daterangepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/anytime.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/pickadate/picker.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/pickers/pickadate/legacy.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/plugins/buttons/ladda.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/views/form_bootstrap_select.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/views/createinvoice.js"></script>
+<script type="text/javascript" src="~/Content/assets/js/views/picker_date.js"></script>
+
+<script>
+
+</script>
+<!-- /Other JS files -->
+<!-- Content -->
+<div class="content-wrapper">
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><l><a href="@Url.Action("Index",new { sortBy = ViewBag.SortNameAsc })" class="icon-arrow-left52 position-left"> </a> </l><span class="text-semibold">Anderson.Pay</span> - Create Invoice</h4>
+            </div>
+        </div>
+
+
+        <div class="content">
+            @{var item = Model;}
+
+            <!--
+                Perform this if you encounter any issues on the "ID" counting when you tried to reset the database content
+                and started all over again.
+
+                Reset Auto Icrement ID:
+                    DBCC CHECKIDENT('tableName', RESEED, 0)
+
+                - Type this sa SQL Query then execute. After that, mar-reset na ulit back to (0) zero
+                yung bilang ng ID.
+            -->
+
+            @{
+                int ptr = 0;
+
+                using (var db = new InvoiceContext())
+                {
+                    if (!db.invoices.Any())
+                    {
+                        //ptr = 0;
+                        //ptr++; same as ptr=1; or ptr++ since ptr is 0
+                        ptr = 1;
+                    }
+                    else
+                    {
+                        //ptr = db.invoices.Max(p => p.invoiceId);
+                        //ptr++;
+                        ptr = db.invoices.Max(p => p.invoiceId) + 1;
+
+                    }
+
+
+                }
+
+                @functions{
+                    //function kasi hardcoded ung sa INV-00
+                    //zildx was here hakhak
+                    public string InvoiceNumber(int IdNumber)
+                    {
+
+                        if (IdNumber.ToString().Length == 1)
+                        {
+                            return "000" + IdNumber.ToString();
+                        }
+                        else if (IdNumber.ToString().Length == 2)
+                        {
+                            return "00" + IdNumber.ToString();
+                        }
+                        else if (IdNumber.ToString().Length == 3)
+                        {
+                            return "0" + IdNumber.ToString();
+                        }
+                        return IdNumber.ToString();
+                    }
+                }
+
+                using (Html.BeginForm())
+                {
+
+
+                    <form action="#">
+
+                        <div class="panel panel-flat">
+                            <br><br><br>
+                            <table class="modal-dialog modal-full">
+                                <tr>
+                                    <td>
+                                        <ul class="list-condensed list-unstyled">
+                                            <li><strong>ANDERSON GROUP BPO INC.</strong></li>
+                                            <li>11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center</li>
+                                            <li>Pasig City Philippines</li>
+                                            <li>+632 4917325/ +443333110548 (UK Toll Free) </li>
+                                            <li>Email: inquiries@andersongroup.ph</li>
+                                        </ul>
+
+                                    </td>
+
+
+                                    <td>
+                                        <img src="~/Content/assets/img/pdf-logo.jpg" class="content-group ml-0 mt-10" style="width: 250px; padding-left: 50px;" rowspan="2">
+                                    </td>
+
+
+                                </tr>
+                            </table>
+
+
+                            <div class="panel-heading">
+                                <hr>
+                                <h1 class="panel-title" align="center">Invoice Details</h1>
+                                <div class="heading-elements">
+                                    <ul class="icons-list">
+                                        <li><a data-action="collapse"></a></li>
+                                        <li><a data-action="reload"></a></li>
+                                    </ul>
+
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <fieldset>
+
+                                            <div class="input-group-xlg">
+                                                <div class="row">
+                                                    <!-- Invoice Control Number -->
+                                                    <div class="col-md-4">
+                                                        <label>Invoice Number</label><br />
+                                                        <div class="input-group">
+
+                                                            <span class="input-group-addon"><i class="icon-barcode2"></i></span>
+                                                            <input type="text" class="form-control text-danger text-center" disabled="disabled" value="INV-@InvoiceNumber(ptr)">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+
+                                                    </div>
+                                                    <!-- Date -->
+                                                    <div class="col-md-5">
+                                                        <label>Date created:</label><br>
+                                                        <div class="input-group">
+
+                                                            <span class="input-group-addon"><i class="icon-calendar3"></i></span>
+                                                            @Html.TextBox("date", DateTime.Now.ToLongDateString(), new { @class = "form-control pickadate text-center", @placeholder = "Invoice Date" })
+                                                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="form-group col-md-12">
+                                                <br />
+                                                <div class="row">
+
+                                                    <!-- Companies -->
+                                                    <div class="col-md-7">
+                                                        <div class="form-group form-group-material">
+                                                            <label>Company Selection: </label>
+                                                            @Html.DropDownList("CompanyName", null, "", new { @class = "select", @data_placeholder = "Companies" })
+                                                            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+
+
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!--Due Date -->
+                                                    <div class="col-md-5">
+                                                        <label>Due Date:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="icon-calendar3"></i></span>
+                                                            @Html.TextBox("DueDate", DateTime.Now.ToLongDateString(), new { @class = "form-control pickadate text-center", @placeholder = "Invoice Date" })
+                                                            @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset>
+
+                                            
+                                                <!-- Billing Period -->
+
+                                                <div class="col-md-6"><br />
+                                                    &nbsp;<label>Billing Period: </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+                                                        @Html.TextBox("Starting Period", DateTime.Now.ToLongDateString(), new { @class = "form-control pickadate text-center", @placeholder = "Invoice Date" })
+                                                        @Html.ValidationMessageFor(model => model.StartPeriod, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                               
+                                                <!-- Expiring Period -->
+
+                                                <div class="col-md-6"><br />
+                                                    &nbsp;<label>Expiring Period: </label><br />
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+
+                                                        @Html.TextBox("Expiring Period", DateTime.Now.ToLongDateString(), new { @class = "form-control pickadate text-center", @placeholder = "Invoice Date" })
+                                                        @Html.ValidationMessageFor(model => model.ExpiringPeriod, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                          
+                                                <div class="col-md-12" ng-controller="AndersonPayController as model" ng-init="model.Initialise('@ViewBag.TypeOfServices')"><br /><br />
+                                                    <!-- Services -->
+                                                    <div class="container col-md-4" style="width:100%">
+                                                        <table   class="table table-bordered table-hover" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="5%" style="display:none">Index</th>
+                                                                    <th width="20%">Type of Service</th>
+                                                                    <th width="25%">Description</th>
+                                                                    <th width="25%">Rate</th>
+                                                                    <th width="25%">Quantity</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="invoiceService in model.InvoiceServices track by $index">
+                                                                    <td style="display:none">
+                                                                        {{$index}}
+                                                                        <input type="hidden"  value="{{invoiceService.TypeOfService.typeofserviceId}}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        @*@Html.DropDownList("TypeOfService", null, "", new { @class = "select", @data_placeholder = "Services" })*@
+                                                                      <select class="form-control" ng-model="invoiceService.TypeOfService" ng-options="typeOfServices.NameOfService for typeOfServices in model.TypeOfServices" placeholder ="Type of Service"></select>
+                                                                    @*<i role="button" data-toggle="modal" data-target="#myModal" href="@Url.Action("MultipleService", "AndersonPay" )" class="glyphicon glyphicon-plus-sign"></i> Add Service*@
+                                                                    @Html.ValidationMessageFor(model => model.TypeOfService, "", new { @class = "text-danger" })
+                                                                </td>
+
+                                                                <td>
+                                                                  
+                                                                    
+                                                                    @*@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter a new Description" } })*@
+                                                                    <input type="text" class="form-control" name="Description"  ng-model="invoiceService.TypeOfService.ServiceDescription" placeholder="Service Description" value="{{ServiceDescription}}">
+                                                                </td>
+
+                                                                <!-- Rate -->
+                                                                <td>
+                                                                    @*@Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rate" } })*@
+                                                                    <input type="number" class="form-control" name="Rate"  value="{{Rate}}" placeholder = "0.00"  />
+                                                                    @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger", })
+
+                                                                </td>
+                                                                <!-- Quantity -->
+                                                                <td>
+                                                                    @*@Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Quantity" } })*@
+                                                                    <input type="number" class="form-control" name="Quantity" value={{Quantity}}  placeholder = "0"/>
+                                                                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger", })
+                                                                </td>
+                                                                    <td><button type="button" ng-click= "model.deleteRow($index)" class="btn" style="float:right">Remove</button></td>
+                                                                </tr>
+                                                        </table>
+                                                        <br/>
+                                                       
+                                                        <button type="button" ng-click="model.CreateInvoiceService()" class="btn btn-info" style="float:right">Add Service</button>
+                                                        
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Currency -->
+                                                    <div class="col-md-6"><br /><br />
+                                                        <div class="form-group form-group-material">
+                                                            <label>Currency: </label>
+                                                            @Html.DropDownList("Currency", new List<SelectListItem>
+                                                                {
+                                                                        new SelectListItem {Text="($) US Dollar" ,Value = "Dollar"/*, Selected = true*/},
+                                                                        new SelectListItem {Text="(₱) Philippine Peso" ,Value = "Peso", Selected = true},
+                                                                        new SelectListItem {Text = "(£) UK Pound", Value = "UK Pounds" },
+                                                                }, "", new { @class = "bootstrap-select show-tick", @data_width = "46%" })
+                                                            @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- VAT -->
+                                                    <div class="col-md-3"><br /><br />
+                                                        <div class="form-group form-group-material">
+                                                            <label>Sales Tax: </label>
+                                                            @Html.DropDownList("GovernmentTax", new List<SelectListItem>
+                                                                {
+                                                                        new SelectListItem {Text="0%" ,Value = "0", Selected = true},
+                                                                        new SelectListItem {Text="12%" ,Value = "12"},
+                                                                        
+
+                                                                }, "", new { @class = "bootstrap-select show-tick", @data_width = "22%" })
+
+                                                
+                                                            </div>
+                                                        </div>                                       
+                                                  
+
+                                                <div class="col-md-3"><br /><br />
+                                                    <div class="form-group form-group-material">
+                                                        <label>Withholding Tax: </label>
+                                                        @Html.DropDownList("WithholdingTax", new List<SelectListItem>
+                                                                {
+                                                                        new SelectListItem {Text="0%" ,Value = "0", Selected = true},
+                                                                        new SelectListItem {Text="1%" ,Value = "1" },
+                                                                        new SelectListItem {Text = "2%", Value = "2" },
+                                                                        new SelectListItem {Text = "5%", Value = "5" },
+                                                                }, "", new { @class = "bootstrap-select show-tick", @data_width = "46%" })
+                                                        @Html.ValidationMessageFor(model => model.WithholdingTax, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                </div>
+
+
+                                                <!-- Comments -->
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group form-group-material">
+                                                            <label>Comments:</label>
+                                                            <textarea value="Comments" name="Comments" rows="5" cols="20" class="form-control" placeholder="Enter your comment here"></textarea>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary btn-lg" name="Submit" value="Preview" href="@Url.Action("PreviewInvoice", "AndersonPay", new { invoice=Model})">
+                                        <i class="glyphicon glyphicon-eye-open"></i> Preview
+                                    </button>
+                                    <button type="button" value="CreateInvoice" data-toggle="modal" data-target="#modal_h4" name="Submit" id=item.invoiceId class="btn btn-primary">Submit Invoice<i class="icon-arrow-right14 position-right"></i></button>
+                                    <!-- data-toggle="modal" data-target="#modal_h4" -->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="modal_h4" class="modal fade">
+                            <div class="modal-create-invoice">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h3>Submit Invoice</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h6>Click 'proceed' to confirm</h6>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" value="Create" id=item.invoiceId class="btn btn-primary">Proceed</button>
+                                        <!--href="/Invoice/Index"-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                }
+            }
+
+            <!-- Footer -->
+            <div class="footer text-muted">
+                &copy; 2017. - Anderson Group BPO Inc. | <a href="#">Anderson.Pay</a> - Private and Confidential.
+            </div>
+            <!-- /footer -->
+        </div>
+
+        <!-- /content area -->
+    </div>
+    <!-- /page header -->
+</div>
+<!-- /main content -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+
+</div>
+
+
+@*JEV WAS HERE HAKHAK !!!*@

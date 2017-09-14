@@ -1,0 +1,311 @@
+﻿@model AndersonPay.Models.invoice
+@using AndersonPay.Models.InvoiceContext
+@{var item = Model;}
+@{
+    Layout = null;
+    var db = new InvoiceContext();
+
+}
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Anderson.Pay</title>
+
+    <link href="~/Content/assets/css/pdf/pdf-design.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    <table style="border: 0px;">
+
+        <tr>
+            <td rowspan="4" class="logo"><img src="~/Content/assets/img/pdf-logo.jpg" /></td>
+            <td></td>
+
+        </tr>
+
+
+        <tr><td></td></tr>
+        <tr>
+
+            <td class="Head-Divide-BILL-STATEMENT"><h1><strong>Billing Statement</strong></h1></td>
+        </tr>
+        <tr>
+
+            <td class="Invoice-number">   No. INV
+            <script>document.write(new Date().getFullYear())</script> - @Html.DisplayFor(model => model.invoiceId)</td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td class="date">
+                <strong>
+                    Date: @Html.DisplayFor(model => model.Date)
+                </strong>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="one">
+
+                <strong>ANDERSON GROUP BPO, INC.</strong> <br />
+                Unit 1504, 15F, Ecotower Bldg., 32nd Street cor.<br />
+                9th Avenue, BGC, 1634 Taguig City, Philippines<br />
+                VAT Reg. TIN 009-490-545-000
+
+            </td>
+
+            <td align="left">
+                <strong>
+                @Html.DisplayFor(model => model.CompanyName)
+                </strong> <br />
+                @db.companies.Find(item.CompanyName).Address
+                <br />
+                @db.companies.Find(item.CompanyName).TIN
+                <!-- Address and tin number-->
+                <!--FROM PART 1 DATABASE-->
+
+        </tr>
+
+    </table>
+
+
+    <!--NOTE: ABILITY TO INPUT FROM DATABASE-->
+
+    <div class="table">
+
+        <table>
+
+            <tr>
+                <th width="23%">
+                    <h3>Type of Service</h3>
+                </th>
+                <th width="35%">
+                    <h3>Description</h3>
+                </th>
+                <th width="12%">
+                    <h3>Quantity</h3>
+                </th>
+                <th width="12%">
+                    <h3>Rate</h3>
+                </th>
+
+                <th width="18%">
+
+                    <h3>Amount</h3>
+
+                </th>
+
+            </tr>
+            @{
+                if (Model.TypeOfService == "Multiple")
+                {
+                    @*for (var limit = 0; limit <= 10; limit++)
+                    {
+            <tr><td class="blue-border-td"></td></tr> }*@
+                    foreach (var Item in db.MultipleServices.Where(x => x.invoiceId == Model.invoiceId).ToList())
+                    {
+
+                        <tr>
+                            <td class="blue-border-td">
+                                @Item.NameOfService
+                            </td>
+                            <td class="blue-border-td"></td>
+                            <td class="blue-border-td">
+                                @Item.ServiceRate
+                            </td>
+                            <td class="blue-border-td">
+                                @Item.ServiceQuantity
+                            </td>
+                            <td >@Html.DisplayFor(modelItem => Item.SubTotal)</td>
+                        </tr>
+                            } 
+
+                    }
+                    else
+                    {
+                    <TR>
+                        <td class="blue-border-td">@Html.DisplayFor(model => model.TypeOfService) </td>
+
+
+                        @*description*@
+                        <td class="blue-border-td"></td>
+
+                        <td class="blue-border-td"> @Html.DisplayFor(model => model.Quantity)</td>
+                        <td class="blue-border-td"> @Html.DisplayFor(model => model.Rate)</td>
+                        <td class="blue-border-td">@Html.DisplayFor(model => model.Amount)</td>
+                    </TR>
+                }
+
+            }
+
+
+
+
+
+
+
+
+            <TR>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+            </TR>
+            <TR>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+            </TR>
+            <TR>
+                <td colspan="2" class="blue-border-td" align="center">Billing period: @Html.DisplayFor(modelItem => item.StartPeriod) - @Html.DisplayFor(modelItem => item.ExpiringPeriod)</td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+            </TR>
+
+            <TR>
+                @{DateTime duedate = item.Date; }
+                <td colspan="2" class="blue-border-td" align="center">Due Date: @Html.DisplayName(duedate.AddDays(7).ToString("MM/dd/yy"))</td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+            </TR>
+
+            <TR>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+            </TR>
+
+            <TR>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+            </TR>
+
+
+            <tr>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <td class="blue-border-td"></td>
+                <TD class="Vatable_sales blue-border-td">Subtotal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+                <TD class="blue-border-td">@Html.DisplayFor(model => model.Amount)</TD>
+            </tr>
+
+            <TR>
+                <td class="blue-border-td"></td>
+
+
+                <TD class="Vatable_sales blue-border-td" colspan="2">VATABLE Sales :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </TD>
+                <td class="blue-border-td">@Html.DisplayFor(model => model.gtholder) %</td>
+
+                <TD class="blue-border-td"> @Html.DisplayFor(model => model.GovernmentTax)</TD>
+
+            </TR>
+
+            <TR>
+                <td class="blue-border-td"></td>
+
+                <TD class="Vatable_sales blue-border-td" colspan="2">Withholding Tax :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+                <td class="blue-border-td">@Html.DisplayFor(model => model.whtholder) %  </td>
+                <TD class="blue-border-td"> @Html.DisplayFor(model => model.WithholdingTax)</TD>
+            </TR>
+
+            <TR>
+                <td class="blue-border-td"></td>
+
+                <TD class="Vatable_sales blue-border-td" colspan="2">Late Fee :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+                <td class="blue-border-td">@Html.DisplayFor(model => model.lfholder) % </td>
+                <TD class="blue-border-td"> @Html.DisplayFor(model => model.LateFee)</TD>
+            </TR>
+
+            <TR>
+                <td class="blue-border-td"></td>
+
+
+                <TD class="payable blue-border-td" colspan="3"><Strong>Total payable for this invoice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Strong></TD>
+                <TD class="blue-border-td"> @Html.DisplayFor(model => model.Total)</TD>
+            </TR>
+
+
+
+        </table>
+
+    </div>
+
+
+    <!--SIGNATURE-->
+    <div class="Signatory">
+        <strong>
+            FOR ANDERSON GROUP BPO, INC.
+        </strong><br /> <br /> <br />
+        ______________________________________ <br />
+        <div class="SignFooter">
+            Authorized Signatory
+        </div>
+
+    </div>
+
+    <!--BANK-->
+    <h3 class="Bank">
+        <strong>
+            <u>
+                BANK DETAILS
+            </u>
+        </strong>
+        <br />
+    </h3>
+
+
+    <!--BANK DETAILS-->
+    <div class="bankdetails">
+
+        ACCOUNT NAME: Anderson Group BPO, Inc. <br />
+        ACCOUNT NUMBER:
+
+        <div class="currency">
+            (USD)  1081-6004-2391 <br />
+            (PHP)  0081-6800-4451 <br />
+        </div>
+
+        Bank NAME: BDO Unibank, Inc.<br />
+
+
+        Bank ADDRESS: BDO Corporate Center, 7899 Makati Avenue,<br />
+        <div class="secondaddress">
+            Makati City 0726 Philippines
+        </div>
+
+        SWIFT CODE: BNORPHMM
+
+
+    </div>
+
+
+    <div>
+        <br />
+        <br />
+        <br />
+        <center><h1><i>"This Document is not valid for claiming input taxes."</i></h1></center>
+    </div>
+
+
+    <br /><br />
+   
+</body>
+</html>

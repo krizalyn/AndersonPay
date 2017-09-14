@@ -1,0 +1,85 @@
+﻿@model AndersonPay.Models.company
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>company</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Wtpercent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Wtpercent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelephoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelephoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FORDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FORDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax)
+        </dd>
+
+        </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyName }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
