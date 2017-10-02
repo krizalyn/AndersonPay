@@ -1206,27 +1206,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708240534046_initial1.cs" />
-    <Compile Include="Migrations\201708240534046_initial1.Designer.cs">
-      <DependentUpon>201708240534046_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709060127177_initial.cs" />
-    <Compile Include="Migrations\201709060127177_initial.Designer.cs">
-      <DependentUpon>201709060127177_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709110541136_initial2.cs" />
-    <Compile Include="Migrations\201709110541136_initial2.Designer.cs">
-      <DependentUpon>201709110541136_initial2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\InvoiceContext\Employee.cs" />
     <Compile Include="Models\jobs.cs" />
-    <Compile Include="Models\MultipleServiceResources\CheckBoxViewModel.cs" />
     <Compile Include="Models\company.cs" />
     <Compile Include="Models\FileDetail.cs" />
     <Compile Include="Models\invoice.cs" />
     <Compile Include="Models\InvoiceContext\InvoiceContext.cs" />
+    <Compile Include="Models\MultipleServiceResources\CheckBoxViewModel.cs" />
     <Compile Include="Models\MultipleServiceResources\InvoiceViewModel.cs" />
     <Compile Include="Models\MultipleServiceResources\MultipleService.cs" />
     <Compile Include="Models\SearchArchive\ArchiveResults.cs" />
@@ -1303,17 +1291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708240534046_initial1.resx">
-      <DependentUpon>201708240534046_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709060127177_initial.resx">
-      <DependentUpon>201709060127177_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709110541136_initial2.resx">
-      <DependentUpon>201709110541136_initial2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
