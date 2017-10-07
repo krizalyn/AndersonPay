@@ -556,55 +556,55 @@ namespace AndersonPay.Controllers
 
             //withholding tax
             //JEV WAS HERE NYAHAHA
-            if (invoice.WithholdingTax == 1)
-            {
+            //if (invoice.WithholdingTax == 1)
+            //{
 
-                invoice.WithholdingTax = 1;
-                decimal wttax = invoice.WithholdingTax / 100;
-                invoice.whtholder = wttax;
-                Convert.ToDouble(invoice.Amount);
-                decimal y = invoice.Amount * wttax;
-                invoice.WithholdingTax = y;
-
-
-            }
-            else if (invoice.WithholdingTax == 2)
-            {
-
-                invoice.WithholdingTax = 2;
-                decimal wttax = invoice.WithholdingTax / 100;
-                invoice.whtholder = invoice.WithholdingTax;
-                decimal y = invoice.Amount * wttax;
-                invoice.WithholdingTax = y;
+            //    invoice.WithholdingTax = 1;
+            //    decimal wttax = invoice.WithholdingTax / 100;
+            //    invoice.whtholder = wttax;
+            //    Convert.ToDouble(invoice.Amount);
+            //    decimal y = invoice.Amount * wttax;
+            //    invoice.WithholdingTax = y;
 
 
+            //}
+            //else if (invoice.WithholdingTax == 2)
+            //{
 
-            }
-            else if (invoice.WithholdingTax == 5)
-            {
+            //    invoice.WithholdingTax = 2;
+            //    decimal wttax = invoice.WithholdingTax / 100;
+            //    invoice.whtholder = invoice.WithholdingTax;
+            //    decimal y = invoice.Amount * wttax;
+            //    invoice.WithholdingTax = y;
+
+
+
+            //}
+            //else if (invoice.WithholdingTax == 5)
+            //{
 
                 
-                invoice.WithholdingTax = 5;
-                decimal wttax = invoice.WithholdingTax / 100;
-                invoice.whtholder = wttax;
-                Convert.ToDouble(invoice.Amount);
-                decimal y = invoice.Amount * wttax;
-                invoice.WithholdingTax = y;
+            //    invoice.WithholdingTax = 5;
+            //    decimal wttax = invoice.WithholdingTax / 100;
+            //    invoice.whtholder = wttax;
+            //    Convert.ToDouble(invoice.Amount);
+            //    decimal y = invoice.Amount * wttax;
+            //    invoice.WithholdingTax = y;
 
 
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 
-                invoice.WithholdingTax = 0;
-                decimal wttax = invoice.WithholdingTax / 100;
-                invoice.whtholder = wttax;
-                Convert.ToDouble(invoice.Amount);
-                decimal y = invoice.Amount * wttax;
-                invoice.WithholdingTax = y;
+            //    invoice.WithholdingTax = 0;
+            //    decimal wttax = invoice.WithholdingTax / 100;
+            //    invoice.whtholder = wttax;
+            //    Convert.ToDouble(invoice.Amount);
+            //    decimal y = invoice.Amount * wttax;
+            //    invoice.WithholdingTax = y;
 
-            }
+            //}
 
 
             //latefee

@@ -4,7 +4,7 @@
     angular
         .module('App')
         .controller('AndersonPayController', AndersonPayController);
-    
+
     AndersonPayController.$inject = ['AndersonPayService'];
 
     function AndersonPayController(AndersonPayService) {
@@ -15,14 +15,18 @@
             Description: '',
             Rate: 0,
             Quantity: 0,
-            total: 0,
-            WithholdingTax: 0
-            
+            subtotal: 0,
+            subtotalholder: 0,
+            tax: 0,
+            totaltax: 0
+
+
         }
         //array
         vm.InvoiceServices = [];
         vm.TypeOfServices = [];
-        
+        vm.Subtotal = 0;
+        //vm.List = List;
 
         //function create
         vm.CreateInvoiceService = CreateInvoiceService;
@@ -30,7 +34,8 @@
         vm.deleteRow = deleteRow;
         //function others
         vm.Initialise = Initialise;
-        
+        //function compute subtotal
+        //vm.getSubtotal = getSubtotal;
 
 
         function CreateInvoiceService() {
@@ -43,24 +48,38 @@
             .then(function (response) {
                 vm.TypeOfServices = response.data;
             })
-          }
-
-        vm.total = function () {
-            var total = 0;
-            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
-                total += invoiceService.Rate * invoiceService.Quantity;
-            })
-
-            return total;
         }
 
-        vm.getTaxTotal = function(WithholdingTax, total)
-            { 
-                var result = ((WithholdingTax/total)*100 + total)
-                return Math.round(result, 2);
-            }
+        vm.subtotal = function () {
+            invoiceService.subtotal = 0;
+            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
+                subtotal += invoiceService.Rate * invoiceService.Quantity;
+            })
 
-         
+            return subtotal;
+        }
+
+        vm.subtotalholder = function (invoiceService) {
+            if (invoiceService) {
+                invoiceService.subtotalholder = invoiceService.Rate * invoiceService.Quantity;
+                vm.Subtotal += invoiceService.Quantity;
+                vm.Subtotalholder += invoiceService.subtotalholder;
+            }
+        }
+
+        vm.totaltaxholder = function () {
+            var totaltaxholder = 0;
+            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
+                totaltaxholder += (invoiceService.subtotalholder / 100) * invoiceService.tax;
+            })
+        }
+
+        vm.totaltax = function () {
+            var totaltax = 0;
+            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
+                totaltax += invoiceService.subtotal + vm.totaltaxholder
+            })
+        }
         function deleteRow(index) {
             vm.InvoiceServices.splice(index, 1);
 
@@ -77,7 +96,7 @@
     .factory('AndersonPayService', AndersonPayService);
 
     AndersonPayService.$inject = ['$http'];
-        
+
     function AndersonPayService($http) {
         return {
             List: List
