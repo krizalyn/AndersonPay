@@ -1,7 +1,6 @@
 ﻿@model AndersonPay.Models.invoice
-@model AndersonPay.Models.MultipleService
-
 @using AndersonPay.Models.InvoiceContext
+
 @{var item = Model;}
 @{
 
@@ -81,7 +80,7 @@
 
 
 
-<div class="modal-dialog modal-full">
+<div ng-controller="AndersonPayController as model" ng-init="model.List()" class="modal-dialog modal-full">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" onclick="location.href='@Url.Action("Index")">&times;</button>
@@ -133,7 +132,6 @@
 
                 </td>
                 <td class="tr-info-add" rowspan="2" valign="top">
-
                     @db.companies.Find(item.CompanyName).Address
                 </td>
                 <td class="tr-label-bordered">
@@ -185,33 +183,31 @@
 
             </tr>
 
-
+            
                 @{
-                if (item.TypeOfService == "Multiple")
-                {
-                    foreach (var Item in db.MultipleServices.Where(x => x.invoiceId == item.invoiceId).ToList())
+                    //if (item.TypeOfService == "Multiple")
+                    //{
+                    foreach (var Item in item.multipleServices)/*db.MultipleServices.Where(x => x.invoiceId == item.invoiceId)*/
                     {
-            <tr>
-                <td class="td-borders">
-                    @Html.DisplayFor(modelItem => Item.NameOfService)
-                </td>
-                <td class="td-borders"></td>
-                <td class="td-borders">@Html.DisplayFor(modelItem => Item.ServiceQuantity)</td>
-                <td class="td-borders">@Html.DisplayFor(modelItem => Item.ServiceRate)</td>
-                <td class="td-borders"><span class="text-semibold">@Html.DisplayFor(modelItem => Item.SubTotal)</span></td>
-            </tr>
+                    <tr>
+                        <td class="td-borders">@Html.DisplayFor(modelItem => Item.NameOfService)</td>
+                        <td class="td-borders">@Html.DisplayFor(modelItem => Item.ServiceDescription)</td>
+                        <td class="td-borders">@Html.DisplayFor(modelItem => Item.ServiceQuantity)</td>
+                        <td class="td-borders">@Html.DisplayFor(modelItem => Item.ServiceRate)</td>
+                        <td class="td-borders"><span class="text-semibold">@Html.DisplayFor(modelItem => Item.SubTotal)</span></td>
+                     </tr>   
                     }
                 }
-                else
+                @*else
                 {
                     <tr>
                         <td class="td-borders">@Html.DisplayFor(modelItem => item.TypeOfService)</td>
                         <td class="td-borders">@Html.DisplayFor(modelItem => item.Description)</td>
                         <td class="td-borders">@Html.DisplayFor(modelItem => item.Quantity)</td>
                         <td class="td-borders">@Html.DisplayFor(modelItem => item.Rate)</td>
-                        <td class="td-borders"><span class="text-semibold">@Html.DisplayFor(modelItem => item.Amount)</span></td>
+                        <td class="td-borders"><span class="text-semibold">@Html.DisplayFor(modelItem => item.Total)</span></td>
                     </tr>
-                    }
+                    }*@
                 }
         </table>
 
@@ -223,13 +219,10 @@
                         <div class="col-md-12">
                             <span class="text-muted">Payment Details:</span>
                             <div class="row">
-
                                 <div class="col-md-6">
-
                                     <ul class="list-condensed list-unstyled invoice-payment-details">
                                         <li>Bank name: </li>
                                         <li>Account Number: <br /><br /></li>
-
                                         <li>Bank Address: <br /><br /><br /><br /></li>
                                         <li>SWIFT code: <br /></li>
                                     </ul>

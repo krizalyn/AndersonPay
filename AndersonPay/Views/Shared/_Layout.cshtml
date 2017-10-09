@@ -27,20 +27,21 @@
         <script type="text/javascript" src="~/Content/assets/js/core/app.js"></script>
         <script type="text/javascript" src="~/Content/assets/js/plugins/ui/ripple.min.js"></script>
         
-
+        <!--AngularJS Controllers-->
         <script src="~/Scripts/Angular/app.module.js"></script>
         <script src="~/Scripts/Angular/Controller/AndersonPayController.js"></script>
+
         @{
             InvoiceContext db = new InvoiceContext();
             var overdueLength = db.invoices.Where(s => s.Status == "Overdue").Count();
         }`
 
         <script>
-    function myFunction() {
+        function myFunction() {
         if (@overdueLength > "0") {
             alert("Overdue Invoices: " + " " + @overdueLength);
         }
-    }
+        }
         </script>
     </head>
 
@@ -112,24 +113,18 @@
                         <div class="sidebar-category sidebar-category-visible">
                             <div class="category-content no-padding">
                                 <ul class="navigation navigation-main navigation-accordion">
-
                                     <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
                                     <li><a href="/AndersonPay/Home"><span class="glyphicon glyphicon-home" style="margin-right:12px;"></span> <span>Home</span></a></li>
                                     <li><a href="/AndersonPay/Index" onclick="myFunction()"><span class="glyphicon glyphicon-tasks" style="margin-right:12px;"></span> <span>Dashboard </span></a></li>
                                     <li><a href="/AndersonPay/CreateInvoice"><i class="icon-file-plus2"></i> <span>Create Invoice</span></a></li>
                                     <li><a href="/AddCompany/Index"><i class="icon-list"></i> <span>List of Clients</span></a></li>
-                                      
                                     <li><a href="/AddJobs/Index"><i class="icon-list"></i> <span>List of Jobs</span></a></li>
                                     <li><a href="/TypeOfServices/Index"><i class="icon-list2"></i> <span>List of Services</span></a></li>
-                                    <li>
-                                        <a href="#"><i class="icon-database"></i> <span>Manpower Files</span></a>
+                                    <li><a href="#"><i class="icon-database"></i> <span>Manpower Files</span></a>
                                         <ul>
-                                            <li><a href="/AndersonPay/Manpower">Employee List</a></li>
-                                            
+                                            <li><a href="/AndersonPay/Manpower">Employee Files</a></li>
                                         </ul>
                                     </li>
-                                   
-
                                     <li>
                                         <a href="#"><i class="icon-database"></i> <span>Archive</span></a>
                                         <ul>
@@ -201,7 +196,6 @@
                         </div>
                     </div>
 
-                    <!--Picture upload IF KAILANGAN PA HAHAHAHA JHOAN WAS HERE HAKHAKHAK-->
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-7">

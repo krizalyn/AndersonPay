@@ -37,13 +37,13 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
 
-            <h3>Add New Personnel</h3>
+            <h3>New Employee Information</h3>
         </div>
         <hr />
         <div class="form-group">
             @Html.Label("Name:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Full Name" } })
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Employee Name" } })
                 <i class="icon-magazine form-control-feedback"></i>
                 @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
             </div>
@@ -69,28 +69,25 @@
         </div>
         <br />
         <br />
+    <br />
         <br />
         <div class="form-group">
-            <div class="col-md-6">
-                <div class="form-group form-group-material">
-                    <label>Job Position: </label>
-                    @Html.DropDownList("JobName", null, "", new { @class = "select", @data_placeholder = "Select Job Position" })
-                    @Html.ValidationMessageFor(model => model.JobName, "", new { @class = "text-danger" })
-                </div>
+            @Html.Label("Job Position:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("JobName", null, "", new { @class = "select", @data_placeholder = "Select Job Position" })
+                @Html.ValidationMessageFor(model => model.JobName, "", new { @class = "text-danger" })
             </div>
         </div>
-        <br />
-        <br />
-        <br />
+ 
+      
         <div class="form-group">
-            <div class="col-md-6">
-                <div class="form-group form-group-material">
-                    <label>Company: </label>
-                    @Html.DropDownList("CompanyName", null, "", new { @class = "select", @data_placeholder = "Select Company" })
-                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
-                </div>
+            @Html.Label("Company:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CompanyName", null, "", new { @class = "select", @data_placeholder = "Select Company" })
+                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
             </div>
         </div>
+       
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" align="right">
                 <button type="submit" value="Index" class="btn btn-primary">Save</button>

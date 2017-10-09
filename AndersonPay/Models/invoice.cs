@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc; 
+using System.Web.Mvc;
 using System.Net;
 using System.Net.Mail;
 using System.Configuration;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Script.Serialization;
 
 namespace AndersonPay.Models
 {
@@ -31,6 +32,15 @@ namespace AndersonPay.Models
 
         public string Description { get; set; }
 
+        [NotMapped]
+        public string multipeServiceJSON
+        {
+            get
+            {
+                return new JavaScriptSerializer().Serialize(multipleServices);
+            }
+        }
+
         public string Quantity { get; set; }
         
         public string Rate { get; set; }
@@ -44,8 +54,6 @@ namespace AndersonPay.Models
         [Display(Name = "Type Of Service")]
         [Required(ErrorMessage = "Select Type of Service")]
         public string TypeOfService { get; set; }
-
-      
 
         [Display(Name = "Company Name")]
         [Required(ErrorMessage = "Please Select Company")]
@@ -77,16 +85,13 @@ namespace AndersonPay.Models
 
 
         public decimal totalTax { get; set; }
-
         public Nullable<int> invIdholder { get; set; }
         public string Status { get; set; }
         public string Recipients { get; set; }
-
         public Nullable<bool> Deleted { get; set; }
         public bool Multiple { get; set; }
-
         public company Company { get; set; }
-        
+
         public virtual ICollection<MultipleService> multipleServices { get; set; }
         
 

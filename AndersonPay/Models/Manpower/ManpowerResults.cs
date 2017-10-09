@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace AndersonPay.Models.SearchArchive
+namespace AndersonPay.Models.Manpower
 {
-    public class ArchiveResults
+    public class ManpowerResults
     {
         public string Name { get; set; }
         [MaxLength(500)]
-        public string Summary { get; set; }
-        public List<ArchiveViewModel> Services { get; set; }
+        public string Detail { get; set; }
+        public List<ManpowerViewModel> Employees { get; set; }
     }
 }

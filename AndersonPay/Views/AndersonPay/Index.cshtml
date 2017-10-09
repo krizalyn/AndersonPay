@@ -136,7 +136,10 @@
                                                             <li>Due Date on: <span class="text-semibold">@Html.DisplayFor(modelItem => item.DueDate)</span></li>
                                                         </ul>
                                                     </div>
-
+                                                    @*@foreach (var x in item.multipleServices)
+                                                    {
+                                                        <span>@x.NameOfService</span>
+                                                    }*@
                                                     <div class="col-sm-6">
                                                         <h6 class="text-semibold text-right no-margin-top">@Html.DisplayFor(modelItem => item.Total)</h6>
                                                         <ul class="list list-unstyled text-right">
