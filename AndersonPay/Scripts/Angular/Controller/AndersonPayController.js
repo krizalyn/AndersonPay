@@ -4,7 +4,7 @@
     angular
         .module('App')
         .controller('AndersonPayController', AndersonPayController);
-
+    
     AndersonPayController.$inject = ['AndersonPayService'];
 
     function AndersonPayController(AndersonPayService) {
@@ -16,11 +16,11 @@
             Rate: 0,
             Quantity: 0,
             subtotal: 0,
-            subtotalholder: 0,
+            subtotalholder:0,
             tax: 0,
             totaltax: 0
 
-
+            
         }
         //array
         vm.InvoiceServices = [];
@@ -48,9 +48,9 @@
             .then(function (response) {
                 vm.TypeOfServices = response.data;
             })
-        }
+          }
 
-        vm.subtotal = function () {
+       vm.subtotal = function () {
             invoiceService.subtotal = 0;
             angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
                 subtotal += invoiceService.Rate * invoiceService.Quantity;
@@ -59,24 +59,31 @@
             return subtotal;
         }
 
-        vm.subtotalholder = function (invoiceService) {
-            if (invoiceService) {
-                invoiceService.subtotalholder = invoiceService.Rate * invoiceService.Quantity;
-                vm.Subtotal += invoiceService.Quantity;
-                vm.Subtotalholder += invoiceService.subtotalholder;
-            }
-        }
-
-        vm.totaltaxholder = function () {
+       vm.subtotalholder = function(invoiceService)
+       {
+           if(invoiceService)
+           {
+               invoiceService.subtotalholder = invoiceService.Rate * invoiceService.Quantity;
+               vm.Subtotal += invoiceService.Quantity;
+               vm.Subtotalholder += invoiceService.subtotalholder;
+           }
+       }
+       
+        vm.totaltaxholder = function()
+        {
             var totaltaxholder = 0;
-            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
-                totaltaxholder += (invoiceService.subtotalholder / 100) * invoiceService.tax;
+            var taxholder = 100;
+            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService)
+            {
+                totaltaxholder = (invoiceService.subtotalholder / taxholder) * invoiceService.tax;
             })
         }
 
-        vm.totaltax = function () {
+        vm.totaltax = function()
+        {
             var totaltax = 0;
-            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
+            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService)
+            {
                 totaltax += invoiceService.subtotal + vm.totaltaxholder
             })
         }
@@ -96,7 +103,7 @@
     .factory('AndersonPayService', AndersonPayService);
 
     AndersonPayService.$inject = ['$http'];
-
+        
     function AndersonPayService($http) {
         return {
             List: List

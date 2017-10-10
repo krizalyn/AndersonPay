@@ -1206,6 +1206,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710090802369_initial.cs" />
+    <Compile Include="Migrations\201710090802369_initial.Designer.cs">
+      <DependentUpon>201710090802369_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\InvoiceContext\Employee.cs" />
@@ -1219,10 +1223,10 @@
     <Compile Include="Models\MultipleServiceResources\MultipleService.cs" />
     <Compile Include="Models\SearchArchive\ArchiveResults.cs" />
     <Compile Include="Models\SearchArchive\ArchiveViewModel.cs" />
-    <Compile Include="Models\SearchManpower\Manpower.cs" />
-    <Compile Include="Models\SearchManpower\ManpowerFile.cs" />
-    <Compile Include="Models\SearchManpower\ManpowerResults.cs" />
-    <Compile Include="Models\SearchManpower\ManpowerViewModel.cs" />
+    <Compile Include="Models\Manpower\Manpower.cs" />
+    <Compile Include="Models\Manpower\ManpowerFile.cs" />
+    <Compile Include="Models\Manpower\ManpowerResults.cs" />
+    <Compile Include="Models\Manpower\ManpowerViewModel.cs" />
     <Compile Include="Models\typeofservice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1291,6 +1295,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710090802369_initial.resx">
+      <DependentUpon>201710090802369_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -20,18 +20,14 @@ namespace AndersonPay.Models.InvoiceContext
         }
 
         public System.Data.Entity.DbSet<AndersonPay.Models.invoice> invoices { get; set; }
-
         public System.Data.Entity.DbSet<AndersonPay.Models.company> companies { get; set; }
-
         public System.Data.Entity.DbSet<AndersonPay.Models.typeofservice> typeofservices { get; set; }
         public System.Data.Entity.DbSet<AndersonPay.Models.Archive> Archives { get; set; }
         public System.Data.Entity.DbSet<AndersonPay.Models.FileDetail> FileDetails { get; set; }
         public System.Data.Entity.DbSet<AndersonPay.Models.MultipleService> MultipleServices { get; set; }
-
         public System.Data.Entity.DbSet<AndersonPay.Models.jobs> jobs { get; set; }
-
         public System.Data.Entity.DbSet<AndersonPay.Models.Employee> Employees { get; set; }
-        public System.Data.Entity.DbSet<AndersonPay.Models.SearchManpower.Manpower> Manpowers { get; set; }
-        public System.Data.Entity.DbSet<AndersonPay.Models.SearchManpower.ManpowerFile> ManpowerFiles { get; set; }
+        public System.Data.Entity.DbSet<AndersonPay.Models.Manpower.Manpower> Manpowers { get; set; }
+        public System.Data.Entity.DbSet<AndersonPay.Models.Manpower.ManpowerFile> ManpowerFiles { get; set; }
     }
 }

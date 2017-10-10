@@ -12,7 +12,7 @@ using PagedList;
 using Rotativa;
 using System.IO;
 using AndersonPay.Models.SearchArchive;
-using AndersonPay.Models.SearchManpower;
+using AndersonPay.Models.Manpower;
 using Newtonsoft.Json;
 
 namespace AndersonPay.Controllers
@@ -47,7 +47,7 @@ namespace AndersonPay.Controllers
             ViewBag.SortDateThisWeek = "This Week";
             ViewBag.SortDateThisMonth = "This Month";
             ViewBag.SortDateThisYear = "This Year";
-            //Declaration of dateranges para sa pagcocompare :D
+            //Declaration of Dateranges for Comparing
             DateTime FromDate = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy/MM/dd"));
             DateTime UptoDate = FromDate;
             // remove time from Today
@@ -73,10 +73,7 @@ namespace AndersonPay.Controllers
                     break;
                 case "This Week":
                     //switch inside a switch, to improve the time of execution
-                    //zildx was here
-                    //Week Range Function
-                    //Idedetect nya kung anong araw na then hahanapin nya ung mga dates na sakop nung week na yon
-                    //-Bosxsx Zildx39
+                    //Week Range Function                 
                     switch (DateTime.Now.DayOfWeek.ToString())
                     {
                         case "Sunday":
@@ -276,50 +273,53 @@ namespace AndersonPay.Controllers
                 FileName = "INV-00" + idHolder + " - ClientCode.pdf"
             };
         }
+       
         //This will print PDF
         public ActionResult PrintPDF(int? id)
         {
             invoice invoice = db.invoices.Find(id);
             return View(invoice);
         }
+
         // GET: invoice/Create
         [HttpGet]
         public ActionResult CreateInvoice()
         {
             var typesOfService = db.typeofservices;
             ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName");
-            ViewBag.TypeOfService = new SelectList(typesOfService, "NameOfService", "NameOfService");
-            ViewBag.TypeOfServices = JsonConvert.SerializeObject(typesOfService.ToList());
+            //ViewBag.TypeOfService = new SelectList(typesOfService, "NameOfService", "NameOfService");
+            //ViewBag.TypeOfServices = JsonConvert.SerializeObject(typesOfService.ToList());
             return View(db.invoices.Create());
 
         }
 
         [HttpPost]
-        public ActionResult CreateInvoice(invoice invoice, List<MultipleService> multipleServices ,string Submit, string Comments)
+        public JsonResult TypeOfServices()
+        {
+            using (var invoiceContext = new InvoiceContext())
+            {
+                var typeOfServices = invoiceContext.typeofservices.ToList();
+                return Json(typeOfServices);
+            }
+
+        }
+        
+        [HttpPost]
+        public ActionResult CreateInvoice(string Submit, string Comments, invoice invoice, MultipleService multipleServices)      
         {
 
-            //try
-            //{
-            //    foreach(var MultipleService in multipleService)
-            //    {
-                   
-            //    }
-            //}
-            //catch(Exception e)
-            //{
-            //    return Json(e);
-            //}
-
+            multipleServices.invoiceId = invoice.invoiceId;
+            invoice.Multiple = true;
             invoice.TypeOfService = "Multiple";
             invoice.Description = "Multiple Services";
-
+            invoice.Amount = multipleServices.SubTotal;
+            multipleServices.NameOfService = invoice.TypeOfService;
+            
             //Converts everything from string to their definite var type
-            var rateHldr = Convert.ToDecimal(invoice.Rate);
-            var qtyHldr = Convert.ToInt32(invoice.Quantity);
             var lfHldr = Convert.ToDecimal(invoice.LateFee);
 
             //amount
-            invoice.Amount = rateHldr * qtyHldr;
+            //invoice.Amount = rateHldr * qtyHldr;
             //government tax
 
 
@@ -327,7 +327,7 @@ namespace AndersonPay.Controllers
             //JEV WAS HERE NYAHAHA
             if (invoice.GovernmentTax == 12)
             {
-                decimal x = invoice.Amount * invoice.GovernmentTax;
+                decimal x = multipleServices.SubTotal * invoice.GovernmentTax;
                 invoice.gtholder = 12;
                 decimal govtax = x / 100;
                 invoice.GovernmentTax = govtax;
@@ -345,7 +345,7 @@ namespace AndersonPay.Controllers
                 decimal wttax = invoice.WithholdingTax / 100;
                 invoice.whtholder = wttax;
                 Convert.ToDouble(invoice.Amount);
-                decimal y = invoice.Amount * wttax;
+                decimal y = multipleServices.SubTotal * wttax;
                 invoice.WithholdingTax = y;
 
                 
@@ -377,17 +377,7 @@ namespace AndersonPay.Controllers
 
 
             }
-            else
-            {
-                
-                invoice.WithholdingTax = 0;
-                decimal wttax = invoice.WithholdingTax / 100;
-                invoice.whtholder = wttax;
-                Convert.ToDouble(invoice.Amount);
-                decimal y = invoice.Amount * wttax;
-                invoice.WithholdingTax = y;
-
-            }
+     
 
             //latefee
             decimal q = invoice.Amount * lfHldr;
@@ -395,18 +385,11 @@ namespace AndersonPay.Controllers
             decimal latefee = q / 100;
             lfHldr = latefee;
             invoice.LateFee = Convert.ToString(lfHldr);
-
-
             invoice.Comments = Comments;
+
             invoice.totalTax = invoice.gtholder + invoice.whtholder + invoice.lfholder;
-            invoice.Total = invoice.Amount + invoice.GovernmentTax + invoice.WithholdingTax + latefee;
-
-
 
             invoice.Status = "Pending";
-            
-
-
 
             if (invoice.TypeOfService != null && invoice.Quantity != null && invoice.Rate != null)
             {
@@ -422,128 +405,46 @@ namespace AndersonPay.Controllers
                             db.SaveChanges();
                             if (invoice.TypeOfService == "Multiple")
                             {
-                                return RedirectToAction("MultipleService");
+                                return RedirectToAction("Submit");
                             }
                             return RedirectToAction("EmailRedirect", new { id = invoice.invoiceId });
                     }
                 }
             }
-
             ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName", invoice.CompanyName);
             ViewBag.TypeOfService = new SelectList(db.typeofservices, "typeofserviceId", "NameOfService", invoice.TypeOfService);
             ViewBag.MultipleServices = new SelectList(db.MultipleServices, "typeofserviceId", "NameOfService", invoice.multipleServices);
-            return View(invoice);
+            //return View(invoice);
+            return Json(invoice);
         }
-
-
-
 
         [HttpGet]
-        public ActionResult MultipleService()
-        {
-            int id = db.invoices.Max(a => a.invoiceId);
-
-            var Results = from b in db.typeofservices
-                          select new
-                          {
-                              b.typeofserviceId,
-                              b.NameOfService,
-                              Checked = ((from ab in db.MultipleServices
-                                          where (ab.invoiceId == id) & (ab.MultipleServiceId == b.typeofserviceId)
-                                          select ab).Count() > 0)
-                          };
-            var MyViewModel = new InvoiceViewModel();
-
-            MyViewModel.invoiceId = id;
-
-            var MyCheckBoxList = new List<CheckBoxViewModel>();
-
-            foreach (var item in Results)
-            {
-                MyCheckBoxList.Add(new CheckBoxViewModel { Id = item.typeofserviceId, NameOfService = item.NameOfService, Checked = item.Checked });
-            }
-
-            MyViewModel.Services = MyCheckBoxList;
-
-            return View(MyViewModel);
-
-        }
-        [HttpPost]
-        public ActionResult MultipleService(InvoiceViewModel Invoice)
-        {
-            //invoice LatestInvoice = new invoice();
-            //LatestInvoice = db.invoices.Find(Invoice.invoiceId);
-
-            if (ModelState.IsValid)
-            {
-                //Invoice.invoiceId = db.invoices.Max(p => p.invoiceId);
-                int ptr = db.invoices.Max(p => p.invoiceId);
-                db.invoices.Find(ptr).Deleted = true;
-                foreach (var item in Invoice.Services)
-                {
-                    if (item.Checked)
-                    {
-                        db.invoices.Find(ptr).Deleted = false;
-                        db.MultipleServices.Add(new MultipleService() { invoiceId = ptr, NameOfService = item.NameOfService, ServiceQuantity = item.ServiceQuantity, ServiceRate = item.ServiceRate, SubTotal = Convert.ToString(Math.Round(Convert.ToDecimal(item.ServiceQuantity) * Convert.ToDecimal(item.ServiceRate), 2)) });
-                    }
-                }
-                if (db.invoices.Find(ptr).Deleted == true)
-                {
-                    db.Entry(db.invoices.Find(ptr)).State = System.Data.Entity.EntityState.Deleted;
-                }
-                if (ModelState.IsValid)
-                {
-                    db.SaveChanges();
-                }
-                else
-                {
-                    return View();
-                }
-
-                db.invoices.Find(ptr).Amount = 0;
-                foreach (var item in db.MultipleServices.Where(x => x.invoiceId == db.invoices.Max(p => p.invoiceId)).ToList())
-                {
-                    db.invoices.Find(ptr).Amount += Convert.ToDecimal(item.SubTotal);
-                }
-                if (db.invoices.Find(ptr).GovernmentTax > 0)
-                {
-                    db.invoices.Find(ptr).totalTax = db.invoices.Find(ptr).Amount * (decimal)0.17;
-                    db.invoices.Find(ptr).GovernmentTax = db.invoices.Find(ptr).Amount * (decimal)0.12;
-                    db.invoices.Find(ptr).WithholdingTax = db.invoices.Find(ptr).Amount * (decimal)(0.05);
-                    db.invoices.Find(ptr).Total = db.invoices.Find(ptr).Amount * ((decimal)1.17);
-                }
-                else
-                {
-                    db.invoices.Find(ptr).Total = db.invoices.Find(ptr).Amount;
-                }
-                db.SaveChanges();
-                return RedirectToAction("EmailRedirect", new { id = ptr });
-            }
-            return View(Invoice);
-        }
         public ActionResult PreviewInvoice(invoice invoice)
         {
             return View(invoice);
-     
         }
 
+        
         [HttpPost]
-        public ActionResult PreviewInvoice(invoice invoice, int? id, string Submit)
+        public ActionResult PreviewInvoice(invoice invoice, int? id, string Preview, MultipleService multipleServices)
         {
-            //Converts everything from string to their definite var type
-            var rateHldr = Convert.ToDecimal(invoice.Rate);
-            var qtyHldr = Convert.ToInt32(invoice.Quantity);
+            multipleServices.invoiceId = invoice.invoiceId;
+            invoice.Multiple = true;
+            invoice.TypeOfService = "Multiple";
+            invoice.Description = "MultipleServices";
+            invoice.Amount = multipleServices.SubTotal;
+            multipleServices.NameOfService = invoice.TypeOfService;
             var lfHldr = Convert.ToDecimal(invoice.LateFee);
 
-            //amount
-            invoice.Amount = rateHldr * qtyHldr;
+            
             //government tax
 
 
-           
+            //withholding tax
+            //JEV WAS HERE NYAHAHA
             if (invoice.GovernmentTax == 12)
             {
-                decimal x = invoice.Amount * invoice.GovernmentTax;
+                decimal x = multipleServices.SubTotal * invoice.GovernmentTax;
                 invoice.gtholder = 12;
                 decimal govtax = x / 100;
                 invoice.GovernmentTax = govtax;
@@ -554,57 +455,53 @@ namespace AndersonPay.Controllers
                 invoice.WithholdingTax = whtax;
             }
 
-            //withholding tax
-            //JEV WAS HERE NYAHAHA
-            //if (invoice.WithholdingTax == 1)
-            //{
+            if (invoice.WithholdingTax == 1)
+            {
 
-            //    invoice.WithholdingTax = 1;
-            //    decimal wttax = invoice.WithholdingTax / 100;
-            //    invoice.whtholder = wttax;
-            //    Convert.ToDouble(invoice.Amount);
-            //    decimal y = invoice.Amount * wttax;
-            //    invoice.WithholdingTax = y;
+                invoice.WithholdingTax = 1;
+                decimal wttax = invoice.WithholdingTax / 100;
+                invoice.whtholder = wttax;
+                Convert.ToDouble(invoice.Amount);
+                decimal y = multipleServices.SubTotal * wttax;
+                invoice.WithholdingTax = y;
 
 
-            //}
-            //else if (invoice.WithholdingTax == 2)
-            //{
+            }
+            else if (invoice.WithholdingTax == 2)
+            {
 
-            //    invoice.WithholdingTax = 2;
-            //    decimal wttax = invoice.WithholdingTax / 100;
-            //    invoice.whtholder = invoice.WithholdingTax;
-            //    decimal y = invoice.Amount * wttax;
-            //    invoice.WithholdingTax = y;
+                invoice.WithholdingTax = 2;
+                decimal wttax = invoice.WithholdingTax / 100;
+                invoice.whtholder = invoice.WithholdingTax;
+                decimal y = invoice.Amount * wttax;
+                invoice.WithholdingTax = y;
+
+            }
+            else if (invoice.WithholdingTax == 5)
+            {
+
+
+                invoice.WithholdingTax = 5;
+                decimal wttax = invoice.WithholdingTax / 100;
+                invoice.whtholder = wttax;
+                Convert.ToDouble(invoice.Amount);
+                decimal y = invoice.Amount * wttax;
+                invoice.WithholdingTax = y;
 
 
 
-            //}
-            //else if (invoice.WithholdingTax == 5)
-            //{
-
+            }
+            else
+            {
                 
-            //    invoice.WithholdingTax = 5;
-            //    decimal wttax = invoice.WithholdingTax / 100;
-            //    invoice.whtholder = wttax;
-            //    Convert.ToDouble(invoice.Amount);
-            //    decimal y = invoice.Amount * wttax;
-            //    invoice.WithholdingTax = y;
+                invoice.WithholdingTax = 0;
+                decimal wttax = invoice.WithholdingTax / 100;
+                invoice.whtholder = wttax;
+                Convert.ToDouble(invoice.Amount);
+                decimal y = invoice.Amount * wttax;
+                invoice.WithholdingTax = y;
 
-
-
-            //}
-            //else
-            //{
-                
-            //    invoice.WithholdingTax = 0;
-            //    decimal wttax = invoice.WithholdingTax / 100;
-            //    invoice.whtholder = wttax;
-            //    Convert.ToDouble(invoice.Amount);
-            //    decimal y = invoice.Amount * wttax;
-            //    invoice.WithholdingTax = y;
-
-            //}
+            }
 
 
             //latefee
@@ -622,19 +519,20 @@ namespace AndersonPay.Controllers
 
             if (ModelState.IsValid)
             {
-                switch (Submit)
+                switch (Preview)
                 {
                     case "Preview":
                         return RedirectToAction("PreviewInvoice", invoice);
 
                     default:
-                        db.invoices.Add(invoice);
+                        db.invoices.Add(invoice);                    
                         db.SaveChanges();
                         db.invoices.Find(id);
                         return RedirectToAction("EmailRedirect", new { id = invoice.invoiceId });
                 }
             }
-            return View(invoice);
+            //return View(invoice);
+            return Json(invoice);
         }
         // GET: invoices/Delete/5
         public ActionResult Delete(int? id)

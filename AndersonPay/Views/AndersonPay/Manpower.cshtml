@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AndersonPay.Models.SearchManpower.Manpower>
+﻿@model IEnumerable<AndersonPay.Models.Manpower.Manpower>
 @{
     ViewBag.Title = "Manpower";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -62,7 +62,7 @@
                             }
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "EditManpower", new { id = item.ManpowerId }) |
+                            @Html.ActionLink("View", "EditManpower", new { id = item.ManpowerId }) |
                             <a href="javascript:void(0);" data-id="@item.ManpowerId" class="deleteItem">Delete</a>
                         </td>
                     </tr>
