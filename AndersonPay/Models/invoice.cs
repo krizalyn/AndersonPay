@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Script.Serialization;
+using AndersonPayEntity;
 
 namespace AndersonPay.Models
 {
@@ -90,9 +91,9 @@ namespace AndersonPay.Models
         public string Recipients { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public bool Multiple { get; set; }
-        public company Company { get; set; }
+        public ECompany Company { get; set; }
 
-        public virtual ICollection<MultipleService> multipleServices { get; set; }
+        public virtual ICollection<EMultipleService> multipleServices { get; set; }
         
 
     }

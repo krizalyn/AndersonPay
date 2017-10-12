@@ -4,22 +4,20 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using AndersonPay.Models;
-using AndersonPay.Models.InvoiceContext;
 using PagedList;
 using Rotativa;
 using System.IO;
 using AndersonPay.Models.SearchArchive;
-using AndersonPay.Models.Manpower;
-using Newtonsoft.Json;
+using AndersonPayEntity;
+using AndersonPayContext;
 
 namespace AndersonPay.Controllers
 {
     public class AndersonPayController : Controller
     {
-        private InvoiceContext db = new InvoiceContext();
+        private Context db = new Context();
 
         //int? page: question mark means can be null. page = number of pages (Index line 174)
         public ActionResult Index(string sortBy, int? page, string filterBy, int? id, string status, string searchBy, string search)
@@ -157,27 +155,27 @@ namespace AndersonPay.Controllers
             switch (status)
             {
                 case "Overdue":
-                    invoice invoiceod = db.invoices.Find(id);
+                    EInvoice invoiceod = db.invoices.Find(id);
                     invoiceod.Status = "Overdue";
                     db.SaveChanges();
                     break;
                 case "Pending":
-                    invoice invoicep = db.invoices.Find(id);
+                    EInvoice invoicep = db.invoices.Find(id);
                     invoicep.Status = "Pending";
                     db.SaveChanges();
                     break;
                 case "On Hold":
-                    invoice invoiceoh = db.invoices.Find(id);
+                    EInvoice invoiceoh = db.invoices.Find(id);
                     invoiceoh.Status = "On Hold";
                     db.SaveChanges();
                     break;
                 case "Canceled":
-                    invoice invoicec = db.invoices.Find(id);
+                    EInvoice invoicec = db.invoices.Find(id);
                     invoicec.Status = "Canceled";
                     db.SaveChanges();
                     break;
                 case "Paid":
-                    invoice invoicepd = db.invoices.Find(id);
+                    EInvoice invoicepd = db.invoices.Find(id);
                     invoicepd.Status = "Paid";
                     db.SaveChanges();
                     break;
@@ -264,7 +262,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            invoice invoice = db.invoices.Find(id);
+            EInvoice invoice = db.invoices.Find(id);
 
             var idHolder = id.ToString();
 
@@ -277,7 +275,7 @@ namespace AndersonPay.Controllers
         //This will print PDF
         public ActionResult PrintPDF(int? id)
         {
-            invoice invoice = db.invoices.Find(id);
+            EInvoice invoice = db.invoices.Find(id);
             return View(invoice);
         }
 
@@ -296,7 +294,7 @@ namespace AndersonPay.Controllers
         [HttpPost]
         public JsonResult TypeOfServices()
         {
-            using (var invoiceContext = new InvoiceContext())
+            using (var invoiceContext = new Context())
             {
                 var typeOfServices = invoiceContext.typeofservices.ToList();
                 return Json(typeOfServices);
@@ -305,7 +303,7 @@ namespace AndersonPay.Controllers
         }
         
         [HttpPost]
-        public ActionResult CreateInvoice(string Submit, string Comments, invoice invoice, MultipleService multipleServices)      
+        public ActionResult CreateInvoice(string Submit, string Comments, EInvoice invoice, EMultipleService multipleServices)      
         {
 
             multipleServices.invoiceId = invoice.invoiceId;
@@ -419,14 +417,14 @@ namespace AndersonPay.Controllers
         }
 
         [HttpGet]
-        public ActionResult PreviewInvoice(invoice invoice)
+        public ActionResult PreviewInvoice(EInvoice invoice)
         {
             return View(invoice);
         }
 
         
         [HttpPost]
-        public ActionResult PreviewInvoice(invoice invoice, int? id, string Preview, MultipleService multipleServices)
+        public ActionResult PreviewInvoice(EInvoice invoice, int? id, string Preview, EMultipleService multipleServices)
         {
             multipleServices.invoiceId = invoice.invoiceId;
             invoice.Multiple = true;
@@ -541,7 +539,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            invoice invoice = db.invoices.Find(id);
+            EInvoice invoice = db.invoices.Find(id);
             if (invoice == null)
             {
                 return HttpNotFound();
@@ -554,7 +552,7 @@ namespace AndersonPay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //invoice invoice = db.invoices.Find(id);
+            //EInvoice invoice = db.invoices.Find(id);
             //db.invoices.Remove(invoice);
             //db.SaveChanges();
             db.invoices.Find(id).Deleted = true;
@@ -578,11 +576,11 @@ namespace AndersonPay.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateArchive(Archive support)
+        public ActionResult CreateArchive(EArchive support)
         {
             if (ModelState.IsValid)
             {
-                List<FileDetail> fileDetails = new List<FileDetail>();
+                List<EFileDetail> fileDetails = new List<EFileDetail>();
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var file = Request.Files[i];
@@ -590,7 +588,7 @@ namespace AndersonPay.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-                        FileDetail fileDetail = new FileDetail()
+                        EFileDetail fileDetail = new EFileDetail()
                         {
                             FileName = fileName,
                             Extension = Path.GetExtension(fileName),
@@ -623,7 +621,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Archive support = db.Archives.Include(s => s.FileDetails).SingleOrDefault(x => x.SupportId == id);
+            EArchive support = db.Archives.Include(s => s.FileDetails).SingleOrDefault(x => x.SupportId == id);
             if (support == null)
             {
                 return HttpNotFound();
@@ -644,7 +642,7 @@ namespace AndersonPay.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditArchive(Archive support)
+        public ActionResult EditArchive(EArchive support)
         {
             if (ModelState.IsValid)
             {
@@ -657,7 +655,7 @@ namespace AndersonPay.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-                        FileDetail fileDetail = new FileDetail()
+                        EFileDetail fileDetail = new EFileDetail()
                         {
                             FileName = fileName,
                             Extension = Path.GetExtension(fileName),
@@ -691,7 +689,7 @@ namespace AndersonPay.Controllers
             try
             {
                 Guid guid = new Guid(id);
-                FileDetail fileDetail = db.FileDetails.Find(guid);
+                EFileDetail fileDetail = db.FileDetails.Find(guid);
                 if (fileDetail == null)
                 {
                     Response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -730,7 +728,7 @@ namespace AndersonPay.Controllers
         {
             try
             {
-                Archive support = db.Archives.Find(id);
+                EArchive support = db.Archives.Find(id);
                 if (support == null)
                 {
                     Response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -775,11 +773,11 @@ namespace AndersonPay.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateManpower(Manpower verify)
+        public ActionResult CreateManpower(EManpower verify)
         {
             if (ModelState.IsValid)
             {
-                List<ManpowerFile> manpowerFiles = new List<ManpowerFile>();
+                List<EManpowerFile> manpowerFiles = new List<EManpowerFile>();
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var file = Request.Files[i];
@@ -787,7 +785,7 @@ namespace AndersonPay.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         var Filename = Path.GetFileName(file.FileName);
-                        ManpowerFile manpowerFile = new ManpowerFile()
+                        EManpowerFile manpowerFile = new EManpowerFile()
                         {
                             Filename = Filename,
                             Annex = Path.GetExtension(Filename),
@@ -818,7 +816,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manpower verify = db.Manpowers.Include(s => s.ManpowerFiles).SingleOrDefault(x => x.ManpowerId == id);
+            EManpower verify = db.Manpowers.Include(s => s.ManpowerFiles).SingleOrDefault(x => x.ManpowerId == id);
             if (verify == null)
             {
                 return HttpNotFound();
@@ -832,7 +830,7 @@ namespace AndersonPay.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditManpower(Manpower verify)
+        public ActionResult EditManpower(EManpower verify)
         {
             if (ModelState.IsValid)
             {
@@ -845,7 +843,7 @@ namespace AndersonPay.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-                        ManpowerFile manpowerFile = new ManpowerFile()
+                        EManpowerFile manpowerFile = new EManpowerFile()
                         {
                             Filename = fileName,
                             Annex = Path.GetExtension(fileName),
@@ -879,7 +877,7 @@ namespace AndersonPay.Controllers
             try
             {
                 Guid guid = new Guid(id);
-                ManpowerFile manpowerFile = db.ManpowerFiles.Find(guid);
+                EManpowerFile manpowerFile = db.ManpowerFiles.Find(guid);
                 if (manpowerFile == null)
                 {
                     Response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -918,7 +916,7 @@ namespace AndersonPay.Controllers
         {
             try
             {
-                Manpower verify = db.Manpowers.Find(id);
+                EManpower verify = db.Manpowers.Find(id);
                 if (verify == null)
                 {
                     Response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -996,7 +994,7 @@ namespace AndersonPay.Controllers
         // Preview Modal View //
         public ActionResult PreviewModal(int? id)
         {
-            invoice invoice = db.invoices.Find(id);
+            EInvoice invoice = db.invoices.Find(id);
             return View(invoice);
         }
 
@@ -1017,7 +1015,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            invoice invoice = db.invoices.Find(id);
+            EInvoice invoice = db.invoices.Find(id);
             if (invoice == null)
             {
                 return HttpNotFound();
@@ -1031,7 +1029,7 @@ namespace AndersonPay.Controllers
         // POST: AndersonPayy/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditInvoice([Bind(Include = "invoiceId,Date,DueDate,Quantity,Rate,Amount,Total,TypeOfService,CompanyName,Recipients,GovernmentTax,gtholder,WithholdingTax,ExpiringPeriod,whtholder,Signature,LateFee,lfholder,Address,Comments,Currency,StartPeriod,totalTax,invIdholder,Status,Deleted")] invoice invoice, string Submit, string Comments)
+        public ActionResult EditInvoice([Bind(Include = "invoiceId,Date,DueDate,Quantity,Rate,Amount,Total,TypeOfService,CompanyName,Recipients,GovernmentTax,gtholder,WithholdingTax,ExpiringPeriod,whtholder,Signature,LateFee,lfholder,Address,Comments,Currency,StartPeriod,totalTax,invIdholder,Status,Deleted")] EInvoice invoice, string Submit, string Comments)
         {
             //DateTime date = DateTime.Today;
             //var seconddayofthemonth = new DateTime(date.Year, date.Month, 2);
@@ -1168,7 +1166,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "typeofserviceId,NameOfService")] typeofservice typeofservice)
+        public ActionResult Create([Bind(Include = "typeofserviceId,NameOfService")] ETypeOfService typeofservice)
         {
             if (ModelState.IsValid)
             {

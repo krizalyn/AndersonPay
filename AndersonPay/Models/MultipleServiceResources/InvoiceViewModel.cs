@@ -1,8 +1,5 @@
-﻿using System;
+﻿using AndersonPayEntity;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace AndersonPay.Models
 {
@@ -12,6 +9,6 @@ namespace AndersonPay.Models
         public string CompanyName { get; set; }
         public bool Multiple { get; set; }
         public List<CheckBoxViewModel> Services { get; set; }
-        public List<typeofservice> service { get; set; }
+        public List<ETypeOfService> service { get; set; }
     }
 }

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AndersonPay.Models.InvoiceContext;
-using AndersonPay.Models;
+using AndersonPayEntity;
+using AndersonPayContext;
 
 namespace AndersonPay.Controllers
 {
     public class TypeOfServicesController : Controller
     {
-        private InvoiceContext db = new InvoiceContext();
+        private Context db = new Context();
 
         // GET: TypeOfServices
         public ActionResult Index()
@@ -28,7 +24,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            typeofservice typeofservice = db.typeofservices.Find(id);
+            ETypeOfService typeofservice = db.typeofservices.Find(id);
             if (typeofservice == null)
             {
                 return HttpNotFound();
@@ -47,7 +43,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "typeofserviceId,NameOfService,Rate,Currency,ServiceDescription")] typeofservice typeofservice)
+        public ActionResult Create([Bind(Include = "typeofserviceId,NameOfService,Rate,Currency,ServiceDescription")] ETypeOfService typeofservice)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +62,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            typeofservice typeofservice = db.typeofservices.Find(id);
+            ETypeOfService typeofservice = db.typeofservices.Find(id);
             if (typeofservice == null)
             {
                 return HttpNotFound();
@@ -79,7 +75,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "typeofserviceId,NameOfService,Rate,Currency,ServiceDescription")] typeofservice typeofservice)
+        public ActionResult Edit([Bind(Include = "typeofserviceId,NameOfService,Rate,Currency,ServiceDescription")] ETypeOfService typeofservice)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +93,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            typeofservice typeofservice = db.typeofservices.Find(id);
+            ETypeOfService typeofservice = db.typeofservices.Find(id);
             if (typeofservice == null)
             {
                 return HttpNotFound();
@@ -110,7 +106,7 @@ namespace AndersonPay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            typeofservice typeofservice = db.typeofservices.Find(id);
+            ETypeOfService typeofservice = db.typeofservices.Find(id);
             db.typeofservices.Remove(typeofservice);
             db.SaveChanges();
             return RedirectToAction("Index");
