@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AndersonPay.Models;
-using AndersonPay.Models.InvoiceContext;
+using AndersonPayEntity;
+using AndersonPayContext;
 
 namespace AndersonPay.Controllers
 {
     public class AddJobsController : Controller
     {
-        private InvoiceContext db = new InvoiceContext();
+        private Context db = new Context();
 
         // GET: AddJobs
         public ActionResult Index()
@@ -28,7 +24,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            jobs jobs = db.jobs.Find(id);
+            EJobs jobs = db.jobs.Find(id);
             if (jobs == null)
             {
                 return HttpNotFound();
@@ -47,7 +43,7 @@ namespace AndersonPay.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobName,Currency,Rate,RateType")] jobs jobs)
+        public ActionResult Create([Bind(Include = "JobName,Currency,Rate,RateType")] EJobs jobs)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +62,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            jobs jobs = db.jobs.Find(id);
+            EJobs jobs = db.jobs.Find(id);
             if (jobs == null)
             {
                 return HttpNotFound();
@@ -79,7 +75,7 @@ namespace AndersonPay.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobName,Currency,Rate,RateType")] jobs jobs)
+        public ActionResult Edit([Bind(Include = "JobName,Currency,Rate,RateType")] EJobs jobs)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +93,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            jobs jobs = db.jobs.Find(id);
+            EJobs jobs = db.jobs.Find(id);
             if (jobs == null)
             {
                 return HttpNotFound();
@@ -110,7 +106,7 @@ namespace AndersonPay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            jobs jobs = db.jobs.Find(id);
+            EJobs jobs = db.jobs.Find(id);
             db.jobs.Remove(jobs);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AndersonPay.Models;
-using AndersonPay.Models.InvoiceContext;
+using AndersonPayContext;
+using AndersonPayEntity;
 
 namespace AndersonPay.Controllers
 {
     public class AddCompanyController : Controller
     {
-        private InvoiceContext db = new InvoiceContext();
+        private Context db = new Context();
 
         // GET: AddCompany
         public ActionResult Index()
@@ -28,7 +24,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            company company = db.companies.Find(id);
+            ECompany company = db.companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -46,7 +42,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Tax,CompanyCode,Wtpercent")] company company)
+        public ActionResult Create([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Tax,CompanyCode,Wtpercent")] ECompany company)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +61,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            company company = db.companies.Find(id);
+            ECompany company = db.companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -78,7 +74,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Tax,CompanyCode,Email,Wtpercent")] company company)
+        public ActionResult Edit([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Tax,CompanyCode,Email,Wtpercent")] ECompany company)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +92,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            company company = db.companies.Find(id);
+            ECompany company = db.companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -109,7 +105,7 @@ namespace AndersonPay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            company company = db.companies.Find(id);
+            ECompany company = db.companies.Find(id);
             db.companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");

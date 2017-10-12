@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AndersonPay.Models;
-using AndersonPay.Models.InvoiceContext;
+using AndersonPayEntity;
+using AndersonPayContext;
 
 namespace AndersonPay.Controllers
 {
     public class AddEmployeesController : Controller
     {
-        private InvoiceContext db = new InvoiceContext();
+        private Context db = new Context();
 
 
 
@@ -33,7 +30,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            EEmployee employee = db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -55,7 +52,7 @@ namespace AndersonPay.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FullName,StartDate,EndDate,JobName,CompanyName")] Employee employee/*, company company*/)
+        public ActionResult Create([Bind(Include = "FullName,StartDate,EndDate,JobName,CompanyName")] EEmployee employee/*, company company*/)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +76,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            EEmployee employee = db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -92,7 +89,7 @@ namespace AndersonPay.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FullName,StartDate,EndDate,JobName,CompanyName")] Employee employee)
+        public ActionResult Edit([Bind(Include = "FullName,StartDate,EndDate,JobName,CompanyName")] EEmployee employee)
         {
 
             if (ModelState.IsValid)
@@ -111,7 +108,7 @@ namespace AndersonPay.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            EEmployee employee = db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -124,7 +121,7 @@ namespace AndersonPay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Employee employee = db.Employees.Find(id);
+            EEmployee employee = db.Employees.Find(id);
             db.Employees.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
