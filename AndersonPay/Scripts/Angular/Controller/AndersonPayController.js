@@ -15,7 +15,6 @@
             Description: '',
             Rate: 0,
             Quantity: 0,
-            subtotal: 0,
             subtotalholder:0,
             tax: 0,
             totaltax: 0
@@ -25,13 +24,16 @@
         //array
         vm.InvoiceServices = [];
         vm.TypeOfServices = [];
-        vm.Subtotal = 0;
         //vm.List = List;
 
         //function create
         vm.CreateInvoiceService = CreateInvoiceService;
         //function delete
         vm.deleteRow = deleteRow;
+        //function compute subtotal
+        vm.Subtotal = Subtotal;
+        //function compute Total
+        vm.Total = Total;
         //function others
         vm.Initialise = Initialise;
         //function compute subtotal
@@ -50,13 +52,28 @@
             })
           }
 
-       vm.subtotal = function () {
-            invoiceService.subtotal = 0;
-            angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
-                subtotal += invoiceService.Rate * invoiceService.Quantity;
-            })
+       //vm.subtotal = function () {
+       //     invoiceService.subtotal = 0;
+       //     angular.forEach(vm.InvoiceService.InvoiceServices, function (invoiceService) {
+       //         subtotal += invoiceService.Rate * invoiceService.Quantity;
+       //     })
 
-            return subtotal;
+        //    return subtotal;
+        //}
+        
+        //compute Subtotal
+        function Subtotal(invoiceService) {
+
+            return (invoiceService.Quantity * invoiceService.Rate);
+        }
+        //compute Total
+        function Total() {
+            var total = 0;
+            angular.forEach(vm.InvoiceServices, function (invoiceService) {
+                total += Subtotal(invoiceService);
+            });
+            return total;
+
         }
 
        vm.subtotalholder = function(invoiceService)

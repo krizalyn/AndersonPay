@@ -1,7 +1,8 @@
-﻿@model AndersonPay.Models.invoice
+﻿@model EInvoice
+@using AndersonPayEntity;
 @using System.Data;
 @using System.Data.Entity;
-@using AndersonPay.Models.InvoiceContext;
+@using AndersonPayContext;
 
 @{
     ViewBag.Title = "Anderson.Pay - Create Invoice";
@@ -54,7 +55,7 @@
             @{
                 int ptr = 0;
 
-                using (var db = new InvoiceContext())
+                using (var db = new Context())
                 {
                     if (!db.invoices.Any())
                     {
@@ -199,8 +200,6 @@
                                                     </div>
                                                 </div>
 
-
-
                                             </div>
                                         </fieldset>
                                     </div>
@@ -283,8 +282,9 @@
                 </td>
 
                 <!--Subtotal-->
-                <td ng-model="invoiceService.subtotal">
-                    {{invoiceService.Quantity * invoiceService.Rate}}
+                <td ng-model="invoiceService.Subtotal">
+                    @*{{invoiceService.Quantity * invoiceService.Rate}}*@
+                    <span ng-bind="model.Subtotal(invoiceService)"></span>
                 </td>
 
                 <td><button type="button" ng-click="model.deleteRow($index)" class="btn btn-info glyphicon glyphicon-trash"></button></td>
@@ -314,7 +314,7 @@
                             </td>
                             <td style="border:none"></td>
                             <td style="border:none"><b>Tax Percentage:</b></td>
-                            <td style="border:none" ng-model="invoiceService.total"><input type="number" class="form-control" placeholder="0" /></td>
+                            <td style="border:none" ng-model=""><input type="number" class="form-control" placeholder="0" /></td>
                             <td style="border:none"></td>
                         </tr>
       
@@ -333,7 +333,7 @@
                             </td>
                             <td style="border:none"></td>
                             <td style="border:none"><b><span>Total:</span></b></td>
-                            <td style="border:none" ng-model="invoiceService.totalTax"><input type="number" class="form-control" placeholder="0" readonly ="readonly"/></td>
+                            <td style="border:none" ng-bind="model.Total()"><input type="number" class="form-control" placeholder="0" readonly ="readonly"/></td>
                             <td style="border:none"></td>
                         </tr>
                     </table>

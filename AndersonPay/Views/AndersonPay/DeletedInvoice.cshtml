@@ -1,8 +1,9 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@using AndersonPay.Models.InvoiceContext;
+@using AndersonPayEntity;
+@using AndersonPayContext;
 
-@model IPagedList<AndersonPay.Models.invoice>
+@model IPagedList<EInvoice>
 
 <style>
     #grad1 {
@@ -30,7 +31,7 @@
 <!-- /Other JS files -->
 <!-- Content -->
 @{
-    InvoiceContext db = new InvoiceContext();
+    Context db = new Context();
 
     <div class="content-wrapper">
         <div class="content">

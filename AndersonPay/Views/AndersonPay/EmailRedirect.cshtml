@@ -1,5 +1,5 @@
 ﻿@model AndersonPay.Controllers.EmailClass.SendEmail
-@using AndersonPay.Models.InvoiceContext
+@using AndersonPayContext;
 <!--Use This To prevent the back option of the browser...Fred was here HAkHAK!-->
 <script type="text/javascript">
     function preventBack() { window.history.forward(); }
@@ -15,7 +15,7 @@
     //    emailReceipient = db.invoices.Max(e => e.Recipients);
     //}
 
-    var db = new InvoiceContext();
+    var db = new Context();
     int ptr = db.invoices.Max(p => p.invoiceId);
     string Month = db.invoices.Find(ptr).Date.ToString("MMMM");
     AndersonPay.Controllers.EmailClass.SendEmail snd = new AndersonPay.Controllers.EmailClass.SendEmail();

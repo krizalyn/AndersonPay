@@ -1,5 +1,5 @@
-﻿@model AndersonPay.Models.company
-
+﻿@model ECompany
+@using AndersonPayEntity;
 @{
     ViewBag.Title = "Delete";
 }
@@ -45,6 +45,12 @@
 
             <dd>
                 @Html.DisplayFor(model => model.FORDO)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Currency)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Currency)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Tax)
