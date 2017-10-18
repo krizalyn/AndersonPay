@@ -1,8 +1,8 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@using AndersonPay.Models.InvoiceContext;
-
-@model IPagedList<AndersonPay.Models.invoice>
+@using AndersonPayContext;
+@using AndersonPayEntity;
+@model IPagedList<EInvoice>
 
 <style>
     #grad1 {
@@ -24,7 +24,7 @@
 <!-- /Other JS files -->
 <!-- Content -->
 @{
-    InvoiceContext db = new InvoiceContext();
+    Context db = new Context();
     int invoiceLength = db.invoices.Count();
     var pendingLength = db.invoices.Where(s => s.Status == "Pending").Count();
     var overdueLength = db.invoices.Where(s => s.Status == "Overdue").Count();

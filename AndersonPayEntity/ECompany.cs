@@ -35,6 +35,8 @@ namespace AndersonPayEntity
         [Required(ErrorMessage = "Please Select Country Type")]
         [Display(Name = "Type Of Company")]
         public string FORDO { get; set; }
+        [Display(Name = "Currency")]
+        public string Currency { get; set; }
         public string FullName { get; set; }
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Contact Email")]
@@ -43,7 +45,6 @@ namespace AndersonPayEntity
         public string Recipients { get; set; }
         [Display(Name = "Tax Type"), Required]
         public string Tax { get; set; }
-
         public EEmployee Employee { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model AndersonPay.Models.company
+﻿@model ECompany
+@using AndersonPayEntity;
 
 <style>
     #grad1 {
@@ -313,6 +314,20 @@
                                                                         new SelectListItem {Text="Individual (registered under DTR)" ,Value = "Individual (registered under DTR)"},
                                                                 }, "", new { @class = "form-control", @data_width = "46%"})
                     @Html.ValidationMessageFor(model => model.FORDO, "", new { @class = "text-danger", })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Currency, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <div class="form-group">
+                    @Html.DropDownList("FORDO", new List<SelectListItem>
+                                                                {
+                                                                        new SelectListItem {Text="US Dollar" ,Value = "US Dollar",},
+                                                                        new SelectListItem {Text="Philippine Peso" ,Value = "Philippine Peso"},
+                                                                        new SelectListItem {Text="UK Pound" ,Value = "UK Pound"},
+                                                                }, "", new { @class = "form-control", @data_width = "46%" })
+                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger", })
                 </div>
             </div>
         </div>

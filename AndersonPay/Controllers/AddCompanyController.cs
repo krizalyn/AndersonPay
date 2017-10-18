@@ -42,7 +42,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Tax,CompanyCode,Wtpercent")] ECompany company)
+        public ActionResult Create([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Currency,Tax,CompanyCode,Wtpercent")] ECompany company)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace AndersonPay.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Tax,CompanyCode,Email,Wtpercent")] ECompany company)
+        public ActionResult Edit([Bind(Include = "CompanyName,Address,Country,TIN,Recipients,ContactPerson,TelephoneNumber,FORDO,Currency,Tax,CompanyCode,Email,Wtpercent")] ECompany company)
         {
             if (ModelState.IsValid)
             {

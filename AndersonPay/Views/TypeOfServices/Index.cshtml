@@ -1,7 +1,8 @@
-﻿@model IEnumerable<AndersonPay.Models.typeofservice>
-@using AndersonPay.Models.InvoiceContext;
+﻿@model IEnumerable<ETypeOfService>
+@using AndersonPayContext;
+@using AndersonPayEntity;
 @{
-    InvoiceContext db = new InvoiceContext();
+    Context db = new Context();
 }
 <script>
     $('body').on('hidden.bs.modal', '.modal', function () {

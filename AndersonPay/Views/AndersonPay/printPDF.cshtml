@@ -1,9 +1,10 @@
-﻿@model AndersonPay.Models.invoice
-@using AndersonPay.Models.InvoiceContext
+﻿@model EInvoice
+@*@using AndersonPay.Models.InvoiceContext*@
+@using AndersonPayEntity;
 @{var item = Model;}
 @{
     Layout = null;
-    var db = new InvoiceContext();
+    var db = new Context();
 
 }
 

@@ -1,5 +1,6 @@
-﻿@model IEnumerable<AndersonPay.Models.Employee>
-@using AndersonPay.Models.InvoiceContext;
+﻿@model IEnumerable<EEmployee>
+@using AndersonPayEntity;
+@using AndersonPayContext;
 <script>
     $('body').on('hidden.bs.modal', '.modal', function () {
         $(this).removeData('bs.modal');
