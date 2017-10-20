@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonPayContext", "Ander
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonPayModel", "AndersonPayModel\AndersonPayModel.csproj", "{5A62D0BA-7B20-47EC-A620-81767AE436A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonPayData", "AndersonPayData\AndersonPayData.csproj", "{486FA07C-94B6-4541-B5B5-EA1A8396DE10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonPayFunction", "AndersonPayFunction\AndersonPayFunction.csproj", "{1034C28E-69AF-4BDC-BB99-EBEF935907F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5A62D0BA-7B20-47EC-A620-81767AE436A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A62D0BA-7B20-47EC-A620-81767AE436A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A62D0BA-7B20-47EC-A620-81767AE436A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{486FA07C-94B6-4541-B5B5-EA1A8396DE10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{486FA07C-94B6-4541-B5B5-EA1A8396DE10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{486FA07C-94B6-4541-B5B5-EA1A8396DE10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{486FA07C-94B6-4541-B5B5-EA1A8396DE10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1034C28E-69AF-4BDC-BB99-EBEF935907F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1034C28E-69AF-4BDC-BB99-EBEF935907F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1034C28E-69AF-4BDC-BB99-EBEF935907F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1034C28E-69AF-4BDC-BB99-EBEF935907F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
