@@ -55,12 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EClient.cs" />
     <Compile Include="EFileDetail.cs" />
     <Compile Include="EArchive.cs" />
     <Compile Include="ECompany.cs" />
     <Compile Include="EInvoice.cs" />
     <Compile Include="EManpowerFile.cs" />
     <Compile Include="EManpower.cs" />
+    <Compile Include="ETaxType.cs" />
     <Compile Include="ETypeOfService.cs" />
     <Compile Include="EMultipleService.cs" />
     <Compile Include="EJobs.cs" />
