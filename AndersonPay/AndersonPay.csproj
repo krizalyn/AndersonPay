@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\Debug\Base\Base.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -263,6 +267,24 @@
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
     <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="bower_components\pnotify\.gitignore" />
+    <Content Include="bower_components\pnotify\dist\pnotify.animate.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.brighttheme.css" />
+    <Content Include="bower_components\pnotify\dist\pnotify.buttons.css" />
+    <Content Include="bower_components\pnotify\dist\pnotify.buttons.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.callbacks.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.confirm.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.css" />
+    <Content Include="bower_components\pnotify\dist\pnotify.desktop.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.history.css" />
+    <Content Include="bower_components\pnotify\dist\pnotify.history.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.mobile.css" />
+    <Content Include="bower_components\pnotify\dist\pnotify.mobile.js" />
+    <Content Include="bower_components\pnotify\dist\pnotify.nonblock.css" />
+    <Content Include="bower_components\pnotify\dist\pnotify.nonblock.js" />
+    <Content Include="bower_components\pnotify\libtests\browserify\index.js" />
+    <Content Include="bower_components\pnotify\make.js" />
     <Content Include="Content\assets\css\bootstrap.css" />
     <Content Include="Content\assets\css\colors.css" />
     <Content Include="Content\assets\css\components.css" />
@@ -406,6 +428,8 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Angular\app.module.js" />
     <Content Include="Scripts\Angular\Controller\AndersonPayController.js" />
+    <Content Include="Scripts\Angular\Controller\ClientController.js" />
+    <Content Include="Scripts\Angular\Service\ClientService.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -450,6 +474,20 @@
     <Content Include="bower_components\jquery\README.md" />
     <Content Include="bower_components\jquery\sizzle\dist\sizzle.min.map" />
     <Content Include="bower_components\jquery\src\.jshintrc" />
+    <Content Include="bower_components\pnotify\.bower.json" />
+    <Content Include="bower_components\pnotify\bower.json" />
+    <Content Include="bower_components\pnotify\composer.json" />
+    <Content Include="bower_components\pnotify\dist\pnotify.animate.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.buttons.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.callbacks.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.confirm.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.desktop.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.history.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.mobile.js.map" />
+    <Content Include="bower_components\pnotify\dist\pnotify.nonblock.js.map" />
+    <Content Include="bower_components\pnotify\LICENSE" />
+    <Content Include="bower_components\pnotify\README.md" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1202,6 +1240,7 @@
     <Compile Include="Controllers\AddEmployeesController.cs" />
     <Compile Include="Controllers\AddJobsController.cs" />
     <Compile Include="Controllers\AndersonPayController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\TypeOfServicesController.cs" />
     <Compile Include="EmailClass\SendEmail.cs" />
     <Compile Include="Global.asax.cs">
@@ -1267,6 +1306,10 @@
     <Content Include="Views\AndersonPay\EditManpower.cshtml" />
     <Content Include="Views\AndersonPay\Manpower.cshtml" />
     <Content Include="Views\AndersonPay\DeleteInvoice.cshtml" />
+    <Content Include="Views\Client\_Client.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Update.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1276,6 +1319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bower_components\pnotify\libtests\requirejs\" />
     <Folder Include="Content\assets\img\companylogos\" />
     <Folder Include="Migrations\" />
     <Folder Include="Models\InvoiceContext\" />
@@ -1288,9 +1332,21 @@
       <Project>{ca9b9889-da88-4042-be60-c4c94dfe23a3}</Project>
       <Name>AndersonPayContext</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AndersonPayData\AndersonPayData.csproj">
+      <Project>{486fa07c-94b6-4541-b5b5-ea1a8396de10}</Project>
+      <Name>AndersonPayData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AndersonPayEntity\AndersonPayEntity.csproj">
       <Project>{0964e572-e2c3-4434-84a8-a238a0a84629}</Project>
       <Name>AndersonPayEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AndersonPayFunction\AndersonPayFunction.csproj">
+      <Project>{1034c28e-69af-4bdc-bb99-ebef935907f6}</Project>
+      <Name>AndersonPayFunction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AndersonPayModel\AndersonPayModel.csproj">
+      <Project>{5a62d0ba-7b20-47ec-a620-81767ae436a3}</Project>
+      <Name>AndersonPayModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

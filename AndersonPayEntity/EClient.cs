@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BaseEntity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AndersonPayEntity
 {
     [Table("Client")]
-    class EClient
+    public class EClient : EBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,7 +19,7 @@ namespace AndersonPayEntity
         public string CurrencyCode { get; set; }
         public string Name { get; set; }
 
-        public ETaxType TaxType { get; set; }
+        public  ETaxType TaxType { get; set; }
 
 
     }

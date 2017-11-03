@@ -21,6 +21,7 @@
         <script type="text/javascript" src="~/Content/assets/js/core/libs/bootstrap.min.js"></script>
         <script type="text/javascript" src="~/Content/assets/js/plugins/loaders/blockui.min.js"></script>
         <script src="~/bower_components/angular/angular.min.js"></script>
+        <script src="~/bower_components/pnotify/dist/pnotify.js"></script>
         <!-- /Core JS files -->
 
         <script type="text/javascript" src="~/Content/assets/js/plugins/forms/styling/uniform.min.js"></script>
@@ -30,6 +31,8 @@
         <!--AngularJS Controllers-->
         <script src="~/Scripts/Angular/app.module.js"></script>
         <script src="~/Scripts/Angular/Controller/AndersonPayController.js"></script>
+        <script src="~/Scripts/Angular/Controller/ClientController.js"></script>
+        <script src="~/Scripts/Angular/Service/ClientService.js"></script>
 
         @{
             Context db = new Context();
@@ -117,7 +120,7 @@
                                     <li><a href="/AndersonPay/Home"><span class="glyphicon glyphicon-home" style="margin-right:12px;"></span> <span>Home</span></a></li>
                                     <li><a href="/AndersonPay/Index" onclick="myFunction()"><span class="glyphicon glyphicon-tasks" style="margin-right:12px;"></span> <span>Dashboard </span></a></li>
                                     <li><a href="/AndersonPay/CreateInvoice"><i class="icon-file-plus2"></i> <span>Create Invoice</span></a></li>
-                                    <li><a href="/AddCompany/Index"><i class="icon-list"></i> <span>List of Clients</span></a></li>
+                                    <li><a href="/Client/Index"><i class="icon-list"></i> <span>List of Clients</span></a></li>
                                     <li><a href="/AddJobs/Index"><i class="icon-list"></i> <span>List of Jobs</span></a></li>
                                     <li><a href="/TypeOfServices/Index"><i class="icon-list2"></i> <span>List of Services</span></a></li>
                                     <li><a href="#"><i class="icon-database"></i> <span>Manpower Files</span></a>

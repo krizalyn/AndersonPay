@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AndersonPayFunction</RootNamespace>
     <AssemblyName>AndersonPayFunction</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BaseData">
+      <HintPath>..\..\DLL\Debug\Base\BaseData.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseEntity">
+      <HintPath>..\..\DLL\Debug\Base\BaseEntity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FClient.cs" />
+    <Compile Include="IFClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AndersonPayContext\AndersonPayContext.csproj">
+      <Project>{ca9b9889-da88-4042-be60-c4c94dfe23a3}</Project>
+      <Name>AndersonPayContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AndersonPayData\AndersonPayData.csproj">
+      <Project>{486fa07c-94b6-4541-b5b5-ea1a8396de10}</Project>
+      <Name>AndersonPayData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AndersonPayEntity\AndersonPayEntity.csproj">
+      <Project>{0964e572-e2c3-4434-84a8-a238a0a84629}</Project>
+      <Name>AndersonPayEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AndersonPayModel\AndersonPayModel.csproj">
+      <Project>{5a62d0ba-7b20-47ec-a620-81767ae436a3}</Project>
+      <Name>AndersonPayModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
