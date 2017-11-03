@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AndersonPayModel
 {
-   public class Client
+   public class Client : Base.Base
     {
         public int ClientId { get; set; }
         public int CompanyId { get; set; }

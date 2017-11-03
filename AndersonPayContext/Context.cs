@@ -38,6 +38,8 @@ namespace AndersonPayContext
         public DbSet<EManpower> Manpowers { get; set; }
         public DbSet<EMultipleService> MultipleServices { get; set; }
         public DbSet<ETypeOfService> typeofservices { get; set; }
+        public DbSet<EClient> Client { get; set; }
+        public DbSet<ETaxType> TaxType { get; set; }
 
     }
 }
