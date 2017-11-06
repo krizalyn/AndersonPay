@@ -26,6 +26,7 @@ namespace AndersonPay.Controllers
             client = _iFClient.Create(client);
             return RedirectToAction("Index", new { id = client.ClientId });
         }
+        #endregion
 
         // Read list of clients
 
@@ -58,7 +59,6 @@ namespace AndersonPay.Controllers
             return RedirectToAction("Index");
 
         }
-        #endregion
         #endregion
 
         //Delete Client

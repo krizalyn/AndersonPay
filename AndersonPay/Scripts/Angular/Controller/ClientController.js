@@ -49,13 +49,7 @@
                     Read();
                 })
                 .catch(function (data, status) {
-                    new PNotify({
-                        title: status,
-                        text: data,
-                        type: 'error',
-                        hide: true,
-                        addclass: "stack-bottomright"
-                    });
+                    
 
                 });
         }

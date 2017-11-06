@@ -14,6 +14,7 @@ namespace AndersonPay
             //System.Data.Entity.Database.SetInitializer(new System.Data.Entity.MigrateDatabaseToLatestVersion<Models.InvoiceContext.InvoiceContext, Migrations.Configuration>());
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
         }
     }
 }
