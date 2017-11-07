@@ -2,12 +2,6 @@
     ViewBag.Title = "Index";
 }
 
-<script>
-    $('body').on('hidden.bs.modal', '.modal', function () {
-        $(this).removeData('bs.modal');
-    });
-
-</script>
 <div ng-controller="ClientController as model" ng-init="model.Initialise()">
     <div class="row">
         <div class="col-sm-4">
