@@ -4,7 +4,11 @@
   "dependencies": {
     "angular": "v1.6.6-build.5451+sha.7c87628",
     "jquery": "2.2.3",
-    "pnotify": "3.2.0"
+    "pnotify": "3.2.0",
+    "angular-ui-select": "v0.19.6",
+    "bootstrap": "3.3.7",
+    "font-awesome": "4.6.1"
+
   },
   "resolutions": {
     "pnotify": "3.2.0"

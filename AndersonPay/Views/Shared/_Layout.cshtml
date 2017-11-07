@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE>
 @using AndersonPayContext;
+@using System.Web.Optimization;
 <html>
     <head>
         <meta charset="utf-8" />
@@ -28,11 +29,6 @@
         <script type="text/javascript" src="~/Content/assets/js/core/app.js"></script>
         <script type="text/javascript" src="~/Content/assets/js/plugins/ui/ripple.min.js"></script>
         
-        <!--AngularJS Controllers-->
-        <script src="~/Scripts/Angular/app.module.js"></script>
-        <script src="~/Scripts/Angular/Controller/AndersonPayController.js"></script>
-        <script src="~/Scripts/Angular/Controller/ClientController.js"></script>
-        <script src="~/Scripts/Angular/Service/ClientService.js"></script>
 
         @{
             Context db = new Context();
@@ -83,6 +79,7 @@
 
         <!-- Container -->
         <div class="page-container" ng-app="App">
+         @Scripts.Render("~/bundles/AngularJS")
             <!-- Content -->
             <div class="page-content">
                 <!-- Sidebar -->
@@ -93,7 +90,7 @@
                         <div class="sidebar-user-material">
                             <div class="category-content">
                                 <div class="sidebar-user-material-content">
-                                    @*<a href="#"><img src="~/Content/assets/img/imgAvatar.png" class="img-circle img-responsive" alt=""></a>*@
+                                    
                                     <h6>User Admin</h6>
                                     <span class="text-size-small"> Anderson Group BPO Inc. </span>
                                 </div>
@@ -112,6 +109,7 @@
                             </div>
                         </div>
                         <!-- ------------- -->
+
                         <!-- Menu Navigation -->
                         <div class="sidebar-category sidebar-category-visible">
                             <div class="category-content no-padding">
