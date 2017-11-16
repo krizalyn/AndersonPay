@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FClient.cs" />
+    <Compile Include="FInvoice.cs" />
     <Compile Include="IFClient.cs" />
+    <Compile Include="IFInvoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

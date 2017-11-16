@@ -61,7 +61,6 @@
     <Compile Include="EClient.cs" />
     <Compile Include="EFileDetail.cs" />
     <Compile Include="EArchive.cs" />
-    <Compile Include="ECompany.cs" />
     <Compile Include="EInvoice.cs" />
     <Compile Include="EManpowerFile.cs" />
     <Compile Include="EManpower.cs" />

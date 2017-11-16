@@ -25,12 +25,12 @@ namespace AndersonPay.Controllers
             //Search Function
             if (!String.IsNullOrEmpty(search))
             {
-                return View(db.invoices.Where(x => x.CompanyName.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 30));
+                return View(db.invoices.Where(x => x.Name.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 30));
             }
 
 
             //db inculudes the company table in database
-            var invoices = db.invoices.Include(i => i.Company);
+            var invoices = db.invoices.Include(i => i.Client);
             //line 29 - 50: All functions about Sorting data in View(Index).
             invoices = invoices.OrderByDescending(x => x.invoiceId);
             ViewBag.SortDateDesc = "Date desc";
@@ -135,10 +135,10 @@ namespace AndersonPay.Controllers
                     invoices = invoices.OrderBy(x => x.Total);
                     break;
                 case "Name Asc":
-                    invoices = invoices.OrderBy(x => x.CompanyName);
+                    invoices = invoices.OrderBy(x => x.Name);
                     break;
                 case "Name Dsc":
-                    invoices = invoices.OrderByDescending(x => x.CompanyName);
+                    invoices = invoices.OrderByDescending(x => x.Name);
                     break;
             }
 
@@ -284,7 +284,7 @@ namespace AndersonPay.Controllers
         public ActionResult CreateInvoice()
         {
             var typesOfService = db.typeofservices;
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName");
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName");
             //ViewBag.TypeOfService = new SelectList(typesOfService, "NameOfService", "NameOfService");
             //ViewBag.TypeOfServices = JsonConvert.SerializeObject(typesOfService.ToList());
             return View(db.invoices.Create());
@@ -409,7 +409,7 @@ namespace AndersonPay.Controllers
                     }
                 }
             }
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName", invoice.CompanyName);
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName", invoice.Name);
             ViewBag.TypeOfService = new SelectList(db.typeofservices, "typeofserviceId", "NameOfService", invoice.TypeOfService);
             ViewBag.MultipleServices = new SelectList(db.MultipleServices, "typeofserviceId", "NameOfService", invoice.multipleServices);
             //return View(invoice);
@@ -1021,7 +1021,7 @@ namespace AndersonPay.Controllers
                 return HttpNotFound();
             }
             ViewBag.id = id;
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName", invoice.CompanyName);
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName", invoice.Name);
             ViewBag.TypeOfService = new SelectList(db.typeofservices, "typeofserviceId", "NameOfService", invoice.TypeOfService);
             return View(invoice);
         }
@@ -1150,7 +1150,7 @@ namespace AndersonPay.Controllers
                         return RedirectToAction("EmailRedirect", new { id = invoice.invoiceId });
                 }
             }
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName", invoice.CompanyName);
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName", invoice.Name);
             ViewBag.TypeOfService = new SelectList(db.typeofservices, "typeofserviceId", "NameOfService", invoice.TypeOfService);
             return View(invoice);
         }

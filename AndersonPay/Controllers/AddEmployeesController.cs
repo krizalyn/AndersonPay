@@ -18,7 +18,7 @@ namespace AndersonPay.Controllers
         // GET: AddEmployees
         public ActionResult Index()
         {
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName");
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName");
             
             return View(db.Employees.ToList());
         }
@@ -43,7 +43,7 @@ namespace AndersonPay.Controllers
         {
 
             ViewBag.JobName = new SelectList(db.jobs, "JobName", "JobName");
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName");
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName");
             return PartialView();
         }
 
@@ -71,7 +71,7 @@ namespace AndersonPay.Controllers
         public ActionResult Edit(string id)
         {
             ViewBag.JobName = new SelectList(db.jobs, "JobName", "JobName");
-            ViewBag.CompanyName = new SelectList(db.companies, "CompanyName", "CompanyName");
+            ViewBag.CompanyName = new SelectList(db.Client, "CompanyName", "CompanyName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
