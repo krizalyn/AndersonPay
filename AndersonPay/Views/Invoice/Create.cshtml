@@ -1,0 +1,16 @@
+﻿@using AndersonPayModel;
+@model Invoice
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <form action="~/Invoice/Create" method="post">
+            @{
+                Html.RenderPartial("_Invoice", Model);
+            }
+        </form>
+    </div>
+</div>

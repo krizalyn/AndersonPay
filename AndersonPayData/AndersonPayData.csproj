@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DClient.cs" />
+    <Compile Include="DInvoice.cs" />
     <Compile Include="IDClient.cs" />
+    <Compile Include="IDInvoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

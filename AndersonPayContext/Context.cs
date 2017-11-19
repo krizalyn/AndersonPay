@@ -29,7 +29,6 @@ namespace AndersonPayContext
         //To Do: Use Capital Letters on non private properties
 
         public DbSet<EArchive> Archives { get; set; }
-        public DbSet<ECompany> companies { get; set; }
         public DbSet<EEmployee> Employees { get; set; }
         public DbSet<EFileDetail> FileDetails { get; set; }
         public DbSet<EInvoice> invoices { get; set; }
