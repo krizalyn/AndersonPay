@@ -1,22 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AndersonPayEntity
 {
-    [Table("MultipleService")]
-    public class EMultipleService
+    public class EService
     {
-        /* 
-         TO DO:
-         Use identity as primary key
-         Removed error messages
-         Removed properties that are irelevant
-         Use Capital Letters on non private properties
-             */
 
-        //[Required(ErrorMessage = "Please Input the Quantity")]
         public decimal ServiceQuantity { get; set; }
-        //[Required(ErrorMessage = "Please Input the Rate")]
         public decimal ServiceRate { get; set; }
 
         [Key]
@@ -26,7 +21,6 @@ namespace AndersonPayEntity
         [ForeignKey("Invoice")]
         public int InvoiceId { get; set; }
 
-        //[Required(ErrorMessage = "Please Input the Service")]
         public string NameOfService { get; set; }
         public string ServiceDescription { get; set; }
 
@@ -41,6 +35,5 @@ namespace AndersonPayEntity
         public virtual EInvoice Invoice { get; set; }
 
         public virtual ETypeOfService typeofservices { get; set; }
-
     }
 }

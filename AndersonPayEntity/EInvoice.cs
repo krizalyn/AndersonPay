@@ -24,67 +24,67 @@ namespace AndersonPayEntity
         public bool? Deleted { get; set; }
         public bool Multiple { get; set; }
 
-        [HiddenInput(DisplayValue = true)]
+      //  [HiddenInput(DisplayValue = true)]
         public decimal Amount { get; set; }
-        [Display(Name = "Vatable Tax %")]
+       // [Display(Name = "Vatable Tax %")]
         public decimal GovernmentTax { get; set; }
         public decimal gtholder { get; set; }
         public decimal lfholder { get; set; }
-        [HiddenInput(DisplayValue = true)]
+       // [HiddenInput(DisplayValue = true)]
         public decimal Total { get; set; }
         public decimal totalTax { get; set; }
-        [Display(Name = "Withholding Tax %")]
+       // [Display(Name = "Withholding Tax %")]
         public decimal WithholdingTax { get; set; }
         public decimal whtholder { get; set; }
 
         public int? invIdholder { get; set; }
-        [Display(Name = "INV no.")]
+       // [Display(Name = "INV no.")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int invoiceId { get; set; }
+        public int InvoiceId { get; set; }
 
         [Editable(true)]
-        [Display(Name = "Date Create:")]
-        [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        //[Display(Name = "Date Create:")]
+        //[DataType(DataType.Date)]
+        public DateTime? Date { get; set; }
         [Editable(true)]
-        [DataType(DataType.Date)]
-        public DateTime DueDate { get; set; }
-        [Required(ErrorMessage = "Please input the required Date")]
-        [DataType(DataType.Date)]
-        public DateTime ExpiringPeriod { get; set; }
-        [Required(ErrorMessage = "Please input the required Date")]
-        [DataType(DataType.Date)]
-        public DateTime StartPeriod { get; set; }
+        //[DataType(DataType.Date)]
+        public DateTime? DueDate { get; set; }
+        //[Required(ErrorMessage = "Please input the required Date")]
+        //[DataType(DataType.Date)]
+        public DateTime? ExpiringPeriod { get; set; }
+        //[Required(ErrorMessage = "Please input the required Date")]
+        //[DataType(DataType.Date)]
+        public DateTime? StartPeriod { get; set; }
 
         public string Comments { get; set; }
-        [Display(Name = "Company Name")]
-        [Required(ErrorMessage = "Please Select Company")]
+        //[Display(Name = "Company Name")]
+        //[Required(ErrorMessage = "Please Select Company")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please input the Currency type")]
+        //[Required(ErrorMessage = "Please input the Currency type")]
         public string Currency { get; set; }
         public string Description { get; set; }
-        [Display(Name = "Late Fee %")]
+        //[Display(Name = "Late Fee %")]
         public string LateFee { get; set; }
         [NotMapped]
         public string multipeServiceJSON
         {
             get
             {
-                return new JavaScriptSerializer().Serialize(multipleServices);
+                return new JavaScriptSerializer().Serialize(Services);
             }
         }
         public string Quantity { get; set; }
         public string Rate { get; set; }
         public string Recipients { get; set; }
         public string Status { get; set; }
-        [Display(Name = "Type Of Service")]
-        [Required(ErrorMessage = "Select Type of Service")]
+        //[Display(Name = "Type Of Service")]
+        //Required(ErrorMessage = "Select Type of Service")]
         public string TypeOfService { get; set; }
 
        
         public EClient Client { get; set; }
 
-        public virtual ICollection<EMultipleService> multipleServices { get; set; }
+        public virtual ICollection<EService> Services { get; set; }
     }
 }

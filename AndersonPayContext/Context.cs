@@ -31,12 +31,12 @@ namespace AndersonPayContext
         public DbSet<EArchive> Archives { get; set; }
         public DbSet<EEmployee> Employees { get; set; }
         public DbSet<EFileDetail> FileDetails { get; set; }
-        public DbSet<EInvoice> invoices { get; set; }
+        public DbSet<EInvoice> Invoices { get; set; }
         public DbSet<EJobs> jobs { get; set; }
         public DbSet<EManpowerFile> ManpowerFiles { get; set; }
         public DbSet<EManpower> Manpowers { get; set; }
-        public DbSet<EMultipleService> MultipleServices { get; set; }
-        public DbSet<ETypeOfService> typeofservices { get; set; }
+        public DbSet<EService> Services { get; set; }
+        public DbSet<ETypeOfService> Typeofservices { get; set; }
         public DbSet<EClient> Client { get; set; }
         public DbSet<ETaxType> TaxType { get; set; }
 

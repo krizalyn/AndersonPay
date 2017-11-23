@@ -50,10 +50,6 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="DBInitializer.cs" />
-    <Compile Include="Migrations\201711080717457_initial.cs" />
-    <Compile Include="Migrations\201711080717457_initial.Designer.cs">
-      <DependentUpon>201711080717457_initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,11 +62,6 @@
       <Project>{0964e572-e2c3-4434-84a8-a238a0a84629}</Project>
       <Name>AndersonPayEntity</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711080717457_initial.resx">
-      <DependentUpon>201711080717457_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

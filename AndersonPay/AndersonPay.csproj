@@ -486,7 +486,11 @@
     <Content Include="Scripts\Angular\app.module.js" />
     <Content Include="Scripts\Angular\Controller\AndersonPayController.js" />
     <Content Include="Scripts\Angular\Controller\ClientController.js" />
+    <Content Include="Scripts\Angular\Controller\InvoiceController.js" />
+    <Content Include="Scripts\Angular\Controller\TypeOfServiceController.js" />
     <Content Include="Scripts\Angular\Service\ClientService.js" />
+    <Content Include="Scripts\Angular\Service\InvoiceService.js" />
+    <Content Include="Scripts\Angular\Service\TypeOfServiceService.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -1445,8 +1449,9 @@
     <Compile Include="Controllers\AddJobsController.cs" />
     <Compile Include="Controllers\AndersonPayController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
-    <Compile Include="Controllers\TypeOfServicesController.cs" />
+    <Compile Include="Controllers\TypeOfServiceController.cs" />
     <Compile Include="EmailClass\SendEmail.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1472,11 +1477,6 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\TypeOfServices\Create.cshtml" />
-    <Content Include="Views\TypeOfServices\Delete.cshtml" />
-    <Content Include="Views\TypeOfServices\Details.cshtml" />
-    <Content Include="Views\TypeOfServices\Edit.cshtml" />
-    <Content Include="Views\TypeOfServices\Index.cshtml" />
     <Content Include="Views\AndersonPay\Index.cshtml" />
     <Content Include="Views\AndersonPay\DeletedInvoice.cshtml" />
     <Content Include="Views\AndersonPay\printPDF.cshtml" />
@@ -1521,6 +1521,11 @@
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Update.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\TypeOfService\_TypeOfService.cshtml" />
+    <Content Include="Views\TypeOfService\Create.cshtml" />
+    <Content Include="Views\TypeOfService\Update.cshtml" />
+    <Content Include="Views\TypeOfService\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

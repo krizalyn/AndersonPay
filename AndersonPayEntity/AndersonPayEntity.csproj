@@ -64,9 +64,9 @@
     <Compile Include="EInvoice.cs" />
     <Compile Include="EManpowerFile.cs" />
     <Compile Include="EManpower.cs" />
+    <Compile Include="EService.cs" />
     <Compile Include="ETaxType.cs" />
     <Compile Include="ETypeOfService.cs" />
-    <Compile Include="EMultipleService.cs" />
     <Compile Include="EJobs.cs" />
     <Compile Include="EEmployee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
