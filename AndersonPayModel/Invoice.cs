@@ -10,27 +10,28 @@ namespace AndersonPayModel
 {
     public class Invoice : Base.Base
     {
+        
         public bool? Deleted { get; set; }
         public bool Multiple { get; set; }
 
-        public decimal Amount { get; set; }
+     //   public decimal Amount { get; set; }
 
-        public decimal GovernmentTax { get; set; }
-        public decimal gtholder { get; set; }
-        public decimal lfholder { get; set; }
+       // public decimal GovernmentTax { get; set; }
+       // public decimal gtholder { get; set; }
+        //public decimal lfholder { get; set; }
 
         public decimal Total { get; set; }
-        public decimal totalTax { get; set; }
+        //public decimal totalTax { get; set; }
         public decimal WithholdingTax { get; set; }
-        public decimal whtholder { get; set; }
+        //public decimal whtholder { get; set; }
 
-        public int? invIdholder { get; set; }
-        public int invoiceId { get; set; }
+        //public int? invIdholder { get; set; }
+        public int InvoiceId { get; set; }
 
-        public DateTime Date { get; set; }
-        public DateTime DueDate { get; set; }
-        public DateTime ExpiringPeriod { get; set; }
-        public DateTime StartPeriod { get; set; }
+        public DateTime? Date { get; set; }
+        public DateTime? DueDate { get; set; }
+        public DateTime? ExpiringPeriod { get; set; }
+        public DateTime? StartPeriod { get; set; }
 
         public string Comments { get; set; }
         public string Name { get; set; }
@@ -42,7 +43,7 @@ namespace AndersonPayModel
         {
             get
             {
-                return new JavaScriptSerializer().Serialize(multipleServices);
+                return new JavaScriptSerializer().Serialize(Services);
             }
         } 
         public string Quantity { get; set; }
@@ -54,7 +55,7 @@ namespace AndersonPayModel
 
         public EClient Client { get; set; }
 
-        public virtual ICollection<EMultipleService> multipleServices { get; set; }
+        public virtual ICollection<EService> Services { get; set; }
 
     }
 }

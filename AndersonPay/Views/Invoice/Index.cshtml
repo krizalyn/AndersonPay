@@ -1,1 +1,51 @@
-﻿
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="../Invoice/Create" class="btn btn-default">Create</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>Invoice Id</th>
+                        <th>Name</th>
+                        <th>Currency</th>
+                        <th>Quantity</th>
+                        <th>Rate</th>
+                        <th>Subtotal</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickableRow" ng-repeat="invoice in model.Invoices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(invoice.InvoiceId)">
+                        <td><span ng-bind="invoice.InvoiceId"></span></td>
+                        <td><span ng-bind="invoice.Name"></span></td>
+                        <td><span ng-bind="invoice.Currency"></span></td>
+                        <td><span ng-bind="invoice.Quantity"></span></td>
+                        <td><span ng-bind="invoice.Rate"></span></td>
+                        <td><span ng-bind="invoice.Subtotal"></span></td>
+                        <td><span ng-bind="invoice.Total"></span></td>
+                        <td ng-click="$event.originalEvent.dropdown = true">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(invoice.InvoiceId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(invoice)">Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

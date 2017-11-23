@@ -1,52 +1,44 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "_Client";
 }
 
 <div class="form-group">
-    <label for="ClientId">CLIENT ID</label>
+    <label for="ClientId">Client Id</label>
     <input type="number" class="form-control" id="Clientid" name="Clientid" placeholder="Client Id" value="@Model.ClientId">
 </div>
 
 <div class="form-group">
-<label for="CompanyId">COMPANY ID</label>
-<input type="number" class="form-control" id="CompanyId" name="CompanyId" placeholder="CompanyId" value="@Model.CompanyId">
+<label for="CompanyId">Company Id</label>
+<input type="number" class="form-control" id="CompanyId" name="CompanyId" placeholder="Company Id" value="@Model.CompanyId">
 </div>
 
 <div class="form-group">
-    <label for="TaxTypeId">TAXTYPE ID</label>
-    <input type="number" class="form-control" id="TaxTypeId" name="TaxTypeId" placeholder="TaxTypeId" value="@Model.TaxTypeId">
+    <label for="TaxTypeId">Taxtype Id</label>
+    <input type="number" class="form-control" id="TaxTypeId" name="TaxTypeId" placeholder="TaxType Id" value="@Model.TaxTypeId">
 </div>
 
-<div class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise(@Model.ClientId)">
-    <label for="ClientId">ClientId</label>
-    <input type="hidden" class="form-control" id="ClientId" name="ClientId" value="{{model.Client.ClientId}}">
-    <ui-select ng-model="model.Client">
-        <ui-select-match placeholder="Select employee...">
-            <span ng-bind="$select.selected.CurrencyCode"></span>
-        </ui-select-match>
-        <ui-select-choices repeat="client in (model.Client | filter: $select.search) track by $index">
-            <span ng-bind="client.CurrencyCode"></span>
-            @*<span ng-bind="employee.MiddleName"></span>
-            <span ng-bind="employee.LastName"></span>*@
-        </ui-select-choices>
-    </ui-select>
-</div>
 
 <div class="form-group">
     <label for="Name">Name</label>
-    <input type="text" class="form-control" id="Name" name="Name" placeholder="Name"  value="@Model.Name">
+    <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
 </div>
+
 
 <div class="form-group">
     <label for="CurrencyCode">CurrencyCode</label>
-    <input type="text" class="form-control" id="CurrencyCode" name="CurrencyCode" placeholder="CurrencyCode"  value="@Model.CurrencyCode">
+    <select class="form-control" id="CurrencyCode" name="CurrencyCode">
+        <option value="USD" @(Model.CurrencyCode == "USD" ? "Selected": string.Empty)>USD</option>
+        <option value="GBP" @(Model.CurrencyCode == "GBP" ? "Selected": string.Empty)>GBP</option>
+        <option value="PHP" @(Model.CurrencyCode == "PHP" ? "Selected": string.Empty)>PHP</option>
+    </select>
 </div>
+
 
 <div class="form-group">
     <label for="WithHoldingTaxPercentage">WithHoldingTaxPercentage</label>
     <input type="number" class="form-control" id="WithHoldingTaxPercentage" name="WithHoldingTaxPercentage" placeholder="WithHoldingTaxPercentage"  value="@Model.WithHoldingTaxPercentage">
 </div>
+
 
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />

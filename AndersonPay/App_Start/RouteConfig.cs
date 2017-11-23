@@ -16,7 +16,8 @@ namespace AndersonPay
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "AndersonPay", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                // cotroller = Home action = "Index"
             );
         }
     }

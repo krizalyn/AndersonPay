@@ -36,7 +36,7 @@ namespace AndersonPayFunction
         #region READ
         public Invoice Read(int invoiceId)
         {
-            EInvoice eInvoice = _iDInvoice.Read<EInvoice>(a => a.invoiceId == invoiceId);
+            EInvoice eInvoice = _iDInvoice.Read<EInvoice>(a => a.InvoiceId == invoiceId);
             return Invoice(eInvoice);
         }
 
@@ -67,16 +67,16 @@ namespace AndersonPayFunction
         {
             EInvoice returnEInvoice = new EInvoice
             {
-                Amount = invoice.Amount,
-                GovernmentTax = invoice.GovernmentTax,
-                gtholder = invoice.gtholder,
-                lfholder = invoice.lfholder,
+                //Amount = invoice.Amount,
+                //GovernmentTax = invoice.GovernmentTax,
+                //gtholder = invoice.gtholder,
+                //lfholder = invoice.lfholder,
                 Total = invoice.Total,
-                totalTax = invoice.totalTax,
+                //totalTax = invoice.totalTax,
                 WithholdingTax = invoice.WithholdingTax,
-                whtholder = invoice.whtholder,
-                invIdholder = invoice.invIdholder,
-                invoiceId = invoice.invoiceId,
+                //whtholder = invoice.whtholder,
+                //invIdholder = invoice.invIdholder,
+                InvoiceId = invoice.InvoiceId,
                 Date = invoice.Date,
                 DueDate = invoice.DueDate,
                 ExpiringPeriod = invoice.ExpiringPeriod,
@@ -91,7 +91,7 @@ namespace AndersonPayFunction
                 Recipients = invoice.Recipients,
                 Status = invoice.Status,
                 TypeOfService = invoice.TypeOfService,
-                multipleServices = invoice.multipleServices
+                Services = invoice.Services
 
             };
             return returnEInvoice;
@@ -101,16 +101,16 @@ namespace AndersonPayFunction
         {
             Invoice returnInvoice = new Invoice
             {
-                Amount = eInvoice.Amount,
-                GovernmentTax = eInvoice.GovernmentTax,
-                gtholder = eInvoice.gtholder,
-                lfholder = eInvoice.lfholder,
+                //Amount = eInvoice.Amount,
+                //GovernmentTax = eInvoice.GovernmentTax,
+                //gtholder = eInvoice.gtholder,
+                //lfholder = eInvoice.lfholder,
                 Total = eInvoice.Total,
-                totalTax = eInvoice.totalTax,
+                //totalTax = eInvoice.totalTax,
                 WithholdingTax = eInvoice.WithholdingTax,
-                whtholder = eInvoice.whtholder,
-                invIdholder = eInvoice.invIdholder,
-                invoiceId = eInvoice.invoiceId,
+                //whtholder = eInvoice.whtholder,
+                //invIdholder = eInvoice.invIdholder,
+                InvoiceId = eInvoice.InvoiceId,
                 Date = eInvoice.Date,
                 DueDate = eInvoice.DueDate,
                 ExpiringPeriod = eInvoice.ExpiringPeriod,
@@ -125,7 +125,7 @@ namespace AndersonPayFunction
                 Recipients = eInvoice.Recipients,
                 Status = eInvoice.Status,
                 TypeOfService = eInvoice.TypeOfService,
-                multipleServices = eInvoice.multipleServices
+                Services = eInvoice.Services
             };
             return returnInvoice;
         }
@@ -134,20 +134,20 @@ namespace AndersonPayFunction
         {
             var returnInvoice = eInvoice.Select(a => new Invoice
             {
-                Amount = a.Amount,
-                GovernmentTax = a.GovernmentTax,
-                gtholder = a.gtholder,
-                lfholder = a.lfholder,
+                //Amount = a.Amount,
+                //GovernmentTax = a.GovernmentTax,
+                //gtholder = a.gtholder,
+                //lfholder = a.lfholder,
                 Total = a.Total,
-                totalTax = a.totalTax,
+                //totalTax = a.totalTax,
                 WithholdingTax = a.WithholdingTax,
-                whtholder = a.whtholder,
-                invIdholder = a.invIdholder,
-                invoiceId = a.invoiceId,
+                //whtholder = a.whtholder,
+                //invIdholder = a.invIdholder,
+                InvoiceId = a.InvoiceId,
                 Date = a.Date,
                 DueDate = a.DueDate,
                 ExpiringPeriod = a.ExpiringPeriod,
-                StartPeriod =a.StartPeriod,
+                StartPeriod = a.StartPeriod,
                 Comments = a.Comments,
                 Name = a.Name,
                 Currency = a.Currency,
@@ -158,7 +158,7 @@ namespace AndersonPayFunction
                 Recipients = a.Recipients,
                 Status = a.Status,
                 TypeOfService = a.TypeOfService,
-                multipleServices = a.multipleServices
+                Services = a.Services
 
             });
 

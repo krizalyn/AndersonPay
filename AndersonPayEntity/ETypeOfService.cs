@@ -20,19 +20,19 @@ namespace AndersonPayEntity
              */
         public bool IsSelected { get; set; }
 
-        [Required(ErrorMessage = "Please input Rate")]
+        public string NameOfService { get; set; }
+
         public decimal Rate { get; set; }
-        public decimal whTax { get; set; }
+
+        public string ServiceDescription { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int typeofserviceId { get; set; }
+        public int TypeOfServiceId { get; set; }
 
-        [Required(ErrorMessage = "Please input the Currency")]
-        public string Currency { get; set; }
-        [Required(ErrorMessage = "Please Input the Service")]
-        public string NameOfService { get; set; }
-        [Required(ErrorMessage = "Please input a Service Description")]
-        public string ServiceDescription { get; set; }
+        public decimal WhTax { get; set; }
+
+        //public string Currency { get; set; }
+
     }
 }

@@ -1,0 +1,16 @@
+﻿@using AndersonPayModel;
+@model TypeOfService
+
+@{
+    ViewBag.Title = "TypeOfService";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <form action="~/TypeOfService/Update" method="post">
+            @{
+                Html.RenderPartial("_TypeOfService", Model);
+            }
+        </form>
+    </div>
+</div>
