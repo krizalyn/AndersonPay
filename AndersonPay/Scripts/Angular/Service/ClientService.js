@@ -39,15 +39,6 @@
             });
         }
 
-        //function Delete(client) {
-        //    return $http({
-        //        method: 'DELETE',
-        //        url: '/Client/Delete',
-        //        data: $.param(client),
-        //        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        //    });
-        //}
-
         function Delete(client) {
             return $http({
                 method: 'DELETE',

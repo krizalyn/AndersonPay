@@ -5,7 +5,7 @@
         .module('App')
         .controller('ClientController', ClientController);
 
-    ClientController.$inject = ['$window', 'ClientService'];
+    ClientController.$inject = ['$window','ClientService'];
 
     function ClientController($window, ClientService) {
         var vm = this;
@@ -13,16 +13,19 @@
         vm.Clients;
 
         vm.GoToUpdatePage = GoToUpdatePage;
+
         vm.Initialise = Initialise;
 
         vm.Delete = Delete;
 
+        vm.ClientId;
 
         function GoToUpdatePage(clientId) {
             $window.location.href = '../Client/Update/' + clientId;
         }
 
-        function Initialise() {
+        function Initialise(clientId) {
+      
             Read();
         }
 
