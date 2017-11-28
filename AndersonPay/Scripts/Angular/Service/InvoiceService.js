@@ -12,7 +12,8 @@
             Read: Read,
             ReadInvoiceForInvoiceinee: ReadInvoiceForInvoiceinee,
             ReadInvoiceForPosition: ReadInvoiceForPosition,
-            Delete: Delete
+            Delete: Delete,
+            List: List
         }
 
         function Read() {
@@ -39,12 +40,19 @@
             });
         }
 
-
         function Delete(invoice) {
             return $http({
                 method: 'DELETE',
                 url: '/Invoice/Delete',
                 data: $.param(invoice),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function List() {
+            return $http({
+                method: 'POST',
+                url: '../AndersonPay/TypeOfServices',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

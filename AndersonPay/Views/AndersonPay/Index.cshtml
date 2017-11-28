@@ -39,7 +39,7 @@
     //int archive = db.Archives.Count();
     //int RemovedInvoice = db.invoices.Where(s => s.Deleted == true).Count();
 
-    <script>
+    @*<script>
     $('body').on('hidden.bs.modal', '.modal', function () {
         $(this).removeData('bs.modal');
     });
@@ -54,7 +54,7 @@
         }
 
     }
-    </script>
+    </script>*@
 
     <div class="content-wrapper">
         <div class="content">
@@ -92,7 +92,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cash3 position-left"></i> By Currency<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="@Url.Action("Index")">Show all</a></li>
-                                        <li><a href="@Url.Action("Index", new { filterBy = "Peso" })"><img src="~/Content/assets/img/pf.png" sizes="16px">(₱) Peso<span class="badge bg-blue-800"> @(peso)</span></a></li>
+                                        @*<li><a href="@Url.Action("Index", new { filterBy = "Peso" })"><img src="~/Content/assets/img/pf.png" sizes="16px">(₱) Peso<span class="badge bg-blue-800"> @(peso)</span></a></li>*@
                                         <li><a href="@Url.Action("Index", new { filterBy = "Dollar" , Selected = true})"><img src="~/Content/assets/img/af.png" sizes="16px">($) Dollar<span class="badge bg-green-600"> @(dollar)</span></a></li>
                                         <li><a href="@Url.Action("Index", new { filterBy = "UK Pounds" })"><img src="~/Content/assets/img/ukf.png" sizes="16px">(£) Pounds<span class="badge bg-orange-800"> @(pounds)</span></a></li>
 

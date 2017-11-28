@@ -2,9 +2,15 @@
     ViewBag.Title = "_Client";
 }
 
+
 <div class="form-group">
-    <label for="ClientId">Client Id</label>
-    <input type="number" class="form-control" id="Clientid" name="Clientid" placeholder="Client Id" value="@Model.ClientId">
+    <label for="Client"></label>
+    <input type="hidden" class="form-control" id="ClientId" name="Clientid" placeholder="Client Id" value="@Model.ClientId" />
+</div>
+
+<div class="form-group">
+    <label for="TaxTypeId"></label>
+    <input type="hidden" class="form-control" id="TaxTypeId" name="TaxTypeId" placeholder="TaxType Id" value="1">
 </div>
 
 <div class="form-group">
@@ -12,15 +18,10 @@
 <input type="number" class="form-control" id="CompanyId" name="CompanyId" placeholder="Company Id" value="@Model.CompanyId">
 </div>
 
-<div class="form-group">
-    <label for="TaxTypeId">Taxtype Id</label>
-    <input type="number" class="form-control" id="TaxTypeId" name="TaxTypeId" placeholder="TaxType Id" value="@Model.TaxTypeId">
-</div>
-
 
 <div class="form-group">
     <label for="Name">Name</label>
-    <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
+    <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" value="@Model.Name">
 </div>
 
 
@@ -38,6 +39,7 @@
     <label for="WithHoldingTaxPercentage">WithHoldingTaxPercentage</label>
     <input type="number" class="form-control" id="WithHoldingTaxPercentage" name="WithHoldingTaxPercentage" placeholder="WithHoldingTaxPercentage"  value="@Model.WithHoldingTaxPercentage">
 </div>
+
 
 
 <div class="form-group">

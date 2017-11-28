@@ -1,6 +1,9 @@
-﻿@{
+﻿@using AndersonPayModel;
+@model Invoice
+@{
     ViewBag.Title = "Index";
 }
+
 
 <div ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <div class="row">
@@ -21,6 +24,8 @@
                         <th>Subtotal</th>
                         <th>Total</th>
                         <th>Actions</th>
+
+
                     </tr>
                 </thead>
                 <tbody>
@@ -49,3 +54,5 @@
         </div>
     </div>
 </div>
+
+
