@@ -19,6 +19,7 @@
                         <th>Invoice Id</th>
                         <th>Name</th>
                         <th>Currency</th>
+                        <th>WithHoldingTax</th>
                         <th>Quantity</th>
                         <th>Rate</th>
                         <th>Subtotal</th>
@@ -33,10 +34,13 @@
                         <td><span ng-bind="invoice.InvoiceId"></span></td>
                         <td><span ng-bind="invoice.Name"></span></td>
                         <td><span ng-bind="invoice.Currency"></span></td>
+                        <td><span ng-bind="invoice.WithholdingTax"></span></td>
                         <td><span ng-bind="invoice.Quantity"></span></td>
                         <td><span ng-bind="invoice.Rate"></span></td>
                         <td><span ng-bind="invoice.Subtotal"></span></td>
                         <td><span ng-bind="invoice.Total"></span></td>
+                        
+
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
