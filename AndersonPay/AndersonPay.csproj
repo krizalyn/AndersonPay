@@ -1526,6 +1526,11 @@
     <Content Include="Views\TypeOfService\Create.cshtml" />
     <Content Include="Views\TypeOfService\Update.cshtml" />
     <Content Include="Views\TypeOfService\Index.cshtml" />
+    <Content Include="Views\AddCompany\Create.cshtml" />
+    <Content Include="Views\AddCompany\Delete.cshtml" />
+    <Content Include="Views\AddCompany\Details.cshtml" />
+    <Content Include="Views\AddCompany\Edit.cshtml" />
+    <Content Include="Views\AddCompany\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

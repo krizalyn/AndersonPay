@@ -24,7 +24,7 @@ namespace AndersonPay.Controllers
         public ActionResult Create(Client client)
         {
             client = _iFClient.Create(client);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Client");
             //, new { id = client.ClientId }
         }
         #endregion
@@ -57,7 +57,7 @@ namespace AndersonPay.Controllers
         public ActionResult Update(Client client)
         {
             client = _iFClient.Update(client);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Client");
 
         }
         #endregion

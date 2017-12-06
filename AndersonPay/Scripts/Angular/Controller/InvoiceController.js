@@ -26,7 +26,7 @@
         vm.Invoices;
         //read
         vm.ReadForClients = ReadForClients;
-        vm.ReadForTypeOfService = ReadForTypeOfService;
+        //vm.ReadForTypeOfService = ReadForTypeOfService;
         vm.GoToUpdatePage = GoToUpdatePage;
 
         vm.Initialise = Initialise;
@@ -55,7 +55,7 @@
         function Initialise() {
             Read();
             ReadForClients();
-            ReadForTypeOfService();
+            //ReadForTypeOfService();
         }
 
         function Read() {
@@ -135,22 +135,22 @@
             vm.Invoice.splice(index, 1);
 
         }
-        //read for Type Of Service
-        function ReadForTypeOfService() {
-            TypeOfServiceService.Read()
-                .then(function (response) {
-                    vm.TypeOfServices = response.data;
-                })
-                .catch(function (data, status) {
-                    new PNotify({
-                        title: status,
-                        text: data,
-                        type: 'error',
-                        hide: true,
-                        addclass: "stack-bottomright"
-                    });
+        ////read for Type Of Service
+        //function ReadForTypeOfService() {
+        //    TypeOfServiceService.Read()
+        //        .then(function (response) {
+        //            vm.TypeOfServices = response.data;
+        //        })
+        //        .catch(function (data, status) {
+        //            new PNotify({
+        //                title: status,
+        //                text: data,
+        //                type: 'error',
+        //                hide: true,
+        //                addclass: "stack-bottomright"
+        //            });
 
-                });
-        }
+        //        });
+        //}
     }
 })();
