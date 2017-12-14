@@ -19,6 +19,7 @@ namespace AndersonPayEntity
         public int TaxTypeId { get; set; }
         public int Registration { get; set; }
         public int Code { get; set; }
+
         
 
         public int WithHoldingTaxPercentage { get; set; }
