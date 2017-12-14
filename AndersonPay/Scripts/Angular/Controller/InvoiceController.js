@@ -4,10 +4,10 @@
     angular
         .module('App')
         .controller('InvoiceController', InvoiceController);
-                                                                                       
-    InvoiceController.$inject = ['$window', 'InvoiceService','ClientService', 'TypeOfServiceService'];
-                                                                               
-    function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
+
+    InvoiceController.$inject = ['$window', 'InvoiceService','ClientService'];
+
+    function InvoiceController($window, InvoiceService, ClientService) {
         var vm = this;
 
         //object
@@ -15,18 +15,30 @@
             TypeOfService: null,
             Description: '',
             Rate: 0,
-            Quantity: 1,
-            subtotalholder: 0,
+            Quantity: 0,
+            subtotalholder:0,
             tax: 0,
             totaltax: 0
+               }
 
-            
-        }
+    
+        ////object for client
+        //vm.ClientService = {
+        //    TypeOfService: null,
+        //    Description: '',
+        //    Rate: 0,
+        //    Quantity: 0,
+        //    subtotalholder: 0,
+        //    tax: 0,
+        //    totaltax: 0
+
+
+        //}
         //array for invoice
         vm.Invoices;
         //read
         vm.ReadForClients = ReadForClients;
-        vm.ReadForTypeOfService = ReadForTypeOfService;
+        //vm.ReadForTypeOfService = ReadForTypeOfService;
         vm.GoToUpdatePage = GoToUpdatePage;
 
         vm.Initialise = Initialise;
@@ -45,7 +57,6 @@
         //function compute Total
         vm.Total = Total;
         //function others
-        vm.InitialiseTypeOfService = InitialiseTypeOfService;
 
         //function SINo
         vm.SINo = SINo;
@@ -54,6 +65,7 @@
         //asdasd
         vm.SingleSelected;
 
+
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
         }
@@ -61,13 +73,11 @@
         function Initialise() {
             Read();
             ReadForClients();
-            ReadForTypeOfService();
-
+            //ReadForTypeOfService();
             vm.CompanyBranches = [
                 { Address: "Add1", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: 'SampleTIN1' },
                 { Address: "Add2", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: 'SampleTIN2' },
-                { Address: "Add3", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: 'SampleTIN3' },
-            ];
+                { Address: "Add3", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: 'SampleTIN3' },];
         }
 
         function Read() {
@@ -113,7 +123,6 @@
 
                 });
         }
-
         //create row and column for computation of subtotal
         function CreateInvoiceService() {
             var invoiceService = angular.copy(vm.InvoiceServices);
@@ -129,6 +138,7 @@
 
         //compute subtotal
         function Subtotal(invoiceService) {
+
             return (invoiceService.Quantity * invoiceService.Rate);
         }
 
@@ -142,27 +152,29 @@
 
         }
 
+
+
         //delete row of computation on adding service
         function deleteRow(index) {
             vm.Invoice.splice(index, 1);
 
         }
         ////read for Type Of Service
-        function ReadForTypeOfService() {
-            TypeOfServiceService.Read()
-                .then(function (response) {
-                    vm.TypeOfServices = response.data;
-                })
-                .catch(function (data, status) {
-                    new PNotify({
-                        title: status,
-                        text: data,
-                        type: 'error',
-                        hide: true,
-                        addclass: "stack-bottomright"
-                    });
+        //function ReadForTypeOfService() {
+        //    TypeOfServiceService.Read()
+        //        .then(function (response) {
+        //            vm.TypeOfServices = response.data;
+        //        })
+        //        .catch(function (data, status) {
+        //            new PNotify({
+        //                title: status,
+        //                text: data,
+        //                type: 'error',
+        //                hide: true,
+        //                addclass: "stack-bottomright"
+        //            });
 
-                });
-        }
+        //        });
+        //}
     }
 })();

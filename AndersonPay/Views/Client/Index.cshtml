@@ -13,6 +13,7 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
+
                         <th>ClientId</th>
                         <th>Code</th>
                         <th>Name</th>
@@ -22,12 +23,16 @@
                         @*<th>CompanyId</th>*@
                         <th>TaxType</th>
                         <th>WithHolding Tax</th>
+           
                         <th>Currency</th>
                         <th>Actions</th>
+
                     </tr>
+                    
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="client in model.Clients" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(client.ClientId)">
+
                         <td><span ng-bind="client.ClientId"></span></td>
                         <td><span ng-bind="client.Code"></span></td>
                         <td><span ng-bind="client.Name"></span></td>
@@ -37,6 +42,7 @@
                             <span ng-bind="client.Email2"></span>
                             <span ng-bind="client.Email3"></span></td>*@
                         @*<td><span ng-bind="client.CompanyId"></span></td>*@
+
                         <td><span ng-bind="client.TaxTypeId"></span></td>
                         <td><span ng-bind="client.WithHoldingTaxPercentage"></span></td>
                         <td><span ng-bind="client.CurrencyCode"></span></td>
@@ -57,5 +63,4 @@
         </div>
     </div>
    
-
 </div>
