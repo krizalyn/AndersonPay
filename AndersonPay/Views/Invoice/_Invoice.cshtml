@@ -1,9 +1,44 @@
 ﻿
 @{
     ViewBag.Title = "_Invoice";
+
+    <div class="form-group" align="right">
+        <p id="DateToday">
+            <script>
+                var today = new Date();
+                document.getElementById("DateToday").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+            </script>
+        </p>
+    </div>
+
+            @*Company Branch*@
+            <div class="form-group" ng-controller="InvoiceController as model" ng- init="model.Initialise()" ng-app="App">
+                @*SINo*@
+                <label for="SINo">SI No: </label>
+                <label id="SINo"><u>{{model.SingleSelected.SINo}}</u></label><br>
+                @*Address*@
+                <label for="Address" id="Address">Address: {{model.SingleSelected.Address}}				</label><br>
+                @*TIN*@
+                <label for="TIN" id="TIN">TIN: <u>{{model.SingleSelected.TIN}}</u></label><br>
+                @*Branch Location*@
+                <label>Branch Location</label>
+                <ui-select ng-model="model.SingleSelected">
+                    <ui-select-match>
+                        <span ng-bind="$select.selected.CompanyAddress"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="dropDownItem in (model.CompanyBranches | filter: $select.search) track by $index">
+                        <span ng-bind="dropDownItem.CompanyAddress"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
 }
 
 @*UI SELECT*@
+
+
+
+
+
 <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()" ng-app="App">
     <label for="ClientId">Select Client</label>
     <ui-select ng-model="model.Clients">
@@ -15,6 +50,12 @@
             <span ng-bind="client.Name"></span>
         </ui-select-choices>
 
+
+
+
+
+
+
     </ui-select>
     <div class="form-group">
         <label for="Name">Name</label>
@@ -24,10 +65,12 @@
         <label for="Curreny">Currency</label>
         <input type="text" class="form-control" id="Currency"  name="Currency" value="{{model.Clients.CurrencyCode}}">
     </div>
+
     <div class="form-group">
         <label for="WithholdingTax">Withholding Tax</label>
         <input type="text" class="form-control" id="WithholdingTax"  name="WithholdingTax" value="{{model.Clients.WithHoldingTaxPercentage}}">
     </div>
+
 </div>
 @*Computation ng Subtotal*@
 <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()"ng-app="App">
@@ -38,7 +81,7 @@
             <thead>
                 <tr>
                     <th width="5%" style="display:none">Index</th>
-                    <th width="20%">Type of Service</th>
+                    <th width="20%">Type of Services</th>
                     <th width="25%">Description</th>
                     <th width="20%">Rate</th>
                     <th width="20%">Quantity</th>

@@ -19,9 +19,21 @@
             subtotalholder:0,
             tax: 0,
             totaltax: 0
+               }
 
-            
-        }
+    
+        ////object for client
+        //vm.ClientService = {
+        //    TypeOfService: null,
+        //    Description: '',
+        //    Rate: 0,
+        //    Quantity: 0,
+        //    subtotalholder: 0,
+        //    tax: 0,
+        //    totaltax: 0
+
+
+        //}
         //array for invoice
         vm.Invoices;
         //read
@@ -45,7 +57,13 @@
         //function compute Total
         vm.Total = Total;
         //function others
-        vm.InitialiseTypeOfService = InitialiseTypeOfService;
+
+        //function SINo
+        vm.SINo = SINo;
+        //Branch Location
+        vm.CompanyBranches = [];
+        //asdasd
+        vm.SingleSelected;
 
 
         function GoToUpdatePage(invoiceId) {
@@ -56,6 +74,10 @@
             Read();
             ReadForClients();
             //ReadForTypeOfService();
+            vm.CompanyBranches = [
+                { Address: "Add1", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: 'SampleTIN1' },
+                { Address: "Add2", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: 'SampleTIN2' },
+                { Address: "Add3", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: 'SampleTIN3' },];
         }
 
         function Read() {
@@ -129,6 +151,8 @@
             return total;
 
         }
+
+
 
         //delete row of computation on adding service
         function deleteRow(index) {

@@ -36,7 +36,7 @@ namespace AndersonPayEntity
        // [Display(Name = "Withholding Tax %")]
         public decimal WithholdingTax { get; set; }
         public decimal whtholder { get; set; }
-
+       
         public int? invIdholder { get; set; }
        // [Display(Name = "INV no.")]
         [Key]
