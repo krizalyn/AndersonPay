@@ -82,7 +82,16 @@ namespace AndersonPayEntity
         //Required(ErrorMessage = "Select Type of Service")]
         public string TypeOfService { get; set; }
 
-       
+        public string CompanyBranch { get; set; }
+        //Address
+        public string Address { get; set; }
+        public string SingleSelected { get; set; }
+        public string DropDownItems { get; set; }
+        //name of Service
+        public string NameOfService { get; set; }
+        public decimal Subtotal { get; set; }
+
+
         public EClient Client { get; set; }
 
         public virtual ICollection<EService> Services { get; set; }

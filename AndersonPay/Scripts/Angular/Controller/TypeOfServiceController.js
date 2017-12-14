@@ -9,7 +9,7 @@
 
     function TypeOfServiceController($window, TypeOfServiceService) {
         var vm = this;
-
+        
         vm.TypeOfServices;
 
         vm.GoToUpdatePage = GoToUpdatePage;
@@ -49,8 +49,6 @@
                     Read();
                 })
                 .catch(function (data, status) {
-
-
                 });
         }
 

@@ -5,7 +5,7 @@
         .module('App')
         .controller('ClientController', ClientController);
 
-    ClientController.$inject = ['$window','ClientService'];
+    ClientController.$inject = ['$window', 'ClientService'];
 
     function ClientController($window, ClientService) {
         var vm = this;

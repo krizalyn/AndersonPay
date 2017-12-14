@@ -11,6 +11,12 @@ namespace AndersonPayEntity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClientId { get; set; }
+        public int Code { get; set; }
+        public string Address { get; set; }
+        public string RegistrationNumber { get; set; }
+        //public string Email1 { get; set; }
+        //public string Email2 { get; set; }
+        //public string Email3 { get; set; }
         public int CompanyId { get; set; }
         [ForeignKey("TaxType")]
         public int TaxTypeId { get; set; }

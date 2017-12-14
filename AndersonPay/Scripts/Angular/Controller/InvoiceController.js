@@ -4,10 +4,10 @@
     angular
         .module('App')
         .controller('InvoiceController', InvoiceController);
-
-    InvoiceController.$inject = ['$window', 'InvoiceService','ClientService'];
-
-    function InvoiceController($window, InvoiceService, ClientService) {
+                                                                                       
+    InvoiceController.$inject = ['$window', 'InvoiceService','ClientService', 'TypeOfServiceService'];
+                                                                               
+    function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
         var vm = this;
 
         //object
@@ -15,8 +15,8 @@
             TypeOfService: null,
             Description: '',
             Rate: 0,
-            Quantity: 0,
-            subtotalholder:0,
+            Quantity: 1,
+            subtotalholder: 0,
             tax: 0,
             totaltax: 0
 
@@ -26,7 +26,7 @@
         vm.Invoices;
         //read
         vm.ReadForClients = ReadForClients;
-        //vm.ReadForTypeOfService = ReadForTypeOfService;
+        vm.ReadForTypeOfService = ReadForTypeOfService;
         vm.GoToUpdatePage = GoToUpdatePage;
 
         vm.Initialise = Initialise;
@@ -47,6 +47,12 @@
         //function others
         vm.InitialiseTypeOfService = InitialiseTypeOfService;
 
+        //function SINo
+        vm.SINo = SINo;
+        //Branch Location
+        vm.CompanyBranches = [];
+        //asdasd
+        vm.SingleSelected;
 
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
@@ -55,7 +61,13 @@
         function Initialise() {
             Read();
             ReadForClients();
-            //ReadForTypeOfService();
+            ReadForTypeOfService();
+
+            vm.CompanyBranches = [
+                { Address: "Add1", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: 'SampleTIN1' },
+                { Address: "Add2", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: 'SampleTIN2' },
+                { Address: "Add3", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: 'SampleTIN3' },
+            ];
         }
 
         function Read() {
@@ -101,6 +113,7 @@
 
                 });
         }
+
         //create row and column for computation of subtotal
         function CreateInvoiceService() {
             var invoiceService = angular.copy(vm.InvoiceServices);
@@ -116,7 +129,6 @@
 
         //compute subtotal
         function Subtotal(invoiceService) {
-
             return (invoiceService.Quantity * invoiceService.Rate);
         }
 
@@ -136,21 +148,21 @@
 
         }
         ////read for Type Of Service
-        //function ReadForTypeOfService() {
-        //    TypeOfServiceService.Read()
-        //        .then(function (response) {
-        //            vm.TypeOfServices = response.data;
-        //        })
-        //        .catch(function (data, status) {
-        //            new PNotify({
-        //                title: status,
-        //                text: data,
-        //                type: 'error',
-        //                hide: true,
-        //                addclass: "stack-bottomright"
-        //            });
+        function ReadForTypeOfService() {
+            TypeOfServiceService.Read()
+                .then(function (response) {
+                    vm.TypeOfServices = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
 
-        //        });
-        //}
+                });
+        }
     }
 })();

@@ -65,6 +65,12 @@ namespace AndersonPayFunction
             EClient returnEClient = new EClient
             {
                 ClientId = client.ClientId,
+                Code = client.Code,
+                Address = client.Address,
+                RegistrationNumber = client.RegistrationNumber,
+                //Email1 = client.Email1,
+                //Email2 = client.Email2,
+                //Email3 = client.Email3,
                 CompanyId = client.CompanyId,
                 TaxTypeId = client.TaxTypeId,
                 WithHoldingTaxPercentage = client.WithHoldingTaxPercentage,
@@ -80,6 +86,12 @@ namespace AndersonPayFunction
             Client returnClient = new Client
             {
                 ClientId = eClient.ClientId,
+                Code = eClient.Code,
+                Address = eClient.Address,
+                RegistrationNumber = eClient.RegistrationNumber,
+                //Email1 = eClient.Email1,
+                //Email2 = eClient.Email2,
+                //Email3 = eClient.Email3,
                 CompanyId = eClient.CompanyId,
                 TaxTypeId = eClient.TaxTypeId,
                 WithHoldingTaxPercentage = eClient.WithHoldingTaxPercentage,
@@ -95,7 +107,13 @@ namespace AndersonPayFunction
             var returnClient = eClient.Select(a => new Client
             {
                 ClientId = a.ClientId,
+                Code = a.Code,
+                Address = a.Address,
+                RegistrationNumber = a.RegistrationNumber,
                 CompanyId = a.CompanyId,
+                //Email1 = a.Email1,
+                //Email2 = a.Email2,
+                //Email3 = a.Email3,
                 Name = a.Name,
                 TaxTypeId = a.TaxTypeId,
                 WithHoldingTaxPercentage = a.WithHoldingTaxPercentage,
