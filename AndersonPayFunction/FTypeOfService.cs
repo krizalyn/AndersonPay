@@ -67,12 +67,10 @@ namespace AndersonPayFunction
             ETypeOfService returnETypeOfService = new ETypeOfService
             {
                 TypeOfServiceId = typeOfService.TypeOfServiceId,
-                NameOfService = typeOfService.NameOfService,
-                Rate = typeOfService.Rate,
-                ServiceDescription = typeOfService.ServiceDescription,
-                WhTax = typeOfService.WhTax,
-                
+                Description = typeOfService.Description,
+                Name = typeOfService.Name
             };
+
             return returnETypeOfService;
         }
 
@@ -81,11 +79,8 @@ namespace AndersonPayFunction
             TypeOfService returnTypeOfService = new TypeOfService
             {
                 TypeOfServiceId = eTypeOfService.TypeOfServiceId,
-                NameOfService = eTypeOfService.NameOfService,
-                Rate = eTypeOfService.Rate,
-                ServiceDescription = eTypeOfService.ServiceDescription,
-                WhTax = eTypeOfService.WhTax,
-
+                Description = eTypeOfService.Description,
+                Name = eTypeOfService.Name
             };
             return returnTypeOfService;
         }
@@ -95,10 +90,8 @@ namespace AndersonPayFunction
             var returnTypeOfService = eTypeOfService.Select(a => new TypeOfService
             {
                 TypeOfServiceId = a.TypeOfServiceId,
-                NameOfService = a.NameOfService,
-                Rate = a.Rate,
-                ServiceDescription = a.ServiceDescription,
-                WhTax = a.WhTax,
+                Description = a.Description,
+                Name = a.Name
             });
 
             return returnTypeOfService.ToList();

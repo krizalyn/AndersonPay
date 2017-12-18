@@ -5,25 +5,27 @@
         .module('App')
         .controller('InvoiceController', InvoiceController);
 
-    InvoiceController.$inject = ['$window', 'InvoiceService','ClientService'];
+    InvoiceController.$inject = ['$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService'];
 
-    function InvoiceController($window, InvoiceService, ClientService) {
+    function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
         var vm = this;
 
         //object
-        vm.InvoiceServices = {
+        vm.Service = {
             TypeOfService: null,
             Description: '',
             Rate: 0,
-            Quantity: 0,
+            Quantity: 1,
             subtotalholder:0,
             tax: 0,
             totaltax: 0
 
             
         }
-        //array for invoice
-        vm.Invoices;
+        //array
+        vm.Invoices = [];
+        vm.TypeOfServices = [];
+        vm.Services = [];
         //read
         vm.ReadForClients = ReadForClients;
         vm.ReadForTypeOfService = ReadForTypeOfService;
@@ -33,9 +35,6 @@
         vm.Clients;
         vm.Delete = Delete;
 
-        //array
-        vm.Invoice = [];
-        vm.TypeOfServices = [];
         //function create
         vm.CreateInvoiceService = CreateInvoiceService;
         //function delete
@@ -46,6 +45,8 @@
         vm.Total = Total;
         //function others
         vm.InitialiseTypeOfService = InitialiseTypeOfService;
+        //function SINo
+        vm.SINo = SINo;
 
 
         function GoToUpdatePage(invoiceId) {
@@ -56,6 +57,8 @@
             Read();
             ReadForClients();
             ReadForTypeOfService();
+            ReadCompanyBranch();
+
         }
 
         function Read() {
@@ -103,8 +106,8 @@
         }
         //create row and column for computation of subtotal
         function CreateInvoiceService() {
-            var invoiceService = angular.copy(vm.InvoiceServices);
-            vm.Invoice.push(invoiceService);
+            var service = angular.copy(vm.Service);
+            vm.Services.push(service);
         }
 
         function InitialiseTypeOfService(typeOfServices) {
@@ -115,24 +118,29 @@
         }
 
         //compute subtotal
-        function Subtotal(invoiceService) {
+        function Subtotal(service) {
 
-            return (invoiceService.Quantity * invoiceService.Rate);
+            return (service.Quantity * service.Rate);
         }
 
         //compute Total
         function Total() {
             var total = 0;
-            angular.forEach(vm.Invoice, function (invoiceService) {
-                total += Subtotal(invoiceService);
+            angular.forEach(vm.Services, function (service) {
+                total += Subtotal(service);
             });
             return total;
+
+        }
+        //Sales Tax
+        function SalesTax() {
+            var total = 0.00;
 
         }
 
         //delete row of computation on adding service
         function deleteRow(index) {
-            vm.Invoice.splice(index, 1);
+            vm.Services.splice(index, 1);
 
         }
         //read for Type Of Service
@@ -151,6 +159,27 @@
                     });
 
                 });
+        }
+        //SIno
+        function SINo(SINoCode)
+        {
+            var SINoCode = "";
+            return SINoCode;
+        }
+        function CompanyBranch(BranchCode)
+        {
+            var BranchCode = "BCode";
+            return BranchCode;
+        }
+
+        //Branch Location
+        function ReadCompanyBranch()
+        {
+            vm.CompanyBranches = [
+            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: '0001' },
+            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: '0002' },
+            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: '0003' },
+            ];
         }
     }
 })();
