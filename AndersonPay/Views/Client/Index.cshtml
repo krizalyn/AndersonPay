@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Index";
 }
 
@@ -13,6 +13,7 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
+
                         <th>Code</th>
                         @*<th>ClientId</th>*@
                         <th>Name</th>
@@ -21,12 +22,16 @@
                         <th>Registration No.</th>
                         <th>Tax Type</th>
                         <th>WithHolding Tax</th>
+
                         <th>Currency</th>
                         <th>Actions</th>
+
                     </tr>
+
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="client in model.Clients" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(client.ClientId)">
+
                         <td><span ng-bind="client.Code"></span></td>
                         @*<td><span ng-bind="client.ClientId"></span></td>*@
                         <td><span ng-bind="client.Name"></span></td>

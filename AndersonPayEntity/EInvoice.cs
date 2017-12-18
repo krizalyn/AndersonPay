@@ -34,10 +34,12 @@ namespace AndersonPayEntity
         public decimal Total { get; set; }
         public decimal totalTax { get; set; } //Remove
        // [Display(Name = "Withholding Tax %")]
+
         public decimal WithholdingTax { get; set; } // Rename to Tax
         public decimal whtholder { get; set; } //Remove
 
         public int? invIdholder { get; set; } //Remove
+
        // [Display(Name = "INV no.")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
