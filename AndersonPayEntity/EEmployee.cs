@@ -32,6 +32,5 @@ namespace AndersonPayEntity
         [Required(ErrorMessage = "Please Input Full Name")]
         public string JobName { get; set; }
         public virtual EJobs jobs { get; set; }
-        public virtual ICollection<EService> Services { get; set; }
     }
 }

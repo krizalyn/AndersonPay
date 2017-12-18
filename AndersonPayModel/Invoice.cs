@@ -14,18 +14,10 @@ namespace AndersonPayModel
         public bool? Deleted { get; set; }
         public bool Multiple { get; set; }
 
-     //   public decimal Amount { get; set; }
-
-       // public decimal GovernmentTax { get; set; }
-       // public decimal gtholder { get; set; }
-        //public decimal lfholder { get; set; }
-
+        public decimal Subtotal { get; set; }
         public decimal Total { get; set; }
-        //public decimal totalTax { get; set; }
         public decimal WithholdingTax { get; set; }
-        //public decimal whtholder { get; set; }
-
-        //public int? invIdholder { get; set; }
+        
         public int InvoiceId { get; set; }
 
         public DateTime? Date { get; set; }
@@ -39,13 +31,6 @@ namespace AndersonPayModel
         public string Description { get; set; }
         public string LateFee { get; set; }
 
-        public string multipeServiceJSON
-        {
-            get
-            {
-                return new JavaScriptSerializer().Serialize(Services);
-            }
-        } 
         public string Quantity { get; set; }
         public string Rate { get; set; }
         public string Recipients { get; set; }
@@ -55,7 +40,8 @@ namespace AndersonPayModel
 
         public EClient Client { get; set; }
 
-        public virtual ICollection<EService> Services { get; set; }
-
+        public virtual List<EService> Services { get; set; }
+        public string SINo { get; set; }
+        public string TIN { get; set; }
     }
 }

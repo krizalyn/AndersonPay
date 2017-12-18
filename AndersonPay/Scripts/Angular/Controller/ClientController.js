@@ -10,6 +10,8 @@
     function ClientController($window, ClientService) {
         var vm = this;
 
+        vm.Client;
+
         vm.Clients;
 
         vm.GoToUpdatePage = GoToUpdatePage;

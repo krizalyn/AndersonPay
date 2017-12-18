@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Index";
 }
 
@@ -15,14 +15,14 @@
                     <tr class="thead-inverse">
 
                         <th>Code</th>
-                        <th>Company Name</th>
+                        @*<th>ClientId</th>*@
+                        <th>Name</th>
                         <th>Address</th>
+                        @*<th>CompanyId</th>*@ 
                         <th>Registration No.</th>
-                        <th>email</th>
-                        @*<th>email2</th>
-                        <th>email3</th>*@
                         <th>Tax Type</th>
-                        <th>WithHoldingTax</th>
+                        <th>WithHolding Tax</th>
+
                         <th>Currency</th>
                         <th>Actions</th>
 
@@ -31,16 +31,13 @@
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="client in model.Clients" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(client.ClientId)">
-                       <td><span ng-bind="client.Code"></span></td>
+
+                        <td><span ng-bind="client.Code"></span></td>
+                        @*<td><span ng-bind="client.ClientId"></span></td>*@
                         <td><span ng-bind="client.Name"></span></td>
                         <td><span ng-bind="client.Address"></span></td>
-                       <td><span ng-bind="client.Registration"></span></td>
-                        <td><span ng-bind="client.email1"></span>
-                            <span ng-bind="client.email2"></span>
-                            <span ng-bind="client.email3"></span></td>
-                        @*<td><span ng-bind="client.email2"></span></td>
-                        <td><span ng-bind="client.email3"></span></td>*@
-                        @*<td><span ng-bind="client.TaxType1"></span></td>*@
+                        @*<td><span ng-bind="client.CompanyId"></span></td>*@
+                        <td><span ng-bind="client.RegistrationNumber"></span></td>
                         <td><span ng-bind="client.TaxTypeId"></span></td>
                         <td><span ng-bind="client.WithHoldingTaxPercentage"></span></td>
                         <td><span ng-bind="client.CurrencyCode"></span></td>
