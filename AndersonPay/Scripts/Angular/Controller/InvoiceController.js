@@ -9,7 +9,6 @@
 
     function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
         var vm = this;
-
         //object
         vm.Service = {
             TypeOfService: null,
@@ -48,6 +47,10 @@
         //function SINo
         vm.SINo = SINo;
 
+        vm.SingleSelected;
+        vm.TypeOfServiceServices = [];
+        vm.TypeOfService;
+
 
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
@@ -58,6 +61,8 @@
             ReadForClients();
             ReadForTypeOfService();
             ReadCompanyBranch();
+
+            ReadTypeOfService();
 
         }
 
@@ -179,6 +184,14 @@
             { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: '0001' },
             { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: '0002' },
             { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: '0003' },
+            ];
+        }
+        //ReadTypeOfService
+        function ReadTypeOfService() {
+            vm.TypeOfServiceServices = [
+            { TypeOfService: "Seat Leasing", Description: 'Seat Leasing Description' },
+            { TypeOfService: "BPO Services", Description: 'BPO Services Description' },
+            { TypeOfService: "Payroll", Description: 'Payroll Description' },
             ];
         }
     }

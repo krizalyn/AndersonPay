@@ -25,6 +25,10 @@ namespace AndersonPayModel
         public DateTime? ExpiringPeriod { get; set; }
         public DateTime? StartPeriod { get; set; }
 
+        public int ClientId { get; set; }
+        public string CurrencyCode { get; set; } 
+        public int WithHoldingTaxPercentage { get; set; }
+
         public string Comments { get; set; }
         public string Name { get; set; }
         public string Currency { get; set; }
@@ -43,5 +47,6 @@ namespace AndersonPayModel
         public virtual List<EService> Services { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
+      
     }
 }

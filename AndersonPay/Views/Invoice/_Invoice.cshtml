@@ -31,6 +31,7 @@
 
     @*UI SELECT*@
     <div class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()">
+        @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
         <label for="ClientId">Select Client</label>
         <ui-select ng-model="model.Client">
             <ui-select-match placeholder="Select Client">
@@ -40,9 +41,9 @@
                 <span ng-bind="client.Name"></span>
             </ui-select-choices>
         </ui-select>
-        <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="Name" value="{{model.Client.Name}}">
-        <input type="hidden" class="form-control" id="invoice.Currency" readonly="readonly" name="Currency" value="{{model.Client.CurrencyCode}}">
-        <input type="hidden" class="form-control" id="invoice.WithholdingTax" readonly="readonly" name="WithholdingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
+        <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
+        <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
+        <input type="text" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
     </div>
 
     @*Computation ng Subtotal*@
@@ -71,11 +72,20 @@
                         </td>
                         <!--Type of Service-->
                         <td>
-                            <select class="form-control" name="invoice.Services[{{$index}}].Name" ng-model="service.TypeOfService" ng-options="typeOfServices.Name for typeOfServices in model.TypeOfServices" placeholder="Type of Service"></select>
+                           <ui-select ng-model="model.TypeOfService">
+                                <ui-select-match placeholder="Select Type of Service">
+                                    <span ng-bind="$select.selected.Name"></span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="typeOfServices in (model.TypeOfServices | filter: $select.search) track by $index">
+                                    <span ng-bind="typeOfServices.Name"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            
                         </td>
                         <td>
                             <!--Description-->
-                            <input type="text" class="form-control" readonly="readonly" name="invoice.Services[{{$index}}].Description" ng-model="service.TypeOfService.Description" placeholder="Service Description">
+                            @*<input type="text" class="form-control" readonly="readonly" name="invoice.Services[{{$index}}].Description" ng-model="service.TypeOfService.Description" placeholder="Service Description">*@
+                            <input type="text" class="form-control" id="Description" readonly="readonly" name="Description" value="{{model.TypeOfService.Description}}">
                         </td>
                         <!-- Rate -->
                         <td>
@@ -105,8 +115,9 @@
                         <td style="border:none">
                         <td style="border:none"></td>
                         <td style="border:none"><b><span>TOTAL SALES</span></b></td>
-                        <td style="border:none" ng-bind="model.TotalSales()">
-                            <input type="number" class="form-control" placeholder="0.00" readonly="readonly" />
+                        <td style="border:none"></td>
+                        <td style="border:none" ng-bind="model.Total()">
+                            @*<input type="number" class="form-control" placeholder="0.00" readonly="readonly" />*@
                         </td>
                         <td style="border:none"></td>
                     </tr>
@@ -114,8 +125,9 @@
                         <td style="border:none">
                         <td style="border:none"></td>
                         <td style="border:none"><b><span>+ Sales Tax</span></b></td>
+                        <td style="border:none"></td>
                         <td style="border:none" ng-bind="model.SalesTax()">
-                            <label class="form-control" placeholder="0.00" readonly="readonly" />
+                            @*<label class="form-control" placeholder="0.00" readonly="readonly" />*@
                         </td>
                         <td style="border:none"></td>
                     </tr>
@@ -123,8 +135,9 @@
                         <td style="border:none">
                         <td style="border:none"></td>
                         <td style="border:none"><b><span>- Withholding Tax</span></b></td>
+                        <td style="border:none"></td>
                         <td style="border:none" ng-bind="model.WithholdingTax()">
-                            <input type="number" class="form-control" placeholder="0" readonly="readonly" />
+                            @*<input type="number" class="form-control" placeholder="0.00" readonly="readonly" />*@
                         </td>
                         <td style="border:none"></td>
                     </tr>
@@ -134,7 +147,7 @@
                         <td style="border:none"></td>
                         <td style="border:none"><b><span>Amount Due:</span></b></td>
                         <td style="border:none" ng-bind="model.Total()">
-                            <input type="number" class="form-control" placeholder="0" readonly="readonly"/>
+                            <input type="number" class="form-control" placeholder="0.00" readonly="readonly"/>
                         </td>
                         <td style="border:none"></td>
                     </tr>
