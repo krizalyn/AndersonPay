@@ -54,8 +54,6 @@
                     Read();
                 })
                 .catch(function (data, status) {
-                    
-
                 });
         }
 
