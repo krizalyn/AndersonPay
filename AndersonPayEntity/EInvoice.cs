@@ -21,7 +21,7 @@ namespace AndersonPayEntity
          Remove multipeServiceJSON
              */
 
-        //public bool? Deleted { get; set; } //Remove
+        public bool? Deleted { get; set; } //Remove
         public bool Multiple { get; set; } //Remove
 
       //  [HiddenInput(DisplayValue = true)]
