@@ -49,6 +49,7 @@
     <Compile Include="Service.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClientEmail.cs" />
     <Compile Include="TaxType.cs" />
     <Compile Include="TypeOfService.cs" />
   </ItemGroup>

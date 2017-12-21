@@ -15,21 +15,21 @@
                     <tr class="thead-inverse">
 
                         @*<th>TypeOfServiceId</th>*@
-                        <th>NameOfService</th>
                         @*<th>Rate</th>*@
-                        <th>ServiceDescription</th>
                         @*<th>WhTax</th>*@
-
+                        <th>Name Of Service</th>
+                        <th>Service Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="typeOfService in model.TypeOfServices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(typeOfService.TypeOfServiceId)">
                         @*<td><span ng-bind="typeOfService.TypeOfServiceId"></span></td>*@
-                        <td><span ng-bind="typeOfService.Name"></span></td>
+
                         @*<td><span ng-bind="typeOfService.Rate"></span></td>*@
-                        <td><span ng-bind="typeOfService.Description"></span></td>
                         @*<td><span ng-bind="typeOfService.WhTax"></span></td>*@
+                        <td><span ng-bind="typeOfService.Name"></span></td>
+                        <td><span ng-bind="typeOfService.Description"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

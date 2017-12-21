@@ -17,32 +17,34 @@
                 <thead>
                     <tr class="thead-inverse">
                         <th>Invoice Id</th>
-                        <th>SI Number</th>
+
+                        @*<th>SI No.</th>*@
+                        @*<th>TIN</th>*@
                         <th>Name</th>
                         <th>Currency</th>
-                        <th>WithHoldingTax</th>
+                        <th>Tax</th>
+                        
                         <th>Quantity</th>
                         <th>Rate</th>
                         <th>Subtotal</th>
                         <th>Total</th>
                         <th>Actions</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="invoice in model.Invoices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(invoice.InvoiceId)">
                         <td><span ng-bind="invoice.InvoiceId"></span></td>
-                        <td><span ng-bind="invoice.SINo"></span></td>
+
+                        @*<td><span ng-bind="invoice.SINo"></span></td>*@
+                        @*<td><span ng-bind="invoice.TIN"></span></td>*@
                         <td><span ng-bind="invoice.Name"></span></td>
                         <td><span ng-bind="invoice.Currency"></span></td>
-                        <td><span ng-bind="invoice.WithholdingTax"></span></td>
-                        <td><span ng-bind="invoice.Quantity"></span></td>
-                        <td><span ng-bind="invoice.Rate"></span></td>
+                        <td><span ng-bind="invoice.Tax"></span></td>
+                        <td><span ng-bind="invoice.Service.Quantity"></span></td>
+                        <td><span ng-bind="invvoice.Service.Rate"></span></td>
                         <td><span ng-bind="invoice.Subtotal"></span></td>
                         <td><span ng-bind="invoice.Total"></span></td>
                         
-
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

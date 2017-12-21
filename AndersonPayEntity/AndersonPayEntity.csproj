@@ -65,6 +65,7 @@
     <Compile Include="EManpowerFile.cs" />
     <Compile Include="EManpower.cs" />
     <Compile Include="EService.cs" />
+    <Compile Include="EClientEmail.cs" />
     <Compile Include="ETaxType.cs" />
     <Compile Include="ETypeOfService.cs" />
     <Compile Include="EJobs.cs" />
