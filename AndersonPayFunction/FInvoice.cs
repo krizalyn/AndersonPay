@@ -78,7 +78,6 @@ namespace AndersonPayFunction
                 //DueDate = invoice.DueDate,
                 //ExpiringPeriod = invoice.ExpiringPeriod,
                 //StartPeriod = invoice.StartPeriod,
-                //Name = invoice.Name,
                 //Description = invoice.Description,
                 //LateFee = invoice.LateFee,
                 //Quantity = invoice.Quantity,
@@ -86,9 +85,10 @@ namespace AndersonPayFunction
                 //Status = invoice.Status,
                 //TypeOfService = invoice.TypeOfService,
 
-                Subtotal = invoice.Subtotal,
                 InvoiceId = invoice.InvoiceId,
+                Name = invoice.Name,
                 Tax = invoice.Tax,
+                Subtotal = invoice.Subtotal,
                 Total = invoice.Total,
                 Currency = invoice.Currency,
                 Comments = invoice.Comments,
@@ -124,6 +124,7 @@ namespace AndersonPayFunction
                 //TypeOfService = eInvoice.TypeOfService,
 
                 InvoiceId = eInvoice.InvoiceId,
+                Name = eInvoice.Name,
                 Subtotal = eInvoice.Subtotal,
                 Total = eInvoice.Total,
                 Tax = eInvoice.Tax,
@@ -160,6 +161,7 @@ namespace AndersonPayFunction
                 //TypeOfService = a.TypeOfService,
 
                 InvoiceId = a.InvoiceId,
+                Name = a.Name,
                 Total = a.Total,
                 Subtotal = a.Subtotal,
                 Tax = a.Tax,

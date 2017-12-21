@@ -71,6 +71,7 @@ namespace AndersonPayFunction
                 CompanyId = client.CompanyId,
                 RegistrationNo = client.RegistrationNo,
                 TaxTypeId = client.TaxTypeId,
+                TaxTypes = client.TaxTypes,
                 CurrencyCode = client.CurrencyCode,
                 WithHoldingTax = client.WithHoldingTax
  
@@ -90,6 +91,7 @@ namespace AndersonPayFunction
                 CompanyId = eClient.CompanyId,
                 RegistrationNo = eClient.RegistrationNo,
                 TaxTypeId = eClient.TaxTypeId,
+                TaxTypes = eClient.TaxTypes,
                 CurrencyCode = eClient.CurrencyCode,
                 WithHoldingTax = eClient.WithHoldingTax
 
@@ -109,6 +111,7 @@ namespace AndersonPayFunction
                 CompanyId = a.CompanyId,
                 RegistrationNo = a.RegistrationNo,
                 TaxTypeId = a.TaxTypeId,
+                TaxTypes = a.TaxTypes,
                 CurrencyCode = a.CurrencyCode,
                 WithHoldingTax = a.WithHoldingTax,
                

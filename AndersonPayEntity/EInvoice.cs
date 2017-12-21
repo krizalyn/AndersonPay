@@ -59,7 +59,7 @@ namespace AndersonPayEntity
 
         //[Display(Name = "Company Name")]
         //[Required(ErrorMessage = "Please Select Company")]
-        //public string Name { get; set; } //Remove
+        
         //[Required(ErrorMessage = "Please input the Currency type")]
 
         //public string Description { get; set; }
@@ -92,6 +92,7 @@ namespace AndersonPayEntity
         public decimal Total { get; set; }
 
         public string Recipients { get; set; }
+        public string Name { get; set; } //Remove
 
         public string Currency { get; set; }
         public string Comments { get; set; }

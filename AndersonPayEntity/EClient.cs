@@ -21,11 +21,12 @@ namespace AndersonPayEntity
         public string Name { get; set; }
         public string Address { get; set; }
 
+        public string TaxTypes { get; set; }
+
         [ForeignKey("TaxType")]
         public int TaxTypeId { get; set; }
 
-        public  ETaxType TaxType { get; set; }
-
+        public ETaxType TaxType { get; set; }
 
     }
 }

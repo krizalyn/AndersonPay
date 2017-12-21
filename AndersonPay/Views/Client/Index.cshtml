@@ -16,14 +16,15 @@
 
                         @*<th>ClientId</th>*@
                         @*<th>CompanyId</th>*@
+                        @*<th>Email Id<th/>*@
+                        @*<th>TaxTypeId</th>*@
                         <th>Code</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>Registration No.</th>
-                        <th>Currency</th>
-                        <th>TaxTypeId</th>
+                        <th>Currency</th> 
                         <th>Tax Type</th>
-                        <th>WithHolding Tax</th>
+                        <th>Withholding Tax</th>
                         <th>Actions</th>
 
                     </tr>
@@ -34,13 +35,14 @@
 
                         @*<td><span ng-bind="client.ClientId"></span></td>*@
                         @*<td><span ng-bind="client.CompanyId"></span></td>*@
+                        @*<td><span ng-bind="client.EmailId"></span></td>*@
+                        @*<td><span ng-bind="client.TaxTypeId"></span></td>*@
                         <td><span ng-bind="client.Code"></span></td>
                         <td><span ng-bind="client.Name"></span></td>
                         <td><span ng-bind="client.Address"></span></td>
                         <td><span ng-bind="client.RegistrationNo"></span></td>
                         <td><span ng-bind="client.CurrencyCode"></span></td>
-                        <td><span ng-bind="client.TaxTypeId"></span></td>
-                        <td><span ng-bind="client.TaxType1"></span></td>
+                        <td><span ng-bind="client.TaxTypes"></span></td>
                         <td><span ng-bind="client.WithHoldingTax"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">

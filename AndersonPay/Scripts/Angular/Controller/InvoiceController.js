@@ -25,6 +25,7 @@
         vm.Invoices = [];
         vm.TypeOfServices = [];
         vm.Services = [];
+        vm.Currency = [];
 
         //read
         vm.ReadForClients = ReadForClients;
@@ -58,6 +59,7 @@
             ReadForTypeOfService();
             ReadCompanyBranch();
             ReadForTaxType();
+            ReadForCurrency();
         }
 
         function Read() {
@@ -184,9 +186,17 @@
         function ReadForTaxType()
         {
            vm.TaxTypes = [
-           { Tax: "VAT" },
-           { Tax: "NON-VAT" },
-           { Tax: "ZERO RATED" },
+           { Type: "VAT" },
+           { Type: "NON-VAT" },
+           { Type: "ZERO RATED" },
+           ];
+        }
+
+        function ReadForCurrency() {
+            vm.CurrencyCode = [
+           { Code: "USD" },
+           { Code: "GBP" },
+           { Code: "PHP" },
            ];
         }
     }

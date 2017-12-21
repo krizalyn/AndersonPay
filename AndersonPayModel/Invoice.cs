@@ -16,6 +16,7 @@ namespace AndersonPayModel
         public decimal Subtotal { get; set; }
         public decimal Tax { get; set; }
 
+        public string Name { get; set; }
         public string Currency { get; set; }
         public string Recipients { get; set; }
         public string Comments { get; set; }
@@ -33,7 +34,6 @@ namespace AndersonPayModel
         //public DateTime? DueDate { get; set; }
         //public DateTime? ExpiringPeriod { get; set; }
         //public DateTime? StartPeriod { get; set; }
-        //public string Name { get; set; }
         //public string Description { get; set; }
         //public string LateFee { get; set; }
         //public string Quantity { get; set; }
