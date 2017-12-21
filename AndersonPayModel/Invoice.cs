@@ -27,6 +27,9 @@ namespace AndersonPayModel
         public string SINo { get; set; }
         public string TIN { get; set; }
 
+        public string Address { get; set; }
+      
+
         //public bool? Deleted { get; set; }
         //public bool Multiple { get; set; }
         //public decimal Subtotal { get; set; }

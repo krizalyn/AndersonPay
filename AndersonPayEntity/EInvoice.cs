@@ -106,5 +106,7 @@ namespace AndersonPayEntity
         
         public string SINo { get; set; }
         public string TIN { get; set; }
+        public string Address { get; set; }
+        
     }
 }

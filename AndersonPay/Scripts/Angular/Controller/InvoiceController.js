@@ -9,7 +9,6 @@
 
     function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
         var vm = this;
-
         //object
         vm.Service = {
             TypeOfService: null,
@@ -58,8 +57,10 @@
             ReadForClients();
             ReadForTypeOfService();
             ReadCompanyBranch();
+
             ReadForTaxType();
             ReadForCurrency();
+
         }
 
         function Read() {

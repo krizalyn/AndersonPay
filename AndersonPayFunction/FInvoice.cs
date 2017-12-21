@@ -97,7 +97,6 @@ namespace AndersonPayFunction
                 SINo = invoice.SINo,
                 TIN = invoice.TIN
             };
-
             return returnEInvoice;
         }
 
@@ -105,6 +104,7 @@ namespace AndersonPayFunction
         {
             Invoice returnInvoice = new Invoice
             {
+
                 //GovernmentTax = eInvoice.GovernmentTax,
                 //gtholder = eInvoice.gtholder,
                 //lfholder = eInvoice.lfholder,
@@ -142,6 +142,7 @@ namespace AndersonPayFunction
         {
             var returnInvoice = eInvoice.Select(a => new Invoice
             {
+
                 //GovernmentTax = a.GovernmentTax,
                 //gtholder = a.gtholder,
                 //lfholder = a.lfholder,
@@ -170,6 +171,7 @@ namespace AndersonPayFunction
                 Comments = a.Comments,
                 SINo = a.SINo,
                 TIN = a.TIN
+
             });
 
             return returnInvoice.ToList();
