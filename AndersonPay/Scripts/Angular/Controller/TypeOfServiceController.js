@@ -17,12 +17,12 @@
 
         vm.Delete = Delete;
 
-
         function GoToUpdatePage(typeOfServiceId) {
             $window.location.href = '../TypeOfService/Update/' + typeOfServiceId;
         }
 
         function Initialise() {
+
             Read();
         }
 
@@ -49,7 +49,6 @@
                     Read();
                 })
                 .catch(function (data, status) {
-
 
                 });
         }

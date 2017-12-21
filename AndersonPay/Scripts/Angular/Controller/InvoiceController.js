@@ -9,23 +9,23 @@
 
     function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
         var vm = this;
-
         //object
         vm.Service = {
             TypeOfService: null,
             Description: '',
             Rate: 0,
             Quantity: 1,
-            subtotalholder:0,
+            subtotalholder: 0,
             tax: 0,
             totaltax: 0
-
-            
         }
+
         //array
         vm.Invoices = [];
         vm.TypeOfServices = [];
         vm.Services = [];
+        vm.Currency = [];
+
         //read
         vm.ReadForClients = ReadForClients;
         vm.ReadForTypeOfService = ReadForTypeOfService;
@@ -48,7 +48,6 @@
         //function SINo
         vm.SINo = SINo;
 
-
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
         }
@@ -58,6 +57,9 @@
             ReadForClients();
             ReadForTypeOfService();
             ReadCompanyBranch();
+
+            ReadForTaxType();
+            ReadForCurrency();
 
         }
 
@@ -85,9 +87,9 @@
                 })
                 .catch(function (data, status) {
 
-
                 });
         }
+
         function ReadForClients() {
             ClientService.Read()
                 .then(function (response) {
@@ -104,6 +106,7 @@
 
                 });
         }
+
         //create row and column for computation of subtotal
         function CreateInvoiceService() {
             var service = angular.copy(vm.Service);
@@ -135,14 +138,13 @@
         //Sales Tax
         function SalesTax() {
             var total = 0.00;
-
         }
 
         //delete row of computation on adding service
         function deleteRow(index) {
             vm.Services.splice(index, 1);
-
         }
+
         //read for Type Of Service
         function ReadForTypeOfService() {
             TypeOfServiceService.Read()
@@ -160,25 +162,43 @@
 
                 });
         }
+
         //SIno
-        function SINo(SINoCode)
-        {
+        function SINo(SINoCode) {
             var SINoCode = "";
             return SINoCode;
         }
-        function CompanyBranch(BranchCode)
-        {
+
+        function CompanyBranch(BranchCode) {
             var BranchCode = "BCode";
             return BranchCode;
         }
 
         //Branch Location
-        function ReadCompanyBranch()
-        {
+        function ReadCompanyBranch() {
             vm.CompanyBranches = [
-            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: '0001' },
-            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: '0002' },
-            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: '0003' },
+            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WNYSUM', SINo: 'WNSM-', TIN: '0001' },
+            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
+            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
             ];
         }
+
+        //TaxType
+        function ReadForTaxType()
+        {
+           vm.TaxTypes = [
+           { Type: "VAT" },
+           { Type: "NON-VAT" },
+           { Type: "ZERO RATED" },
+           ];
+        }
+
+        function ReadForCurrency() {
+            vm.CurrencyCode = [
+           { Code: "USD" },
+           { Code: "GBP" },
+           { Code: "PHP" },
+           ];
+        }
     }
+})();

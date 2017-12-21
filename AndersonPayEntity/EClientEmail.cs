@@ -7,15 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 namespace AndersonPayEntity
 {
-    [Table("TaxType")]
-    public class ETaxType
+    [Table("ClientEmail")]
+    public class EClientEmail
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TaxTypeId { get; set; }
+        public int EmailId { get; set; }
 
-        public string Type { get; set; }
-
-
+        public string EmailAddress { get; set; }
     }
 }

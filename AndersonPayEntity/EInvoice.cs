@@ -19,82 +19,94 @@ namespace AndersonPayEntity
          Remove Display annotation
          Remove [HiddenInput(DisplayValue = true)] 
          Remove multipeServiceJSON
-             */
+        */
 
-        public bool? Deleted { get; set; } //Remove
-        public bool Multiple { get; set; } //Remove
+        //public bool? Deleted { get; set; }
+        //public bool Multiple { get; set; }
 
-      //  [HiddenInput(DisplayValue = true)]
-        public decimal Amount { get; set; }  //Rename to SubTotal
-       // [Display(Name = "Vatable Tax %")]
-        public decimal GovernmentTax { get; set; }  //Remove
-        public decimal gtholder { get; set; } //Remove
-        public decimal lfholder { get; set; } //Remove
-       // [HiddenInput(DisplayValue = true)]
-        public decimal Total { get; set; }
-        public decimal totalTax { get; set; } //Remove
-       // [Display(Name = "Withholding Tax %")]
+        //[HiddenInput(DisplayValue = true)]
 
-        public decimal WithholdingTax { get; set; } // Rename to Tax
-        public decimal whtholder { get; set; } //Remove
+        //[Display(Name = "Vatable Tax %")]
+        //public decimal GovernmentTax { get; set; } 
+        //public decimal gtholder { get; set; }
+        //public decimal lfholder { get; set; }
+        //[HiddenInput(DisplayValue = true)]
 
-        public int? invIdholder { get; set; } //Remove
+        //public decimal totalTax { get; set; }
+        //[Display(Name = "Withholding Tax %")]
 
-       // [Display(Name = "INV no.")]
+
+        //public decimal whtholder { get; set; }
+        //public int? invIdholder { get; set; }
+
+        // [Display(Name = "INV no.")]
+
+
+        //[Editable(true)] //Remove
+        //[Display(Name = "Date Create:")]
+        //[DataType(DataType.Date)]
+        //public DateTime? Date { get; set; }
+        //[Editable(true)] *///Remove
+        //[DataType(DataType.Date)]
+        //public DateTime? DueDate { get; set; }
+        //[Required(ErrorMessage = "Please input the required Date")]
+        //[DataType(DataType.Date)]
+        //public DateTime? ExpiringPeriod { get; set; }
+        //[Required(ErrorMessage = "Please input the required Date")]
+        //[DataType(DataType.Date)]
+        //public DateTime? StartPeriod { get; set; }
+
+
+        //[Display(Name = "Company Name")]
+        //[Required(ErrorMessage = "Please Select Company")]
+        
+        //[Required(ErrorMessage = "Please input the Currency type")]
+
+        //public string Description { get; set; }
+        //[Display(Name = "Late Fee %")]
+        //public string LateFee { get; set; }
+        //[NotMapped]
+        //public string multipeServiceJSON
+        //{
+        //    get
+        //    {
+        //        return new JavaScriptSerializer().Serialize(Services);
+        //    }
+        //}
+
+        //public string Quantity { get; set; }
+        //public string Rate { get; set; }
+
+        //public string Status { get; set; }
+        //[Display(Name = "Type Of Service")]
+        //Required(ErrorMessage = "Select Type of Service")]
+        //public string TypeOfService { get; set; }
+        //public decimal Subtotal { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvoiceId { get; set; }
 
-        [Editable(true)] //Remove
-        //[Display(Name = "Date Create:")]
-        //[DataType(DataType.Date)]
-        public DateTime? Date { get; set; } //Remove
-        [Editable(true)] //Remove
-        //[DataType(DataType.Date)]
-        public DateTime? DueDate { get; set; } //Remove
-        //[Required(ErrorMessage = "Please input the required Date")]
-        //[DataType(DataType.Date)]
-        public DateTime? ExpiringPeriod { get; set; } //Remove
-        //[Required(ErrorMessage = "Please input the required Date")]
-        //[DataType(DataType.Date)]
-        public DateTime? StartPeriod { get; set; } //Remove
+        public decimal Tax { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal Total { get; set; }
 
-        public string Comments { get; set; }
-        //[Display(Name = "Company Name")]
-        //[Required(ErrorMessage = "Please Select Company")]
-        public string Name { get; set; } //Remove
-        //[Required(ErrorMessage = "Please input the Currency type")]
-        public string Currency { get; set; }
-        public string Description { get; set; } //Remove
-        //[Display(Name = "Late Fee %")]
-        public string LateFee { get; set; } //Remove
-        [NotMapped]
-        public string multipeServiceJSON //Remove
-        {
-            get
-            {
-                return new JavaScriptSerializer().Serialize(Services);
-            }
-        }
-        public string Quantity { get; set; } //Remove
-        public string Rate { get; set; } //Remove
         public string Recipients { get; set; }
-        public string Status { get; set; } //Remove
-        //[Display(Name = "Type Of Service")]
-        //Required(ErrorMessage = "Select Type of Service")]
-        public string TypeOfService { get; set; } //Remove
+        public string Name { get; set; } //Remove
 
+        public string Currency { get; set; }
+        public string Comments { get; set; }
 
         public EClient Client { get; set; }
 
         public virtual ICollection<EService> Services { get; set; }
 
-        //CompanyBranch
-        public string CompanyBranch { get; set; }
         //Name of Service
         public string NameOfService { get; set; }
-        public decimal Subtotal { get; set; }
+        
         public string SINo { get; set; }
         public string TIN { get; set; }
+        public string Address { get; set; }
+        
     }
 }
