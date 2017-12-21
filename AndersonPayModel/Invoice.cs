@@ -11,8 +11,8 @@ namespace AndersonPayModel
     public class Invoice : Base.Base
     {
         
-        public bool? Deleted { get; set; }
-        public bool Multiple { get; set; }
+        //public bool? Deleted { get; set; }                  /*tobe deleted*/
+        //public bool Multiple { get; set; }                  /*tobe deleted*/
 
         public decimal Subtotal { get; set; }
         public decimal Total { get; set; }
@@ -20,23 +20,23 @@ namespace AndersonPayModel
         
         public int InvoiceId { get; set; }
 
-        public DateTime? Date { get; set; }
-        public DateTime? DueDate { get; set; }
-        public DateTime? ExpiringPeriod { get; set; }
-        public DateTime? StartPeriod { get; set; }
+        //public DateTime? Date { get; set; }                 /*tobe deleted*/
+        //public DateTime? DueDate { get; set; }              /*tobe deleted*/
+        //public DateTime? ExpiringPeriod { get; set; }       /*tobe deleted*/
+        //public DateTime? StartPeriod { get; set; }          /*tobe deleted*/
 
         public string Comments { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }                    /*tobe deleted*/
         public string Currency { get; set; }
-        public string Description { get; set; }
-        public string LateFee { get; set; }
+        public string Description { get; set; }             /*tobe deleted*/
+        public string LateFee { get; set; }                 /*tobe deleted*/
 
         public string Quantity { get; set; }
-        public string Rate { get; set; }
+        public string Rate { get; set; }                    /*tobe deleted*/
         public string Recipients { get; set; }
         public string Status { get; set; }
 
-        public string TypeOfService { get; set; }
+        public string TypeOfService { get; set; }           /*tobe deleted*/
 
         public EClient Client { get; set; }
 

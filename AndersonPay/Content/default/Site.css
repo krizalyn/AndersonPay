@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -47,4 +47,17 @@ ul.attachment li
             float:right;
             color:#808080;
         }
+.navbar {
+    position: relative;
+    padding-top:5px;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
 
+.navbar-brand > img {
+    display: block;
+    height: auto;
+    width: 250px;
+    margin: auto;
+}

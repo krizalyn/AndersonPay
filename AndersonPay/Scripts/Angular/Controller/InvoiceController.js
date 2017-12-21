@@ -16,11 +16,11 @@
             Description: '',
             Rate: 0,
             Quantity: 1,
-            subtotalholder:0,
+            subtotalholder: 0,
             tax: 0,
             totaltax: 0
 
-            
+
         }
         //array
         vm.Invoices = [];
@@ -161,24 +161,22 @@
                 });
         }
         //SIno
-        function SINo(SINoCode)
-        {
-            var SINoCode = "";
-            return SINoCode;
-        }
-        function CompanyBranch(BranchCode)
-        {
-            var BranchCode = "BCode";
-            return BranchCode;
-        }
+        //function SINo(SINoCode) {
+        //    var SINoCode = "";
+        //    return SINoCode;
+        //}
+        //function CompanyBranch(BranchCode) {
+        //    var BranchCode = "BCode";
+        //    return BranchCode;
+        //}
 
         //Branch Location
-        function ReadCompanyBranch()
-        {
+        function ReadCompanyBranch() {
             vm.CompanyBranches = [
-            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: '0001' },
-            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: '0002' },
-            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: '0003' },
+                { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'Wynsum', SINo: 'WNSM-', TIN: '0001' },
+                { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'Cybergate 3', SINo: 'CG3-', TIN: '0002' },
+                { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'Ecotower', SINo: 'ECT-', TIN: '0003' },
             ];
         }
     }
+})();

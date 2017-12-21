@@ -4,13 +4,38 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    .pageIndexInvoice {
+        background-color: white;
+        margin: 0px;
+        padding: 10px;
+        padding-top: 20px;
+        height: auto;
+    }
+    tr.thead-inverse {
+        background-color: #465A65;
+        color: white;
+    }
 
-<div ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+    a.btn-default:hover {
+        background-color: #0c7cd5;
+        color: white;
+    }
+    a.btn-default {
+        background-color: #2196F3;
+        color: white;
+    }
+
+</style>
+
+<div class="pageIndexInvoice" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <div class="row">
+
         <div class="col-sm-4">
-            <a href="../Invoice/Create" class="btn btn-default">Create</a>
+            <a href="../Invoice/Create" class="btn btn-default" @*style="background-color:#2196F3; color:white;*@">Create</a>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover table-sm table-bordered ">
@@ -42,7 +67,6 @@
                         <td><span ng-bind="invoice.Subtotal"></span></td>
                         <td><span ng-bind="invoice.Total"></span></td>
                         
-
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
