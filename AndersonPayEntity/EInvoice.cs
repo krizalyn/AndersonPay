@@ -94,5 +94,7 @@ namespace AndersonPayEntity
         public decimal Subtotal { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
+        public string Address { get; set; }
+        
     }
 }

@@ -21,7 +21,6 @@ namespace AndersonPayEntity
         [ForeignKey("TaxType")]
         public int TaxTypeId { get; set; }
         public int Registration { get; set; }
-        public int Code { get; set; }
 
         
 
@@ -30,8 +29,7 @@ namespace AndersonPayEntity
         public string email1 { get; set; }
         public string email2 { get; set; }
         public string email3 { get; set; }
-
-        public string Address { get; set; }
+        
         public string CurrencyCode { get; set; }
         public string Name { get; set;}
 

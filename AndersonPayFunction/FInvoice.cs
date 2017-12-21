@@ -94,7 +94,8 @@ namespace AndersonPayFunction
                 TypeOfService = invoice.TypeOfService,
                 Services = invoice.Services,
                 SINo = invoice.SINo,
-                TIN = invoice.TIN
+                TIN = invoice.TIN,
+                Address = invoice.Address
 
             };
             return returnEInvoice;
@@ -129,7 +130,8 @@ namespace AndersonPayFunction
                 Status = eInvoice.Status,
                 TypeOfService = eInvoice.TypeOfService,
                 SINo = eInvoice.SINo,
-                TIN = eInvoice.TIN
+                TIN = eInvoice.TIN,
+                Address = eInvoice.Address
             };
             return returnInvoice;
         }
@@ -163,7 +165,8 @@ namespace AndersonPayFunction
                 Status = a.Status,
                 TypeOfService = a.TypeOfService,
                 SINo = a.SINo,
-                TIN = a.TIN
+                TIN = a.TIN,
+                Address = a.Address
 
             });
 

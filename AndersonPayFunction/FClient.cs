@@ -74,8 +74,7 @@ namespace AndersonPayFunction
                 TaxTypeId = client.TaxTypeId,
             //    TaxType1 = client.TaxType1,
                 Registration = client.Registration,
-
-                Address = client.Address,
+                
                 WithHoldingTaxPercentage = client.WithHoldingTaxPercentage,
                 CurrencyCode = client.CurrencyCode,
                 Name = client.Name
@@ -100,7 +99,6 @@ namespace AndersonPayFunction
                 CompanyId = eClient.CompanyId,
                 RegistrationNumber = eClient.RegistrationNumber,
                 TaxTypeId = eClient.TaxTypeId,
-                Address = eClient.Address,
                 WithHoldingTaxPercentage = eClient.WithHoldingTaxPercentage,
                 CurrencyCode = eClient.CurrencyCode,
                 Name = eClient.Name
@@ -127,7 +125,6 @@ namespace AndersonPayFunction
                 Name = a.Name,
                 TaxTypeId = a.TaxTypeId,
           //      TaxType1 = a.TaxType1,
-                Address = a.Address,
                 WithHoldingTaxPercentage = a.WithHoldingTaxPercentage,
                 CurrencyCode = a.CurrencyCode
             });

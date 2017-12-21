@@ -47,6 +47,7 @@ namespace AndersonPayModel
         public virtual List<EService> Services { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
+        public string Address { get; set; }
       
     }
 }
