@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+
     padding-bottom: 20px;
 }
 
@@ -47,4 +47,12 @@ ul.attachment li
             float:right;
             color:#808080;
         }
+.navbar-brand > img {
+    display: block;
+    max-height: 200%;
+    height: 55;
+    width: auto;
+    margin: auto;
+}
+
 
