@@ -16,14 +16,12 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
-                        <th>Invoice Id</th>
-
+                        @*<th>Invoice Id</th>*@
                         @*<th>SI No.</th>*@
                         @*<th>TIN</th>*@
                         <th>Name</th>
                         <th>Currency</th>
                         <th>Tax</th>
-                        
                         <th>Quantity</th>
                         <th>Rate</th>
                         <th>Subtotal</th>
@@ -33,8 +31,7 @@
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="invoice in model.Invoices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(invoice.InvoiceId)">
-                        <td><span ng-bind="invoice.InvoiceId"></span></td>
-
+                        @*<td><span ng-bind="invoice.InvoiceId"></span></td>*@
                         @*<td><span ng-bind="invoice.SINo"></span></td>*@
                         @*<td><span ng-bind="invoice.TIN"></span></td>*@
                         <td><span ng-bind="invoice.Name"></span></td>
