@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AndersonPayModel
 {
-   public class TaxType
+   public class ClientEmail
     {
-        public int TaxTypeId { get; set; }
+        public int EmailId { get; set; }
 
-        public string Type { get; set; }
+        public string EmailAddress { get; set; }
     }
 }

@@ -62,15 +62,20 @@ namespace AndersonPayFunction
         #region OTHER FUNCTION
         private EClient EClient(Client client)
         {
-            EClient returnEClient = new EClient
+            EClient returnEClient = new EClient 
             {
+                Code = client.Code,
                 ClientId = client.ClientId,
+                Name = client.Name,
+                Address = client.Address,
                 CompanyId = client.CompanyId,
+                RegistrationNo = client.RegistrationNo,
                 TaxTypeId = client.TaxTypeId,
-                WithHoldingTaxPercentage = client.WithHoldingTaxPercentage,
-                CurrencyCode = client.CurrencyCode,
-                Name = client.Name
+                TaxTypes = client.TaxTypes,
 
+                CurrencyCode = client.CurrencyCode,
+                WithHoldingTax = client.WithHoldingTax
+ 
             };
             return returnEClient;
         }
@@ -78,13 +83,19 @@ namespace AndersonPayFunction
         private Client Client(EClient eClient)
         {
             Client returnClient = new Client
+
             {
+                Code = eClient.Code,
                 ClientId = eClient.ClientId,
+                Name = eClient.Name,
+                Address = eClient.Address,
                 CompanyId = eClient.CompanyId,
+                RegistrationNo = eClient.RegistrationNo,
                 TaxTypeId = eClient.TaxTypeId,
-                WithHoldingTaxPercentage = eClient.WithHoldingTaxPercentage,
+                TaxTypes = eClient.TaxTypes,
+
                 CurrencyCode = eClient.CurrencyCode,
-                Name = eClient.Name
+                WithHoldingTax = eClient.WithHoldingTax
 
             };
             return returnClient;
@@ -93,19 +104,24 @@ namespace AndersonPayFunction
         private List<Client> Client(List<EClient> eClient)
         {
             var returnClient = eClient.Select(a => new Client
+
             {
+                Code = a.Code,
                 ClientId = a.ClientId,
-                CompanyId = a.CompanyId,
                 Name = a.Name,
+                Address = a.Address,
+                CompanyId = a.CompanyId,
+                RegistrationNo = a.RegistrationNo,
                 TaxTypeId = a.TaxTypeId,
-                WithHoldingTaxPercentage = a.WithHoldingTaxPercentage,
-                CurrencyCode = a.CurrencyCode
+                TaxTypes = a.TaxTypes,
+                CurrencyCode = a.CurrencyCode,
+                WithHoldingTax = a.WithHoldingTax,
+
             });
 
             return returnClient.ToList();
         }
 
-       
         #endregion
     }
 }

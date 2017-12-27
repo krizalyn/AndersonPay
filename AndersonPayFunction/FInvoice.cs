@@ -67,32 +67,35 @@ namespace AndersonPayFunction
         {
             EInvoice returnEInvoice = new EInvoice
             {
-                //Amount = invoice.Amount,
+
                 //GovernmentTax = invoice.GovernmentTax,
                 //gtholder = invoice.gtholder,
                 //lfholder = invoice.lfholder,
-                Total = invoice.Total,
                 //totalTax = invoice.totalTax,
-                WithholdingTax = invoice.WithholdingTax,
                 //whtholder = invoice.whtholder,
                 //invIdholder = invoice.invIdholder,
-                InvoiceId = invoice.InvoiceId,
-                Date = invoice.Date,
-                DueDate = invoice.DueDate,
-                ExpiringPeriod = invoice.ExpiringPeriod,
-                StartPeriod = invoice.StartPeriod,
-                Comments = invoice.Comments,
-                Name = invoice.Name,
-                Currency = invoice.Currency,
-                Description = invoice.Description,
-                LateFee = invoice.LateFee,
-                Quantity = invoice.Quantity,
-                Rate = invoice.Rate,
-                Recipients = invoice.Recipients,
-                Status = invoice.Status,
-                TypeOfService = invoice.TypeOfService,
-                Services = invoice.Services
+                //Date = invoice.Date,
+                //DueDate = invoice.DueDate,
+                //ExpiringPeriod = invoice.ExpiringPeriod,
+                //StartPeriod = invoice.StartPeriod,
+                //Description = invoice.Description,
+                //LateFee = invoice.LateFee,
+                //Quantity = invoice.Quantity,
+                //Rate = invoice.Rate,
+                //Status = invoice.Status,
+                //TypeOfService = invoice.TypeOfService,
 
+                InvoiceId = invoice.InvoiceId,
+                Name = invoice.Name,
+                Tax = invoice.Tax,
+                Subtotal = invoice.Subtotal,
+                Total = invoice.Total,
+                Currency = invoice.Currency,
+                Comments = invoice.Comments,
+                Recipients = invoice.Recipients,
+                Services = invoice.Services,
+                SINo = invoice.SINo,
+                TIN = invoice.TIN
             };
             return returnEInvoice;
         }
@@ -101,32 +104,37 @@ namespace AndersonPayFunction
         {
             Invoice returnInvoice = new Invoice
             {
-                //Amount = eInvoice.Amount,
+
                 //GovernmentTax = eInvoice.GovernmentTax,
                 //gtholder = eInvoice.gtholder,
                 //lfholder = eInvoice.lfholder,
-                Total = eInvoice.Total,
                 //totalTax = eInvoice.totalTax,
-                WithholdingTax = eInvoice.WithholdingTax,
                 //whtholder = eInvoice.whtholder,
                 //invIdholder = eInvoice.invIdholder,
+                //Date = eInvoice.Date,
+                //DueDate = eInvoice.DueDate,
+                //ExpiringPeriod = eInvoice.ExpiringPeriod,
+                //StartPeriod = eInvoice.StartPeriod,
+                //Name = eInvoice.Name,
+                //Description = eInvoice.Description,
+                //LateFee = eInvoice.LateFee,
+                //Quantity = eInvoice.Quantity,
+                //Rate = eInvoice.Rate,
+                //Status = eInvoice.Status,
+                //TypeOfService = eInvoice.TypeOfService,
+
                 InvoiceId = eInvoice.InvoiceId,
-                Date = eInvoice.Date,
-                DueDate = eInvoice.DueDate,
-                ExpiringPeriod = eInvoice.ExpiringPeriod,
-                StartPeriod = eInvoice.StartPeriod,
-                Comments = eInvoice.Comments,
                 Name = eInvoice.Name,
+                Subtotal = eInvoice.Subtotal,
+                Total = eInvoice.Total,
+                Tax = eInvoice.Tax,
                 Currency = eInvoice.Currency,
-                Description = eInvoice.Description,
-                LateFee = eInvoice.LateFee,
-                Quantity = eInvoice.Quantity,
-                Rate = eInvoice.Rate,
                 Recipients = eInvoice.Recipients,
-                Status = eInvoice.Status,
-                TypeOfService = eInvoice.TypeOfService,
-                Services = eInvoice.Services
+                Comments = eInvoice.Comments,
+                SINo = eInvoice.SINo,
+                TIN = eInvoice.TIN
             };
+
             return returnInvoice;
         }
 
@@ -134,37 +142,40 @@ namespace AndersonPayFunction
         {
             var returnInvoice = eInvoice.Select(a => new Invoice
             {
-                //Amount = a.Amount,
+
                 //GovernmentTax = a.GovernmentTax,
                 //gtholder = a.gtholder,
                 //lfholder = a.lfholder,
-                Total = a.Total,
                 //totalTax = a.totalTax,
-                WithholdingTax = a.WithholdingTax,
                 //whtholder = a.whtholder,
                 //invIdholder = a.invIdholder,
+                //Date = a.Date,
+                //DueDate = a.DueDate,
+                //ExpiringPeriod = a.ExpiringPeriod,
+                //StartPeriod = a.StartPeriod,
+                //Name = a.Name,
+                //Description = a.Description,
+                //LateFee = a.LateFee,
+                //Quantity = a.Quantity,
+                //Rate = a.Rate,
+                //Status = a.Status,
+                //TypeOfService = a.TypeOfService,
+
                 InvoiceId = a.InvoiceId,
-                Date = a.Date,
-                DueDate = a.DueDate,
-                ExpiringPeriod = a.ExpiringPeriod,
-                StartPeriod = a.StartPeriod,
-                Comments = a.Comments,
                 Name = a.Name,
+                Total = a.Total,
+                Subtotal = a.Subtotal,
+                Tax = a.Tax,
                 Currency = a.Currency,
-                Description = a.Description,
-                LateFee = a.LateFee,
-                Quantity = a.Quantity,
-                Rate = a.Rate,
                 Recipients = a.Recipients,
-                Status = a.Status,
-                TypeOfService = a.TypeOfService,
-                Services = a.Services
+                Comments = a.Comments,
+                SINo = a.SINo,
+                TIN = a.TIN
 
             });
 
             return returnInvoice.ToList();
         }
-
 
         #endregion
     }

@@ -6,18 +6,13 @@ using System.Threading.Tasks;
 
 namespace AndersonPayModel
 {
-   public class TypeOfService : Base.Base
+    public class TypeOfService : Base.Base
     {
-        public string NameOfService { get; set; }
-
-        public decimal Rate { get; set; }
-
-        public string ServiceDescription { get; set; }
-
         public int TypeOfServiceId { get; set; }
 
-        public decimal WhTax { get; set; }
+        public string Description { get; set; }
+        public string Name { get; set; }
 
-
+        public List<Service> Services { get; set; }
     }
 }
