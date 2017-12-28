@@ -89,22 +89,22 @@
                             @*<input type="hidden" class="form-control" id="Description" name="Description" ng-model="{{model.TypeOfService.Description}}">*@
                             @*<input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}"/>*@
                         </td>
-                        <!--Comments-->
+                       
                         <td>
-
                         <!--Comment-->
                             <input type="text" autocomplete="off" class="form-control" id="invoice.Services[{{$index}}].Comments" name="invoice.Services[{{$index}}].Comments" placeholder="Comment" value="{{service.Comments}}">
                         </td>
 
-                        <!-- Rate -->
-                        <td>
-                            <input class="form-control" type="number" name="invoice.Services[{{$index}}].Quantitty" ng-model="service.Quantity" placeholder="1" min="1"/>
-                        </td>
 
                         <!-- Quantity -->
                         <td>
-                            <input class="form-group" type="number" name="invoice.Services[{{$index}}].Quantity" ng-model="service.Quantity" placeholder="1" min="1"/>
+                            <input class="form-control" type="number" name="invoice.Services[{{$index}}].Quantity" ng-model="service.Quantity" placeholder="1" min="1"/>
 
+                        </td>
+
+                        <!-- Rate -->
+                        <td>
+                            <input class="form-control" type="number" name="invoice.Services[{{$index}}].Rate" ng-model="service.Rate" placeholder="0.00" min="0" />
                         </td>
 
                         <!--Subtotal-->
