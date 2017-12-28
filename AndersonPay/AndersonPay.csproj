@@ -1555,6 +1555,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="bower_components\pnotify\libtests\requirejs\" />
     <Folder Include="Content\assets\img\companylogos\" />
+    <Folder Include="Content\assets\js\dist\" />
+    <Folder Include="Content\assets\js\plugins\template\" />
     <Folder Include="Migrations\" />
     <Folder Include="Models\InvoiceContext\" />
   </ItemGroup>

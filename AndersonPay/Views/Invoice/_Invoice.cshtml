@@ -1,52 +1,121 @@
-
 @{
     ViewBag.Title = "_Invoice";
 }
 
-@*DATE*@
-<div class="form-group" align="right">
-    <p id="DateToday">
-        <script>
-                var today = new Date();
-                document.getElementById("DateToday").innerHTML = "Date: " +  today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-        </script>
-    </p>
-</div>
 
+<style>
+    div.page_Invoice {
+        background-color: white;
+        margin: 0px;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
+    th {
+        text-align:center;
+        background-color: #465A65;
+        color: white;
+    }
+
+    div.dropBranch {
+        width: 350px;
+    
+    }
+
+    div.dropClient {
+        width: 350px;
+    }
+
+    img.logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    div.header {
+        position: relative;
+        display: table;
+        width: 100%;
+        margin-bottom: 5rem;
+    }
+    tr.thead-inverse {
+        background-color: #465A65;
+        color: white;
+    }
+  
+    div.alignContent {
+        width: 100%;
+        display:table;
+        position:relative;
+    }
+
+
+</style>
+
+<div class="page_Invoice">
     <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-    <input type="hidden" class="form-control" id="invoice.InvoiceId" readonly="readonly" name="invoice.InvoiceId" value="{{invoice.InvoiceId}}@Model.InvoiceId">
-    <label for="SINo">SI No: </label>
-    <label id="SINo"><u>{{model.CompanyBranch.SINo}}{{invoice.Name}}@Model.SINo</u></label><br>
-    <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">
-    <label for="Address" id="Address">Address: {{model.CompanyBranch.Address}}@Model.Address</label>
-    <input type="hidden" class="form-control" id="Address" name="invoice.Address" value="{{model.CompanyBranch.Address}}">
-    <ui-select ng-model="model.CompanyBranch">
-        <ui-select-match placeholder="Select Branch">
-            <span ng-bind="$select.selected.CompanyAddress"></span>
-        </ui-select-match>
-        <ui-select-choices repeat="dropDownItem in (model.CompanyBranches | filter: $select.search) track by $index">
-            <span ng-bind="dropDownItem.CompanyAddress"></span>
-        </ui-select-choices>
-    </ui-select>
 
-    <label for="TIN" id="TIN">TIN: <u>{{model.CompanyBranch.TIN}}@Model.TIN</u></label><br>
-        <input type="hidden" class="form-control" id="TIN" name="invoice.TIN" value="{{model.CompanyBranch.TIN}}">
-    </div>
+        <div class="header">
+            <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left">
+            <div class="form-group" align="right" style="padding-top:50px;">
+                <p id="DateToday">
+                    <script>
+                        var today = new Date();
+                        document.getElementById("DateToday").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+                    </script>
+                </p>
 
-    <div class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()">
-    <label for="ClientId">Select Client</label>
-    <ui-select ng-model="model.Client">
-        <ui-select-match placeholder="Select Client">
-            <span ng-bind="$select.selected.Name"></span>
-        </ui-select-match>
-        <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
-            <span ng-bind="client.Name"></span>
-        </ui-select-choices>
-    </ui-select>
-    <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
-    <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
-    <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
-    </div>
+                <label for="SINo">SI No: </label>
+                <label id="SINo"><u>{{model.CompanyBranch.SINo}}{{invoice.Name}}@Model.SINo</u></label><br>
+                <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">
+            </div>
+        </div>
+       
+<div class="alignContent">
+
+    <div class="floatL" style="float:left">
+        <div>
+
+            <label for="TIN" id="TIN">TIN: <u>{{model.CompanyBranch.TIN}}</u></label><br>
+            <input type="hidden" class="form-control" id="TIN" name="invoice.TIN" value="{{model.CompanyBranch.TIN}}@Model.TIN">
+        </div>
+
+
+        <div class="dropBranch">
+            <label for="Address" id="Address">Address: {{model.CompanyBranch.Address}}</label>
+            <ui-select ng-model="model.CompanyBranch">
+                <ui-select-match placeholder="Select Branch">
+                    <span ng-bind="$select.selected.CompanyAddress"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="dropDownItem in (model.CompanyBranches | filter: $select.search) track by $index">
+                    <span ng-bind="dropDownItem.CompanyAddress"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        </div>
+        <br>
+        
+        <div id="" class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()" align="right">
+            @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
+      
+            
+            <div class="clientSelect" style="padding-right: 200px;">
+            <label for="ClientId" style="padding-right:270px;">Select Client</label>
+            <div class="dropClient">
+                <ui-select ng-model="model.Client">
+                    <ui-select-match placeholder="Select Client">
+                        <span ng-bind="$select.selected.Name"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+                        <span ng-bind="client.Name"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+                @*<input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}@Model.ClientId">*@
+                <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
+                <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
+                <input type="hidden" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
+            </div>
+<div>
 
 @*Computation ng Subtotal*@
 <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
@@ -54,17 +123,17 @@
     <!-- Services -->
     <div class="container col-md-4" style="width:100%">
         <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
-            <thead>
-                <tr>
-                    <th width="5%" style="display:none">Index</th>
-                    <th width="20%">Type of Service</th>
-                    <th width="25%">Comment</th>
-                    <th width="20%">Quantity</th>
-                    <th width="20%">Rate</th>
-                    <th width="20%">Subtotal</th>
-                    <th></th>
-                </tr>
-            </thead>
+              <thead>
+                        <tr>
+                            <th width="5%" style="display:none">Index</th>
+                            <th width="20%"><center>Type of Service</center></th>
+                            <th width="20%"><center> Comment</center></th>
+                            <th width="15%"><center>Rate</center></th>
+                            <th width="15%"><center>Quantity</center></th>
+                            <th width="15%"><center>Subtotal</center></th>
+                            <th></th>
+                        </tr>
+              </thead>
 
                 <tbody>
                     <tr ng-repeat="service in model.Services track by $index">
@@ -187,3 +256,4 @@
 @*<div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
 </div>*@
+

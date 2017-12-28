@@ -14,7 +14,7 @@ namespace AndersonPayModel
 
         public decimal Total { get; set; }
         public decimal Subtotal { get; set; }
-        public decimal Tax { get; set; }
+        public string TaxTypes { get; set; }
 
         public string Name { get; set; }
         public string Currency { get; set; }
