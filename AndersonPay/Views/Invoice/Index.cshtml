@@ -49,9 +49,9 @@
                         <th>Currency</th>
                         <th>Tax</th>
 
-                        <th>Quantity</th>
+                        @*<th>Quantity</th>
                         <th>Rate</th>
-                        <th>Subtotal</th>
+                        <th>Subtotal</th>*@
                         <th>Total</th>
                         <th>Actions</th>
                     </tr>
@@ -65,9 +65,9 @@
                         <td><span ng-bind="invoice.Name"></span></td>
                         <td><span ng-bind="invoice.Currency"></span></td>
                         <td><span ng-bind="invoice.Tax"></span></td>
-                        <td><span ng-bind="invoice.Service.Quantity"></span></td>
+                        @*<td><span ng-bind="invoice.Service.Quantity"></span></td>
                         <td><span ng-bind="invvoice.Service.Rate"></span></td>
-                        <td><span ng-bind="invoice.Subtotal"></span></td>
+                        <td><span ng-bind="invoice.Subtotal"></span></td>*@
                         <td><span ng-bind="invoice.Total"></span></td>
 
                         <td ng-click="$event.originalEvent.dropdown = true">

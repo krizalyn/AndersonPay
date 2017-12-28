@@ -82,6 +82,9 @@ namespace AndersonPayEntity
         //CompanyBranch
         public string CompanyBranch { get; set; }
         //Name of Service
+        public string Name { get; set; }
+        public string Recipients { get; set; }
+        public string TaxTypes { get; set; }
         public string NameOfService { get; set; }
         public decimal Subtotal { get; set; }
         public string SINo { get; set; }

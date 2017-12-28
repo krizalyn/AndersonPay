@@ -9,6 +9,7 @@
 
     function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
         var vm = this;
+
         //object
         vm.Service = {
             TypeOfService: null,
@@ -24,7 +25,6 @@
         vm.Invoices = [];
         vm.TypeOfServices = [];
         vm.Services = [];
-        vm.Currency = [];
 
         //read
         vm.ReadForClients = ReadForClients;
@@ -42,7 +42,13 @@
         //function compute subtotal
         vm.Subtotal = Subtotal;
         //function compute Total
-        vm.Total = Total;
+        vm.TotalSales = TotalSales;
+        //function compute SalesTax
+        vm.SalesTax = SalesTax;
+        //function compute withholdingTax
+        vm.WithholdingTax = WithholdingTax;
+        //compute Amount Due
+        vm.AmountDue = AmountDue;
         //function others
         vm.InitialiseTypeOfService = InitialiseTypeOfService;
         //function SINo
@@ -56,8 +62,8 @@
             Read();
             ReadForClients();
             ReadForTypeOfService();
-            ReadCompanyBranch();
 
+            ReadCompanyBranch();
             ReadForTaxType();
             ReadForCurrency();
 
@@ -120,24 +126,50 @@
                 })
         }
 
+
         //compute subtotal
         function Subtotal(service) {
+
+            if (!service.Quantity)
+                service.Quantity = 0;
 
             return (service.Quantity * service.Rate);
         }
 
         //compute Total
-        function Total() {
-            var total = 0;
+        function TotalSales() {
+            var total = 0.00;
             angular.forEach(vm.Services, function (service) {
                 total += Subtotal(service);
             });
             return total;
-
         }
-        //Sales Tax
+
+        //compute Sales Tax
         function SalesTax() {
-            var total = 0.00;
+            var salesTax = 0.00;
+            //angular.forEach(vm.Services, function (service) {
+            salesTax += 12 * TotalSales() / 100;
+            //});
+            return salesTax;
+        }
+
+        //compute Withholding Tax
+        function WithholdingTax() {
+            var withholdingTax = 0.00;
+            //angular.forEach(vm.Services, function (service) {
+            withholdingTax += 3 * TotalSales() / 100;
+            //});
+            return withholdingTax;
+        }
+
+        //compute Amount Due
+        function AmountDue() {
+            var amountDue = 0.00;
+            //angular.forEach(vm.Services, function (service) {
+            amountDue += TotalSales() + SalesTax() - WithholdingTax();
+            //});
+            return amountDue;
         }
 
         //delete row of computation on adding service
@@ -177,28 +209,28 @@
         //Branch Location
         function ReadCompanyBranch() {
             vm.CompanyBranches = [
-            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WNYSUM', SINo: 'WNSM-', TIN: '0001' },
-            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
-            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
+                { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
+                { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
+                { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
             ];
         }
 
         //TaxType
-        function ReadForTaxType()
-        {
-           vm.TaxTypes = [
-           { Type: "VAT" },
-           { Type: "NON-VAT" },
-           { Type: "ZERO RATED" },
-           ];
+        function ReadForTaxType() {
+            vm.TaxTypes = [
+                { Type: "VAT" },
+                { Type: "NON-VAT" },
+                { Type: "ZERO RATED" },
+            ];
         }
 
+        //Currency
         function ReadForCurrency() {
             vm.CurrencyCode = [
-           { Code: "USD" },
-           { Code: "GBP" },
-           { Code: "PHP" },
-           ];
+                { Code: "USD" },
+                { Code: "GBP" },
+                { Code: "PHP" },
+            ];
         }
     }
 })();

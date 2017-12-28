@@ -1,7 +1,30 @@
-
 @{
     ViewBag.Title = "_Invoice";
 }
+
+@*<script type="text/javascript" src="~/Content/assets/js/plugins/dist/jspdf.min.js"></script>
+<script type="text/javascript">
+     
+    function genPDF() {
+
+        var doc = new jsPDF();
+
+        var specialElementHandlers = {
+            '#hidediv': function (element, render) { return true; }
+        };
+
+        doc.fromHTML($('#testdiv').get(0), 20, 20, {
+            'width': 500,
+            'elementHandlers': specialElementHandlers
+        });
+
+        doc.save('Test.pdf');
+
+    }
+
+</script>*@
+
+
 <style>
     div.page_Invoice {
         background-color: white;
@@ -17,11 +40,12 @@
     }
 
     div.dropBranch {
-        width: 300px;
+        width: 350px;
+    
     }
 
     div.dropClient {
-        width: 300px;
+        width: 350px;
     }
 
     img.logo {
@@ -39,47 +63,23 @@
         background-color: #465A65;
         color: white;
     }
+  
+    div.alignContent {
+        width: 100%;
+        display:table;
+        position:relative;
+    }
+
+
 </style>
 
-@*DATE*@
-
-@*<div class="form-group" align="right">
-        <p id="DateToday">
-            <script>
-                    var today = new Date();
-                    document.getElementById("DateToday").innerHTML = "Date: " +  today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-            </script>
-        </p>
-    </div>
-
-
-        <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-        <input type="hidden" class="form-group" id="invoice.InvoiceId" readonly="readonly" name="invoice.InvoiceId" value="{{model.invoice.InvoiceId}}@Model.InvoiceId"><br>
-        <label for="SINo">SI No: </label>
-        <label id="SINo"><u>{{model.CompanyBranch.SINo}}{{invoice.Name}}@Model.SINo</u></label><br>
-        <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">
-        <label for="Address" id="Address">Address: {{model.CompanyBranch.Address}}@Model.Address</label>
-            <input type="hidden" class="form-control" id="Address" name="invoice.Address" value="{{model.CompanyBranch.Address}}">
-
-        <ui-select ng-model="model.CompanyBranch">
-            <ui-select-match placeholder="Select Branch">
-                <span ng-bind="$select.selected.CompanyAddress"></span>
-            </ui-select-match>
-            <ui-select-choices repeat="dropDownItem in (model.CompanyBranches | filter: $select.search) track by $index">
-                <span ng-bind="dropDownItem.CompanyAddress"></span>
-            </ui-select-choices>
-        </ui-select>
-
-        <label for="TIN" id="TIN">TIN: <u>{{model.CompanyBranch.TIN}}@Model.TIN</u></label><br>
-            <input type="hidden" class="form-control" id="TIN" name="invoice.TIN" value="{{model.CompanyBranch.TIN}}">
-        </div>*@
+@*<a href="javascript.genPDF()"> Download Here</a>*@
 
 <div class="page_Invoice">
     <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
 
         <div class="header">
             <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left">
-
             <div class="form-group" align="right" style="padding-top:50px;">
                 <p id="DateToday">
                     <script>
@@ -92,13 +92,17 @@
                 <label id="SINo"><u>{{model.CompanyBranch.SINo}}{{invoice.Name}}@Model.SINo</u></label><br>
                 <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">
             </div>
-
         </div>
+       
+<div class="alignContent">
+
+    <div class="floatL" style="float:left">
         <div>
 
             <label for="TIN" id="TIN">TIN: <u>{{model.CompanyBranch.TIN}}</u></label><br>
             <input type="hidden" class="form-control" id="TIN" name="invoice.TIN" value="{{model.CompanyBranch.TIN}}@Model.TIN">
         </div>
+
 
         <div class="dropBranch">
             <label for="Address" id="Address">Address: {{model.CompanyBranch.Address}}</label>
@@ -111,13 +115,15 @@
                 </ui-select-choices>
             </ui-select>
         </div>
+        </div>
         <br>
-
-
-        <div class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()">
-            @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
         
-            <label for="ClientId">Select Client</label>
+        <div id="" class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()" align="right">
+            @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
+      
+            
+            <div class="clientSelect" style="padding-right: 200px;">
+            <label for="ClientId" style="padding-right:270px;">Select Client</label>
             <div class="dropClient">
                 <ui-select ng-model="model.Client">
                     <ui-select-match placeholder="Select Client">
@@ -133,10 +139,12 @@
                 <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
                 <input type="hidden" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
             </div>
-
+    
+  
+<div>
         @*Computation ng Subtotal*@
         <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-            <br /><br />
+            <br /><br /><br><br>
             <!-- Services -->
             <div class="container col-md-4" style="width:100%">
                 <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
@@ -144,12 +152,11 @@
                         <tr>
                             <th width="5%" style="display:none">Index</th>
                             <th width="20%"><center>Type of Service</center></th>
-                            <th width="20%"><center>Description</center></th>
+                            <th width="20%"><center> Comment</center></th>
                             <th width="15%"><center>Rate</center></th>
                             <th width="15%"><center>Quantity</center></th>
                             <th width="15%"><center>Subtotal</center></th>
                             <th></th>
-                        </tr>
                         </tr>
                     </thead>
 
@@ -169,12 +176,15 @@
                                         <span ng-bind="typeOfServices.Name"></span>
                                     </ui-select-choices>
                                 </ui-select>
-                                <input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}" />
+                                <br>
+                                <label>{{model.TypeOfService.Name}}</label> <label>- {{model.TypeOfService.Description}}</label>
+                                @*<input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}" />*@
                             </td>
                             <td>
-                                <!--Description-->
+                                <!--Comment-->
+                                <input type="text" autocomplete="off" class="form-control" id="invoice.Services[{{$index}}].Comments" name="invoice.Services[{{$index}}].Comments" value="{{service.Comments}}">
                                 @*<input type="text" class="form-control" readonly="readonly" name="invoice.Services[{{$index}}].Description" ng-model="service.TypeOfService.Description" placeholder="Service Description">*@
-                                <input type="text" class="form-control" id="Description" readonly="readonly" name="Description" value="{{model.TypeOfService.Description}}">
+                                @*<input type="text" class="form-control" id="Description" readonly="readonly" name="Description" value="{{model.TypeOfService.Description}}">*@
                             </td>
                             <!-- Rate -->
                             <td>
@@ -246,8 +256,12 @@
                 <button type="button" ng-click="model.CreateInvoiceService()" class="btn btn-primary" style="float:right">Add Service</button>
             </div>
         </div>
+    
+        </div>
+</div>
+</div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
-        </div>
+</div>
 </div>

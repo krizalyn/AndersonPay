@@ -56,7 +56,7 @@
 
                 </thead>
                 <tbody>
-                    <tr class="clickableRow" ng-repeat="client in model.Clients" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(client.ClientId)">
+                    <tr class="clickableRow" ng-repeat="client in model.Clients" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(client.ClientId)" style="height:20px">
 
                         @*<td><span ng-bind="client.ClientId"></span></td>*@
                         @*<td><span ng-bind="client.CompanyId"></span></td>*@
