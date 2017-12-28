@@ -11,6 +11,8 @@
 
         public string Description { get; set; }
 
+        public string Comments { get; set; }
+
         public virtual Invoice Invoice { get; set; }
 
         public virtual TypeOfService typeofservices { get; set; }

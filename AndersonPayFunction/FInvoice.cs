@@ -91,7 +91,7 @@ namespace AndersonPayFunction
                 Subtotal = invoice.Subtotal,
                 Total = invoice.Total,
                 Currency = invoice.Currency,
-                Comments = invoice.Comments,
+                //Comments = invoice.Comments,
                 Recipients = invoice.Recipients,
                 Services = invoice.Services,
                 SINo = invoice.SINo,
@@ -130,7 +130,7 @@ namespace AndersonPayFunction
                 Tax = eInvoice.Tax,
                 Currency = eInvoice.Currency,
                 Recipients = eInvoice.Recipients,
-                Comments = eInvoice.Comments,
+                //Comments = eInvoice.Comments,
                 SINo = eInvoice.SINo,
                 TIN = eInvoice.TIN
             };
@@ -168,7 +168,7 @@ namespace AndersonPayFunction
                 Tax = a.Tax,
                 Currency = a.Currency,
                 Recipients = a.Recipients,
-                Comments = a.Comments,
+                //Comments = a.Comments,
                 SINo = a.SINo,
                 TIN = a.TIN
 
