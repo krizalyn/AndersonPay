@@ -94,11 +94,11 @@
         </div>
         <br>
         
-        <div id="" class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()" align="right">
-            @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
-      
-            
-            <div class="clientSelect" style="padding-right: 200px;">
+    <div id="" class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()" align="right">
+        @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
+
+
+        <div class="clientSelect" style="padding-right: 200px;">
             <label for="ClientId" style="padding-right:270px;">Select Client</label>
             <div class="dropClient">
                 <ui-select ng-model="model.Client">
@@ -110,18 +110,19 @@
                     </ui-select-choices>
                 </ui-select>
             </div>
-                @*<input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}@Model.ClientId">*@
-                <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
-                <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
-                <input type="hidden" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
-            </div>
-
-
+            @*<input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}@Model.ClientId">*@
+            <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
+            <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
+            <input type="hidden" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
+        </div>
+</div> 
+    <a>Eto beans tangalin</a>
 @*Computation ng Subtotal*@
 <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-    <br /><br />
+
     <!-- Services -->
     <div class="container col-md-4" style="width:100%">
+<br><br>
         <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
               <thead>
                         <tr>
@@ -234,6 +235,7 @@
        
     </div>
 </div>
+</div>
 @* ///////////////////////////////////////////////////////////////////////////////// *@
 <script>
 	$('body').on('hidden.bs.modal', '.modal', function(){
@@ -257,3 +259,5 @@
     <input type="submit" class="btn btn-primary" value="Submit" />
 </div>*@
 
+</div>
+</div>
