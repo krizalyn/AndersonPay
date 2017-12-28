@@ -129,7 +129,6 @@
 
         //compute subtotal
         function Subtotal(service) {
-
             if (!service.Quantity)
                 service.Quantity = 0;
 
@@ -148,27 +147,25 @@
         //compute Sales Tax
         function SalesTax() {
             var salesTax = 0.00;
-            //angular.forEach(vm.Services, function (service) {
-                salesTax += 12 * TotalSales() / 100;
-            //});
+            salesTax += 12 * TotalSales() / 100;
+
             return salesTax;
         }
 
         //compute Withholding Tax
         function WithholdingTax() {
             var withholdingTax = 0.00;
-            //angular.forEach(vm.Services, function (service) {
-                withholdingTax += 3 * TotalSales() / 100;
-            //});
+
+            withholdingTax += 3 * TotalSales() / 100;
+
             return withholdingTax;
         }
 
         //compute Amount Due
         function AmountDue() {
             var amountDue = 0.00;
-            //angular.forEach(vm.Services, function (service) {
-                amountDue += TotalSales() + SalesTax() - WithholdingTax();
-            //});
+            amountDue += TotalSales() + SalesTax() - WithholdingTax();
+
             return amountDue;
         }
 

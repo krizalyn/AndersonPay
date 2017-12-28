@@ -14,13 +14,12 @@
 </div>
 
     <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-    @*<input type="hidden" class="form-group" id="invoice.InvoiceId" readonly="readonly" name="invoice.InvoiceId" value="{{model.invoice.InvoiceId}}@Model.InvoiceId">*@<br>
+    <input type="hidden" class="form-control" id="invoice.InvoiceId" readonly="readonly" name="invoice.InvoiceId" value="{{invoice.InvoiceId}}@Model.InvoiceId">
     <label for="SINo">SI No: </label>
     <label id="SINo"><u>{{model.CompanyBranch.SINo}}{{invoice.Name}}@Model.SINo</u></label><br>
     <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">
     <label for="Address" id="Address">Address: {{model.CompanyBranch.Address}}@Model.Address</label>
-        <input type="hidden" class="form-control" id="Address" name="invoice.Address" value="{{model.CompanyBranch.Address}}">
-
+    <input type="hidden" class="form-control" id="Address" name="invoice.Address" value="{{model.CompanyBranch.Address}}">
     <ui-select ng-model="model.CompanyBranch">
         <ui-select-match placeholder="Select Branch">
             <span ng-bind="$select.selected.CompanyAddress"></span>
@@ -35,18 +34,18 @@
     </div>
 
     <div class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()">
-        <label for="ClientId">Select Client</label>
-        <ui-select ng-model="model.Client">
-            <ui-select-match placeholder="Select Client">
-                <span ng-bind="$select.selected.Name"></span>
-            </ui-select-match>
-            <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
-                <span ng-bind="client.Name"></span>
-            </ui-select-choices>
-        </ui-select>
-        <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
-        <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
-        <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
+    <label for="ClientId">Select Client</label>
+    <ui-select ng-model="model.Client">
+        <ui-select-match placeholder="Select Client">
+            <span ng-bind="$select.selected.Name"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+            <span ng-bind="client.Name"></span>
+        </ui-select-choices>
+    </ui-select>
+    <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
+    <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
+    <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
     </div>
 
 @*Computation ng Subtotal*@
@@ -60,8 +59,8 @@
                     <th width="5%" style="display:none">Index</th>
                     <th width="20%">Type of Service</th>
                     <th width="25%">Comment</th>
-                    <th width="20%">Rate</th>
                     <th width="20%">Quantity</th>
+                    <th width="20%">Rate</th>
                     <th width="20%">Subtotal</th>
                     <th></th>
                 </tr>
@@ -90,25 +89,27 @@
                             @*<input type="hidden" class="form-control" id="Description" name="Description" ng-model="{{model.TypeOfService.Description}}">*@
                             @*<input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}"/>*@
                         </td>
-
+                        <!--Comments-->
                         <td>
+
                         <!--Comment-->
                             <input type="text" autocomplete="off" class="form-control" id="invoice.Services[{{$index}}].Comments" name="invoice.Services[{{$index}}].Comments" placeholder="Comment" value="{{service.Comments}}">
                         </td>
 
                         <!-- Rate -->
                         <td>
-                            <input class="form-group" type="number" id="Rate" name="invoice.Services[{{$index}}].Rate" ng-model="service.Rate" placeholder="0.00" min="0.00"/>
+                            <input class="form-control" type="number" name="invoice.Services[{{$index}}].Quantitty" ng-model="service.Quantity" placeholder="1" min="1"/>
                         </td>
 
                         <!-- Quantity -->
                         <td>
                             <input class="form-group" type="number" name="invoice.Services[{{$index}}].Quantity" ng-model="service.Quantity" placeholder="1" min="1"/>
+
                         </td>
 
                         <!--Subtotal-->
                         <td>
-                            <span class="form-group" name="Subtotal" ng-bind="model.Subtotal(service)"></span>
+                            <span ng-bind="model.Subtotal(service)"></span>
                         </td>
 
                         <td><button type="button" ng-click="model.deleteRow($index)" class="btn btn-info glyphicon glyphicon-trash"></button></td>
@@ -138,9 +139,7 @@
                         <td style="border:none"></td>
                         <td style="border:none"><b><span>+ Sales Tax</span></b></td>
                         <td style="border:none"></td>
-                        <td style="border:none" ng-bind="model.SalesTax()">
-                        @*<label class="form-control" placeholder="0.00" readonly="readonly" />*@
-                        </td>
+                        <td style="border:none" ng-bind="model.SalesTax()"></td>
                         <td style="border:none"></td>
                     </tr>
                     <tr style="border:none">
@@ -148,27 +147,43 @@
                         <td style="border:none"></td>
                         <td style="border:none"><b><span>- Withholding Tax</span></b></td>
                         <td style="border:none"></td>
-                        <td style="border:none" ng-bind="model.WithholdingTax()">
-                        @*<input type="number" class="form-control" placeholder="0.00" readonly="readonly" />*@
-                        </td>
+                        <td style="border:none"><span>-({{model.WithholdingTax()}})</span></td>
                         <td style="border:none"></td>
                     </tr>
                     <tr style="border:none">
                         <td style="border:none">
                         <td style="border:none"></td>
                         <td style="border:none"></td>
-                        <td style="border:none"><b><span>Amount Due:</span></b></td>
-                        <td style="border:none" ng-bind="model.AmountDue()">
-                        <input type="number" class="form-control" placeholder="0.00" readonly="readonly"/>
-                        </td>
+                        <td style="border:none"><h5><i><b><span>Amount Due:</span></b></i></h5></td>
+                        <td style="border:none"><h5><i><b><span>{{model.AmountDue()}}</span></b></i></h5></td>
                         <td style="border:none"></td>
                     </tr> 
 
         </table>
         <br />
         <button type="button" ng-click="model.CreateInvoiceService()" class="btn btn-primary" style="float:right">Add Service</button>
+       
     </div>
 </div>
-<div class="form-group">
-    <input type="submit" class="btn btn-primary" value="Submit" />
+@* ///////////////////////////////////////////////////////////////////////////////// *@
+<script>
+	$('body').on('hidden.bs.modal', '.modal', function(){
+		$(this).removeData('bs.modal');
+	});
+</script>
+<div class = "modal fade" id="myModal" role="dialog" aria-labled="myModalLabel">
+	<div class = "modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
 </div>
+<div class="form-group">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" href="@Url.Action("InvoiceSummary", "Invoice")">
+         Proceed
+    </button>
+</div>
+@* ///////////////////////////////////////////////////////////////////////////////// *@
+@* Old Submit *@
+@*<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</div>*@
