@@ -32,7 +32,10 @@ namespace AndersonPay.Controllers
             //, new { id = invoice.InvoiceId }
         }
         #endregion
-
+        public ActionResult InvoiceSummary()
+        {
+            return PartialView();
+        }
         // Read list of invoices
 
         #region Read
@@ -78,4 +81,5 @@ namespace AndersonPay.Controllers
         }
         #endregion
     }
+    // asdasd
 }
