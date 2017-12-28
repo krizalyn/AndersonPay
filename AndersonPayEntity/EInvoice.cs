@@ -95,7 +95,7 @@ namespace AndersonPayEntity
         public string Name { get; set; } //Remove
 
         public string Currency { get; set; }
-        public string Comments { get; set; }
+        //public string Comments { get; set; }
 
         public EClient Client { get; set; }
 

@@ -1,3 +1,4 @@
+
 ﻿@using AndersonPayContext;
 @using System.Web.Optimization;
 
@@ -127,6 +128,44 @@
                         </div>
                 </div>
                 <!-- /Sidebar -->
+=======
+﻿@using AndersonPayContext;
+@using System.Web.Optimization;
+
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      @Html.Partial("_PartialCSS")
+      @Html.Partial("_PartialScript")
+        
+
+        @*@{
+            Context db = new Context();
+            var overdueLength = db.invoices.Where(s => s.Status == "Overdue").Count();
+        }`
+
+        <script>
+        function myFunction() {
+        if (@overdueLength > "0") {
+            alert("Overdue Invoices: " + " " + @overdueLength);
+        }
+        }
+        </script>*@
+    </head>
+
+    
+    <body class="has-detached-right">
+        <!-- class="sidebar-xs  has-detached-right" (make it like this inside the body tag to hide the sidebar menu) -->
+        
+        <!-- Main navbar -->
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
                <div ng-app="App">
                    @RenderBody()
                </div>
