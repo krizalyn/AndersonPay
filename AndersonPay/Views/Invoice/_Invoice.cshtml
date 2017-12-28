@@ -2,28 +2,6 @@
     ViewBag.Title = "_Invoice";
 }
 
-@*<script type="text/javascript" src="~/Content/assets/js/plugins/dist/jspdf.min.js"></script>
-<script type="text/javascript">
-     
-    function genPDF() {
-
-        var doc = new jsPDF();
-
-        var specialElementHandlers = {
-            '#hidediv': function (element, render) { return true; }
-        };
-
-        doc.fromHTML($('#testdiv').get(0), 20, 20, {
-            'width': 500,
-            'elementHandlers': specialElementHandlers
-        });
-
-        doc.save('Test.pdf');
-
-    }
-
-</script>*@
-
 
 <style>
     div.page_Invoice {
@@ -72,8 +50,6 @@
 
 
 </style>
-
-@*<a href="javascript.genPDF()"> Download Here</a>*@
 
 <div class="page_Invoice">
     <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
@@ -139,16 +115,15 @@
                 <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
                 <input type="hidden" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
             </div>
-    
-  
 <div>
-        @*Computation ng Subtotal*@
-        <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-            <br /><br /><br><br>
-            <!-- Services -->
-            <div class="container col-md-4" style="width:100%">
-                <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
-                    <thead>
+
+@*Computation ng Subtotal*@
+<div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+    <br /><br />
+    <!-- Services -->
+    <div class="container col-md-4" style="width:100%">
+        <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
+              <thead>
                         <tr>
                             <th width="5%" style="display:none">Index</th>
                             <th width="20%"><center>Type of Service</center></th>
@@ -158,110 +133,127 @@
                             <th width="15%"><center>Subtotal</center></th>
                             <th></th>
                         </tr>
-                    </thead>
+              </thead>
 
-                    <tbody>
-                        <tr ng-repeat="service in model.Services track by $index">
-                            <td style="display:none">
-                                {{$index}}
-                                <input type="hidden" name="invoice.Services[{{$index}}].TypeOfServiceId" value="{{model.TypeOfService.TypeOfServiceId}}" />
-                            </td>
-                            <!--Type of Service-->
-                            <td>
-                                <ui-select ng-model="model.TypeOfService">
-                                    <ui-select-match placeholder="Select Type of Service">
-                                        <span ng-bind="$select.selected.Name"></span>
-                                    </ui-select-match>
-                                    <ui-select-choices repeat="typeOfServices in (model.TypeOfServices | filter: $select.search) track by $index">
-                                        <span ng-bind="typeOfServices.Name"></span>
-                                    </ui-select-choices>
-                                </ui-select>
-                                <br>
-                                <label>{{model.TypeOfService.Name}}</label> <label>- {{model.TypeOfService.Description}}</label>
-                                @*<input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}" />*@
-                            </td>
-                            <td>
-                                <!--Comment-->
-                                <input type="text" autocomplete="off" class="form-control" id="invoice.Services[{{$index}}].Comments" name="invoice.Services[{{$index}}].Comments" value="{{service.Comments}}">
-                                @*<input type="text" class="form-control" readonly="readonly" name="invoice.Services[{{$index}}].Description" ng-model="service.TypeOfService.Description" placeholder="Service Description">*@
-                                @*<input type="text" class="form-control" id="Description" readonly="readonly" name="Description" value="{{model.TypeOfService.Description}}">*@
-                            </td>
-                            <!-- Rate -->
-                            <td>
-                                <input class="form-group" type="number" id="Rate" name="invoice.Services[{{$index}}].Rate" ng-model="service.Rate" placeholder="0.00" min="0.00" />
-                            </td>
-                            <!-- Quantity -->
-                            <td>
-                                <input class="form-group" type="number" name="invoice.Services[{{$index}}].Quantitty" ng-model="service.Quantity" placeholder="1" min="1" />
-                            </td>
-                            <!--Subtotal-->
-                            <td>
-                                <span class="form-group" name="Subtotal" ng-bind="model.Subtotal(service)"></span>
-                            </td>
-                            <td><button type="button" ng-click="model.deleteRow($index)" class="btn btn-info glyphicon glyphicon-trash"></button></td>
-                        </tr>
+                <tbody>
+                    <tr ng-repeat="service in model.Services track by $index">
+                        <td style="display:none">
+                            {{$index}}
+                            <input type="hidden" name="invoice.Services[{{$index}}].TypeOfServiceId" value="{{model.TypeOfService.TypeOfServiceId}}" />
+                        </td>
 
-                        <!--Tax and Total-->
-                        <tr style="border:none">
-                            <td style="border:none"></td>
-                            <td style="border:none"></td>
-                            <td style="border:none"></td>
-                            <td style="border:none"></td>
-                            <td style="border:none"></td>
-                            <td style="border:none"></td>
-                        </tr>
-                        <tr style="border:none">
-                            <td style="border:none">
-                            <td style="border:none"></td>
-                            <td style="border:none"><b><span>TOTAL SALES</span></b></td>
-                            <td style="border:none"></td>
-                            <td style="border:none" ng-bind="model.Total()">
-                                @*<input type="number" class="form-control" placeholder="0.00" readonly="readonly" />*@
-                            </td>
-                            <td style="border:none"></td>
-                        </tr>
-                        <tr style="border:none">
-                            <td style="border:none">
-                            <td style="border:none"></td>
-                            <td style="border:none"><b><span>+ Sales Tax</span></b></td>
-                            <td style="border:none"></td>
-                            <td style="border:none" ng-bind="model.SalesTax()">
-                                @*<label class="form-control" placeholder="0.00" readonly="readonly" />*@
-                            </td>
-                            <td style="border:none"></td>
-                        </tr>
-                        <tr style="border:none">
-                            <td style="border:none">
-                            <td style="border:none"></td>
-                            <td style="border:none"><b><span>- Withholding Tax</span></b></td>
-                            <td style="border:none"></td>
-                            <td style="border:none" ng-bind="model.WithholdingTax()">
-                                @*<input type="number" class="form-control" placeholder="0.00" readonly="readonly" />*@
-                            </td>
-                            <td style="border:none"></td>
-                        </tr>
-                        <tr style="border:none">
-                            <td style="border:none">
-                            <td style="border:none"></td>
-                            <td style="border:none"></td>
-                            <td style="border:none"><b><span>Amount Due:</span></b></td>
-                            <td style="border:none" ng-bind="model.Total()">
-                                <input type="number" class="form-control" placeholder="0.00" readonly="readonly" />
-                            </td>
-                            <td style="border:none"></td>
-                        </tr>
+                        <!--Type of Service && Description-->
+                        <td>
+                           <ui-select ng-model="model.TypeOfService">
+                                <ui-select-match allow-clear="true" placeholder="Select Type of Service">
+                                    <span ng-bind="$select.selected.Name"></span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="typeOfServices in (model.TypeOfServices | filter: $select.search) track by $index">
+                                    <span ng-bind="typeOfServices.Name"></span>
+                                </ui-select-choices>
+                            </ui-select>
 
-                </table>
-                <br />
-                <button type="button" ng-click="model.CreateInvoiceService()" class="btn btn-primary" style="float:right">Add Service</button>
-            </div>
-        </div>
-    
-        </div>
+                            <br>
+                            <label>{{model.TypeOfService.Name}}</label> <label id="Description"><span value="{{service.Description}}">- {{model.TypeOfService.Description}}</span></label>
+                            @*<input type="hidden" class="form-control" id="Description" name="Description" ng-model="{{model.TypeOfService.Description}}">*@
+                            @*<input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}"/>*@
+                        </td>
+                       
+                        <td>
+                        <!--Comment-->
+                            <input type="text" autocomplete="off" class="form-control" id="invoice.Services[{{$index}}].Comments" name="invoice.Services[{{$index}}].Comments" placeholder="Comment" value="{{service.Comments}}">
+                        </td>
+
+
+                        <!-- Quantity -->
+                        <td>
+                            <input class="form-control" type="number" name="invoice.Services[{{$index}}].Quantity" ng-model="service.Quantity" placeholder="1" min="1"/>
+
+                        </td>
+
+                        <!-- Rate -->
+                        <td>
+                            <input class="form-control" type="number" name="invoice.Services[{{$index}}].Rate" ng-model="service.Rate" placeholder="0.00" min="0" />
+                        </td>
+
+                        <!--Subtotal-->
+                        <td>
+                            <span ng-bind="model.Subtotal(service)"></span>
+                        </td>
+
+                        <td><button type="button" ng-click="model.deleteRow($index)" class="btn btn-info glyphicon glyphicon-trash"></button></td>
+                    </tr>
+
+                    <!--Tax and Total-->
+                    <tr style="border:none">
+                        <td style="border:none"></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"></td>
+                    </tr>
+                    <tr style="border:none">
+                        <td style="border:none">
+                        <td style="border:none"></td>
+                        <td style="border:none"><b><span>TOTAL SALES</span></b></td>
+                        <td style="border:none"></td>
+                        <td style="border:none" ng-bind="model.TotalSales()">
+                         @*<input type="number" class="form-control" placeholder="0.00" readonly="readonly" />*@
+                        </td>
+                        <td style="border:none"></td>
+                    </tr>
+                    <tr style="border:none">
+                        <td style="border:none">
+                        <td style="border:none"></td>
+                        <td style="border:none"><b><span>+ Sales Tax</span></b></td>
+                        <td style="border:none"></td>
+                        <td style="border:none" ng-bind="model.SalesTax()"></td>
+                        <td style="border:none"></td>
+                    </tr>
+                    <tr style="border:none">
+                        <td style="border:none">
+                        <td style="border:none"></td>
+                        <td style="border:none"><b><span>- Withholding Tax</span></b></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"><span>-({{model.WithholdingTax()}})</span></td>
+                        <td style="border:none"></td>
+                    </tr>
+                    <tr style="border:none">
+                        <td style="border:none">
+                        <td style="border:none"></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"><h5><i><b><span>Amount Due:</span></b></i></h5></td>
+                        <td style="border:none"><h5><i><b><span>{{model.AmountDue()}}</span></b></i></h5></td>
+                        <td style="border:none"></td>
+                    </tr> 
+
+        </table>
+        <br />
+        <button type="button" ng-click="model.CreateInvoiceService()" class="btn btn-primary" style="float:right">Add Service</button>
+       
+    </div>
 </div>
+@* ///////////////////////////////////////////////////////////////////////////////// *@
+<script>
+	$('body').on('hidden.bs.modal', '.modal', function(){
+		$(this).removeData('bs.modal');
+	});
+</script>
+<div class = "modal fade" id="myModal" role="dialog" aria-labled="myModalLabel">
+	<div class = "modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
 </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Submit" />
-        </div>
+<div class="form-group">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" href="@Url.Action("InvoiceSummary", "Invoice")">
+         Proceed
+    </button>
 </div>
-</div>
+@* ///////////////////////////////////////////////////////////////////////////////// *@
+@* Old Submit *@
+@*<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</div>*@
+

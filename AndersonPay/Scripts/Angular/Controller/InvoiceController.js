@@ -129,6 +129,8 @@
 
         //compute subtotal
         function Subtotal(service) {
+            if (!service.Quantity)
+                service.Quantity = 0;
 
             if (!service.Quantity)
                 service.Quantity = 0;
@@ -148,27 +150,34 @@
         //compute Sales Tax
         function SalesTax() {
             var salesTax = 0.00;
-            //angular.forEach(vm.Services, function (service) {
+
             salesTax += 12 * TotalSales() / 100;
-            //});
+
+
             return salesTax;
         }
 
         //compute Withholding Tax
         function WithholdingTax() {
             var withholdingTax = 0.00;
-            //angular.forEach(vm.Services, function (service) {
+
+
             withholdingTax += 3 * TotalSales() / 100;
-            //});
+
+
+
             return withholdingTax;
         }
 
         //compute Amount Due
         function AmountDue() {
             var amountDue = 0.00;
-            //angular.forEach(vm.Services, function (service) {
+
             amountDue += TotalSales() + SalesTax() - WithholdingTax();
-            //});
+
+
+
+
             return amountDue;
         }
 
@@ -209,9 +218,11 @@
         //Branch Location
         function ReadCompanyBranch() {
             vm.CompanyBranches = [
-                { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
-                { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
-                { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
+
+            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
+            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
+            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
+
             ];
         }
 

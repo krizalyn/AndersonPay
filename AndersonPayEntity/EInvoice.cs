@@ -73,10 +73,15 @@ namespace AndersonPayEntity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvoiceId { get; set; }
+
+
+        public decimal Tax { get; set; }
+        public decimal Total { get; set; }
         public string Comments { get; set; }
         //[Display(Name = "Company Name")]
         //[Required(ErrorMessage = "Please Select Company")]
         public string Currency { get; set; }
+
         public EClient Client { get; set; }
         public virtual ICollection<EService> Services { get; set; }
         //CompanyBranch
