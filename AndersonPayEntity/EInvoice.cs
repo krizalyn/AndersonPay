@@ -76,7 +76,6 @@ namespace AndersonPayEntity
 
 
         public decimal Tax { get; set; }
-        public decimal Total { get; set; }
         public string Comments { get; set; }
         //[Display(Name = "Company Name")]
         //[Required(ErrorMessage = "Please Select Company")]
