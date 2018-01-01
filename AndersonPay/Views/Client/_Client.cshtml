@@ -64,31 +64,31 @@
 </div>*@
 
 <div class="widthDrop">
-            <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-                <label for="CurrencyCode">Currency</label>
-                <ui-select ng-model="model.Currency">
-                    <ui-select-match placeholder="Select Currency">
-                        <span ng-bind="$select.selected.Code"></span>
-                    </ui-select-match>
-                    <ui-select-choices repeat="dropDownItem in (model.CurrencyCode | filter: $select.search) track by $index">
-                        <span ng-bind="dropDownItem.Code"></span>
-                    </ui-select-choices>
-                </ui-select>
-                <input type="hidden" class="form-control" id="CurrencyCode" name="CurrencyCode" value="{{model.Currency.Code}}@Model.CurrencyCode">
-            </div>
+   <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+        <label for="CurrencyCode">Currency</label>
+   <ui-select ng-model="model.Currency">
+       <ui-select-match placeholder="Select Currency">
+            <span ng-bind="$select.selected.Code"></span>
+       </ui-select-match>
+          <ui-select-choices repeat="dropDownItem in (model.CurrencyCode | filter: $select.search) track by $index">
+            <span ng-bind="dropDownItem.Code"></span>
+          </ui-select-choices>
+    </ui-select>
+        <input type="hidden" class="form-control" id="CurrencyCode" name="CurrencyCode" value="{{model.Currency.Code}}">
+</div>
 
-            <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-                <label for="TaxType">Tax Type</label>
-                    <ui-select ng-model="model.TaxType" >
-                    <ui-select-match placeholder="Select Tax Type">
-                       <span ng-bind="$select.selected.Type"></span>
-                    </ui-select-match>
-                    <ui-select-choices repeat="dropDownItem in (model.TaxTypes | filter: $select.search) track by $index">
-                       <span ng-bind="dropDownItem.Type"></span>
-                      </ui-select-choices>
-                    </ui-select>
-                <input type="hidden" class="form-control" id="TaxTypes" name="TaxTypes" value="{{model.TaxType.Type}}@Model.TaxTypes">
-            </div>
+<div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+     <label for="TaxType">Tax Type</label>
+           <ui-select ng-model="model.TaxType" >
+               <ui-select-match placeholder="Select Tax Type">
+                  <span ng-bind="$select.selected.Type"></span>
+               </ui-select-match>
+             <ui-select-choices repeat="dropDownItem in (model.TaxTypes | filter: $select.search) track by $index">
+                  <span ng-bind="dropDownItem.Type"></span>
+            </ui-select-choices>
+           </ui-select>
+<input type="hidden" class="form-control" id="TaxTypes" name="TaxTypes" value="{{model.TaxType.Type}}">
+      </div>
 </div>
 
 <div class="form-group">

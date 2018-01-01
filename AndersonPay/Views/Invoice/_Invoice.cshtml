@@ -110,13 +110,13 @@
                     </ui-select-choices>
                 </ui-select>
             </div>
-            @*<input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}@Model.ClientId">*@
+            <input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}">
             <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
             <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
-            <input type="hidden" class="form-control" id="invoice.WithHoldingTaxPercentage" readonly="readonly" name="invoice.WithHoldingTax" value="{{model.Client.WithHoldingTaxPercentage}}">
+            <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
         </div>
 </div> 
-    <a>Eto beans tangalin</a>
+    @*<a>Eto beans tangalin</a>*@
 @*Computation ng Subtotal*@
 <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
 
@@ -129,8 +129,8 @@
                             <th width="5%" style="display:none">Index</th>
                             <th width="20%"><center>Type of Service</center></th>
                             <th width="20%"><center> Comment</center></th>
-                            <th width="15%"><center>Rate</center></th>
                             <th width="15%"><center>Quantity</center></th>
+                            <th width="15%"><center>Rate</center></th>
                             <th width="15%"><center>Subtotal</center></th>
                             <th></th>
                         </tr>
@@ -146,7 +146,7 @@
                         <!--Type of Service && Description-->
                         <td>
                            <ui-select ng-model="model.TypeOfService">
-                                <ui-select-match allow-clear="true" placeholder="Select Type of Service">
+                                <ui-select-match placeholder="Select Type of Service">
                                     <span ng-bind="$select.selected.Name"></span>
                                 </ui-select-match>
                                 <ui-select-choices repeat="typeOfServices in (model.TypeOfServices | filter: $select.search) track by $index">
@@ -255,9 +255,9 @@
 </div>
 @* ///////////////////////////////////////////////////////////////////////////////// *@
 @* Old Submit *@
-@*<div class="form-group">
+<div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
-</div>*@
+</div>
 
 </div>
 </div>

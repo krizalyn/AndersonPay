@@ -23,9 +23,6 @@ namespace AndersonPayEntity
         public string RegistrationNo { get; set; }
         public string TaxTypes { get; set; }
 
-
-
-
         public int WithHoldingTax { get; set; }
         public string CurrencyCode { get; set; }
         public string Name { get; set;}

@@ -61,19 +61,14 @@ namespace AndersonPayEntity
         ////[Display(Name = "Type Of Service")]
         ////Required(ErrorMessage = "Select Type of Service")]
         //public string TypeOfService { get; set; } //Remove
-
-
-
-
-        public decimal WithholdingTax { get; set; } // Rename to Tax
         //  [HiddenInput(DisplayValue = true)]
+
         public decimal Amount { get; set; }  //Rename to SubTotal
         public decimal Total { get; set; }
        // [Display(Name = "INV no.")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvoiceId { get; set; }
-
 
         public decimal Tax { get; set; }
         public string Comments { get; set; }
