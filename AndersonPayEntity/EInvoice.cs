@@ -62,24 +62,27 @@ namespace AndersonPayEntity
         ////Required(ErrorMessage = "Select Type of Service")]
         //public string TypeOfService { get; set; } //Remove
         //  [HiddenInput(DisplayValue = true)]
+        //public string Comments { get; set; }
+        //[Display(Name = "Company Name")]
+        //[Required(ErrorMessage = "Please Select Company")]
+        // [Display(Name = "INV no.")]
 
         public decimal Amount { get; set; }  //Rename to SubTotal
         public decimal Total { get; set; }
-       // [Display(Name = "INV no.")]
+       
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int InvoiceId { get; set; }
 
         public decimal Tax { get; set; }
-        public string Comments { get; set; }
-        //[Display(Name = "Company Name")]
-        //[Required(ErrorMessage = "Please Select Company")]
         public string Currency { get; set; }
 
         public EClient Client { get; set; }
         public virtual ICollection<EService> Services { get; set; }
+
         //CompanyBranch
         public string CompanyBranch { get; set; }
+
         //Name of Service
         public string Name { get; set; }
         public string Recipients { get; set; }

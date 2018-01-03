@@ -95,7 +95,7 @@
         <br>
         
     <div id="" class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()" align="right">
-        @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
+   @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
 
 
         <div class="clientSelect" style="padding-right: 200px;">
@@ -116,7 +116,7 @@
             <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
         </div>
 </div> 
-    @*<a>Eto beans tangalin</a>*@
+
 @*Computation ng Subtotal*@
 <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
 
@@ -127,11 +127,11 @@
               <thead>
                         <tr>
                             <th width="5%" style="display:none">Index</th>
-                            <th width="20%"><center>Type of Service</center></th>
+                            <th width="30%"><center>Type of Service</center></th>
                             <th width="20%"><center> Comment</center></th>
                             <th width="15%"><center>Quantity</center></th>
                             <th width="15%"><center>Rate</center></th>
-                            <th width="15%"><center>Subtotal</center></th>
+                            <th width="10%"><center>Subtotal</center></th>
                             <th></th>
                         </tr>
               </thead>
@@ -145,9 +145,10 @@
 
                         <!--Type of Service && Description-->
                         <td>
-                           <ui-select ng-model="model.TypeOfService">
+                           <ui-select ng-model="service.TypeOfService">
                                 <ui-select-match placeholder="Select Type of Service">
-                                    <span ng-bind="$select.selected.Name"></span>
+                                    <label ng-bind="$select.selected.Name"></label> -
+                                    <label ng-bind="$select.selected.Description"></label>    
                                 </ui-select-match>
                                 <ui-select-choices repeat="typeOfServices in (model.TypeOfServices | filter: $select.search) track by $index">
                                     <span ng-bind="typeOfServices.Name"></span>
@@ -155,9 +156,7 @@
                             </ui-select>
 
                             <br>
-                            <label>{{model.TypeOfService.Name}}</label> <label id="Description"><span value="{{service.Description}}">- {{model.TypeOfService.Description}}</span></label>
-                            @*<input type="hidden" class="form-control" id="Description" name="Description" ng-model="{{model.TypeOfService.Description}}">*@
-                            @*<input type="hidden" id="Name" name="invoice.TypeOfService" value="{{model.TypeOfService.Name}}"/>*@
+                            <input type="hidden" name="invoice.Services[{{$index}}].TypeOfServiceId" value="{{service.TypeOfService.TypeOfServiceId}}"/>
                         </td>
                        
                         <td>
@@ -165,11 +164,9 @@
                             <input type="text" autocomplete="off" class="form-control" id="invoice.Services[{{$index}}].Comments" name="invoice.Services[{{$index}}].Comments" placeholder="Comment" value="{{service.Comments}}">
                         </td>
 
-
                         <!-- Quantity -->
                         <td>
                             <input class="form-control" type="number" name="invoice.Services[{{$index}}].Quantity" ng-model="service.Quantity" placeholder="1" min="1"/>
-
                         </td>
 
                         <!-- Rate -->
@@ -254,10 +251,11 @@
     </button>
 </div>
 @* ///////////////////////////////////////////////////////////////////////////////// *@
+
 @* Old Submit *@
-<div class="form-group">
+@*<div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
-</div>
+</div>*@
 
 </div>
 </div>
