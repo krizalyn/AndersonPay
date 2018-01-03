@@ -704,6 +704,10 @@
     <Content Include="bower_components\font-awesome\scss\_screen-reader.scss" />
     <Content Include="bower_components\font-awesome\scss\_stacked.scss" />
     <Content Include="bower_components\font-awesome\scss\_variables.scss" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1440,6 +1444,11 @@
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1534,6 +1543,7 @@
     <Content Include="Views\AddCompany\Details.cshtml" />
     <Content Include="Views\AddCompany\Edit.cshtml" />
     <Content Include="Views\AddCompany\Index.cshtml" />
+    <Content Include="Views\Invoice\InvoiceSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1545,6 +1555,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="bower_components\pnotify\libtests\requirejs\" />
     <Folder Include="Content\assets\img\companylogos\" />
+    <Folder Include="Content\assets\js\dist\" />
+    <Folder Include="Content\assets\js\plugins\template\" />
     <Folder Include="Migrations\" />
     <Folder Include="Models\InvoiceContext\" />
   </ItemGroup>

@@ -21,6 +21,8 @@ namespace AndersonPayEntity
 
         public string Description { get; set; }
 
+        public string Comments { get; set; }
+
         public virtual EInvoice Invoice { get; set; }
 
         public virtual ETypeOfService TypeOfService { get; set; }

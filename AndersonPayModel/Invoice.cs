@@ -16,10 +16,11 @@ namespace AndersonPayModel
         public decimal Subtotal { get; set; }
         public decimal Tax { get; set; }
 
+        public string TaxTypes { get; set; }
         public string Name { get; set; }
         public string Currency { get; set; }
         public string Recipients { get; set; }
-        public string Comments { get; set; }
+        //public string Comments { get; set; }
 
         public EClient Client { get; set; }
 

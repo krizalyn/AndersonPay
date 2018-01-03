@@ -1,19 +1,16 @@
 ﻿@using AndersonPayContext;
 @using System.Web.Optimization;
-
 <!DOCTYPE>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @Html.Partial("_PartialCSS")
+    @Html.Partial("_PartialScript")
 
-      @Html.Partial("_PartialCSS")
-      @Html.Partial("_PartialScript")
-        
-
-        @*@{
+    @*@{
             Context db = new Context();
             var overdueLength = db.invoices.Where(s => s.Status == "Overdue").Count();
         }`
@@ -25,121 +22,108 @@
         }
         }
         </script>*@
-    </head>
+</head>
 
-    
-    <body class="has-detached-right">
-        <!-- class="sidebar-xs  has-detached-right" (make it like this inside the body tag to hide the sidebar menu) -->
-        
-        <!-- Main navbar -->
-        <div class="navbar navbar-default">
-            <div class="navbar-header">
-                <ul class="nav navbar-nav">
-                    <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
-                </ul>
-                <ul class="nav navbar-nav visible-xs-block">
-                    <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-circle-down2"></i></a></li>
-                    <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
-                </ul>
-                <a class="navbar-brand" href="/Home/Index">
-                    <img src="~/Content/assets/img/logo-andersonpay.png" alt="Anderson.Pay"/>
-                </a>
-
-            </div>
-
-            <div class="navbar-collapse collapse" id="navbar-mobile">
-                <!--- Minimize Sidebar Menu -->
-                
-                <!-- ---------------------- -->
-
-                <div class="navbar-right">
-                    <p class="navbar-text">Good Day! <b>Team Anderson</b></p>
-                    <!-- <p class="navbar-text"><span class="label bg-success">Online</span></p> -->
-                </div>
+<body class="has-detached-right">
+    <!-- class="sidebar-xs  has-detached-right" (make it like this inside the body tag to hide the sidebar menu) -->
+    <!-- Main navbar -->
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+            <ul class="nav navbar-nav visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-circle-down2"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+            <a class="navbar-brand" href="/Home/Index">
+                <img src="~/Content/assets/img/logo-andersonpay.png" alt="Anderson.Pay" />
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <!--- Minimize Sidebar Menu -->
+            <!-- ---------------------- -->
+            <div class="navbar-right">
+                <p class="navbar-text">Good Day! <b>Team Anderson</b></p>
+                <!-- <p class="navbar-text"><span class="label bg-success">Online</span></p> -->
             </div>
         </div>
-        <!-- ----------- -->
+    </div>
+    <!-- ----------- -->
+    <!-- Container -->
+    <div class="page-container" ng-app="App">
+        @Scripts.Render("~/bundles/AngularJS")
+        <!-- Content -->
+        <div class="page-content">
+            <!-- Sidebar -->
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+                    <!-- Account Menu -->
+                    <div class="sidebar-user-material">
+                        <div class="category-content">
+                            <div class="sidebar-user-material-content">
 
-        <!-- Container -->
-        <div class="page-container" ng-app="App">
-         @Scripts.Render("~/bundles/AngularJS")
-            <!-- Content -->
-            <div class="page-content">
-                <!-- Sidebar -->
-                <div class="sidebar sidebar-main">
-                    <div class="sidebar-content">
-
-                        <!-- Account Menu -->
-                        <div class="sidebar-user-material">
-                            <div class="category-content">
-                                <div class="sidebar-user-material-content">
-                                    
-                                    <h6>User Admin</h6>
-                                    <span class="text-size-small"> Anderson Group BPO Inc. </span>
-                                </div>
-
-                                <div class="sidebar-user-material-menu">
-                                    <a href="#user-nav" data-toggle="collapse"><span>My account</span> <i class="caret"></i></a>
-                                </div>
+                                <h6>User Admin</h6>
+                                <span class="text-size-small"> Anderson Group BPO Inc. </span>
                             </div>
-
-                            <div class="navigation-wrapper collapse" id="user-nav">
-                                <ul class="navigation">
-                                    <!-- <li class="divider"></li> -->
-                                    <li><a href="#" data-toggle="modal" data-target="#modal_form_vertical"><i class="icon-wrench2"></i> <span>Account settings</span></a></li>
-                                    <li><a href="/AndersonPay/Maintenance"><i class="icon-switch2"></i> <span>Logout</span></a></li>
-                                </ul>
+                            <div class="sidebar-user-material-menu">
+                                <a href="#user-nav" data-toggle="collapse"><span>My account</span> <i class="caret"></i></a>
                             </div>
                         </div>
-                        <!-- ------------- -->
-
-                        <!-- Menu Navigation -->
-                        <div class="sidebar-category sidebar-category-visible">
-                            <div class="category-content no-padding">
-                                <ul class="navigation navigation-main navigation-accordion">
-                                    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                                    <li><a href="/Home/Index"><span class="glyphicon glyphicon-home" style="margin-right:12px;"></span> <span>Home</span></a></li>
-                                    <li><a href="/AndersonPay/Index" onclick="myFunction()"><span class="glyphicon glyphicon-tasks" style="margin-right:12px;"></span> <span>Dashboard </span></a></li>
-                                    <li><a href="/Invoice/Create"><i class="icon-file-plus2"></i> <span>Create Invoice</span></a></li>
-                                    <li><a href="/Client/Index"><i class="icon-list"></i> <span>List of Clients</span></a></li>
-                                    <li><a href="/AddJobs/Index"><i class="icon-list"></i> <span>List of Jobs</span></a></li>
-                                    <li><a href="/TypeOfService/Index"><i class="icon-list2"></i> <span>List of Services</span></a></li>
-                                    <li><a href="#"><i class="icon-database"></i> <span>Manpower Files</span></a>
-                                        <ul>
-                                            <li><a href="/AndersonPay/Manpower">Employee Files</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon-database"></i> <span>Archive</span></a>
-                                        <ul>
-                                            <li><a href="/AndersonPay/Archive">Old Invoices</a></li>
-                                            <li><a href="/AndersonPay/DeletedInvoice">Removed Invoices</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="/AndersonPay/Reports"><i class="icon-file-spreadsheet2"></i> <span>Reports</span></a></li>
-                                    <li><a href="/AndersonPay/About"><i class="icon-info3"></i> <span>About</span></a></li>
-
-                                </ul>
-                                
-                            </div>
+                        <div class="navigation-wrapper collapse" id="user-nav">
+                            <ul class="navigation">
+                                <!-- <li class="divider"></li> -->
+                                <li><a href="#" data-toggle="modal" data-target="#modal_form_vertical"><i class="icon-wrench2"></i> <span>Account settings</span></a></li>
+                                <li><a href="/AndersonPay/Maintenance"><i class="icon-switch2"></i> <span>Logout</span></a></li>
+                            </ul>
                         </div>
-                        <!-- ---------------- -->
+                    </div>
+                    <!-- ------------- -->
+                    <!-- Menu Navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+                                <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                                <li><a href="/Home/Index"><span class="glyphicon glyphicon-home" style="margin-right:12px;"></span> <span>Home</span></a></li>
+                                <li><a href="/AndersonPay/Index" onclick="myFunction()"><span class="glyphicon glyphicon-tasks" style="margin-right:12px;"></span> <span>Dashboard </span></a></li>
+                                <li><a href="/Invoice/Index"><i class="icon-file-plus2"></i> <span>Create Invoice</span></a></li>
+                                <li><a href="/Client/Index"><i class="icon-list"></i> <span>List of Clients</span></a></li>
+                                @*<li><a href="/AddJobs/Index"><i class="icon-list"></i> <span>List of Jobs</span></a></li>*@
+                                <li><a href="/TypeOfService/Index"><i class="icon-list2"></i> <span>List of Services</span></a></li>
+                                <li>
+                                    <a href="#"><i class="icon-database"></i> <span>Manpower Files</span></a>
+                                    <ul>
+                                        <li><a href="/AndersonPay/Manpower">Employee Files</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon-database"></i> <span>Archive</span></a>
+                                    <ul>
+                                        <li><a href="/AndersonPay/Archive">Old Invoices</a></li>
+                                        <li><a href="/AndersonPay/DeletedInvoice">Removed Invoices</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/AndersonPay/Reports"><i class="icon-file-spreadsheet2"></i> <span>Reports</span></a></li>
+                                <li><a href="/AndersonPay/About"><i class="icon-info3"></i> <span>About</span></a></li>
+                            </ul>
+
                         </div>
+                    </div>
+                    <!-- ---------------- -->
                 </div>
-                <!-- /Sidebar -->
-               <div ng-app="App">
-                   @RenderBody()
-               </div>
-              
             </div>
-            <!-- /Content -->
+            <!-- /Sidebar -->
+            <div ng-app="App">
+                @RenderBody()
+            </div>
+
         </div>
-        <!-- /Container -->
-       
-    </body>
+        <!-- /Content -->
+    </div>
+    <!-- /Container -->
+
+</body>
 </html>
-
-
 
 <!-- Account Setting Modal -->
 <div id="modal_form_vertical" class="modal fade">
@@ -148,10 +132,9 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h5 class="modal-title">Account settings</h5>
-            </div>  
+            </div>
             <form action="#">
                 <div class="modal-body">
-
                     <!--Name-->
                     <div class="form-group">
                         <div class="row">
@@ -165,11 +148,9 @@
                             </div>
                         </div>
                     </div>
-
                     <!--city and provice form-->
                     <div class="form-group">
                         <div class="row">
-
                             <div class="col-sm-4">
                                 <label>City</label>
                                 <input type="text" placeholder="Anderson Group" class="form-control">
@@ -180,7 +161,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-7">
@@ -194,7 +174,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!--Close and submit buttons-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
