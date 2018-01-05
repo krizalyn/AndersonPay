@@ -11,91 +11,141 @@
         background: linear-gradient(to right, #159cf6, #97dded);
     }
 </style>
+
+
+
+<script type="text/javascript">
+    function demoFromHTML() {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+
+
+        pdf.cellInitialize();
+        pdf.setFontSize(10);
+        pdf.fromHTML($('img.logo').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
+        pdf.fromHTML($('.include').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
+        pdf.fromHTML($('.include2').get(0), 50, 140, { 'width': 500 });      // 20 yung default x-y
+
+        $.each($('#tableData tr'), function (i, row) {
+            $.each($(row).find("td, th"), function (j, cell) {
+                var txt = $(cell).text().trim() || " ";
+                var width = (j == 4) ? 20 : 250; //make 4th column smaller  
+                var height = (j == 4) ? 3 : 20; // 
+                pdf.cell(50, 200, width, height, txt, i);
+            });
+        });
+
+        pdf.save('sample-file.pdf');
+    }
+    //function genPDF() { 
+
+    //    var doc = new jsPDF();
+    //    doc 
+    //    //var specialElementHandlers = {
+    //    //    '#hidediv': function (element, renderer) { return true; }
+    //    //}
+    //    doc.fromHTML($('.include').get(0), 20, 20, { 'width': 500 } );
+
+    //    doc.save('Invoice.pdf');
+
+    //}
+</script>
+
+
+
 @*<div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
     <h3>Summary</h3>
 </div>*@
-<div align="right" style="padding-right: 80px; padding-top:80px;" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
-    <h3><b>Billing Statement</b></h3>
-    <h4>Sales Invoice No. @*{{model.CompanyBranch.SINo}}*@ @*@Model.SINo*@</h4>
-</div>
-<div style="padding-left: 80px;">
-    <h6><b>ANDERSON GROUP BPO INC.</b></h6>
-    <p>Branch Address</p>
-</div>
-<div  style="padding-left: 70px; padding-right:65px; padding-bottom:80px;">
-    <table class="table table-hover table-sm table-bordered ">
-        <thead>
-            <tr class="thead-inverse" style="background-color:#159cf6; color:white">
-                <th style="text-align:center">DESCRIPTION</th>
-                <th style="text-align:center">AMOUNT</th>
-            </tr>
-        </thead>
-        <tbody>
-            @*<tr class="clickableRow">
-                
-                <td><span ng-bind="invoice.Name"></span></td>
-                <td><span ng-bind="invoice.Currency"></span></td>
-            </tr>*@
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="font-size: 12px">Billing Period:</td>
-                <td></td>
-            </tr>
-            <tr style="height: 5px">
-                <td style="font-size: 12px">Due Date:</td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td></td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td style="font-size: 12px">Total</td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td style="font-size: 12px">Plus: 12% VAT</td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td style="font-size: 12px">Sub-Total</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="font-size: 12px">Less: Withholding TAX (<u>asd</u>)</td>
-                <td></td>
-            </tr>
-            <tr style="height: 40px">
-                <td style="font-size: 12px"><b>Total payable for this invoice</b></td>
-                <td></td>
-            </tr>
-    </tbody>
-    </table>
-</div>
-<div class="modal-footer" align="right" style="padding: 20px;">
-    <button type="submit" value="Index" class="btn btn-primary">Save and Send</button>
-    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+<a href="javascript:demoFromHTML()">Download PDF</a>
+<div class="invoiceSum">
+
+    <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left; padding-left:70px; padding-top:40px; height:auto; width:200px;">
+
+    <div class="include" align="right" style="padding-right: 80px; padding-top:80px;" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+        <h3><b>Billing Statement</b></h3>
+        <h4>Sales Invoice No. @*{{model.CompanyBranch.SINo}}*@ @*@Model.SINo*@</h4>
+    </div>
+    <br>
+    <div class="include2" style="padding-left: 80px;">
+        <h6><b>ANDERSON GROUP BPO INC.</b></h6>
+        <p>Branch Address</p>
+    </div>
+    <div  style="padding-left: 70px; padding-right:65px; padding-bottom:80px;">
+
+        <table id="tableData"class="table table-hover table-sm table-bordered ">
+            <thead>
+                <tr class="thead-inverse" style="background-color:#159cf6; color:white">
+                    <th style="text-align:center">DESCRIPTION</th>
+                    <th style="text-align:center">AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*<tr class="clickableRow">
+
+                    <td><span ng-bind="invoice.Name"></span></td>
+                    <td><span ng-bind="invoice.Currency"></span></td>
+                </tr>*@
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12px">Billing Period:</td>
+                    <td></td>
+                </tr>
+                <tr style="height: 5px">
+                    <td style="font-size: 12px">Due Date:</td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td style="font-size: 12px">Total</td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td style="font-size: 12px">Plus: 12% VAT</td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td style="font-size: 12px">Sub-Total</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12px">Less: Withholding TAX (<u>asd</u>)</td>
+                    <td></td>
+                </tr>
+                <tr style="height: 40px">
+                    <td style="font-size: 12px"><b>Total payable for this invoice</b></td>
+                    <td></td>
+                </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="modal-footer" align="right" style="padding: 20px;">
+        <button type="submit" value="Index" class="btn btn-primary" onclick="javascript:genPDF()">Save and Send</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    </div>
 </div>
