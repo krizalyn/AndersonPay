@@ -80,16 +80,18 @@ namespace AndersonPayEntity
         public EClient Client { get; set; }
         public virtual ICollection<EService> Services { get; set; }
 
-        //CompanyBranch
         public string CompanyBranch { get; set; }
 
-        //Name of Service
         public string Name { get; set; }
         public string Recipients { get; set; }
         public string TaxTypes { get; set; }
+
         public string NameOfService { get; set; }
         public decimal Subtotal { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
+
+        public int NumberOfDelays { get; set; }
+        public decimal Interest { get; set; }
     }
 }

@@ -29,7 +29,9 @@ namespace AndersonPayModel
         public string TIN { get; set; }
 
         public string Address { get; set; }
-      
+
+        public int NumberOfDelays { get; set; }
+        public decimal Interest { get; set; }
 
         //public bool? Deleted { get; set; }
         //public bool Multiple { get; set; }

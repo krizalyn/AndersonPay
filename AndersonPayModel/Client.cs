@@ -20,8 +20,6 @@ namespace AndersonPayModel
         public string CurrencyCode { get; set; }
         public string EmailAddress { get; set; }
 
-        
-
         public int CompanyId { get; set; }
         public int TaxTypeId { get; set; }
         public int EmailId { get; set; }

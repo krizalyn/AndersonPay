@@ -95,27 +95,25 @@
         <br>
         
     <div id="" class="form-group" ng-controller="ClientController as model" ng-init="model.Initialise()" align="right">
-   @*<input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">*@
-
-
-        <div class="clientSelect" style="padding-right: 200px;">
-            <label for="ClientId" style="padding-right:270px;">Select Client</label>
-            <div class="dropClient">
-                <ui-select ng-model="model.Client">
-                    <ui-select-match placeholder="Select Client">
-                        <span ng-bind="$select.selected.Name"></span>
-                    </ui-select-match>
-                    <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
-                        <span ng-bind="client.Name"></span>
-                    </ui-select-choices>
-                </ui-select>
+       <input type="hidden" class="form-control" id="ClientId" name="ClientId" value="@Model.ClientId">
+            <div class="clientSelect" style="padding-right: 200px;">
+                <label for="ClientId" style="padding-right:270px;">Select Client</label>
+                <div class="dropClient">
+                    <ui-select ng-model="model.Client">
+                        <ui-select-match placeholder="Select Client">
+                            <span ng-bind="$select.selected.Name"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+                            <span ng-bind="client.Name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}">
+                <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
+                <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
+                <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
             </div>
-            <input type="hidden" class="form-group" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}">
-            <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
-            <input type="hidden" class="form-control" id="invoice.CurrencyCode" readonly="readonly" name="invoice.Currency" value="{{model.Client.CurrencyCode}}">
-            <input type="hidden" class="form-control" id="invoice.Tax" readonly="readonly" name="invoice.Tax" value="{{model.Client.WithHoldingTax}}">
-        </div>
-</div> 
+    </div> 
 
 @*Computation ng Subtotal*@
 <div class="form-group-material" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
@@ -233,7 +231,9 @@
     </div>
 </div>
 </div>
+
 @* ///////////////////////////////////////////////////////////////////////////////// *@
+
 <script>
 	$('body').on('hidden.bs.modal', '.modal', function(){
 		$(this).removeData('bs.modal');

@@ -62,11 +62,9 @@
             Read();
             ReadForClients();
             ReadForTypeOfService();
-
             ReadCompanyBranch();
-            ReadForTaxType();
             ReadForCurrency();
-
+            ReadForTaxType();
         }
 
         function Read() {
@@ -126,7 +124,6 @@
                 })
         }
 
-
         //compute subtotal
         function Subtotal(service) {
             if (!service.Quantity)
@@ -153,7 +150,6 @@
 
             salesTax += 12 * TotalSales() / 100;
 
-
             return salesTax;
         }
 
@@ -161,10 +157,7 @@
         function WithholdingTax() {
             var withholdingTax = 0.00;
 
-
             withholdingTax += 3 * TotalSales() / 100;
-
-
 
             return withholdingTax;
         }
@@ -174,9 +167,6 @@
             var amountDue = 0.00;
 
             amountDue += TotalSales() + SalesTax() - WithholdingTax();
-
-
-
 
             return amountDue;
         }
@@ -226,7 +216,6 @@
             ];
         }
 
-        //TaxType
         function ReadForTaxType() {
             vm.TaxTypes = [
                 { Type: "VAT" },
