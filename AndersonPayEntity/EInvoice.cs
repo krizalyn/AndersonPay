@@ -79,7 +79,6 @@ namespace AndersonPayEntity
         public int ClientId { get; set; }
         public EClient Client { get; set; }
         public virtual ICollection<EService> Services { get; set; }
-
         //public string CompanyBranch { get; set; }
 
         public string Name { get; set; }
@@ -93,5 +92,8 @@ namespace AndersonPayEntity
 
         public string CreatedDate { get; set; }
         //public DateTime DueDate { get; set; }
+        public int NumberOfDelays { get; set; }
+        public decimal Interest { get; set; }
+
     }
 }

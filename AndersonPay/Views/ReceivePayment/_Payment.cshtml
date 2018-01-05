@@ -1,0 +1,44 @@
+@{
+    ViewBag.Title = "_Payment";
+}
+
+<style>
+    div.page_Payment {
+        background-color: white;
+        margin: 0px;
+        padding: 10px;
+        padding-top: 50px;
+    }
+
+    div.form-group {
+        padding-left: 40px;
+        width: 300px;
+    }
+  
+</style>
+
+    <div class="page_Payment">
+    <div class="fieldContent">
+    <div class="form-group">
+        <label for="Payment"></label>
+        <input type="hidden" class="form-control" id="PaymentId" name="PaymentId" placeholder="Payment Id" value="@Model.PaymentId" />
+    </div>
+
+    <div class="form-group">
+            <label for="AmountOfPayment">Amount Of Payment</label>
+            <input type="number" autocomplete="off" class="form-control" id="AmountOfPayment" name="AmountOfPayment" placeholder="000.00" value="@Model.AmountOfPayment"/>
+    </div>
+
+    <div class="form-group">
+            <label for="DateOfPayment">Date Of Payment</label>
+            <input type="text" autocomplete="off" class="form-control" id="DateOfPayment" name="DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment"/>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+
+    </div>
+
+</div>
+ 

@@ -34,7 +34,9 @@ namespace AndersonPayModel
         //public DateTime DueDate { get; set; }
 
         public int ClientId { get; set; }
-      
+
+        public int NumberOfDelays { get; set; }
+        public decimal Interest { get; set; 
 
         //public bool? Deleted { get; set; }
         //public bool Multiple { get; set; }
