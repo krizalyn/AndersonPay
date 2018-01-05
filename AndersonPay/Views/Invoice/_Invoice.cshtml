@@ -2,7 +2,6 @@
     ViewBag.Title = "_Invoice";
 }
 
-
 <style>
     div.page_Invoice {
         background-color: white;
@@ -217,6 +216,14 @@
                         <td style="border:none"><span>-({{model.WithholdingTax()}})</span></td>
                         <td style="border:none"></td>
                     </tr>
+                    <tr style="border:none">
+                        <td style="border:none">
+                        <td style="border:none"></td>
+                        <td style="border:none"><b><span>Currency</span></b></td>
+                        <td style="border:none"></td>
+                        <td style="border:none"><span>{{model.CurrencyCode()}}</span></td>
+                        <td style="border:none"></td>
+                    </tr>   
                     <tr style="border:none">
                         <td style="border:none">
                         <td style="border:none"></td>

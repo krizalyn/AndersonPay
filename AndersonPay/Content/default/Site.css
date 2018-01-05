@@ -43,7 +43,7 @@ ul.attachment li
 .navbar-brand > img {
     display: block;
     max-height: 200%;
-    height: 55;
+    height: 55px;
     width: auto;
     margin: auto;
 }
