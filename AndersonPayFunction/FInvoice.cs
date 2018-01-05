@@ -88,15 +88,19 @@ namespace AndersonPayFunction
                 InvoiceId = invoice.InvoiceId,
                 Name = invoice.Name,
                 TaxTypes = invoice.TaxTypes,
-                Subtotal = invoice.Subtotal,
-                Total = invoice.Total,
+                //Subtotal = invoice.Subtotal,
+                AmountDue = invoice.AmountDue,
                 Currency = invoice.Currency,
                 Tax = invoice.Tax,
                 //Comments = invoice.Comments,
-                Recipients = invoice.Recipients,
+                //Recipients = invoice.Recipients,
                 Services = invoice.Services,
                 SINo = invoice.SINo,
-                TIN = invoice.TIN
+                TIN = invoice.TIN,
+                Address = invoice.Address,
+                ClientId = invoice.ClientId
+                //CreatedDate = invoice.CreatedDate,
+                //DueDate = invoice.DueDate
             };
             return returnEInvoice;
         }
@@ -126,15 +130,19 @@ namespace AndersonPayFunction
 
                 InvoiceId = eInvoice.InvoiceId,
                 Name = eInvoice.Name,
-                Subtotal = eInvoice.Subtotal,
-                Total = eInvoice.Total,
+                //Subtotal = eInvoice.Subtotal,
+                AmountDue = eInvoice.AmountDue,
                 TaxTypes = eInvoice.TaxTypes,
                 Currency = eInvoice.Currency,
                 Tax = eInvoice.Tax,
-                Recipients = eInvoice.Recipients,
+                //Recipients = eInvoice.Recipients,
                 //Comments = eInvoice.Comments,
                 SINo = eInvoice.SINo,
-                TIN = eInvoice.TIN
+                TIN = eInvoice.TIN,
+                Address = eInvoice.Address,
+                ClientId = eInvoice.ClientId,
+                CreatedDate = eInvoice.CreatedDate,
+                //DueDate = eInvoice.DueDate
             };
 
             return returnInvoice;
@@ -165,15 +173,19 @@ namespace AndersonPayFunction
 
                 InvoiceId = a.InvoiceId,
                 Name = a.Name,
-                Total = a.Total,
-                Subtotal = a.Subtotal,
+                AmountDue = a.AmountDue,
+                //Subtotal = a.Subtotal,
                 TaxTypes = a.TaxTypes,
                 Currency = a.Currency,
                 Tax = a.Tax,
-                Recipients = a.Recipients,
+                //Recipients = a.Recipients,
                 //Comments = a.Comments,
                 SINo = a.SINo,
-                TIN = a.TIN
+                TIN = a.TIN,
+                Address = a.Address,
+                ClientId = a.ClientId,
+                CreatedDate = a.CreatedDate,
+                //DueDate = a.DueDate
 
             });
 
