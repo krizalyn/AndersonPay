@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EClient.cs" />
+    <Compile Include="EReceivePayment.cs" />
     <Compile Include="EFileDetail.cs" />
     <Compile Include="EArchive.cs" />
     <Compile Include="EInvoice.cs" />

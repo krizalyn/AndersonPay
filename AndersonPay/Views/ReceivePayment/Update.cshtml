@@ -1,0 +1,15 @@
+﻿@using AndersonPayModel;
+@model ReceivePayment
+
+@{
+    ViewBag.Title = "Update";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <form action="~/ReceivePayment/Update" method="post">
+            @{
+                Html.RenderPartial("_Payment", Model);
+            }
+        </form>
+    </div>
+</div>
