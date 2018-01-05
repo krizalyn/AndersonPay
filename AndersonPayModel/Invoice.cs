@@ -12,7 +12,7 @@ namespace AndersonPayModel
     {
         public int InvoiceId { get; set; }
 
-        public decimal Total { get; set; }
+        public decimal AmountDue { get; set; }
         public decimal Subtotal { get; set; }
         public decimal Tax { get; set; }
 
@@ -29,6 +29,11 @@ namespace AndersonPayModel
         public string TIN { get; set; }
 
         public string Address { get; set; }
+        
+        public string CreatedDate { get; set; }
+        //public DateTime DueDate { get; set; }
+
+        public int ClientId { get; set; }
       
 
         //public bool? Deleted { get; set; }

@@ -16,7 +16,13 @@
 </div>*@
 <div align="right" style="padding-right: 80px; padding-top:80px;" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <h3><b>Billing Statement</b></h3>
-    <h4>Sales Invoice No. {{model.CompanyBranch.SINo}} @*@Model.SINo*@</h4>
+    <h4>Sales Invoice No. @*@Model.SINo*@</h4>
+    <h4 id="InvoiceSummaryDate">
+        <script>
+            var today = new Date();
+            document.getElementById("InvoiceSummaryDate").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+        </script>
+    </h4>
 </div>
 <div style="padding-left: 80px;">
     <h6><b>ANDERSON GROUP BPO INC.</b></h6>

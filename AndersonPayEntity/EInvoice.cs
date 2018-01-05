@@ -67,8 +67,7 @@ namespace AndersonPayEntity
         //[Required(ErrorMessage = "Please Select Company")]
         // [Display(Name = "INV no.")]
 
-        public decimal Amount { get; set; }  //Rename to SubTotal
-        public decimal Total { get; set; }
+        public decimal AmountDue { get; set; }
        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -76,20 +75,23 @@ namespace AndersonPayEntity
 
         public decimal Tax { get; set; }
         public string Currency { get; set; }
-
+        [ForeignKey("Client")]
+        public int ClientId { get; set; }
         public EClient Client { get; set; }
         public virtual ICollection<EService> Services { get; set; }
 
-        //CompanyBranch
-        public string CompanyBranch { get; set; }
+        //public string CompanyBranch { get; set; }
 
-        //Name of Service
         public string Name { get; set; }
-        public string Recipients { get; set; }
+        //public string Recipients { get; set; }
         public string TaxTypes { get; set; }
-        public string NameOfService { get; set; }
-        public decimal Subtotal { get; set; }
+        //public string NameOfService { get; set; }
+        //public decimal Subtotal { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
+        public string Address { get; set; }
+
+        public string CreatedDate { get; set; }
+        //public DateTime DueDate { get; set; }
     }
 }
