@@ -1,37 +1,22 @@
 @{
     ViewBag.Title = "_TypeOfService";
 }
-<style>
-    div.page_Client {
-        background-color: white;
-        margin: 0px;
-        padding: 10px;
-        padding-top: 50px;
-    }
-
-    div.form-group {
-        padding-left: 40px;
-        width: 300px;
-    }
-    a.btn-default {
-        background-color: #2196F3;
-        color: white;
-    }
-</style>
-@*<div class="form-group">
-        <label for="Rate">Rate</label>
-        <input type="number" class="form-control" id="Rate" name="Rate" placeholder="Rate" value="@Model.Rate">
-</div>*@
 
 @*<div class="form-group">
-        <label for="WhTax">With Holding Tax</label>
-        <input type="number" class="form-control" id="WhTax" name="WhTax" placeholder="With Holding Tax" value="@Model.WhTax">
-</div>*@
+            <label for="Rate">Rate</label>
+            <input type="number" class="form-control" id="Rate" name="Rate" placeholder="Rate" value="@Model.Rate">
+    </div>*@
 
+@*<div class="form-group">
+            <label for="WhTax">With Holding Tax</label>
+            <input type="number" class="form-control" id="WhTax" name="WhTax" placeholder="With Holding Tax" value="@Model.WhTax">
+    </div>*@
+
+<div class="page_TypesServ">
 <div class="form-group">
-        <label for="Type Of Service Id"></label>
-        <input type="hidden" class="form-control" id="TypeOfServiceId" name="TypeOfServiceId"  value="@Model.TypeOfServiceId">
- </div>
+    <label for="Type Of Service Id"></label>
+    <input type="hidden" class="form-control" id="TypeOfServiceId" name="TypeOfServiceId" value="@Model.TypeOfServiceId">
+</div>
 
 <div class="form-group">
     <label for="NameOfService">Name Of Service</label>
@@ -46,3 +31,4 @@
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
 </div>
+    </div>

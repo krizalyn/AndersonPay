@@ -9,7 +9,6 @@
     padding-right: 15px;
 }
 
-
 ul.attachment
 {
     width:40%;
@@ -26,20 +25,21 @@ ul.attachment li
     list-style-type:none;
 }
 
-    ul.attachment li a
-    {
-        font-weight:bold;
-    }
+ul.attachment li a
+{
+    font-weight:bold;
+}
         /*ul.attachment li a.title
         {
            
         }*/
-        ul.attachment li a.deleteItem
-        {
-            text-align:right;           
-            float:right;
-            color:#808080;
-        }
+ul.attachment li a.deleteItem
+    {
+     text-align:right;           
+     float:right;
+     color:#808080;
+    }
+
 .navbar-brand > img {
     display: block;
     max-height: 200%;
@@ -48,4 +48,234 @@ ul.attachment li
     margin: auto;
 }
 
+/*========================================== index invoice*/
+
+tr.thead-inverse {
+    background-color: #465A65;
+    color: white;
+}
+
+a.btn-default:hover {
+    background-color: #0c7cd5;
+    color: white;
+}
+
+a.btn-default {
+    background-color: #2196F3;
+    color: white;
+}
+
+.pageTService {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 20px;
+    height: auto;
+}
+
+/*========================================== _invoice*/
+
+    div.page_Invoice {
+        background-color: white;
+        margin: 0px;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
+    th {
+        text-align:center;
+        background-color: #465A65;
+        color: white;
+    }
+
+    div.dropBranch {
+        width: 350px;
+    
+    }
+
+    div.dropClient {
+        width: 350px;
+    }
+
+    img.logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    div.header {
+        position: relative;
+        display: table;
+        width: 100%;
+        margin-bottom: 5rem;
+    }
+    tr.thead-inverse {
+        background-color: #465A65;
+        color: white;
+    }
+  
+    div.alignContent {
+        width: 100%;
+        display:table;
+        position:relative;
+    }
+
+/*========================================== _client*/ 
+
+div.page_Client {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+div.form-group {
+    padding-left: 40px;
+    width: 300px;
+}
+
+a.btn-default {
+    background-color: #2196F3;
+    color: white;
+}
+
+/*========================================== _index of types of service*/
+
+div.pageTService {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+/*========================================== _index client*/
+
+.pageCLient {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 20px;
+    height: auto;
+}
+
+tr.thead-inverse {
+    background-color: #465A65;
+    color: white;
+}
+
+a.btn-default:hover {
+    background-color: #0c7cd5;
+    color: white;
+}
+
+a.btn-default {
+    background-color: #2196F3;
+    color: white;
+}
+
+/*========================================== _index invoice*/
+
+.pageIndexInvoice {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    /*padding-top: 20px;*/
+    height: auto;
+}
+
+tr.thead-inverse {
+    background-color: #465A65;
+    color: white;
+    text-align: center;
+}
+
+a.btn-default:hover {
+    background-color: #0c7cd5;
+    color: white;
+}
+
+a.btn-default {
+    background-color: #2196F3;
+    color: white;
+}
+
+/*========================================== _client*/
+
+div.page_Client {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+div.form-group {
+    padding-left: 40px;
+    width: 300px;
+}
+
+/*========================================== _index payment*/
+
+.pagePayment {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 20px;
+    height: auto;
+}
+
+tr.thead-inverse {
+    background-color: #465A65;
+    color: white;
+}
+
+a.btn-default:hover {
+    background-color: #0c7cd5;
+    color: white;
+}
+
+a.btn-default {
+    background-color: #2196F3;
+    color: white;
+}
+
+/*========================================== _payment*/
+
+div.page_Payment {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+div.form-group {
+    padding-left: 40px;
+    width: 300px;
+}
+
+/*========================================== Invoice summary*/
+
+#grad1 {
+    color: white;
+    margin: 0px;
+    background: linear-gradient(to right, #159cf6, #97dded);
+}
+
+
+/*========================================== _types of service*/
+
+div.page_TypesServ {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+div.form-group {
+    padding-left: 40px;
+    width: 300px;
+}
+
+a.btn-default {
+    background-color: #2196F3;
+    color: white;
+}
 
