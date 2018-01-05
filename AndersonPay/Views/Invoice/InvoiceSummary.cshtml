@@ -15,7 +15,7 @@
 
 
 <script type="text/javascript">
-    function demoFromHTML() {
+    function genPDF() {
         var pdf = new jsPDF('p', 'pt', 'letter');
 
 
@@ -55,8 +55,10 @@
 @*<div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
     <h3>Summary</h3>
 </div>*@
+<img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left; padding-left:70px; padding-top:40px; height:auto; width:200px;">
 
-<div align="right" style="padding-right: 80px; padding-top:80px;" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+<a href="javascript:genPDF()">Download PDF</a>
+<div class="include" align="right" style="padding-right: 80px; padding-top:80px;" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <h3><b>Billing Statement</b></h3>
     <h4>Sales Invoice No. @*@Model.SINo*@</h4>
     <h4 id="InvoiceSummaryDate">
@@ -66,12 +68,12 @@
         </script>
     </h4>
 </div>
-<div style="padding-left: 80px;">
+<div class="include2" style="padding-left: 80px;">
     <h6><b>ANDERSON GROUP BPO INC.</b></h6>
     <p>Branch Address</p>
 </div>
 <div  style="padding-left: 70px; padding-right:65px; padding-bottom:80px;">
-    <table class="table table-hover table-sm table-bordered ">
+    <table  id="tableData" class="table table-hover table-sm table-bordered ">
         <thead>
             <tr class="thead-inverse" style="background-color:#159cf6; color:white">
                 <th style="text-align:center">DESCRIPTION</th>
@@ -144,6 +146,6 @@
     </table>
 </div>
 <div class="modal-footer" align="right" style="padding: 20px;">
-    <button type="submit" value="Index" class="btn btn-primary">Save and Send</button>
+    <button type="submit" value="Index" class="btn btn-primary" onclick="javascript:genPDF()">Save and Send</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 </div>

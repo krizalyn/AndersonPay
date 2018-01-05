@@ -64,8 +64,9 @@ namespace AndersonPayFunction
         {
             EReceivePayment returnEPayment = new EReceivePayment
             {
-               AmountOfPayment = payment.AmountOfPayment,
-               DateOfPayment = payment.DateOfPayment
+                AmountOfPayment = payment.AmountOfPayment,
+                DateOfPayment = payment.DateOfPayment,
+                PaymentId = payment.PaymentId
             };
             return returnEPayment;
         }
@@ -75,7 +76,8 @@ namespace AndersonPayFunction
             ReceivePayment returnPayment = new ReceivePayment
             {
                 AmountOfPayment = eReceivePayment.AmountOfPayment,
-                DateOfPayment = eReceivePayment.DateOfPayment
+                DateOfPayment = eReceivePayment.DateOfPayment,
+                PaymentId = eReceivePayment.PaymentId
             };
             return returnPayment;
         }
@@ -85,7 +87,8 @@ namespace AndersonPayFunction
             var returnPayment = eReceivePayment.Select(a => new ReceivePayment
             {
                 AmountOfPayment = a.AmountOfPayment,
-                DateOfPayment = a.DateOfPayment
+                DateOfPayment = a.DateOfPayment,
+                PaymentId = a.PaymentId
             });
 
             return returnPayment.ToList();

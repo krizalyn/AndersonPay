@@ -38,6 +38,7 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
+                        <th>PaymentID</th>
                         <th>Amount of Payment</th>
                         <th>Date Of Payment</th>
                         <th>Actions</th>
@@ -48,7 +49,7 @@
                 <tbody>
 
                     <tr class="clickableRow" ng-repeat="payment in model.Payments" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(payment.PaymentId)" style="height:20px">
-
+                        <td><span ng-bind="payment.PaymentId"></span></td>
                         <td><span ng-bind="payment.AmountOfPayment"></span></td>
                         <td><span ng-bind="payment.DateOfPayment"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
