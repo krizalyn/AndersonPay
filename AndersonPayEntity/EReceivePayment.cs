@@ -14,7 +14,7 @@ namespace AndersonPayEntity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PaymentId { get; set; }
 
-        public decimal AmountOfPayment { get; set; }
+        public decimal AmountReceived { get; set; }
         public string DateOfPayment { get; set; }
 
         //[ForeignKey("Invoice")]
