@@ -57,16 +57,6 @@
             <div class="form-group" align="right" style="padding-top:50px;">
                 <input type="hidden" readonly="readonly" class="form-control" id="CreatedDate" name="CreatedDate" placeholder="CreatedDate" value="@Model.CreatedDate">
                 <input type="hidden" readonly="readonly" class="form-control" id="DueDate" name="DueDate" placeholder="DueDate">
-
-                <script>
-                    /*//document.getElementById("CreatedDate").setAttribute("value", Date().toString());
-                    var today = new Date();
-                    var month = today.getMonth() + 1;
-                    document.getElementById("CreatedDate").setAttribute("value", today.getFullYear() + '-' + month + '-' + today.getDate());
-                    // Penalty
-                    today.setDate(today.getDate() + 7); //+7 days for penalty
-                    document.getElementById("DueDate").value = today.getFullYear() + '-' + month + '-' + today.getDate();*/
-                </script>
                 <label for="SINo">SI No: </label>
                 <label id="SINo"><u>{{model.CompanyBranch.SINo}}@Model.SINo</u></label><br>
                 <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">

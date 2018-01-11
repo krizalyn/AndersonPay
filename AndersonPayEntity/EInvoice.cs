@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseEntity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Web.Script.Serialization;
 namespace AndersonPayEntity
 {
     [Table("Invoice")]
-    public class EInvoice
+    public class EInvoice : EBase
     {
         /* 
          TO DO:
@@ -89,8 +90,7 @@ namespace AndersonPayEntity
         public string SINo { get; set; }
         public string TIN { get; set; }
         public string Address { get; set; }
-
-        public DateTime CreatedDate { get; set; }
+        
         //public DateTime DueDate { get; set; }
         public int NumberOfDelays { get; set; }
         public decimal Interest { get; set; }
