@@ -20,6 +20,10 @@
             tax: 0,
             totaltax: 0
         }
+        //sample
+        vm.InvoiceASD = {
+            WithholdingTaxASD: 0
+        }
 
         //array
         vm.Invoices = [];
@@ -30,6 +34,7 @@
         vm.ReadForClients = ReadForClients;
         vm.ReadForTypeOfService = ReadForTypeOfService;
         vm.GoToUpdatePage = GoToUpdatePage;
+        vm.PDF = PDF;
 
         vm.Initialise = Initialise;
         vm.Clients;
@@ -115,6 +120,9 @@
         function CreateInvoiceService() {
             var service = angular.copy(vm.Service);
             vm.Services.push(service);
+            //sample
+            var invoiceASD = angular.copy(vm.InvoiceASD);
+            vm.InvoiceASD.push(invoiceASD);
         }
 
         function InitialiseTypeOfService(typeOfServices) {
@@ -156,7 +164,8 @@
         //compute Withholding Tax
         function WithholdingTax() {
             var withholdingTax = 0.00;
-
+            //var asd = invoiceASD.WithholdingTax;
+            // ung int na 3 papalitan ng withholding tax ng client
             withholdingTax += 3 * TotalSales() / 100;
 
             return withholdingTax;
@@ -231,6 +240,14 @@
                 { Code: "GBP" },
                 { Code: "PHP" },
             ];
+        }
+
+        //PFD get data
+        function PDF(invoiceId)
+        {
+            $window.location.href = '../Invoice/InvoiceSummary/' + invoiceId;
+            //$window.href = '..("InvoiceSummary", "Invoice")';
+            //$window.location.href = '@Url.Action("InvoiceSummary", "Invoice")';
         }
     }
 })();

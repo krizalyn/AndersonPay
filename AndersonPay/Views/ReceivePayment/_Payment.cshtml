@@ -17,28 +17,63 @@
   
 </style>
 
-    <div class="page_Payment">
+<div class="page_Payment">
     <div class="fieldContent">
-    <div class="form-group">
-        <label for="Payment"></label>
-        <input type="hidden" class="form-control" id="PaymentId" name="PaymentId" placeholder="Payment Id" value="@Model.PaymentId" />
-    </div>
+        @* Client Selection *@
+        <div ng-controller="ClientController as model" ng-init="model.Initialise()">
+            <div>
+                <label for="ClientId">Select Client</label>
+                <div class="dropClient">
+                    <ui-select ng-model="model.Client">
+                        <ui-select-match placeholder="Select Client">
+                            <label ng-bind="$select.selected.Name"></label>
+                        </ui-select-match>
+                        <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+                            <span ng-bind="client.Name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <input type="hidden" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.Client.Name}}">
+            </div>
+                <input type="hidden" class="form-control" id="invoice.ClientId" readonly="readonly" name="invoice.ClientId" value="{{model.Client.ClientId}}">
+                @* Client invoices *@
+                <br>
+                <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
+                    <thead>
+                        <tr class="thead-inverse">
+                            <th width="30%"><center>Invoice ID</center></th>
+                            <th width="15%"><center>Subtotal</center></th>
+                        </tr>
+                    </thead>
+                    <tr class="clickableRow">
+                        <td><span ng-bind="invoice.InvoiceId"></span></td>
+                        <td><span ng-bind="service.Subtotal"></span></td>
+                    </tr>
+                    <tbody ng-repeat="client in model.Client track by $index">
 
-    <div class="form-group">
-            <label for="AmountOfPayment">Amount Of Payment</label>
-            <input type="number" autocomplete="off" class="form-control" id="AmountOfPayment" name="AmountOfPayment" placeholder="000.00" value="@Model.AmountOfPayment"/>
-    </div>
+                    </tbody>
+                </table>
+        </div>
+        <div class="form-group">
+            <label for="Payment"></label>
+            <input type="hidden" class="form-control" id="PaymentId" name="PaymentId" placeholder="Payment Id" value="@Model.PaymentId" />
+        </div>
 
-    <div class="form-group">
-            <label for="DateOfPayment">Date Of Payment</label>
-            <input type="text" autocomplete="off" class="form-control" id="DateOfPayment" name="DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment"/>
-    </div>
+        <div class="form-group">
+                <label for="AmountOfPayment">Amount Of Payment</label>
+                <input type="number" autocomplete="off" class="form-control" id="AmountOfPayment" name="AmountOfPayment" placeholder="000.00" value="@Model.AmountOfPayment"/>
+        </div>
 
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Submit" />
-    </div>
+        <div class="form-group">
+                <label for="DateOfPayment">Date Of Payment</label>
+                <input type="text" autocomplete="off" class="form-control" id="DateOfPayment" name="DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment"/>
+        </div>
 
-    </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Submit" />
+        </div>
+
+        </div>
 
 </div>
  

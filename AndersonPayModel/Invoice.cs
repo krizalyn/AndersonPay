@@ -30,7 +30,7 @@ namespace AndersonPayModel
 
         public string Address { get; set; }
         
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         //public DateTime DueDate { get; set; }
 
         public int ClientId { get; set; }

@@ -56,5 +56,15 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
+        
+        function PDF(InvoiceId)
+        {
+            return $http({
+                method: 'POST',
+                url: '/Invoice/Read',
+                data: $.param(InvoiceId),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
     }
 })();

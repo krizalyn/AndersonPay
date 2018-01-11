@@ -1462,6 +1462,7 @@
     <Compile Include="Controllers\AddEmployeesController.cs" />
     <Compile Include="Controllers\AddJobsController.cs" />
     <Compile Include="Controllers\AndersonPayController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1551,6 +1552,7 @@
     <Content Include="Views\ReceivePayment\Create.cshtml" />
     <Content Include="Views\ReceivePayment\Index.cshtml" />
     <Content Include="Views\ReceivePayment\Update.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

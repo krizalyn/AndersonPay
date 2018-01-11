@@ -90,10 +90,9 @@ namespace AndersonPayEntity
         public string TIN { get; set; }
         public string Address { get; set; }
 
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         //public DateTime DueDate { get; set; }
         public int NumberOfDelays { get; set; }
         public decimal Interest { get; set; }
-
     }
 }

@@ -14,6 +14,7 @@ namespace AndersonPayFunction
 
         private IDInvoice _iDInvoice;
 
+
         public FInvoice(IDInvoice iDInvoice)
         {
             _iDInvoice = iDInvoice;
@@ -29,6 +30,7 @@ namespace AndersonPayFunction
         {
             EInvoice eInvoice = EInvoice(invoice);
             eInvoice = _iDInvoice.Create(eInvoice);
+            eInvoice.CreatedDate = DateTime.Now;
             return Invoice(eInvoice);
         }
         #endregion
@@ -98,8 +100,8 @@ namespace AndersonPayFunction
                 SINo = invoice.SINo,
                 TIN = invoice.TIN,
                 Address = invoice.Address,
-                ClientId = invoice.ClientId
-                //CreatedDate = invoice.CreatedDate,
+                ClientId = invoice.ClientId,
+                CreatedDate = invoice.CreatedDate,
                 //DueDate = invoice.DueDate
             };
             return returnEInvoice;

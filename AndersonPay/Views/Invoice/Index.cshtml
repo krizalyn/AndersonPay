@@ -38,7 +38,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <table class="table table-hover table-sm table-bordered ">
+            <table class="table table-hover table-sm table-bordered">
                 <thead>
                     <tr class="thead-inverse">
                         <th>Created Date</th>
@@ -89,6 +89,7 @@
                                     <li><a href="#" ng-click="model.GoToUpdatePage(invoice.InvoiceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(invoice)">Delete</a></li>
                                     <li><a href="@Url.Action("InvoiceSummary", "Invoice")" data-toggle="modal" data-target="#myModal">PDF</a></li>
+                                    <li><a href="#" ng-click="model.PDF(invoice.InvoiceId)" data-toggle="modal" data-target="#myModal">PDF asd </a></li>
                                 </ul>
                             </div>
                         </td>
