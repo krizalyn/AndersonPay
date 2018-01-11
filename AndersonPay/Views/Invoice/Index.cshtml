@@ -57,7 +57,7 @@
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="invoice in model.Invoices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(invoice.InvoiceId)">
-                        <td><span ng-bind="invoice.CreatedDate"></span></td>
+                        <td><span ng-bind="invoice.CreatedDateNow"></span></td>
                         @*<td><span ng-bind="invoice.InvoiceId"></span></td>*@
                         @*<td><span ng-bind="invoice.SINo"></span></td>*@
                         @*<td><span ng-bind="invoice.TIN"></span></td>*@
