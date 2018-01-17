@@ -1,14 +1,11 @@
 ﻿using AndersonPayEntity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
+using System;
+using BaseModel;
 
 namespace AndersonPayModel
 {
-    public class Invoice : Base.Base
+    public class Invoice : Base
     {
         public int InvoiceId { get; set; }
 
@@ -30,8 +27,9 @@ namespace AndersonPayModel
 
         public string Address { get; set; }
         
-        public string CreatedDate { get; set; }
+        
         //public DateTime DueDate { get; set; }
+        public string CreatedDateNow => CreatedDate.ToString();
 
         public int ClientId { get; set; }
 

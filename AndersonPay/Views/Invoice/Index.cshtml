@@ -22,7 +22,7 @@
                         <th>Created Date</th>
                         @*<th>Invoice Id</th>*@
                         @*<th>SI No.</th>*@
-                        @*<th>TIN</th>*@
+                        @*<th>TIN</th>*@  
                         @*<th>Quantity</th>*@
                         @*<th>Rate</th>*@
                         @*<th>Subtotal</th>*@
@@ -30,18 +30,18 @@
                         <th>Currency</th>
                         <th>Tax</th>
                         <th>Amount Due</th>
-                        <th>Actions</th>
+                        <th>Actions</th> 
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="clickableRow" ng-repeat="invoice in model.Invoices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(invoice.InvoiceId)">
-                        <td><span ng-bind="invoice.CreatedDate"></span></td>
                         @*<td><span ng-bind="invoice.InvoiceId"></span></td>*@
                         @*<td><span ng-bind="invoice.SINo"></span></td>*@
                         @*<td><span ng-bind="invoice.TIN"></span></td>*@
                         @*<td><span ng-bind="invoice.Service.Quantity"></span></td>*@
                         @*<td><span ng-bind="invvoice.Service.Rate"></span></td>*@
                         @*<td><span ng-bind="invoice.Subtotal"></span></td>*@
+                        <td><span ng-bind="invoice.CreatedDateNow"></span></td>
                         <td><span ng-bind="invoice.Name"></span></td>
                         <td><span ng-bind="invoice.Currency"></span></td>
                         <td><span ng-bind="invoice.Tax"></span></td>
@@ -63,10 +63,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="modal fade" id="myModal" role="dialog" aria-labled="myModalLabel">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="model.GoToUpdatePage(invoice.InvoiceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(invoice)">Delete</a></li>
-                                    <li><a href="@Url.Action("InvoiceSummary", "Invoice")" data-toggle="modal" data-target="#myModal">PDF</a></li>
+                                    <li><a href="@Url.Action("InvoiceSummary", "Invoice")" ng-click="model.(InvoiceSummary)" data-toggle="modal" data-target="#myModal">PDF</a></li>
+                                    @*<li><a href="@Url.Action("InvoiceSummary", "Invoice")" data-toggle="modal" data-target="#myModal">PDF</a></li>*@
                                 </ul>
                             </div>
                         </td>

@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECompanyAddress.cs" />
     <Compile Include="EClient.cs" />
     <Compile Include="EReceivePayment.cs" />
     <Compile Include="EFileDetail.cs" />

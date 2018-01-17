@@ -128,8 +128,8 @@ div.page_Client {
     padding-top: 50px;
 }
 
-div.form-group {
-    padding-left: 40px;
+div.     { /*this affect all*/
+    /*Input-left: 40px;*/
     width: 300px;
 }
 
@@ -137,6 +137,7 @@ a.btn-default {
     background-color: #2196F3;
     color: white;
 }
+
 
 /*========================================== _index of types of service*/
 
@@ -172,8 +173,8 @@ a.btn-default {
     color: white;
 }
 
-/*========================================== _index invoice*/
 
+/*========================================== _index invoice*/
 .pageIndexInvoice {
     background-color: white;
     margin: 0px;
@@ -207,10 +208,10 @@ div.page_Client {
     padding-top: 50px;
 }
 
-div.form-group {
+/*div.form-group {
     padding-left: 40px;
     width: 300px;
-}
+}*/
 
 /*========================================== _index payment*/
 
@@ -246,10 +247,10 @@ div.page_Payment {
     padding-top: 50px;
 }
 
-div.form-group {
+/*div.form-group {
     padding-left: 40px;
     width: 300px;
-}
+}*/
 
 /*========================================== Invoice summary*/
 
@@ -269,13 +270,69 @@ div.page_TypesServ {
     padding-top: 50px;
 }
 
-div.form-group {
+/*div.form-group {
     padding-left: 40px;
     width: 300px;
-}
+}*/
 
 a.btn-default {
     background-color: #2196F3;
     color: white;
 }
 
+
+
+/*========================================== __Payment*/
+
+div.page_Payment {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+div.form-group {
+    /*padding-left: 40px;*/
+    width: 300px;
+}
+
+.amount {
+    float: right;
+    padding-right: 50px;
+}
+
+.title {
+    position: relative;
+    width: 100%;
+}
+/*.ref {
+        float: right;
+        padding-right: 75px;
+    }*/
+.container {
+    position: relative;
+    width: 100%;
+}
+
+#bal {
+    float: right;
+    width: 20%;
+}
+
+#total {
+    float: left;
+}
+
+.table2 {
+    width: 600px;
+}
+
+tr.thead-inverse {
+    background-color: #465A65;
+    color: white;
+}
+
+.client {
+    position: relative;
+    width: 40%;
+}

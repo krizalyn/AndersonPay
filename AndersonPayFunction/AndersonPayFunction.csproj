@@ -37,6 +37,9 @@
     <Reference Include="BaseEntity">
       <HintPath>..\..\DLL\Debug\Base\BaseEntity.dll</HintPath>
     </Reference>
+    <Reference Include="BaseModel">
+      <HintPath>..\..\DLL\Release\Base\BaseModel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
