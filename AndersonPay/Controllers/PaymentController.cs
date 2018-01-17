@@ -3,34 +3,33 @@ using System.Web.Mvc;
 using AndersonPayModel;
 namespace AndersonPay.Controllers
 {
-    public class ReceivePaymentController : Controller
+    public class PaymentController : Controller
     {
         // GET: Payment
 
-        private IFReceivePayment _iFReceivePayment;
-        public ReceivePaymentController()
+        private IFPayment _iFPayment;
+        public PaymentController()
         {
-            _iFReceivePayment = new FReceivePayment();
+            _iFPayment = new FPayment();
         }
-
         // Create new Payment
         #region Create 
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new ReceivePayment());
+            return View(new Payment());
         }
 
         [HttpPost]
-        public ActionResult Create(ReceivePayment payment)
+        public ActionResult Create(Payment payment)
         {
-            payment = _iFReceivePayment.Create(payment);
-            return RedirectToAction("Index", "ReceivePayment");
+            payment = _iFPayment.Create(payment);
+            return RedirectToAction("Index");
             //, new { id = payment.PaymentId }
         }
         #endregion
 
-        // Read list of clients
+        // Read list of Payment
 
         #region Read
         [HttpGet]
@@ -41,40 +40,38 @@ namespace AndersonPay.Controllers
         [HttpPost]
         public JsonResult Read()
         {
-            return Json(_iFReceivePayment.Read());
+            return Json(_iFPayment.Read());
         }
 
         #endregion
 
-        //UPDATE CLIENT
+        //UPDATE TYPEOFSERVICE
         #region Update
         [HttpGet]
-        public ActionResult Update(int id)
+        public ActionResult Update(int Id)
         {
-            return View(_iFReceivePayment.Read(id));
+            return View(_iFPayment.Read(Id));
         }
 
         [HttpPost]
-        public ActionResult Update(ReceivePayment payment)
+        public ActionResult Update(Payment payment)
         {
-            payment = _iFReceivePayment.Update(payment);
-            return RedirectToAction("Index", "ReceivePayment");
+            payment = _iFPayment.Update(payment);
+            return RedirectToAction("Index");
 
         }
         #endregion
 
-        //Delete Client
+        //Delete TypeOfService
         #region Delete
         [HttpDelete]
-        public JsonResult Delete(ReceivePayment payment)
+        public JsonResult Delete(Payment payment)
         {
 
-            _iFReceivePayment.Delete(payment);
+            _iFPayment.Delete(payment);
             return Json(string.Empty);
 
         }
         #endregion
-
-        
     }
 }

@@ -40,11 +40,11 @@
             });
         }
 
-        function Delete(invoice) {
+        function Delete(invoiceId) {
             return $http({
                 method: 'DELETE',
-                url: '/Invoice/Delete',
-                data: $.param(invoice),
+                url: '/Invoice/Delete/' + invoiceId,
+                //data: $.param(invoiceId),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

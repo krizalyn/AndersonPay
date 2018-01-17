@@ -48,13 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FReceivePayment.cs" />
     <Compile Include="FClient.cs" />
     <Compile Include="FInvoice.cs" />
+    <Compile Include="FPayment.cs" />
     <Compile Include="FTypeOfService.cs" />
-    <Compile Include="IFReceivePayment.cs" />
     <Compile Include="IFClient.cs" />
     <Compile Include="IFInvoice.cs" />
+    <Compile Include="IFPayment.cs" />
     <Compile Include="IFTypeOfService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

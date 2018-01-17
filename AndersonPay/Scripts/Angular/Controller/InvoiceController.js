@@ -89,8 +89,8 @@
                 });
         }
 
-        function Delete(invoice) {
-            InvoiceService.Delete(invoice)
+        function Delete(invoiceId) {
+            InvoiceService.Delete(invoiceId)
                 .then(function (response) {
                     Read();
                 })

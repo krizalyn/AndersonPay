@@ -72,10 +72,10 @@ namespace AndersonPay.Controllers
         //Delete Invoice
         #region Delete
         [HttpDelete]
-        public JsonResult Delete(Invoice invoice)
+        public JsonResult Delete(int id)
         {
 
-            _iFInvoice.Delete(invoice);
+            _iFInvoice.Delete(id);
             return Json(string.Empty);
 
         }

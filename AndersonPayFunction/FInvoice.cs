@@ -56,9 +56,11 @@ namespace AndersonPayFunction
         #endregion
 
         #region DELETE
-        public void Delete(Invoice invoice)
+        public void Delete(int invoiceId)
         {
-            _iDInvoice.Delete(EInvoice(invoice));
+            //_iDInvoice.Delete(EInvoice(invoice));
+            _iDInvoice.Delete<EService>(a => a.InvoiceId == invoiceId);
+            _iDInvoice.Delete<EInvoice>(a => a.InvoiceId == invoiceId);
         }
         #endregion
 

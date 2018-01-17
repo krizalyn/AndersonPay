@@ -23,7 +23,7 @@ namespace AndersonPayFunction
         #endregion
 
         #region DELETE
-        void Delete(Invoice Invoice);
+        void Delete(int InvoiceId);
         #endregion
 
         #region OTHER FUNCTION

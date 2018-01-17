@@ -4,26 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AndersonPayModel;
-
 namespace AndersonPayFunction
 {
-    public interface IFReceivePayment
+    public interface IFPayment
     {
         #region CREATE
-        ReceivePayment Create(ReceivePayment payment);
+        Payment Create(Payment payment);
         #endregion
 
         #region READ
-        ReceivePayment Read(int paymentId);
-        List<ReceivePayment> Read();
+        Payment Read(int paymentId);
+        List<Payment> Read();
         #endregion
 
         #region Update
-        ReceivePayment Update(ReceivePayment payment);
+        Payment Update(Payment payment);
         #endregion
 
         #region DELETE
-        void Delete(ReceivePayment Payment);
+        void Delete(Payment Payment);
         #endregion
 
         #region OTHER FUNCTION

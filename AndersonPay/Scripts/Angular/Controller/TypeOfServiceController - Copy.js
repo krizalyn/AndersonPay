@@ -3,22 +3,22 @@
 
     angular
         .module('App')
-        .controller('PaymentController', PaymentController);
+        .controller('TypeOfServiceController', TypeOfServiceController);
 
-    PaymentController.$inject = ['$window', 'PaymentService'];
+    TypeOfServiceController.$inject = ['$window', 'TypeOfServiceService'];
 
-    function PaymentController($window, PaymentService) {
+    function TypeOfServiceController($window, TypeOfServiceService) {
         var vm = this;
 
-        vm.Payments;
+        vm.TypeOfServices;
 
         vm.GoToUpdatePage = GoToUpdatePage;
         vm.Initialise = Initialise;
 
         vm.Delete = Delete;
 
-        function GoToUpdatePage(paymentId) {
-            $window.location.href = '../Payment/Update/' + paymentId;
+        function GoToUpdatePage(typeOfServiceId) {
+            $window.location.href = '../TypeOfService/Update/' + typeOfServiceId;
         }
 
         function Initialise() {
@@ -27,9 +27,9 @@
         }
 
         function Read() {
-            PaymentService.Read()
+            TypeOfServiceService.Read()
                 .then(function (response) {
-                    vm.Payments = response.data;
+                    vm.TypeOfServices = response.data;
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -43,8 +43,8 @@
                 });
         }
 
-        function Delete(payment) {
-            PaymentService.Delete(payment)
+        function Delete(typeOfService) {
+            TypeOfServiceService.Delete(typeOfService)
                 .then(function (response) {
                     Read();
                 })

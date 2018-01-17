@@ -50,13 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DReceivePayment.cs" />
     <Compile Include="DClient.cs" />
     <Compile Include="DInvoice.cs" />
+    <Compile Include="DPayment.cs" />
     <Compile Include="DTypeOfService.cs" />
-    <Compile Include="IDReceivePayment.cs" />
     <Compile Include="IDClient.cs" />
     <Compile Include="IDInvoice.cs" />
+    <Compile Include="IDPayment.cs" />
     <Compile Include="IDTypeOfService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -18,7 +18,7 @@
         function Read() {
             return $http({
                 method: 'POST',
-                url: '/ReceivePayment/Read',
+                url: '/Payment/Read',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
@@ -26,7 +26,7 @@
         function ReadPaymentForPaymentinee(paymentineeId) {
             return $http({
                 method: 'POST',
-                url: '/ReceivePayment/ReadPaymentForPaymentinee/' + paymentineeId,
+                url: '/Payment/ReadPaymentForPaymentinee/' + paymentineeId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
@@ -34,15 +34,16 @@
         function ReadPaymentForPosition(positionId) {
             return $http({
                 method: 'POST',
-                url: '/ReceivePayment/ReadPaymentForPosition/' + positionId,
+                url: '/Payment/ReadPaymentForPosition/' + positionId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
 
+
         function Delete(payment) {
             return $http({
                 method: 'DELETE',
-                url: '/ReceivePayment/Delete',
+                url: '/Payment/Delete',
                 data: $.param(payment),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });

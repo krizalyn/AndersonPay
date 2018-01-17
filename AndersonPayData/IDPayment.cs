@@ -1,9 +1,13 @@
-﻿using AndersonPayEntity;
-using BaseData;
+﻿using BaseData;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AndersonPayData
 {
-    public interface IDReceivePayment : IDBase
+    public interface IDPayment : IDBase
     {
         #region CREATE
         #endregion
@@ -16,6 +20,6 @@ namespace AndersonPayData
 
         #region OTHER FUNCTION
         #endregion
-     
+
     }
 }

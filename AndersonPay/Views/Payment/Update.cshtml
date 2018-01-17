@@ -1,13 +1,13 @@
 ﻿@using AndersonPayModel;
-@model ReceivePayment
+@model Payment
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Payment";
 }
 
 <div class="row">
     <div class="col-sm-12">
-        <form action="~/ReceivePayment/Create" method="post">
+        <form action="~/Payment/Update" method="post">
             @{
                 Html.RenderPartial("_Payment", Model);
             }
