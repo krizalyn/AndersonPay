@@ -13,5 +13,8 @@ namespace AndersonPayEntity
 
         public string DateOfPayment { get; set; }
         public decimal AmountReceived { get; set; }
+        public decimal Payments { get; set; }
+        public decimal Discount { get; set; }
+        public decimal Balance { get; set; }
     }
 }
