@@ -1,7 +1,7 @@
 @{
     ViewBag.Title = "_Payment";
 }
-<style>
+@*<style> Moved to site
     div.page_Client {
         background-color: white;
         margin: 0px;
@@ -18,8 +18,9 @@
         background-color: #2196F3;
         color: white;
     }
-</style>
 
+</style>*@
+<div class="page_Payment">
 <div class="form-group">
     <label for="PaymentId"></label>
     <input type="hidden" class="form-control" id="PaymentId" name="PaymentId" value="@Model.PaymentId">
@@ -66,4 +67,5 @@
 
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
     </div>
