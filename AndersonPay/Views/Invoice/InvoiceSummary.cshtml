@@ -6,13 +6,13 @@
     ViewBag.Title = "InvoiceSummary";
 
 }
-<style>
+@*<style> Moved to site
     #grad1 {
         color: white;
         margin: 0px;
         background: linear-gradient(to right, #159cf6, #97dded);
     }
-</style>
+</style>*@
 
 
 
@@ -60,17 +60,16 @@
 <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left; padding-left:70px; padding-top:40px; height:auto; width:200px;">
 
-    <a href="javascript:genPDF()">Download PDF</a>
     <div class="include" align="right" style="padding-right: 80px; padding-top:80px;">
         <h3><b>Billing Statement</b></h3>
         <h4><span ng-bind="invoice.SIno"></span>Sales Invoice No. </h4>
         <input type="text" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.invoice.SINo}} @*@Model.SINo*@">
-        <h4 id="InvoiceSummaryDate">
+        @*<h4 id="InvoiceSummaryDate">
             <script>
                 var today = new Date();
                 document.getElementById("InvoiceSummaryDate").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
             </script>
-        </h4>
+        </h4>*@
     </div>
     <div class="include2" style="padding-left: 80px;">
         <h6><b>ANDERSON GROUP BPO INC.</b></h6>

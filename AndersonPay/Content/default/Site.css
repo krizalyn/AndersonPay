@@ -57,7 +57,7 @@ div.page_Client {
 
 div.form-group {
     padding-left: 40px;
-    width: 300px;
+    /*width: 300px;*/
 }
  
 /*============================================================= client index*/
@@ -167,7 +167,7 @@ div.page_Payment {
 
 div.form-group {
     padding-left: 40px;
-    width: 300px;
+    /*width: 300px;*/
 }
 
 a.btn-default {
@@ -211,7 +211,7 @@ div.page_TypesofService {
 
 div.form-group {
     padding-left: 40px;
-    width: 300px;
+    /*width: 300px;*/
 }
 
 a.btn-default {
@@ -242,6 +242,14 @@ a.btn-default:hover {
 a.btn-default {
     background-color: #2196F3;
     color: white;
+}
+
+/*============================================================= InvoiceSummary*/
+
+#grad1 {
+    color: white;
+    margin: 0px;
+    background: linear-gradient(to right, #159cf6, #97dded);
 }
 
 
