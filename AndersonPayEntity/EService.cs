@@ -8,6 +8,7 @@ namespace AndersonPayEntity
     {
         public decimal Quantity { get; set; }
         public decimal Rate { get; set; }
+        public decimal Subtotal { get; set; }   // added mcjieh
 
         [ForeignKey("Invoice")]
         public int InvoiceId { get; set; }

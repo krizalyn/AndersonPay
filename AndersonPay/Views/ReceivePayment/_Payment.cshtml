@@ -1,0 +1,106 @@
+@{
+    ViewBag.Title = "_Payment";
+}
+
+
+<div class="page_Payment">
+    <div class="fieldContent">
+        <div class="form-group">
+
+            <label for="Payment"></label>
+            <input type="hidden" class="form-control" id="PaymentId" name="PaymentId" placeholder="Payment Id" value="@Model.PaymentId" />
+        </div>
+
+        <div class="title">
+
+            <label>Date Received:</label>
+            @*<label class="amount">Amount Received:</label>*@
+            <br>
+
+        </div>
+
+        <div class="title">
+
+            <div class="client">
+                <label>Client Name:</label>
+                <input type="text" autocomplete="off" readonly="readonly" class="form-control" id="Client" name="Client" placeholder="Select Client.." />
+            </div>
+
+            <br>
+
+        </div>
+
+        <div class="form-group">
+            <label for="AmountOfPayment">Amount Received:</label>
+            <input type="number" autocomplete="off" min="0" class="form-control" id="AmountOfPayment" name="AmountOfPayment" placeholder="000.00" value="@Model.AmountReceived" />
+        </div>
+
+        <div class="form-group">
+            <label for="DateOfPayment">Date Of Payment:</label>
+            <input type="date" autocomplete="off" class="form-control" id="DateOfPayment" name="DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment" />
+        </div>
+
+        <label>Reference No.</label>
+
+        <br>
+
+        <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
+            <thead>
+                <tr class="thead-inverse">
+                    <th width="5%" style="display:none">Index</th>
+                    <th width="8%"><center>SI No.</center></th>
+                    <th width="10%"><center> Description</center></th>
+                    <th width="10%"><center>Payment</center></th>
+                    <th width="10%"><center>Discount</center></th>
+                    <th width="10%"><center>Balance</center></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr style="border:none">
+                    <td style="border:none">
+                        <input type="text" autocomplete="off" readonly="readonly" class="form-control" id="SINo" name="SINo" placeholder="SI No." />
+                    </td>
+
+                    <td style="border:none">
+                        <input type="text" autocomplete="off" readonly="readonly" class="form-control" id="Description" name="Description" placeholder="Description" />
+                    </td>
+
+                    <td style="border:none">
+                        <input type="number" autocomplete="off" class="form-control" id="Payment" name="Payment" placeholder="000.00" />
+                    </td>
+
+                    <td style="border:none">
+                        <input type="number" autocomplete="off" class="form-control" id="Discount" name="Discount" placeholder="0" />
+                    </td>
+
+                    <td style="border:none">
+                        <input type="text" autocomplete="off" readonly="readonly" class="form-control" id="Balance" name="Balance" placeholder="Balance" />
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <div class="container">
+            <div class="form-group" id="total">
+                <label for="TotalPayment">Total Payment</label>
+                <input type="number" autocomplete="off" min="0" class="form-control" id="TotalPayment" name="TotalPayment" placeholder="000.00" />
+            </div>
+
+            <div class="form-group" id="bal">
+                <label for="Balance">Total Balance</label>
+                <input type="number" autocomplete="off" readonly="readonly" class="form-control" id="Balance" name="Balance" placeholder="000.00" />
+            </div>
+        </div>
+
+        <br>
+
+        <br>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Submit" />
+        </div>
+    </div>
+
+</div>
