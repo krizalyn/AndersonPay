@@ -5,9 +5,9 @@
         .module('App')
         .controller('InvoiceController', InvoiceController);
 
-    InvoiceController.$inject = ['$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService'];
+    InvoiceController.$inject = ['$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService', 'ServiceService'];
 
-    function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService) {
+    function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService, ServiceService) {
         var vm = this;
 
         //object
@@ -18,12 +18,13 @@
             Quantity: 1,
             subtotalholder: 0,
             tax: 0,
-            totaltax: 0
+            totaltax: 0,
+            clientWithholdingTax: 0
         }
-        //sample
-        vm.InvoiceASD = {
-            WithholdingTaxASD: 0
-        }
+
+        vm.TryS = 123;
+        vm.AmountDueValue = 0;
+        vm.WithholdingTaxValue;
 
         //array
         vm.Invoices = [];
@@ -58,18 +59,37 @@
         vm.InitialiseTypeOfService = InitialiseTypeOfService;
         //function SINo
         vm.SINo = SINo;
+        vm.TryF = TryF;
 
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
         }
 
-        function Initialise() {
+        function TryF(taxu) {
+            //console.log(vm.TryS);
+            //vm.TryS = 23;
+            //console.log(vm.TryS +"----");
+
+            //console.log(taxu);
+            //AmountDue(taxu);
+
+            //console.log(vm.Invoices);
+            //console.log(vm.TypeOfServices);
+            console.log(vm.Services);
+            vm.TryS = 10;
+            //console.log(vm.Clients);
+        }
+
+        function Initialise(invoiceId) {
             Read();
             ReadForClients();
+            if (invoiceId != undefined)
+                ReadForService(invoiceId);
             ReadForTypeOfService();
             ReadCompanyBranch();
             ReadForCurrency();
             ReadForTaxType();
+            vm.AmountDueValue = 21;
         }
 
         function Read() {
@@ -120,9 +140,6 @@
         function CreateInvoiceService() {
             var service = angular.copy(vm.Service);
             vm.Services.push(service);
-            //sample
-            var invoiceASD = angular.copy(vm.InvoiceASD);
-            vm.InvoiceASD.push(invoiceASD);
         }
 
         function InitialiseTypeOfService(typeOfServices) {
@@ -162,22 +179,15 @@
         }
 
         //compute Withholding Tax
-        function WithholdingTax() {
-            var withholdingTax = 0.00;
-            //var asd = invoiceASD.WithholdingTax;
-            // ung int na 3 papalitan ng withholding tax ng client
-            withholdingTax += 3 * TotalSales() / 100;
-
-            return withholdingTax;
+        function WithholdingTax(whTax) {
+            if (whTax != undefined)
+                return whTax * TotalSales() / 100;
         }
 
         //compute Amount Due
-        function AmountDue() {
-            var amountDue = 0.00;
-
-            amountDue += TotalSales() + SalesTax() - WithholdingTax();
-
-            return amountDue;
+        function AmountDue(whTax) {
+            if (whTax != undefined)
+                return TotalSales() + SalesTax() - WithholdingTax(whTax);
         }
 
         //delete row of computation on adding service
@@ -218,9 +228,9 @@
         function ReadCompanyBranch() {
             vm.CompanyBranches = [
 
-            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
-            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
-            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
+                { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
+                { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
+                { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
 
             ];
         }
@@ -243,11 +253,27 @@
         }
 
         //PFD get data
-        function PDF(invoiceId)
-        {
+        function PDF(invoiceId) {
             $window.location.href = '../Invoice/InvoiceSummary/' + invoiceId;
             //$window.href = '..("InvoiceSummary", "Invoice")';
             //$window.location.href = '@Url.Action("InvoiceSummary", "Invoice")';
+        }
+
+        function ReadForService(invoiceId) {
+            ServiceService.Read(invoiceId)
+                .then(function (response) {
+                    vm.Services = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+
+                });
         }
     }
 })();
