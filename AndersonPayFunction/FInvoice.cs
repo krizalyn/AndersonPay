@@ -50,7 +50,11 @@ namespace AndersonPayFunction
         #region UPDATE
         public Invoice Update(Invoice invoice)
         {
+            _iDInvoice.Delete<EService>(a => a.InvoiceId == invoice.InvoiceId);
+            // _iDInvoice.Delete<EInvoice>(a => a.InvoiceId == invoice.InvoiceId);
             var eInvoice = _iDInvoice.Update(EInvoice(invoice));
+            //EInvoice eInvoice = EInvoice(invoice);
+            //eInvoice = _iDInvoice.Create(eInvoice);
             return (Invoice(eInvoice));
         }
         #endregion

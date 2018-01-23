@@ -1,4 +1,5 @@
-﻿using AndersonPayFunction;
+﻿using AndersonPayEntity;
+using AndersonPayFunction;
 using AndersonPayModel;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace AndersonPay.Controllers
     {
         // GET: Invoice
         private IFInvoice _iFInvoice;
+        private IFService _iFService;
         public InvoiceController()
         {
             _iFInvoice = new FInvoice();
+            _iFService = new FService();
         }
         // Create new Invoice
         #region Create 
@@ -61,8 +64,15 @@ namespace AndersonPay.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(Invoice invoice)
+        public ActionResult Update(Invoice invoice, Service service)
         {
+            //delete service
+            _iFService.Delete(invoice.InvoiceId);
+            //service create
+            _iFService.Create(service);
+            //invoice.service = null
+            invoice.Services = null;
+
             invoice = _iFInvoice.Update(invoice);
             return RedirectToAction("Index");
 

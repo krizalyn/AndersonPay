@@ -1,7 +1,6 @@
-@*@model AndersonPayModel.Invoice
-@model AndersonPayEntity.EInvoice*@
-
 @using AndersonPayModel;
+@model Invoice
+
 @{
     ViewBag.Title = "InvoiceSummary";
 
@@ -13,8 +12,6 @@
         background: linear-gradient(to right, #159cf6, #97dded);
     }
 </style>*@
-
-
 
 <script type="text/javascript">
     function genPDF() {
@@ -60,10 +57,10 @@
 <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left; padding-left:70px; padding-top:40px; height:auto; width:200px;">
 
-    <div class="include" align="right" style="padding-right: 80px; padding-top:80px;">
+    <div class="include" align="right" style="padding-right: 80px; padding-top:80px;" ng-repeat="invoice in model.Invoices">
         <h3><b>Billing Statement</b></h3>
-        <h4><span ng-bind="invoice.SIno"></span>Sales Invoice No. </h4>
-        <input type="text" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.invoice.SINo}} @*@Model.SINo*@">
+        <h4><span @*ng-bind="invoice.SINo"*@></span>Sales Invoice No. </h4>
+        <input type="text" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.invoice.SINo}} @Model.SINo">
         @*<h4 id="InvoiceSummaryDate">
             <script>
                 var today = new Date();

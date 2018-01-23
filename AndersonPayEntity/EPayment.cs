@@ -16,5 +16,6 @@ namespace AndersonPayEntity
         public decimal Payments { get; set; }
         public decimal Discount { get; set; }
         public decimal Balance { get; set; }
+        public string Name { get; set; }
     }
 }
