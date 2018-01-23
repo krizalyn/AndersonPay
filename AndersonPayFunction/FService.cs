@@ -21,9 +21,10 @@ namespace AndersonPayFunction
         }
 
         #region CREATE
-        public Service Create(Service service)
+        public Service Create(int invoiceId, EService service)
         {
-            EService eService = EService(service);
+            EService eService = service;
+            eService.InvoiceId = invoiceId;
             eService = _iDService.Create(eService);
             return Service(eService);
         }

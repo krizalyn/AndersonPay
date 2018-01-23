@@ -180,14 +180,18 @@
 
         //compute Withholding Tax
         function WithholdingTax(whTax) {
-            if(whTax != undefined)
-            return whTax * TotalSales() / 100;
+            if (whTax != undefined && whTax != NaN)
+                return whTax * TotalSales() / 100;
+            else
+                return 0;
         }
 
         //compute Amount Due
         function AmountDue(whTax) {
-            if (whTax != undefined)
-            return TotalSales() + SalesTax() - WithholdingTax(whTax);
+            if (whTax != undefined && whTax != NaN)
+                return TotalSales() + SalesTax() - WithholdingTax(whTax);
+            else
+                return 0;
         }
 
         //delete row of computation on adding service

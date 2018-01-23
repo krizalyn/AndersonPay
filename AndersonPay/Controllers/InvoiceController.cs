@@ -3,6 +3,7 @@ using AndersonPayFunction;
 using AndersonPayModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -64,16 +65,17 @@ namespace AndersonPay.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(Invoice invoice, Service service)
+        public ActionResult Update(Invoice invoice)
         {
             //delete service
             _iFService.Delete(invoice.InvoiceId);
             //service create
-            _iFService.Create(service);
+            foreach (EService service in invoice.Services)
+            {
+                _iFService.Create(invoice.InvoiceId, service);
+            }
             //invoice.service = null
             invoice.Services = null;
-
-            invoice = _iFInvoice.Update(invoice);
             return RedirectToAction("Index");
 
         }

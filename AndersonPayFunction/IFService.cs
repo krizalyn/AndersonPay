@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using AndersonPayModel;
+using AndersonPayEntity;
 namespace AndersonPayFunction
 {
     public interface IFService
     {
         #region CREATE
-        Service Create(Service Service);
+        Service Create(int invoiceId, EService service);
         #endregion
 
         #region READ
