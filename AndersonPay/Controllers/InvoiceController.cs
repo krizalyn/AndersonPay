@@ -74,6 +74,7 @@ namespace AndersonPay.Controllers
             {
                 _iFService.Create(invoice.InvoiceId, service);
             }
+            invoice = _iFInvoice.Update(invoice);
             //invoice.service = null
             invoice.Services = null;
             return RedirectToAction("Index");
