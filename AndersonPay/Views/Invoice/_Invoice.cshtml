@@ -127,7 +127,7 @@
                                 <th width="15%"><center>Quantity</center></th>
                                 <th width="15%"><center>Rate</center></th>
                                 <th width="10%"><center>Subtotal</center></th>
-                                <th></th>
+                                <th width="10%"><center>Action</center></th>
                             </tr>
                         </thead>
 
@@ -213,8 +213,8 @@
                                 <td style="border:none"></td>
                                 <td style="border:none"></td>
                                 <td style="border:none"><h5><i><b><span>Amount Due:</span></b></i></h5></td>
-                                <td style="border:none"><h5><i><b><span>{{model.Client.CurrencyCode}}</span> <span ng-bind="model.AmountDue(model.Client.WithHoldingTax)"></span></b></i></h5></td>
-                                <td style="border:none"></td>
+                                <td style="border:none"><h5><i><b> <span ng-bind="model.AmountDue(model.Client.WithHoldingTax)| number:2"></span></b></i></h5></td>
+                                <td style="border:none"><h5><i><b><span>{{model.Client.CurrencyCode}}</span></b></i></h5></td>
                             </tr>
 
 

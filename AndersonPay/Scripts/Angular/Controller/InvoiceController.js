@@ -26,6 +26,10 @@
         vm.AmountDueValue = 0;
         vm.WithholdingTaxValue;
 
+        vm.TryS = 123;
+        vm.AmountDueValue = 0;
+        vm.WithholdingTaxValue;
+
         //array
         vm.Invoices = [];
         vm.TypeOfServices = [];
@@ -83,7 +87,9 @@
         function Initialise(invoiceId) {
             Read();
             ReadForClients();
-            if(invoiceId != undefined)
+
+            if (invoiceId != undefined)
+
                 ReadForService(invoiceId);
             ReadForTypeOfService();
             ReadCompanyBranch();
@@ -192,6 +198,7 @@
                 return TotalSales() + SalesTax() - WithholdingTax(whTax);
             else
                 return 0;
+
         }
 
         //delete row of computation on adding service
@@ -232,9 +239,9 @@
         function ReadCompanyBranch() {
             vm.CompanyBranches = [
 
-            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
-            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
-            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
+                { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
+                { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
+                { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
 
             ];
         }
@@ -257,8 +264,7 @@
         }
 
         //PFD get data
-        function PDF(invoiceId)
-        {
+        function PDF(invoiceId) {
             $window.location.href = '../Invoice/InvoiceSummary/' + invoiceId;
             //$window.href = '..("InvoiceSummary", "Invoice")';
             //$window.location.href = '@Url.Action("InvoiceSummary", "Invoice")';

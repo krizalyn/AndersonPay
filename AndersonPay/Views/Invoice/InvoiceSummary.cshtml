@@ -32,7 +32,7 @@
                 pdf.cell(50, 200, width, height, txt, i);
             });
         });
-
+    
         pdf.save('sample-file.pdf');
     }
     //function genPDF() { 
@@ -54,25 +54,27 @@
 @*<div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
     <h3>Summary</h3>
 </div>*@
-<div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
+<div class="form-group" ng-controller="InvoicePDFController as model" ng-init="model.Initialise()">
     <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left; padding-left:70px; padding-top:40px; height:auto; width:200px;">
 
     <div class="include" align="right" style="padding-right: 80px; padding-top:80px;" ng-repeat="invoice in model.Invoices">
         <h3><b>Billing Statement</b></h3>
+
         <h4><span @*ng-bind="invoice.SINo"*@></span>Sales Invoice No. </h4>
         <input type="text" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.invoice.SINo}} @Model.SINo">
         @*<h4 id="InvoiceSummaryDate">
+
             <script>
                 var today = new Date();
                 document.getElementById("InvoiceSummaryDate").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
             </script>
-        </h4>*@
+        </h4>
     </div>
     <div class="include2" style="padding-left: 80px;">
         <h6><b>ANDERSON GROUP BPO INC.</b></h6>
         <p>Branch Address</p>
     </div>
-    <div style="padding-left: 70px; padding-right:65px; padding-bottom:80px;">
+    <div style="padding-left: 70px; padding-right:65px; padding-bottom:80px;" >
         <table id="tableData" class="table table-hover table-sm table-bordered ">
             <thead>
                 <tr class="thead-inverse" style="background-color:#159cf6; color:white">
@@ -122,9 +124,9 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr style="height: 40px">
+                <tr style="height: 40px"  class="clickableRow" ng-repeat="invoice in model.Invoices" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(invoice.InvoiceId)">
                     <td style="font-size: 12px">Total</td>
-                    <td></td>
+                    <td><span ng-bind="invoice.AmountDue"></span></td>
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px">Plus: 12% VAT</td>
