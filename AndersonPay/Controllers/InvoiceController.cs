@@ -72,7 +72,6 @@ namespace AndersonPay.Controllers
             //service create
             foreach (EService service in invoice.Services)
             {
-
                 _iFService.Create(invoice.InvoiceId, service);
             }
             invoice = _iFInvoice.Update(invoice);
