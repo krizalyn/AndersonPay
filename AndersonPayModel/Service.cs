@@ -4,7 +4,7 @@
     {
         public decimal Quantity { get; set; }
         public decimal Rate { get; set; }
-        public decimal Subtotal { get; set; }
+        public decimal Subtotal => Quantity * Rate;
 
         public int InvoiceId { get; set; }
         public int ServiceId { get; set; }

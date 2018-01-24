@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
 using AndersonPayModel;
-using AndersonPayEntity;
+
 namespace AndersonPayFunction
 {
-    public interface IFService
+    public interface IFTaxType
     {
         #region CREATE
-        Service Create(int invoiceId, Service service);
+        TaxType Create(TaxType taxType);
         #endregion
 
         #region READ
-        List<Service> Read(int invoiceId);
+        TaxType Read(int taxTypeId);
+        List<TaxType> Read();
         #endregion
 
         #region Update
-        Service Update(Service Service);
+        TaxType Update(TaxType taxType);
         #endregion
 
         #region DELETE
-        void Delete(int invoiceId);
+        void Delete(int taxTypeId);
         #endregion
 
         #region OTHER FUNCTION

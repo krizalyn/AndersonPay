@@ -50,11 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTaxType.cs" />
     <Compile Include="DClient.cs" />
     <Compile Include="DInvoice.cs" />
     <Compile Include="DPayment.cs" />
     <Compile Include="DService.cs" />
     <Compile Include="DTypeOfService.cs" />
+    <Compile Include="IDTaxType.cs" />
     <Compile Include="IDClient.cs" />
     <Compile Include="IDInvoice.cs" />
     <Compile Include="IDPayment.cs" />

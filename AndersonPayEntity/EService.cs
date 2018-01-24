@@ -12,21 +12,16 @@ namespace AndersonPayEntity
 
         [ForeignKey("Invoice")]
         public int InvoiceId { get; set; }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ServiceId { get; set; }
-
         [ForeignKey("TypeOfService")]
-
         public int TypeOfServiceId { get; set; }
 
         public string Description { get; set; }
-
         public string Comments { get; set; }
 
         public virtual EInvoice Invoice { get; set; }
-
         public virtual ETypeOfService TypeOfService { get; set; }
     }
 }

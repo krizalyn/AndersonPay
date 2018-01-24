@@ -5,10 +5,13 @@
         .module('App')
         .controller('InvoiceController', InvoiceController);
 
-    InvoiceController.$inject = ['$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService', 'ServiceService'];
+    InvoiceController.$inject = ['$filter', '$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService', 'ServiceService'];
 
-    function InvoiceController($window, InvoiceService, ClientService, TypeOfServiceService, ServiceService) {
+    function InvoiceController($filter, $window, InvoiceService, ClientService, TypeOfServiceService, ServiceService) {
         var vm = this;
+
+        vm.ClientId;
+        vm.Address;
 
         //object
         vm.Service = {
@@ -38,6 +41,7 @@
         vm.PDF = PDF;
 
         vm.Initialise = Initialise;
+        vm.InitialiseCrud = InitialiseCrud;
         vm.Clients;
         vm.Delete = Delete;
 
@@ -82,14 +86,17 @@
 
         function Initialise(invoiceId) {
             Read();
+        }
+
+        function InitialiseCrud(clientId, invoiceId, address) {
+            vm.ClientId = clientId;
+            vm.Address = address;
             ReadForClients();
-            if(invoiceId != undefined)
-                ReadForService(invoiceId);
-            ReadForTypeOfService();
             ReadCompanyBranch();
             ReadForCurrency();
             ReadForTaxType();
             vm.AmountDueValue = 21;
+            ReadForService(invoiceId);
         }
 
         function Read() {
@@ -123,6 +130,9 @@
             ClientService.Read()
                 .then(function (response) {
                     vm.Clients = response.data;
+                    var client = $filter('filter')(vm.Clients, { ClientId: vm.ClientId })[0];
+                    if (client)
+                        vm.Client = client;
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -204,6 +214,9 @@
             TypeOfServiceService.Read()
                 .then(function (response) {
                     vm.TypeOfServices = response.data;
+                    angular.forEach(vm.Services, function (service) {
+                        service.TypeOfService = $filter('filter')(vm.TypeOfServices, { TypeOfServiceId: service.TypeOfServiceId })[0];
+                    });
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -228,15 +241,17 @@
             return BranchCode;
         }
 
-        //Branch Location
+        //Branch Location This should be a separate table
         function ReadCompanyBranch() {
             vm.CompanyBranches = [
-
             { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
             { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
             { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
 
             ];
+            var companyBranch = $filter('filter')(vm.CompanyBranches, { Address: vm.Address })[0];
+            if (companyBranch)
+                vm.CompanyBranch = companyBranch;
         }
 
         function ReadForTaxType() {
@@ -268,6 +283,7 @@
             ServiceService.Read(invoiceId)
                 .then(function (response) {
                     vm.Services = response.data;
+                    ReadForTypeOfService();
                 })
                 .catch(function (data, status) {
                     new PNotify({

@@ -89,7 +89,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="model.GoToUpdatePage(invoice.InvoiceId)">Edit</a></li>
                                     <li><a href="#" ng-click="model.Delete(invoice.InvoiceId)">Delete</a></li>
-                                    <li><a href="@Url.Action("InvoiceSummary", "Invoice")" data-toggle="modal" data-target="#myModal">PDF</a></li>
+                                    <li><a ng-href="~/Invoice/InvoiceSummary/{{invoice.InvoiceId}}" href="@Url.Action("InvoiceSummary", "Invoice")" data-toggle="modal" data-target="#myModal">PDF</a></li>
                                     <li><a href="#" ng-click="model.PDF(invoice.InvoiceId)" data-toggle="modal" data-target="#myModal">PDF asd </a></li>
                                 </ul>
                             </div>

@@ -51,7 +51,9 @@ namespace AndersonPayFunction
         public Invoice Update(Invoice invoice)
         {
             //_iDInvoice.Delete<EService>(a => a.InvoiceId == invoice.InvoiceId);
-            var eInvoice = _iDInvoice.Update(EInvoice(invoice));
+            var eInvoice = EInvoice(invoice);
+            eInvoice.Services = null;
+            eInvoice = _iDInvoice.Update(eInvoice);
             return (Invoice(eInvoice));
         }
         #endregion
@@ -97,7 +99,19 @@ namespace AndersonPayFunction
                 Tax = invoice.Tax,
                 //Comments = invoice.Comments,
                 //Recipients = invoice.Recipients,
-                Services = invoice.Services,
+                Services = invoice.Services?.Select(a => new EService
+                {
+                    Quantity = a.Quantity,
+                    Rate = a.Rate,
+                    Subtotal = a.Subtotal,
+
+                    InvoiceId = a.InvoiceId,
+                    ServiceId = a.ServiceId,
+                    TypeOfServiceId = a.TypeOfServiceId,
+
+                    Description = a.Description,
+                    Comments = a.Comments
+                }).ToList() ?? null,
                 SINo = invoice.SINo,
                 TIN = invoice.TIN,
                 Address = invoice.Address,

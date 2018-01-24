@@ -21,9 +21,9 @@ namespace AndersonPayFunction
         }
 
         #region CREATE
-        public Service Create(int invoiceId, EService service)
+        public Service Create(int invoiceId, Service service)
         {
-            EService eService = service;
+            EService eService = EService(service);
             eService.InvoiceId = invoiceId;
             eService = _iDService.Create(eService);
             return Service(eService);
@@ -31,9 +31,9 @@ namespace AndersonPayFunction
         #endregion
 
         #region READ
-        public List<Service> Read(int id)
+        public List<Service> Read(int invoiceId)
         {
-            List<EService> eService = _iDService.List<EService>(a => a.InvoiceId == id);
+            List<EService> eService = _iDService.List<EService>(a => a.InvoiceId == invoiceId);
             return Service(eService);
         }
         #endregion

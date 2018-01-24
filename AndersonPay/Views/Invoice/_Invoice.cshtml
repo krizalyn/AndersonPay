@@ -1,57 +1,8 @@
 @{
     ViewBag.Title = "_Invoice";
 }
-
-@*<style> Moved to site
-        div.page_Invoice {
-            background-color: white;
-            margin: 0px;
-            padding: 10px;
-            padding-top: 20px;
-        }
-
-        th {
-            text-align:center;
-            background-color: #465A65;
-            color: white;
-        }
-
-        div.dropBranch {
-            width: 350px;
-
-        }
-
-        div.dropClient {
-            width: 350px;
-        }
-
-        img.logo {
-            width: 150px;
-            height: 150px;
-        }
-
-        div.header {
-            position: relative;
-            display: table;
-            width: 100%;
-            margin-bottom: 5rem;
-        }
-        tr.thead-inverse {
-            background-color: #465A65;
-            color: white;
-        }
-
-        div.alignContent {
-            width: 100%;
-            display:table;
-            position:relative;
-        }
-
-
-    </style>*@
-
 <div class="page_Invoice">
-    <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise(@Model.InvoiceId)">
+    <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.InitialiseCrud(@Model.ClientId, @Model.InvoiceId, '@Model.Address')">
         <div class="header">
             <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left">
             <div class="form-group" align="right" style="padding-top:50px;">

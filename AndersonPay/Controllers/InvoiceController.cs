@@ -13,10 +13,12 @@ namespace AndersonPay.Controllers
     public class InvoiceController : Controller
     {
         // GET: Invoice
+        private IFClient _iFClient;
         private IFInvoice _iFInvoice;
         private IFService _iFService;
         public InvoiceController()
         {
+            _iFClient = new FClient();
             _iFInvoice = new FInvoice();
             _iFService = new FService();
         }
@@ -36,9 +38,16 @@ namespace AndersonPay.Controllers
             //, new { id = invoice.InvoiceId }
         }
         #endregion
-        public ActionResult InvoiceSummary()
+        public ActionResult InvoiceSummary(int id)
         {
-            return PartialView();
+            var invoice = _iFInvoice.Read(id);
+            var services = _iFService.Read(id);
+            var client = _iFClient.Read(invoice.ClientId);
+            //var taxType = _iFTaxType.Read(client.TaxTypeId); // uncomment the next two lines once the TaxType table is done
+            //client.TaxType = taxType;
+            invoice.Client = client;
+            invoice.Services = services;
+            return PartialView(invoice);
         }
         // Read list of invoices
 
@@ -67,16 +76,14 @@ namespace AndersonPay.Controllers
         [HttpPost]
         public ActionResult Update(Invoice invoice)
         {
-            //delete service
             _iFService.Delete(invoice.InvoiceId);
-            //service create
-            foreach (EService service in invoice.Services)
-            {
-                _iFService.Create(invoice.InvoiceId, service);
-            }
+            if(invoice.Services != null)
+                foreach (Service service in invoice.Services)
+                {
+                    _iFService.Create(invoice.InvoiceId, service);
+                }
+
             invoice = _iFInvoice.Update(invoice);
-            //invoice.service = null
-            invoice.Services = null;
             return RedirectToAction("Index");
 
         }
