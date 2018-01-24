@@ -6,12 +6,12 @@
 
 }
 @*<style> Moved to site
-    #grad1 {
-        color: white;
-        margin: 0px;
-        background: linear-gradient(to right, #159cf6, #97dded);
-    }
-</style>*@
+        #grad1 {
+            color: white;
+            margin: 0px;
+            background: linear-gradient(to right, #159cf6, #97dded);
+        }
+    </style>*@
 
 <script type="text/javascript">
     function genPDF() {
@@ -27,18 +27,18 @@
         $.each($('#tableData tr'), function (i, row) {
             $.each($(row).find("td, th"), function (j, cell) {
                 var txt = $(cell).text().trim() || " ";
-                var width = (j == 4) ? 20 : 250; //make 4th column smaller  
-                var height = (j == 4) ? 3 : 20; // 
+                var width = (j == 4) ? 20 : 250; //make 4th column smaller
+                var height = (j == 4) ? 3 : 20; //
                 pdf.cell(50, 200, width, height, txt, i);
             });
         });
 
         pdf.save('sample-file.pdf');
     }
-    //function genPDF() { 
+    //function genPDF() {
 
     //    var doc = new jsPDF();
-    //    doc 
+    //    doc
     //    //var specialElementHandlers = {
     //    //    '#hidediv': function (element, renderer) { return true; }
     //    //}
@@ -52,8 +52,8 @@
 
 
 @*<div class="panel panel-heading" id="grad1" style="padding:5px;margin-bottom:10px;padding-left:20px;">
-    <h3>Summary</h3>
-</div>*@
+        <h3>Summary</h3>
+    </div>*@
 <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.Initialise()">
     <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left; padding-left:70px; padding-top:40px; height:auto; width:200px;">
 
@@ -62,11 +62,11 @@
         <h4><span @*ng-bind="invoice.SINo"*@></span>Sales Invoice No. </h4>
         <input type="text" class="form-control" id="invoice.Name" readonly="readonly" name="invoice.Name" value="{{model.invoice.SINo}} @Model.SINo">
         @*<h4 id="InvoiceSummaryDate">
-            <script>
-                var today = new Date();
-                document.getElementById("InvoiceSummaryDate").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-            </script>
-        </h4>*@
+                <script>
+                    var today = new Date();
+                    document.getElementById("InvoiceSummaryDate").innerHTML = "Date: " + today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+                </script>
+            </h4>*@
     </div>
     <div class="include2" style="padding-left: 80px;">
         <h6><b>ANDERSON GROUP BPO INC.</b></h6>
