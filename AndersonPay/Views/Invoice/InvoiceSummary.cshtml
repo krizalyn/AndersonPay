@@ -1,6 +1,5 @@
 @using AndersonPayModel;
 @model Invoice
-
 @{
     ViewBag.Title = "InvoiceSummary";
 
@@ -25,7 +24,6 @@
                 pdf.cell(50, 200, width, height, txt, i);
             });
         });
-
         pdf.save('sample-file.pdf');
     }
 </script>
@@ -38,7 +36,8 @@
 
     <div class="include" align="right" style="padding-right: 80px; padding-top:80px;">
         <h3><b>Billing Statement</b></h3>
-        <h4>Sales Invoice No. @Model.SINo</h4>
+        @* Change the SINo ID generation *@
+        <h4>Sales Invoice No. @Model.SINo@Model.InvoiceId</h4>
     </div>
     <div class="include2" style="padding-left: 80px;">
         <h6><b>ANDERSON GROUP BPO INC.</b></h6>
@@ -56,21 +55,25 @@
                 @foreach(var service in Model.Services)
                 {
                     <tr>
-                        <td>
-                            @service.Comments
+                        <td style="font-size: 12px">
+                            @*@foreach(var typeofservice in Model.TypeOfServices)
+                            {
+
+                            }*@
+                            @service.Comments (@service.Quantity x @service.Rate)
                         </td>
-                        <td>
+                        <td style="font-size: 12px">
                             @service.Subtotal
                         </td>
                     </tr>
                 }
                 <tr>
-                    <td style="font-size: 12px">Billing Period:</td>
+                    <td style="font-size: 12px">Billing Period: @Model.CreatedDateNow</td>
                     <td></td>
                 </tr>
                 <tr style="height: 5px">
-                    <td style="font-size: 12px">Due Date:</td>
-                    <td></td>
+                    <td style="font-size: 12px">Due Date: @Model.DueDate</td>
+                    <td style="font-size: 12px"></td>
                 </tr>
                 <tr style="height: 40px">
                     <td></td>
@@ -81,26 +84,37 @@
                     <td></td>
                 </tr>
                 <tr style="height: 40px">
-                    <td style="font-size: 12px">Plus: 12% VAT</td>
-                    <td>@Model.Tax</td>
+                    <td style="font-size: 12px">Sub-Total</td>
+                    <td style="font-size: 12px">@Model.Subtotal</td>
                 </tr>
                 <tr style="height: 40px">
-                    <td style="font-size: 12px">Sub-Total</td>
-                    <td>@Model.Subtotal</td>
+                    <td style="font-size: 12px">Plus: 12% VAT</td>
+                    <td style="font-size: 12px" id="plusVAT">
+                        <script>
+                        var invoiceSubtotal = @Model.Subtotal;
+                        document.getElementById("plusVAT").innerHTML = 12 * invoiceSubtotal / 100;
+                        </script>
+                    </td>
                 </tr>
                 <tr>
-                    <td style="font-size: 12px">Less: Withholding TAX</td>
-                    <td>@Model.Client.TaxTypes</td>
+                    <td style="font-size: 12px">Less: @Model.Client.WithHoldingTax% Withholding TAX</td>
+                    <td style="font-size: 12px" id="lessWithholdingTax">@Model.Client.TaxTypes
+                    <script>
+                        var invoiceSubtotal = @Model.Subtotal;
+                        var clientWithholdingTax = @Model.Tax;
+                        document.getElementById("lessWithholdingTax").innerHTML = clientWithholdingTax * invoiceSubtotal / 100;
+                    </script>
+                    </td>
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px"><b>Total payable for this invoice</b></td>
-                    <td>@Model.AmountDue</td>
+                    <td style="font-size: 12px">@Model.AmountDue</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="modal-footer" align="right" style="padding: 20px;">
-        <button type="submit" value="Index" class="btn btn-primary" onclick="javascript:genPDF()">Save and Send</button>
+        <button type="submit" value="Index" class="btn btn-primary" onclick="javascript:genPDF()">Save</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
     </div>
 </div>

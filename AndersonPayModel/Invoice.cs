@@ -1,4 +1,5 @@
 ﻿using BaseModel;
+using System;
 using System.Collections.Generic;
 
 namespace AndersonPayModel
@@ -22,9 +23,12 @@ namespace AndersonPayModel
         public string SINo { get; set; }
         public string TaxTypes { get; set; }
         public string TIN { get; set; }
+        public DateTime DueDate => CreatedDate.Value.AddDays(7);
 
         public Client Client { get; set; }
 
         public virtual List<Service> Services { get; set; }
+        public TypeOfService TypeOfService { get; set; }
+
     }
 }
