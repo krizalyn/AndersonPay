@@ -2,13 +2,15 @@
 using System.ComponentModel.DataAnnotations.Schema;
 namespace AndersonPayEntity
 {
-    [Table("TaxType")]
-    public class ETaxType
+    [Table("CurrencyCode")]
+    public class ECurrencyCode
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TaxTypeId { get; set; }
+        public int CurrencyCodeId { get; set; }
 
-        public string TaxTypes { get; set; }
+        public string CurrencyCodes { get; set; }
+
+
     }
 }

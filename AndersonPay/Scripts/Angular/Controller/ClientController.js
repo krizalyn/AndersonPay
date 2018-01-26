@@ -5,9 +5,9 @@
         .module('App')
         .controller('ClientController', ClientController);
 
-    ClientController.$inject = ['$window','ClientService'];
+    ClientController.$inject = ['$window', 'ClientService', 'CurrencyService'];
 
-    function ClientController($window, ClientService) {
+    function ClientController($window, ClientService, CurrencyService) {
         var vm = this;
 
         vm.Client;
@@ -24,14 +24,24 @@
 
         vm.selectedName;
 
+        vm.ReadForCurrency = ReadForCurrency;
+        vm.Currency;
+        
+        function TryF() {
+            console.log(vm.Currency);
+        }
+
         function GoToUpdatePage(clientId) {
             $window.location.href = '../Client/Update/' + clientId;
         }
 
-        function Initialise(name) {
+        function Initialise(name, currencyId) {
             vm.selectedName = name;
             console.log(vm.selectedName);
+            vm.CurrencyId = currencyId;
+
             Read();
+            ReadForCurrency();
         }
 
         function Read() {
@@ -57,6 +67,26 @@
                     Read();
                 })
                 .catch(function (data, status) {
+                });
+        }
+
+        function ReadForCurrency() {
+            CurrencyService.Read()
+                .then(function (response) {
+                    vm.Currency = response.data;
+                    var currency = $filter('filter')(vm.Currency, { CurrencyId: vm.CurrencyId })[0];
+                    if (currency)
+                        vm.Currency = currency;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+
                 });
         }
 

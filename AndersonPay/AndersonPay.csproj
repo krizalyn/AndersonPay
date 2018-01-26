@@ -495,6 +495,7 @@
     <Content Include="Scripts\Angular\Service\ClientService.js" />
     <Content Include="Scripts\Angular\Service\InvoiceService.js" />
     <Content Include="Scripts\Angular\Service\PaymentService.js" />
+    <Content Include="Scripts\Angular\Service\CurrencyService.js" />
     <Content Include="Scripts\Angular\Service\ServiceService.js" />
     <Content Include="Scripts\Angular\Service\TypeOfServiceService.js" />
     <Content Include="Scripts\errors.json" />

@@ -93,7 +93,6 @@
             vm.Address = address;
             ReadForClients();
             ReadCompanyBranch();
-            ReadForCurrency();
             ReadForTaxType();
             vm.AmountDueValue = 21;
             ReadForService(invoiceId);
@@ -259,15 +258,6 @@
                 { Type: "VAT" },
                 { Type: "NON-VAT" },
                 { Type: "ZERO RATED" },
-            ];
-        }
-
-        //Currency
-        function ReadForCurrency() {
-            vm.CurrencyCode = [
-                { Code: "USD" },
-                { Code: "GBP" },
-                { Code: "PHP" },
             ];
         }
 

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AndersonPayModel
 {
-   public class TaxType
+   public class CurrencyCode
     {
-        public int TaxTypeId { get; set; }
+        public int CurrencyCodeId { get; set; }
 
-        public string TaxTypes { get; set; }
+        public string CurrencyCodes { get; set; }
     }
 }
