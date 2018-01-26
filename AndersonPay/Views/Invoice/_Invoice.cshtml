@@ -164,8 +164,8 @@
                                 <td style="border:none"></td>
                                 <td style="border:none"></td>
                                 <td style="border:none"><h5><i><b><span>Amount Due:</span></b></i></h5></td>
-                                <td style="border:none"><h5><i><b><span>{{model.Client.CurrencyCode}}</span> <span ng-bind="model.AmountDue(model.Client.WithHoldingTax)"></span></b></i></h5></td>
-                                <td style="border:none"></td>
+                                <td style="border:none"><h5><i><b> <span ng-bind="model.AmountDue(model.Client.WithHoldingTax)| number:2"></span></b></i></h5></td>
+                                <td style="border:none"><h5><i><b><span>{{model.Client.CurrencyCode}}</span></b></i></h5></td>
                             </tr>
 
 
@@ -173,7 +173,7 @@
                     <input type="hidden" class="form-control" id="invoice.AmountDue" readonly="readonly" name="invoice.AmountDue" value="{{model.AmountDue(model.Client.WithHoldingTax)}}">
                     <input type="hidden" class="form-control" id="invoice.Subtotal" readonly="readonly" name="invoice.Subtotal" value="{{model.TotalSales()}}">
                     <br />
-                    <button type="button" ng-click="model.TryF(@Model.Tax)" class="btn btn-primary" style="float:right">TryF</button>
+                    @*<button type="button" ng-click="model.TryF(@Model.Tax)" class="btn btn-primary" style="float:right">TryF</button>*@
                     <button type="button" ng-click="model.CreateInvoiceService()" class="btn btn-primary" style="float:right">Add Service</button>
 
                 </div>

@@ -28,7 +28,9 @@ namespace AndersonPayModel
         public Client Client { get; set; }
 
         public virtual List<Service> Services { get; set; }
-        public TypeOfService TypeOfService { get; set; }
+        //public TypeOfService TypeOfService { get; set; }
+        public virtual List<TypeOfService> TypeOfServices { get; set; }
+
 
     }
 }
