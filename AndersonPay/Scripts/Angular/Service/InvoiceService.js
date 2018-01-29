@@ -40,11 +40,11 @@
             });
         }
 
-        function Delete(invoice) {
+        function Delete(invoiceId) {
             return $http({
                 method: 'DELETE',
-                url: '/Invoice/Delete',
-                data: $.param(invoice),
+                url: '/Invoice/Delete/' + invoiceId,
+                //data: $.param(invoiceId),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
@@ -53,6 +53,16 @@
             return $http({
                 method: 'POST',
                 url: '../AndersonPay/TypeOfServices',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+        
+        function PDF(InvoiceId)
+        {
+            return $http({
+                method: 'POST',
+                url: '/Invoice/Read',
+                data: $.param(InvoiceId),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@*<style> Moved to site
+    .pageTService {
+        background-color: white;
+        margin: 0px;
+        padding: 10px;
+        padding-top: 20px;
+        height: auto;
+    }
+
+    tr.thead-inverse {
+        background-color: #465A65;
+        color: white;
+    }
+
+    a.btn-default:hover {
+        background-color: #0c7cd5;
+        color: white;
+    }
+
+    a.btn-default {
+        background-color: #2196F3;
+        color: white;
+    }
+</style>*@
+
+<div class="page_Index_Payment"ng-controller="PaymentController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="../Payment/Create" class="btn btn-default">Create</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>Name of Client</th>
+                        <th>Date Of Payment</th>
+                        <th>Amount Received</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickableRow" ng-repeat="payment in model.Payments" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(payment.PaymentId)">
+                        <td><span ng-bind="payment.Name"></span></td>
+                        <td><span ng-bind="payment.DateOfPayment"></span></td>
+                        <td><span ng-bind="payment.AmountReceived"></span></td>
+                        <td ng-click="$event.originalEvent.dropdown = true">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(payment.PaymentId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(payment)">Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

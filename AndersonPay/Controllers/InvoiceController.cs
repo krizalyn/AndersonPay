@@ -1,7 +1,9 @@
-﻿using AndersonPayFunction;
+﻿using AndersonPayEntity;
+using AndersonPayFunction;
 using AndersonPayModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,10 +13,16 @@ namespace AndersonPay.Controllers
     public class InvoiceController : Controller
     {
         // GET: Invoice
+        private IFClient _iFClient;
         private IFInvoice _iFInvoice;
+        private IFService _iFService;
+        private IFTypeOfService _iFTypeOfService;
         public InvoiceController()
         {
+            _iFClient = new FClient();
             _iFInvoice = new FInvoice();
+            _iFService = new FService();
+            _iFTypeOfService = new FTypeOfService();
         }
         // Create new Invoice
         #region Create 
@@ -32,9 +40,18 @@ namespace AndersonPay.Controllers
             //, new { id = invoice.InvoiceId }
         }
         #endregion
-        public ActionResult InvoiceSummary()
+        public ActionResult InvoiceSummary(int id)
         {
-            return PartialView();
+            var invoice = _iFInvoice.Read(id);
+            var services = _iFService.Read(id);
+            var client = _iFClient.Read(invoice.ClientId);
+            var typeOfServices = _iFTypeOfService.Read();
+            //var taxType = _iFTaxType.Read(client.TaxTypeId); // uncomment the next two lines once the TaxType table is done
+            //client.TaxType = taxType;
+            invoice.Client = client;
+            invoice.Services = services;
+            invoice.TypeOfServices = typeOfServices;
+            return PartialView(invoice);
         }
         // Read list of invoices
 
@@ -63,6 +80,13 @@ namespace AndersonPay.Controllers
         [HttpPost]
         public ActionResult Update(Invoice invoice)
         {
+            _iFService.Delete(invoice.InvoiceId);
+            if(invoice.Services != null)
+                foreach (Service service in invoice.Services)
+                {
+                    _iFService.Create(invoice.InvoiceId, service);
+                }
+
             invoice = _iFInvoice.Update(invoice);
             return RedirectToAction("Index");
 
@@ -72,10 +96,10 @@ namespace AndersonPay.Controllers
         //Delete Invoice
         #region Delete
         [HttpDelete]
-        public JsonResult Delete(Invoice invoice)
+        public JsonResult Delete(int id)
         {
 
-            _iFInvoice.Delete(invoice);
+            _iFInvoice.Delete(id);
             return Json(string.Empty);
 
         }

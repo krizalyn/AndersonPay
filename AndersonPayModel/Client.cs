@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BaseModel;
 
 
 namespace AndersonPayModel
 {
-   public class Client : Base.Base
+    public class Client : Base
     {
         public int ClientId { get; set; }
 
@@ -19,8 +15,6 @@ namespace AndersonPayModel
         
         public string CurrencyCode { get; set; }
         public string EmailAddress { get; set; }
-
-        
 
         public int CompanyId { get; set; }
         public int TaxTypeId { get; set; }

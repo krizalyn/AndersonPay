@@ -22,12 +22,15 @@
 
         vm.ClientId;
 
+        vm.selectedName;
+
         function GoToUpdatePage(clientId) {
             $window.location.href = '../Client/Update/' + clientId;
         }
 
-        function Initialise(clientId) {
-      
+        function Initialise(name) {
+            vm.selectedName = name;
+            console.log(vm.selectedName);
             Read();
         }
 

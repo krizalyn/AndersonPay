@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECompanyAddress.cs" />
     <Compile Include="EClient.cs" />
     <Compile Include="EFileDetail.cs" />
     <Compile Include="EArchive.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="EService.cs" />
     <Compile Include="EClientEmail.cs" />
     <Compile Include="ETaxType.cs" />
+    <Compile Include="EPayment.cs" />
     <Compile Include="ETypeOfService.cs" />
     <Compile Include="EJobs.cs" />
     <Compile Include="EEmployee.cs" />

@@ -1,4 +1,5 @@
-﻿using AndersonPayModel;
+﻿using AndersonPayEntity;
+using AndersonPayModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace AndersonPayFunction
         #endregion
 
         #region DELETE
-        void Delete(Invoice Invoice);
+        void Delete(int InvoiceId);
         #endregion
 
         #region OTHER FUNCTION

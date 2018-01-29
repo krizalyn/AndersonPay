@@ -4,8 +4,7 @@ using AndersonPayEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AndersonPayFunction
 {
@@ -13,6 +12,7 @@ namespace AndersonPayFunction
     {
 
         private IDInvoice _iDInvoice;
+
 
         public FInvoice(IDInvoice iDInvoice)
         {
@@ -29,6 +29,7 @@ namespace AndersonPayFunction
         {
             EInvoice eInvoice = EInvoice(invoice);
             eInvoice = _iDInvoice.Create(eInvoice);
+            eInvoice.CreatedDate = DateTime.Now;
             return Invoice(eInvoice);
         }
         #endregion
@@ -50,15 +51,20 @@ namespace AndersonPayFunction
         #region UPDATE
         public Invoice Update(Invoice invoice)
         {
-            var eInvoice = _iDInvoice.Update(EInvoice(invoice));
+            //_iDInvoice.Delete<EService>(a => a.InvoiceId == invoice.InvoiceId);
+            var eInvoice = EInvoice(invoice);
+            eInvoice.Services = null;
+            eInvoice = _iDInvoice.Update(eInvoice);
             return (Invoice(eInvoice));
         }
         #endregion
 
         #region DELETE
-        public void Delete(Invoice invoice)
+        public void Delete(int invoiceId)
         {
-            _iDInvoice.Delete(EInvoice(invoice));
+            //_iDInvoice.Delete(EInvoice(invoice));
+            _iDInvoice.Delete<EService>(a => a.InvoiceId == invoiceId);
+            _iDInvoice.Delete<EInvoice>(a => a.InvoiceId == invoiceId);
         }
         #endregion
 
@@ -89,14 +95,30 @@ namespace AndersonPayFunction
                 Name = invoice.Name,
                 TaxTypes = invoice.TaxTypes,
                 Subtotal = invoice.Subtotal,
-                Total = invoice.Total,
+                AmountDue = invoice.AmountDue,
                 Currency = invoice.Currency,
                 Tax = invoice.Tax,
                 //Comments = invoice.Comments,
-                Recipients = invoice.Recipients,
-                Services = invoice.Services,
+                //Recipients = invoice.Recipients,
+                Services = invoice.Services?.Select(a => new EService
+                {
+                    Quantity = a.Quantity,
+                    Rate = a.Rate,
+                    Subtotal = a.Subtotal,
+
+                    InvoiceId = a.InvoiceId,
+                    ServiceId = a.ServiceId,
+                    TypeOfServiceId = a.TypeOfServiceId,
+
+                    Description = a.Description,
+                    Comments = a.Comments
+                }).ToList() ?? null,
                 SINo = invoice.SINo,
-                TIN = invoice.TIN
+                TIN = invoice.TIN,
+                Address = invoice.Address,
+                ClientId = invoice.ClientId,
+                CreatedDate = invoice.CreatedDate,
+                DueDate = invoice.DueDate
             };
             return returnEInvoice;
         }
@@ -127,14 +149,17 @@ namespace AndersonPayFunction
                 InvoiceId = eInvoice.InvoiceId,
                 Name = eInvoice.Name,
                 Subtotal = eInvoice.Subtotal,
-                Total = eInvoice.Total,
+                AmountDue = eInvoice.AmountDue,
                 TaxTypes = eInvoice.TaxTypes,
                 Currency = eInvoice.Currency,
                 Tax = eInvoice.Tax,
-                Recipients = eInvoice.Recipients,
+                //Recipients = eInvoice.Recipients,
                 //Comments = eInvoice.Comments,
                 SINo = eInvoice.SINo,
-                TIN = eInvoice.TIN
+                TIN = eInvoice.TIN,
+                Address = eInvoice.Address,
+                ClientId = eInvoice.ClientId,
+                CreatedDate = eInvoice.CreatedDate
             };
 
             return returnInvoice;
@@ -165,15 +190,18 @@ namespace AndersonPayFunction
 
                 InvoiceId = a.InvoiceId,
                 Name = a.Name,
-                Total = a.Total,
+                AmountDue = a.AmountDue,
                 Subtotal = a.Subtotal,
                 TaxTypes = a.TaxTypes,
                 Currency = a.Currency,
                 Tax = a.Tax,
-                Recipients = a.Recipients,
+                //Recipients = a.Recipients,
                 //Comments = a.Comments,
                 SINo = a.SINo,
-                TIN = a.TIN
+                TIN = a.TIN,
+                Address = a.Address,
+                ClientId = a.ClientId,
+                CreatedDate = a.CreatedDate
 
             });
 

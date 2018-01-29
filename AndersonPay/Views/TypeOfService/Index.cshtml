@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-<style>
+@*<style>  Moved to site
     .pageTService {
         background-color: white;
         margin: 0px;
@@ -24,13 +24,15 @@
         background-color: #2196F3;
         color: white;
     }
-</style>
+</style>*@
+
 
 
 <div class="pageTService"ng-controller="TypeOfServiceController as model" ng-init="model.Initialise()">
     <div class="row">
         <div class="col-sm-4">
             <a href="../TypeOfService/Create" class="btn btn-default">Create</a>
+            <a href="../AddJobs/Index" class="btn btn-default">Add Jobs</a>
         </div>
     </div>
     <div class="row">

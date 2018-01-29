@@ -40,6 +40,7 @@ namespace AndersonPayContext
         public DbSet<ETypeOfService> Typeofservices { get; set; }
         public DbSet<EClient> Client { get; set; }
         public DbSet<ETaxType> TaxType { get; set; }
+        public DbSet<EPayment> Payment { get; set; }
 
     }
 }
