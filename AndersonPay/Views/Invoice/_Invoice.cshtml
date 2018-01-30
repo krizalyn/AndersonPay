@@ -2,42 +2,43 @@
     ViewBag.Title = "_Invoice";
 }
 <div class="page_Invoice">
-    <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.InitialiseCrud(@Model.ClientId, @Model.InvoiceId, '@Model.Address')">
+    <div class="form-group" ng-controller="InvoiceController as model" ng-init="model.InitialiseCrud(@Model.ClientId, @Model.InvoiceId)">
         <div class="header">
             <img class="logo" src="~/Content/assets/img/pdf-logo.jpg" style="float:left">
             <div class="form-group" align="right" style="padding-top:50px;">
                 <input type="hidden" readonly="readonly" class="form-control" id="CreatedDate" name="CreatedDate" placeholder="CreatedDate" value="@Model.CreatedDate">
                 <input type="hidden" readonly="readonly" class="form-control" id="DueDate" name="DueDate" placeholder="DueDate">
-                <label for="SINo">SI No: </label>
-                <label id="SINo"><u>{{model.CompanyBranch.SINo}}@Model.SINo</u></label><br>
-                <input type="hidden" class="form-control" id="SINo" name="invoice.SINo" value="{{model.CompanyBranch.SINo}}">
                 <input type="hidden" class="form-control" id="InvoiceId" name="invoice.InvoiceId" value="{{model.invoice.InvoiceId}} @Model.InvoiceId">
             </div>
         </div>
 
         <div class="alignContent">
 
-            <div class="floatL" style="float:left">
+            <div class="floatL" style="float:left" ng-controller="CompanyAddressController as model" ng-init="model.Initialise()">
                 <div>
 
-                    <label for="TIN" id="TIN">TIN: <u>{{model.CompanyBranch.TIN}}@Model.TIN</u></label><br>
-                    <input type="hidden" class="form-control" id="TIN" name="invoice.TIN" value="{{model.CompanyBranch.TIN}}">
+                    <label for="SINo">SI No: </label>
+                    <label id="SINo"><u>{{model.CompanyAddress.SINo}}@Model.SINo</u></label><br>
+                    <input type="hidden" class="form-control" id="SINo" name="SINo" value="{{model.CompanyBranch.SINo}}">
+
+                    <label for="TIN" id="TIN">TIN: <u>{{model.CompanyAddress.TIN}}@Model.TIN</u></label><br>
+                    <input type="hidden" class="form-control" id="TIN" name="invoice.TIN" value="{{model.CompanyAddress.TIN}}">
                 </div>
 
-
                 <div class="dropBranch">
-                    <label for="Address" id="Address">Address: {{model.CompanyBranch.Address}} @Model.Address</label>
-                    <input type="hidden" class="form-control" id="Address" name="invoice.Address" value="{{model.CompanyBranch.Address}} @Model.Address">
-                    <ui-select ng-model="model.CompanyBranch">
+                    <label for="Address" id="Address">Address: {{model.CompanyAddress.Address}} @Model.Address</label>
+                    <input type="hidden" class="form-control" id="Address" name="invoice.Address" value="{{model.CompanyAddress.Address}} @Model.Address">
+                    <ui-select ng-model="model.CompanyAddress">
                         <ui-select-match placeholder="Select Branch">
-                            <span ng-bind="$select.selected.CompanyAddress"></span>
+                            <span ng-bind="$select.selected.CompanyBranch"></span>
                         </ui-select-match>
-                        <ui-select-choices repeat="dropDownItem in (model.CompanyBranches | filter: $select.search) track by $index">
-                            <span ng-bind="dropDownItem.CompanyAddress"></span>
+                        <ui-select-choices repeat="companyAddress in (model.CompanyAddresses | filter: $select.search) track by $index">
+                            <span ng-bind="companyAddress.CompanyBranch"></span>
                         </ui-select-choices>
                     </ui-select>
                 </div>
             </div>
+        </div>
             <br>
 
             <div id="" class="form-group" align="right">

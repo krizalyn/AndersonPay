@@ -21,7 +21,11 @@ namespace AndersonPayModel
         public int TaxTypeId { get; set; }
         public TaxType TaxType { get; set; }
 
+        public string TaxTypes { get; set; }
+
         public int CurrencyCodeId { get; set; }
         public CurrencyCode CurrencyCode { get; set; }
+
+        public string CurrencyCodes { get; set; }
     }
 }

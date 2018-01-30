@@ -3,37 +3,37 @@
 
     angular
         .module('App')
-        .factory('CurrencyService', CurrencyService);
+        .factory('CompanyAddressService', CompanyAddressService);
 
-    CurrencyService.$inject = ['$http'];
+    CompanyAddressService.$inject = ['$http'];
 
-    function CurrencyService($http) {
+    function CompanyAddressService($http) {
         return {
             Read: Read,
-            ReadCurrencyServiceinee: ReadCurrencyServiceinee,
-            ReadCurrencyForPosition: ReadCurrencyForPosition
+            ReadCompanyAddressServiceinee: ReadCompanyAddressServiceinee,
+            ReadCompanyAddressForPosition: ReadCompanyAddressForPosition
         }
 
         function Read() {
             return $http({
                 method: 'POST',
-                url: '/Currency/Read',
+                url: '/CompanyAddress/Read',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
 
-        function ReadCurrencyServiceinee(currencyineeId) {
+        function ReadCompanyAddressServiceinee(companyAddressineeId) {
             return $http({
                 method: 'POST',
-                url: '/Currency/ReadCurrencyServiceinee/' + currencyineeId,
+                url: '/CompanyAddress/ReadCompanyAddressServiceinee/' + companyAddressineeId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
 
-        function ReadCurrencyForPosition(positionId) {
+        function ReadCompanyAddressForPosition(positionId) {
             return $http({
                 method: 'POST',
-                url: '/Currency/ReadCurrencyForPosition/' + positionId,
+                url: '/CompanyAddress/ReadCompanyAddressForPosition/' + positionId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
