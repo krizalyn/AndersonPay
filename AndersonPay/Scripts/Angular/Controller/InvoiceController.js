@@ -198,6 +198,7 @@
                 return 0;
         }
 
+
         //delete row of computation on adding service
         function deleteRow(index) {
             vm.Services.splice(index, 1);

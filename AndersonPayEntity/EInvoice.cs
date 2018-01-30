@@ -1,4 +1,5 @@
 ﻿using BaseEntity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -83,12 +84,13 @@ namespace AndersonPayEntity
         //public string Recipients { get; set; }
         public string TaxTypes { get; set; }
         //public string NameOfService { get; set; }
-        //public decimal Subtotal { get; set; }
+        public decimal Subtotal { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
         public string Address { get; set; }
-        
-        //public DateTime DueDate { get; set; }
+
+        [Column(TypeName = "DateTime2")]
+        public DateTime? DueDate { get; set; }
         public int NumberOfDelays { get; set; }
         public decimal Interest { get; set; }
     }

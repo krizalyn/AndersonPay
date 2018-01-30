@@ -4,6 +4,7 @@ using AndersonPayEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace AndersonPayFunction
 {
@@ -93,7 +94,7 @@ namespace AndersonPayFunction
                 InvoiceId = invoice.InvoiceId,
                 Name = invoice.Name,
                 TaxTypes = invoice.TaxTypes,
-                //Subtotal = invoice.Subtotal,
+                Subtotal = invoice.Subtotal,
                 AmountDue = invoice.AmountDue,
                 Currency = invoice.Currency,
                 Tax = invoice.Tax,
@@ -117,7 +118,7 @@ namespace AndersonPayFunction
                 Address = invoice.Address,
                 ClientId = invoice.ClientId,
                 CreatedDate = invoice.CreatedDate,
-                //DueDate = invoice.DueDate
+                DueDate = invoice.DueDate
             };
             return returnEInvoice;
         }
@@ -147,7 +148,7 @@ namespace AndersonPayFunction
 
                 InvoiceId = eInvoice.InvoiceId,
                 Name = eInvoice.Name,
-                //Subtotal = eInvoice.Subtotal,
+                Subtotal = eInvoice.Subtotal,
                 AmountDue = eInvoice.AmountDue,
                 TaxTypes = eInvoice.TaxTypes,
                 Currency = eInvoice.Currency,
@@ -158,8 +159,7 @@ namespace AndersonPayFunction
                 TIN = eInvoice.TIN,
                 Address = eInvoice.Address,
                 ClientId = eInvoice.ClientId,
-                CreatedDate = eInvoice.CreatedDate,
-                //DueDate = eInvoice.DueDate
+                CreatedDate = eInvoice.CreatedDate
             };
 
             return returnInvoice;
@@ -191,7 +191,7 @@ namespace AndersonPayFunction
                 InvoiceId = a.InvoiceId,
                 Name = a.Name,
                 AmountDue = a.AmountDue,
-                //Subtotal = a.Subtotal,
+                Subtotal = a.Subtotal,
                 TaxTypes = a.TaxTypes,
                 Currency = a.Currency,
                 Tax = a.Tax,
@@ -201,8 +201,7 @@ namespace AndersonPayFunction
                 TIN = a.TIN,
                 Address = a.Address,
                 ClientId = a.ClientId,
-                CreatedDate = a.CreatedDate,
-                //DueDate = a.DueDate
+                CreatedDate = a.CreatedDate
 
             });
 

@@ -16,11 +16,13 @@ namespace AndersonPay.Controllers
         private IFClient _iFClient;
         private IFInvoice _iFInvoice;
         private IFService _iFService;
+        private IFTypeOfService _iFTypeOfService;
         public InvoiceController()
         {
             _iFClient = new FClient();
             _iFInvoice = new FInvoice();
             _iFService = new FService();
+            _iFTypeOfService = new FTypeOfService();
         }
         // Create new Invoice
         #region Create 
@@ -43,10 +45,12 @@ namespace AndersonPay.Controllers
             var invoice = _iFInvoice.Read(id);
             var services = _iFService.Read(id);
             var client = _iFClient.Read(invoice.ClientId);
+            var typeOfServices = _iFTypeOfService.Read();
             //var taxType = _iFTaxType.Read(client.TaxTypeId); // uncomment the next two lines once the TaxType table is done
             //client.TaxType = taxType;
             invoice.Client = client;
             invoice.Services = services;
+            invoice.TypeOfServices = typeOfServices;
             return PartialView(invoice);
         }
         // Read list of invoices
