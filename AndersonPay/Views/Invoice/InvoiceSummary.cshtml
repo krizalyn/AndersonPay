@@ -101,14 +101,19 @@
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px">Sub-Total</td>
-                    <td style="font-size: 12px">@Model.Subtotal</td>
+                    <td style="font-size: 12px">@String.Format(@Model.Subtotal % 1 == 0 ? "{0:N0}" : "{0:N2}", @Model.Subtotal)</td>
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px">Plus: 12% VAT</td>
                     <td style="font-size: 12px" id="plusVAT">
                         <script>
-                        var invoiceSubtotal = @Model.Subtotal;
-                        document.getElementById("plusVAT").innerHTML = 12 * invoiceSubtotal / 100;
+                            var invoiceSubtotal = @Model.Subtotal;
+                            var z = 12 * invoiceSubtotal / 100;
+                            document.getElementById("plusVAT").innerHTML = z.toLocaleString();
+
+                        //document.getElementById("plusVAT").innerHTML = 12 * invoiceSubtotal / 100;
+
+
                         </script>
                     </td>
                 </tr>
@@ -118,13 +123,14 @@
                     <script>
                         var invoiceSubtotal = @Model.Subtotal;
                         var clientWithholdingTax = @Model.Tax;
-                        document.getElementById("lessWithholdingTax").innerHTML = clientWithholdingTax * invoiceSubtotal / 100;
+                        var y = clientWithholdingTax * invoiceSubtotal / 100;
+                        document.getElementById("lessWithholdingTax").innerHTML = y.toLocaleString();
                     </script>
                     </td>
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px"><b>Total payable for this invoice</b></td>
-                    <td style="font-size: 12px">@String.Format(@Model.AmountDue % 1 == 0 ? "{0:N0}" : "{0:N2}", @Model.AmountDue)</td>
+                    <td style="font-size: 12px"><b>@Model.Currency</b> &nbsp; @String.Format(@Model.AmountDue % 1 == 0 ? "{0:N0}" : "{0:N2}", @Model.AmountDue) </td>
                 </tr>
             </tbody>
         </table>

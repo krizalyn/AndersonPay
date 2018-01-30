@@ -67,8 +67,8 @@
                         @*<td><span ng-bind="invoice.Subtotal"></span></td>*@
                         <td><span ng-bind="invoice.Name"></span></td>
                         <td><span ng-bind="invoice.Currency"></span></td>
-                        <td><span ng-bind="invoice.Tax"></span></td>
-                        <td><span ng-bind="invoice.AmountDue"></span></td>
+                        <td><span ng-bind="invoice.Tax| number:2"></span></td>
+                        <td><span ng-bind="invoice.AmountDue| number:2"></span></td>
 
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
