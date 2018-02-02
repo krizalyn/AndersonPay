@@ -17,9 +17,9 @@ namespace AndersonPayEntity
         //public decimal Discount { get; set; }
         //public decimal Balance { get; set; }
 
-        [ForeignKey("Invoice")]
-        public int InvoiceId { get; set; }
-        public EInvoice Invoice { get; set; }
+        //[ForeignKey("Invoice")]
+        //public int InvoiceId { get; set; }
+        //public EInvoice Invoice { get; set; }
 
         public string Name { get; set; }
         public string SINo { get; set; }

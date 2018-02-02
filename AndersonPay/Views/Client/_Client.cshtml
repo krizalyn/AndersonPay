@@ -29,7 +29,7 @@
     <input type="text" autocomplete="off" class="form-control" id="client.RegistrationNo" name="client.RegistrationNo" placeholder="Registration Number" value="@Model.RegistrationNo">
 </div>
 
-<div class="form-group" ng-controller="CurrencyController as model" ng-init="model.Initialise()">
+    <div class="form-group" ng-controller="CurrencyController as model" ng-init="model.Initialise()">
         <label for="CurrencyCode">Currency Code</label>
         <ui-select ng-model="model.Currency">
             <ui-select-match placeholder="Select Currency Code">
@@ -39,21 +39,23 @@
                 <span ng-bind="currency.CurrencyCodes"></span>
             </ui-select-choices>
         </ui-select>
-        <input type="hidden" class="form-control" id="CurrencyCodes" name="CurrencyCodes" value="{{model.CurrencyCode.CurrencyCodes}}">
-</div>
+        <input type="hidden" class="form-control" id="CurrencyCodeId" name="client.CurrencyCodeId" value="{{model.Currency.CurrencyCodeId}}">
+        <input type="hidden" class="form-control" id="CurrencyCodes" name="client.CurrencyCodes" value="{{model.Currency.CurrencyCodes}}">
+    </div>
 
-<div class="form-group" ng-controller="TaxTypeController as model" ng-init="model.Initialise()">
-      <label for="TaxType">Tax Type</label>
-       <ui-select ng-model="model.TaxType" >
+    <div class="form-group" ng-controller="TaxTypeController as model" ng-init="model.Initialise()">
+        <label for="TaxType">Tax Type</label>
+        <ui-select ng-model="model.TaxType">
             <ui-select-match placeholder="Select Tax Type">
                 <span ng-bind="$select.selected.TaxTypes"></span>
             </ui-select-match>
-        <ui-select-choices repeat="taxType in (model.TaxTypes | filter: $select.search) track by $index">
+            <ui-select-choices repeat="taxType in (model.TaxTypes | filter: $select.search) track by $index">
                 <span ng-bind="taxType.TaxTypes"></span>
-        </ui-select-choices>
-       </ui-select>
-     <input type="hidden" class="form-control" id="TaxTypes" name="TaxTypes" value="{{model.TaxType.TaxTypes}}">
-</div>
+            </ui-select-choices>
+        </ui-select>
+        <input type="hidden" class="form-control" id="TaxTypeId" name="client.TaxTypeId" value="{{model.TaxType.TaxTypeId}}">
+        <input type="hidden" class="form-control" id="TaxTypes" name="client.TaxTypes" value="{{model.TaxType.TaxTypes}}">
+    </div>
 
 </div>
 
@@ -69,6 +71,5 @@
 
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
-    @*<button type="button" ng-click="model.Asd()" class="btn btn-primary" style="float:right">Asd</button>*@
 </div>
 </div>

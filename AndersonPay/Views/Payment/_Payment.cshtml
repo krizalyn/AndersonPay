@@ -1,25 +1,6 @@
 @{
     ViewBag.Title = "_Payment";
 }
-@*<style> Moved to site
-    div.page_Client {
-        background-color: white;
-        margin: 0px;
-        padding: 10px;
-        padding-top: 50px;
-    }
-
-    div.form-group {
-        padding-left: 40px;
-        width: 300px;
-    }
-
-    a.btn-default {
-        background-color: #2196F3;
-        color: white;
-    }
-
-</style>*@
 <div class="page_Payment">
 <div class="form-group">
     <label for="PaymentId"></label>
@@ -56,13 +37,13 @@
                     <td style="border:none"></td>
                     <td style="border:none"></td>
                     <td style="border:none">
-                        <input type="number" class="form-control" autocomplete="off" id="payment.Payments" name="payment.Payments" placeholder="0" value="@Model.Payments">
+                        <input type="number" class="form-control" autocomplete="off" id="payment.Payments" name="payment.Payments" placeholder="0">
                     </td>
                     <td style="border:none">
-                        <input type="number" class="form-control" autocomplete="off" id="payment.Discount" name="payment.Discount" placeholder="0" value="@Model.Discount">
+                        <input type="number" class="form-control" autocomplete="off" id="payment.Discount" name="payment.Discount" placeholder="0">
                     </td>
                     <td style="border:none">
-                        <input type="number" class="form-control" autocomplete="off" id="payment.Balance" name="payment.Balance" placeholder="0" value="@Model.Balance">
+                        <input type="number" class="form-control" autocomplete="off" id="payment.Balance" name="payment.Balance" placeholder="0">
                     </td>
                 </tr>
             </tbody>
@@ -71,12 +52,12 @@
 
         <div class="form-group">
             <label for="DateOfPayment">Date Of Payment</label>
-            <input type="date" class="form-control" autocomplete="off" id="payment.DateOfPayment" name="payment.DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment">
+            <input type="date" class="form-control" autocomplete="off" id="payment.DateOfPayment" name="payment.DateOfPayment" placeholder="Date Of Payment">
         </div>
 
         <div class="form-group">
             <label for="AmountReceived">Amount Received</label>
-            <input type="number" class="form-control" autocomplete="off" id="payment.AmountReceived" name="payment.AmountReceived" placeholder="Amount Received" value="@Model.AmountReceived">
+            <input type="number" class="form-control" autocomplete="off" id="payment.AmountReceived" name="payment.AmountReceived" placeholder="Amount Received">
         </div>
 
         <div class="form-group">

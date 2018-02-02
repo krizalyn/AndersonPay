@@ -73,8 +73,8 @@ namespace AndersonPayFunction
                 TaxTypeId = client.TaxTypeId,
                 CurrencyCodeId = client.CurrencyCodeId,
                 WithHoldingTax = client.WithHoldingTax,
-                TaxTypes = client.TaxTypes,
-                CurrencyCodes = client.CurrencyCodes
+                //TaxTypes = client.TaxTypes,
+                //CurrencyCodes = client.CurrencyCodes
  
             };
             return returnEClient;
@@ -94,8 +94,8 @@ namespace AndersonPayFunction
                 TaxTypeId = eClient.TaxTypeId,
                 CurrencyCodeId = eClient.CurrencyCodeId,
                 WithHoldingTax = eClient.WithHoldingTax,
-                TaxTypes = eClient.TaxTypes,
-                CurrencyCodes = eClient.CurrencyCodes
+                //TaxTypes = eClient.TaxTypes,
+                //CurrencyCodes = eClient.CurrencyCodes
 
             };
             return returnClient;
@@ -115,8 +115,8 @@ namespace AndersonPayFunction
                 TaxTypeId = a.TaxTypeId,
                 CurrencyCodeId = a.CurrencyCodeId,
                 WithHoldingTax = a.WithHoldingTax,
-                TaxTypes = a.TaxTypes,
-                CurrencyCodes = a.CurrencyCodes
+                //TaxTypes = a.TaxTypes,
+                //CurrencyCodes = a.CurrencyCodes
 
             });
 

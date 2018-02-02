@@ -17,8 +17,8 @@ namespace AndersonPayModel
         //public decimal Discount { get; set; }
         //public decimal Balance { get; set; }
 
-        public int InvoiceId { get; set; }
-        public Invoice Invoice { get; set; }
+        //public int InvoiceId { get; set; }
+        //public Invoice Invoice { get; set; }
 
         public string Name { get; set; }
         public string SINo { get; set; }

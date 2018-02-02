@@ -63,23 +63,15 @@
         vm.InitialiseTypeOfService = InitialiseTypeOfService;
         vm.TryF = TryF;
 
+        vm.PDF = PDF;
+
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
         }
 
         function TryF(taxu) {
-            //console.log(vm.TryS);
-            //vm.TryS = 23;
-            //console.log(vm.TryS +"----");
-
-            //console.log(taxu);
-            //AmountDue(taxu);
-
-            //console.log(vm.Invoices);
-            //console.log(vm.TypeOfServices);
             console.log(vm.Services);
             vm.TryS = 10;
-            //console.log(vm.Clients);
         }
 
         function Initialise(invoiceId) {
@@ -249,6 +241,29 @@
                     });
 
                 });
+        }
+
+        function genPDF() {
+            var pdf = new jsPDF('p', 'pt', 'letter');
+
+            pdf.cellInitialize();
+            pdf.setFontSize(10);
+            pdf.fromHTML($('img.logo').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
+            pdf.fromHTML($('img.logo').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
+            pdf.fromHTML($('.include').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
+            pdf.fromHTML($('.include2').get(0), 50, 140, { 'width': 500 });      // 20 yung default x-y
+            pdf.fromHTML($('.pdfCientName').get(0), 400, 115, { 'width': 500 });       // 20 yung default x-y
+
+
+            $.each($('#tableData tr'), function (i, row) {
+                $.each($(row).find("td, th"), function (j, cell) {
+                    var txt = $(cell).text().trim() || " ";
+                    var width = (j == 4) ? 20 : 260; //make 4th column smaller
+                    var height = (j == 4) ? 3 : 20;
+                    pdf.cell(50, 215, width, height, txt, i); // 50 original
+                });
+            });
+            pdf.save('@Model.Name-@Model.SINo@Model.InvoiceId' + '.pdf');
         }
     }
 })();

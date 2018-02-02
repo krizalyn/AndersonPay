@@ -22,6 +22,10 @@
 
         vm.ClientId;
 
+        vm.ReadForCurrencyCode;
+
+        vm.Currencies;
+
         function GoToUpdatePage(clientId) {
             $window.location.href = '../Client/Update/' + clientId;
         }
@@ -53,6 +57,26 @@
                     Read();
                 })
                 .catch(function (data, status) {
+                });
+        }
+
+        function ReadForCurrencyCode() {
+            CurrencyService.Read()
+                .then(function (response) {
+                    vm.Currencies = response.data;
+                    var currency = $filter('filter')(vm.Currencies, { CurrencyCodeId: vm.CurrencyCodeId })[0];
+                    if (currency)
+                        vm.Currency = currency;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+
                 });
         }
 

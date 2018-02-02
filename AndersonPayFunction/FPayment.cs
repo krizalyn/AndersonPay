@@ -72,7 +72,7 @@ namespace AndersonPayFunction
                 //Payments = payment.Payments,
                 //Discount = payment.Discount,
                 //Balance = payment.Balance,
-                InvoiceId = payment.InvoiceId,
+                //InvoiceId = payment.InvoiceId,
                 Name = payment.Name,
                 SINo = payment.SINo,
                 Description = payment.Description
@@ -92,7 +92,7 @@ namespace AndersonPayFunction
                 //Payments = ePayment.Payments,
                 //Discount = ePayment.Discount,
                 //Balance = ePayment.Balance,
-                InvoiceId = ePayment.InvoiceId,
+                //InvoiceId = ePayment.InvoiceId,
                 Name = ePayment.Name,
                 SINo = ePayment.SINo,
                 Description = ePayment.Description
@@ -110,7 +110,7 @@ namespace AndersonPayFunction
                 //Payments = a.Payments,
                 //Discount = a.Discount,
                 //Balance = a.Balance,
-                InvoiceId = a.InvoiceId,
+                //InvoiceId = a.InvoiceId,
                 Name = a.Name,
                 SINo = a.SINo,
                 Description = a.Description
