@@ -248,8 +248,6 @@
 
             pdf.cellInitialize();
             pdf.setFontSize(10);
-            pdf.fromHTML($('img.logo').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
-            pdf.fromHTML($('img.logo').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
             pdf.fromHTML($('.include').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
             pdf.fromHTML($('.include2').get(0), 50, 140, { 'width': 500 });      // 20 yung default x-y
             pdf.fromHTML($('.pdfCientName').get(0), 400, 115, { 'width': 500 });       // 20 yung default x-y
