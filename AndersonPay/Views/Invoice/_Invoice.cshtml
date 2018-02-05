@@ -122,7 +122,7 @@
 
                             <!--Subtotal-->
                             <td>
-                                <span ng-bind="model.Subtotal(service)">@Model.Subtotal</span>
+                                <span ng-bind="model.Subtotal(service)| number:2">@Model.Subtotal</span>
                             </td>
 
                             <td><button type="button" ng-click="model.deleteRow($index)" class="btn btn-info glyphicon glyphicon-trash"></button></td>
@@ -142,7 +142,7 @@
                             <td style="border:none"></td>
                             <td style="border:none"><b><span>TOTAL SALES</span></b></td>
                             <td style="border:none"></td>
-                            <td style="border:none" ng-bind="model.TotalSales()"></td>
+                            <td style="border:none" ng-bind="model.TotalSales()| number:2"></td>
                             <td style="border:none"></td>
                         </tr>
                         <tr style="border:none">
@@ -150,7 +150,7 @@
                             <td style="border:none"></td>
                             <td style="border:none"><b><span>+ Sales Tax (12%)</span></b></td>
                             <td style="border:none"></td>
-                            <td style="border:none" ng-bind="model.SalesTax()"></td>
+                            <td style="border:none" ng-bind="model.SalesTax()| number:2"></td>
                             <td style="border:none"></td>
                         </tr>
                         <tr style="border:none">
@@ -158,7 +158,7 @@
                             <td style="border:none"></td>
                             <td style="border:none"><b><span>- Withholding Tax</span></b></td>
                             <td style="border:none"></td>
-                            <td style="border:none" ng-bind="model.WithholdingTax(model.Client.WithHoldingTax)"></td>
+                            <td style="border:none" ng-bind="model.WithholdingTax(model.Client.WithHoldingTax)| number:2"></td>
                             <td style="border:none"></td>
                         </tr>
                         <tr style="border:none">
