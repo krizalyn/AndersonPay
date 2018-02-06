@@ -5,12 +5,13 @@
         .module('App')
         .controller('InvoiceController', InvoiceController);
 
-    InvoiceController.$inject = ['$filter', '$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService', 'ServiceService', 'CompanyAddressService'];
+    InvoiceController.$inject = ['$filter', '$window', 'InvoiceService', 'ClientService', 'TypeOfServiceService', 'ServiceService'];
 
-    function InvoiceController($filter, $window, InvoiceService, ClientService, TypeOfServiceService, ServiceService, CompanyAddressService) {
+    function InvoiceController($filter, $window, InvoiceService, ClientService, TypeOfServiceService, ServiceService) {
         var vm = this;
 
         vm.ClientId;
+        vm.InvoiceId;
         vm.Address;
 
         //object
@@ -24,7 +25,7 @@
             totaltax: 0,
             clientWithholdingTax: 0
         }
-        
+
         vm.TryS = 123;
         vm.AmountDueValue = 0;
         vm.WithholdingTaxValue;
@@ -61,26 +62,43 @@
         vm.AmountDue = AmountDue;
         //function others
         vm.InitialiseTypeOfService = InitialiseTypeOfService;
+        //function SINo
+        vm.SINo = SINo;
         vm.TryF = TryF;
-
-        vm.PDF = PDF;
 
         function GoToUpdatePage(invoiceId) {
             $window.location.href = '../Invoice/Update/' + invoiceId;
         }
 
         function TryF(taxu) {
+            //console.log(vm.TryS);
+            //vm.TryS = 23;
+            //console.log(vm.TryS +"----");
+
+            //console.log(taxu);
+            //AmountDue(taxu);
+
+            //console.log(vm.Invoices);
+            //console.log(vm.TypeOfServices);
             console.log(vm.Services);
+            console.log(vm.Invoices);
             vm.TryS = 10;
+            //console.log(vm.Clients);
         }
 
         function Initialise(invoiceId) {
             Read();
+            ReadForClients();
         }
 
         function InitialiseCrud(clientId, invoiceId, address) {
             vm.ClientId = clientId;
+            vm.InvoiceId = invoiceId;
+            vm.Address = address;
             ReadForClients();
+            ReadCompanyBranch();
+            ReadForCurrency();
+            ReadForTaxType();
             vm.AmountDueValue = 21;
             ReadForService(invoiceId);
         }
@@ -89,6 +107,11 @@
             InvoiceService.Read()
                 .then(function (response) {
                     vm.Invoices = response.data;
+                    ////////////////////////////////////////
+                    var invoice = $filter('filter')(vm.Invoices, { InvoiceId: vm.InvoiceId })[0];
+                    if (invoice)
+                        vm.Invoice = invoice;
+                    ///////////////////////////////////////
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -190,7 +213,6 @@
                 return 0;
         }
 
-
         //delete row of computation on adding service
         function deleteRow(index) {
             vm.Services.splice(index, 1);
@@ -217,16 +239,56 @@
                 });
         }
 
+        //SIno
+        function SINo(SINoCode) {
+            var SINoCode = "";
+            return SINoCode;
+        }
+
+        function CompanyBranch(BranchCode) {
+            var BranchCode = "BCode";
+            return BranchCode;
+        }
+
+        //Branch Location This should be a separate table
+        function ReadCompanyBranch() {
+            vm.CompanyBranches = [
+            { Address: "11/F Wynsum Corporate Plaza, #22 F. Ortigas Jr. Road Ortigas Center,Pasig City Philippines ", CompanyAddress: 'WYNSUM', SINo: 'WNSM-', TIN: '0001' },
+            { Address: "20/F Robinsons Cybergate Tower 3, Pioneer Street, Mandaluyong City, Pioneer St, Mandaluyong, Metro Manila", CompanyAddress: 'CYBERGATE 3', SINo: 'CG3-', TIN: '0002' },
+            { Address: "Ecotower Building Unit 1504, 32nd Street corner 9th avenue Bonifacio Global City, Taguig City Philippines ", CompanyAddress: 'ECOTOWER', SINo: 'ECT-', TIN: '0003' },
+
+            ];
+            var companyBranch = $filter('filter')(vm.CompanyBranches, { Address: vm.Address })[0];
+            if (companyBranch)
+                vm.CompanyBranch = companyBranch;
+        }
+
+        function ReadForTaxType() {
+            vm.TaxTypes = [
+                { Type: "VAT" },
+                { Type: "NON-VAT" },
+                { Type: "ZERO RATED" },
+            ];
+        }
+
+        //Currency
+        function ReadForCurrency() {
+            vm.CurrencyCode = [
+                { Code: "USD" },
+                { Code: "GBP" },
+                { Code: "PHP" },
+            ];
+        }
+
         //PFD get data
-        function PDF(invoiceId)
-        {
+        function PDF(invoiceId) {
             $window.location.href = '../Invoice/InvoiceSummary/' + invoiceId;
             //$window.href = '..("InvoiceSummary", "Invoice")';
             //$window.location.href = '@Url.Action("InvoiceSummary", "Invoice")';
         }
 
         function ReadForService(invoiceId) {
-            ServiceService.Read(invoiceId)
+            ServiceService.ReadId(invoiceId)
                 .then(function (response) {
                     vm.Services = response.data;
                     ReadForTypeOfService();
@@ -241,27 +303,6 @@
                     });
 
                 });
-        }
-
-        function genPDF() {
-            var pdf = new jsPDF('p', 'pt', 'letter');
-
-            pdf.cellInitialize();
-            pdf.setFontSize(10);
-            pdf.fromHTML($('.include').get(0), 400, 30, { 'width': 500 });       // 20 yung default x-y
-            pdf.fromHTML($('.include2').get(0), 50, 140, { 'width': 500 });      // 20 yung default x-y
-            pdf.fromHTML($('.pdfCientName').get(0), 400, 115, { 'width': 500 });       // 20 yung default x-y
-
-
-            $.each($('#tableData tr'), function (i, row) {
-                $.each($(row).find("td, th"), function (j, cell) {
-                    var txt = $(cell).text().trim() || " ";
-                    var width = (j == 4) ? 20 : 260; //make 4th column smaller
-                    var height = (j == 4) ? 3 : 20;
-                    pdf.cell(50, 215, width, height, txt, i); // 50 original
-                });
-            });
-            pdf.save('@Model.Name-@Model.SINo@Model.InvoiceId' + '.pdf');
         }
     }
 })();

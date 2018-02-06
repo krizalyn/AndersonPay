@@ -67,16 +67,13 @@ namespace AndersonPayFunction
             EPayment returnEPayment = new EPayment
             {
                 PaymentId = payment.PaymentId,
-                //DateOfPayment = payment.DateOfPayment,
-                //AmountReceived = payment.AmountReceived,
-                //Payments = payment.Payments,
-                //Discount = payment.Discount,
-                //Balance = payment.Balance,
-                //InvoiceId = payment.InvoiceId,
-                Name = payment.Name,
-                SINo = payment.SINo,
-                Description = payment.Description
-
+                DateOfPayment = payment.DateOfPayment,
+                AmountReceived = payment.AmountReceived,
+                Payments = payment.Payments,
+                Discount = payment.Discount,
+                Balance = payment.Balance,
+                ClientId = payment.ClientId,
+                Name = payment.Name
             };
 
             return returnEPayment;
@@ -87,15 +84,12 @@ namespace AndersonPayFunction
             Payment returnPayment = new Payment
             {
                 PaymentId = ePayment.PaymentId,
-                //DateOfPayment = ePayment.DateOfPayment,
-                //AmountReceived = ePayment.AmountReceived,
-                //Payments = ePayment.Payments,
-                //Discount = ePayment.Discount,
-                //Balance = ePayment.Balance,
-                //InvoiceId = ePayment.InvoiceId,
-                Name = ePayment.Name,
-                SINo = ePayment.SINo,
-                Description = ePayment.Description
+                AmountReceived = ePayment.AmountReceived,
+                Payments = ePayment.Payments,
+                Discount = ePayment.Discount,
+                Balance = ePayment.Balance,
+                ClientId = ePayment.ClientId,
+                Name = ePayment.Name
             };
             return returnPayment;
         }
@@ -105,15 +99,12 @@ namespace AndersonPayFunction
             var returnPayment = ePayment.Select(a => new Payment
             {
                 PaymentId = a.PaymentId,
-                //DateOfPayment = a.DateOfPayment,
-                //AmountReceived = a.AmountReceived,
-                //Payments = a.Payments,
-                //Discount = a.Discount,
-                //Balance = a.Balance,
-                //InvoiceId = a.InvoiceId,
-                Name = a.Name,
-                SINo = a.SINo,
-                Description = a.Description
+                AmountReceived = a.AmountReceived,
+                Payments = a.Payments,
+                Discount = a.Discount,
+                Balance = a.Balance,
+                ClientId = a.ClientId,
+                Name = a.Name
             });
 
             return returnPayment.ToList();

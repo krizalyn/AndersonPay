@@ -10,6 +10,7 @@
     function InvoiceService($http) {
         return {
             Read: Read,
+            ReadId: ReadId,
             ReadInvoiceForInvoiceinee: ReadInvoiceForInvoiceinee,
             ReadInvoiceForPosition: ReadInvoiceForPosition,
             Delete: Delete,
@@ -20,6 +21,14 @@
             return $http({
                 method: 'POST',
                 url: '/Invoice/Read',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadId(id) {
+            return $http({
+                method: 'POST',
+                url: '/Invoice/ReadClientId/' + id,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
@@ -56,9 +65,8 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
-        
-        function PDF(InvoiceId)
-        {
+
+        function PDF(InvoiceId) {
             return $http({
                 method: 'POST',
                 url: '/Invoice/Read',

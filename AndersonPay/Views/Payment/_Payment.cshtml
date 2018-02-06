@@ -1,66 +1,75 @@
 @{
     ViewBag.Title = "_Payment";
 }
+
 <div class="page_Payment">
-<div class="form-group">
-    <label for="PaymentId"></label>
-    <input type="hidden" class="form-control" id="PaymentId" name="PaymentId" value="@Model.PaymentId">
-</div>
-
-    <div class="form-group" ng-controller="PaymentController as model" ng-init="model.Initialise(@Model.InvoiceId)">
-        <label for="InvoiceId" style="padding-right:270px;">Select Client</label>
-        <div class="dropClient">
-            <ui-select ng-model="model.Invoice">
-                <ui-select-match placeholder="Select Client">
-                    <label ng-bind="$select.selected.Name"></label>
-                </ui-select-match>
-                <ui-select-choices repeat="invoice in (model.Invoices | filter: $select.search) track by $index">
-                    <span ng-bind="invoice.Name"></span>
-                </ui-select-choices>
-            </ui-select>
-        </div>
+    <div class="form-group">
+        <label for="PaymentId"></label>
+        <input type="hidden" class="form-control" id="PaymentId" name="payment.PaymentId" value="@Model.PaymentId">
     </div>
-
+    <div ng-controller="PaymentController as model" ng-init="model.Initialise()">
+        <ui-select ng-model="model.Client" ng-change="model.ClientChange()">
+            <ui-select-match placeholder="Select Client">
+                <label ng-bind="$select.selected.Name"></label>
+            </ui-select-match>
+            <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+                <span ng-bind="client.Name"></span>
+            </ui-select-choices>
+        </ui-select>
+        <input type="hidden" class="form-control" id="PaymentId" name="payment.ClientId" value="{{model.Client.ClientId}}">
+        <input type="hidden" class="form-control" id="PaymentId" name="payment.Name" value="{{model.Client.Name}}">
+        <label for="DateOfPayment">Date Of Payment</label>
+        <input type="date" class="form-control" autocomplete="off" id="payment.DateOfPayment" name="payment.DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment">
         <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
             <thead>
                 <tr>
                     <th width="20%"><center>SI No.</center></th>
-                    <th width="20%"><center>Description</center></th>
+                    @*<th width="20%"><center>Description</center></th>*@
                     <th width="20%"><center>Payment</center></th>
                     <th width="20%"><center>Discount</center></th>
                     <th width="20%"><center>Balance</center></th>
+                    <th width="20%"><center>Change</center></th>
                 </tr>
             </thead>
-
             <tbody>
-                <tr style="border:none">
-                    <td style="border:none"></td>
-                    <td style="border:none"></td>
-                    <td style="border:none">
-                        <input type="number" class="form-control" autocomplete="off" id="payment.Payments" name="payment.Payments" placeholder="0">
+                <tr style="border:none" ng-repeat="invoice in model.Invoices track by $index">
+                    <td>
+                        <input type="text" class="form-control" readonly="readonly" value="{{invoice.SINo}}{{invoice.InvoiceId}}" placeholder="Sales Invoice No.">
                     </td>
-                    <td style="border:none">
-                        <input type="number" class="form-control" autocomplete="off" id="payment.Discount" name="payment.Discount" placeholder="0">
+                    @*<td>
+                            <input type="text" class="form-control" readonly="readonly" value="">
+                    </td>*@
+                    <td>
+                        <input class="form-control" type="number" name="invoice.Invoices[{{$index}}].Payments" ng-model="invoice.Payment" placeholder="0.00" min="0">
                     </td>
-                    <td style="border:none">
-                        <input type="number" class="form-control" autocomplete="off" id="payment.Balance" name="payment.Balance" placeholder="0">
+                    <td>
+                        <input type="number" class="form-control" autocomplete="off" id="Discount" name="invoice.Invoices[{{$index}}].Discount" ng-model="invoice.Discount" placeholder="0.00" min="0">
+                    </td>
+                    <td>
+                        @*<input type="text" readonly="readonly" class="form-control" autocomplete="off" id="payment.Balance" name="payment.Balance" placeholder="0" value="{{model.Balance(invoice.AmountDue, invoice)}}">*@
+                        <span>{{model.Balance(invoice.AmountDue, invoice)}}</span>
+                    </td>
+                    <td>
+                        <span>{{model.Change(invoice.AmountDue, invoice)}}</span>
                     </td>
                 </tr>
             </tbody>
-
         </table>
-
-        <div class="form-group">
-            <label for="DateOfPayment">Date Of Payment</label>
-            <input type="date" class="form-control" autocomplete="off" id="payment.DateOfPayment" name="payment.DateOfPayment" placeholder="Date Of Payment">
+        <div class="form-group" style="text-align:left;">
+            @*<label for="AmountDue">Amount Due: <span>{{model.AmountDue()}}</span></label>*@
         </div>
-
         <div class="form-group">
-            <label for="AmountReceived">Amount Received</label>
-            <input type="number" class="form-control" autocomplete="off" id="payment.AmountReceived" name="payment.AmountReceived" placeholder="Amount Received">
+            <label for="TotalAmountReceived">Total Amount Received: <span>{{model.TotalAmountReceived(invoice)}}</span></label>
+            <input type="hidden" class="form-control" id="PaymentId" name="payment.AmountReceived" value="{{model.TotalAmountReceived(invoice)}}">
         </div>
-
+        <div class="form-group">
+            @*<label for="TotalChange">Total Change: <span>{{model.TotalChange()}}</span></label>*@
+        </div>
+        <div class="form-group">
+            @*<label for="TotalBalance">Total Balance: <span>{{model.TotalBalance(invoice)}}</span></label>*@
+        </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
     </div>
+</div>

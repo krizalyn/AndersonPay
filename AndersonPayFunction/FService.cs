@@ -31,6 +31,12 @@ namespace AndersonPayFunction
         #endregion
 
         #region READ
+        public List<Service> Read()
+        {
+            List<EService> eService = _iDService.List<EService>(a => true);
+            return Service(eService);
+        }
+
         public List<Service> Read(int invoiceId)
         {
             List<EService> eService = _iDService.List<EService>(a => a.InvoiceId == invoiceId);

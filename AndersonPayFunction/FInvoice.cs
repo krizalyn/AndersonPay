@@ -46,12 +46,17 @@ namespace AndersonPayFunction
             List<EInvoice> eInvoice = _iDInvoice.List<EInvoice>(a => true);
             return Invoice(eInvoice);
         }
+
+        public List<Invoice> ReadClientId(int clientId)
+        {
+            List<EInvoice> eInvoice = _iDInvoice.List<EInvoice>(a => a.ClientId == clientId);
+            return Invoice(eInvoice);
+        }
         #endregion
 
         #region UPDATE
         public Invoice Update(Invoice invoice)
         {
-            //_iDInvoice.Delete<EService>(a => a.InvoiceId == invoice.InvoiceId);
             var eInvoice = EInvoice(invoice);
             eInvoice.Services = null;
             eInvoice = _iDInvoice.Update(eInvoice);
@@ -62,7 +67,6 @@ namespace AndersonPayFunction
         #region DELETE
         public void Delete(int invoiceId)
         {
-            //_iDInvoice.Delete(EInvoice(invoice));
             _iDInvoice.Delete<EService>(a => a.InvoiceId == invoiceId);
             _iDInvoice.Delete<EInvoice>(a => a.InvoiceId == invoiceId);
         }
@@ -73,7 +77,6 @@ namespace AndersonPayFunction
         {
             EInvoice returnEInvoice = new EInvoice
             {
-
                 InvoiceId = invoice.InvoiceId,
                 Name = invoice.Name,
                 TaxTypes = invoice.TaxTypes,
@@ -99,7 +102,8 @@ namespace AndersonPayFunction
                 Address = invoice.Address,
                 ClientId = invoice.ClientId,
                 CreatedDate = invoice.CreatedDate,
-                DueDate = invoice.DueDate
+                DueDate = invoice.DueDate,
+                UpdatedDate = invoice.UpdatedDate
             };
             return returnEInvoice;
         }
@@ -108,6 +112,7 @@ namespace AndersonPayFunction
         {
             Invoice returnInvoice = new Invoice
             {
+
                 InvoiceId = eInvoice.InvoiceId,
                 Name = eInvoice.Name,
                 Subtotal = eInvoice.Subtotal,
@@ -119,7 +124,8 @@ namespace AndersonPayFunction
                 TIN = eInvoice.TIN,
                 Address = eInvoice.Address,
                 ClientId = eInvoice.ClientId,
-                CreatedDate = eInvoice.CreatedDate
+                CreatedDate = eInvoice.CreatedDate,
+                UpdatedDate = eInvoice.UpdatedDate
             };
 
             return returnInvoice;
@@ -129,7 +135,6 @@ namespace AndersonPayFunction
         {
             var returnInvoice = eInvoice.Select(a => new Invoice
             {
-
                 InvoiceId = a.InvoiceId,
                 Name = a.Name,
                 AmountDue = a.AmountDue,
@@ -141,7 +146,8 @@ namespace AndersonPayFunction
                 TIN = a.TIN,
                 Address = a.Address,
                 ClientId = a.ClientId,
-                CreatedDate = a.CreatedDate
+                CreatedDate = a.CreatedDate,
+                UpdatedDate = a.UpdatedDate
 
             });
 

@@ -22,7 +22,7 @@
 
         vm.ClientId;
 
-        vm.ReadForCurrencyCode;
+        vm.ReadForCurrencyCode = ReadForCurrencyCode;
 
         vm.Currencies;
 

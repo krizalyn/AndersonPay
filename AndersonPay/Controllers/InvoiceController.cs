@@ -66,7 +66,11 @@ namespace AndersonPay.Controllers
         {
             return Json(_iFInvoice.Read());
         }
-
+        [HttpPost]
+        public JsonResult ReadClientId(int id)
+        {
+            return Json(_iFInvoice.ReadClientId(id));
+        }
         #endregion
 
         //UPDATE CLIENT
@@ -81,7 +85,7 @@ namespace AndersonPay.Controllers
         public ActionResult Update(Invoice invoice)
         {
             _iFService.Delete(invoice.InvoiceId);
-            if(invoice.Services != null)
+            if (invoice.Services != null)
                 foreach (Service service in invoice.Services)
                 {
                     _iFService.Create(invoice.InvoiceId, service);
@@ -105,5 +109,4 @@ namespace AndersonPay.Controllers
         }
         #endregion
     }
-    // asdasd
 }

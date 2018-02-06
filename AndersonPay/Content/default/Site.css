@@ -9,7 +9,6 @@
     padding-right: 15px;
 }
 
-
 ul.attachment
 {
     width:40%;
@@ -26,19 +25,17 @@ ul.attachment li
     list-style-type:none;
 }
 
-    ul.attachment li a
-    {
-        font-weight:bold;
-    }
-        /*ul.attachment li a.title
-        {
-           
-        }*/
-        ul.attachment li a.deleteItem
-        {
-            text-align:right;           
-            color:#808080;
-        }
+ul.attachment li a
+{
+    font-weight:bold;
+}
+
+ul.attachment li a.deleteItem
+{
+    text-align:right;           
+    color:#808080;
+}
+
 .navbar-brand > img {
     display: block;
     max-height: 200%;
@@ -54,11 +51,6 @@ div.page_Client {
     padding: 10px;
     padding-top: 50px;
 }
-
-/*div.form-group {
-    padding-left: 40px;
-    /*width: 300px;*/
-}*/
  
 /*============================================================= client index*/
 
@@ -136,7 +128,6 @@ div.alignContent {
     background-color: white;
     margin: 0px;
     padding: 10px;
-    /*padding-top: 20px;*/
     height: auto;
 }
 
@@ -164,11 +155,6 @@ div.page_Payment {
     padding: 10px;
     padding-top: 50px;
 }
-
-/*div.form-group {
-    padding-left: 40px;
-    /*width: 300px;*/
-}*/
 
 a.btn-default {
     background-color: #2196F3;
@@ -209,10 +195,6 @@ div.page_TypesofService {
     padding-top: 50px;
 }
 
-/*div.form-group {
-    padding-left: 40px;
-    /*width: 300px;*/
-}*/
 
 a.btn-default {
     background-color: #2196F3;

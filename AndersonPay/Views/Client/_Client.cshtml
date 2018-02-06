@@ -29,19 +29,19 @@
     <input type="text" autocomplete="off" class="form-control" id="client.RegistrationNo" name="client.RegistrationNo" placeholder="Registration Number" value="@Model.RegistrationNo">
 </div>
 
-    <div class="form-group" ng-controller="CurrencyController as model" ng-init="model.Initialise()">
-        <label for="CurrencyCode">Currency Code</label>
-        <ui-select ng-model="model.Currency">
-            <ui-select-match placeholder="Select Currency Code">
-                <label ng-bind="$select.selected.CurrencyCodes"></label>
-            </ui-select-match>
-            <ui-select-choices repeat="currency in (model.Currencies | filter: $select.search) track by $index">
-                <span ng-bind="currency.CurrencyCodes"></span>
-            </ui-select-choices>
-        </ui-select>
-        <input type="hidden" class="form-control" id="CurrencyCodeId" name="client.CurrencyCodeId" value="{{model.Currency.CurrencyCodeId}}">
-        <input type="hidden" class="form-control" id="CurrencyCodes" name="client.CurrencyCodes" value="{{model.Currency.CurrencyCodes}}">
-    </div>
+<div class="form-group" ng-controller="CurrencyController as model" ng-init="model.Initialise()">
+  <label for="CurrencyCode">Currency Code</label>
+    <ui-select ng-model="model.Currency">
+        <ui-select-match placeholder="Select Currency Code">
+          <label ng-bind="$select.selected.CurrencyCodes"></label>
+        </ui-select-match>
+      <ui-select-choices repeat="currency in (model.Currencies | filter: $select.search) track by $index">
+         <span ng-bind="currency.CurrencyCodes"></span>
+      </ui-select-choices>
+    </ui-select>
+   <input type="hidden" class="form-control" id="CurrencyCodeId" name="client.CurrencyCodeId" value="{{model.Currency.CurrencyCodeId}}">
+   <input type="hidden" class="form-control" id="CurrencyCodes" name="client.CurrencyCodes" value="{{model.Currency.CurrencyCodes}}">
+</div>
 
     <div class="form-group" ng-controller="TaxTypeController as model" ng-init="model.Initialise()">
         <label for="TaxType">Tax Type</label>
