@@ -8,18 +8,43 @@
         <input type="hidden" class="form-control" id="PaymentId" name="payment.PaymentId" value="@Model.PaymentId">
     </div>
     <div ng-controller="PaymentController as model" ng-init="model.Initialise()">
-        <ui-select ng-model="model.Client" ng-change="model.ClientChange()">
-            <ui-select-match placeholder="Select Client">
-                <label ng-bind="$select.selected.Name"></label>
-            </ui-select-match>
-            <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
-                <span ng-bind="client.Name"></span>
-            </ui-select-choices>
-        </ui-select>
-        <input type="hidden" class="form-control" id="PaymentId" name="payment.ClientId" value="{{model.Client.ClientId}}">
-        <input type="hidden" class="form-control" id="PaymentId" name="payment.Name" value="{{model.Client.Name}}">
-        <label for="DateOfPayment">Date Of Payment</label>
-        <input type="date" class="form-control" autocomplete="off" id="payment.DateOfPayment" name="payment.DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment">
+        
+        <div style="width:100%; display: table;position: relative;">
+            <div style="width:300px; float:left;">
+                @*<label for="ClientName">Client Name</label>
+                <ui-select ng-model="model.Client" ng-change="model.ClientChange()"  >
+                    <ui-select-match placeholder="Select Client">
+                        <label ng-bind="$select.selected.Name"></label>
+                    </ui-select-match>
+                    <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+                        <span ng-bind="client.Name"></span>
+                    </ui-select-choices>
+                </ui-select>*@
+                <div class="dropClient">
+                    <ui-select ng-model="model.Client">
+                        <ui-select-match placeholder="Select Client @Model.Name">
+                            <label ng-bind="$select.selected.Name"></label>
+                        </ui-select-match>
+                        <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
+                            <span ng-bind="client.Name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <br>
+                <input type="hidden" class="form-control" id="PaymentId" name="payment.ClientId" value="{{model.Client.ClientId}}">
+                <input type="hidden" class="form-control" id="PaymentId" name="payment.Name" value="{{model.Client.Name}}">
+                <label for="DateOfPayment">Date Of Payment</label>
+                <input type="date" class="form-control" autocomplete="off" id="payment.DateOfPayment" name="payment.DateOfPayment" placeholder="Date Of Payment" value="@Model.DateOfPayment">
+            </div>
+            
+            <div align="right">
+                <label for="AmountReceive" >Amount Receive</label><br>
+                <label for="BankReference" >Bank Reference</label><br>
+                <label for="ORno" >OR No.</label>
+            </div>
+         
+        </div>
+        <br>
         <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
             <thead>
                 <tr>
@@ -32,6 +57,25 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach (var service in Model.Services)
+                {
+                    foreach (var typeOfService in Model.TypeOfServices)
+                    {
+                        if (service.TypeOfServiceId == typeOfService.TypeOfServiceId)
+                        {
+                            <tr>
+                                <td style="font-size: 12px">
+                                    @typeOfService.Name - @typeOfService.Description (@service.Quantity x @service.Rate)
+                                </td>
+                                <td style="font-size: 12px">
+                                    @String.Format(@service.Subtotal % 1 == 0 ? "{0:N0}" : "{0:N2}", @service.Subtotal)
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
                 <tr style="border:none" ng-repeat="invoice in model.Invoices track by $index">
                     <td>
                         <input type="text" class="form-control" readonly="readonly" value="{{invoice.SINo}}{{invoice.InvoiceId}}" placeholder="Sales Invoice No.">

@@ -5,7 +5,8 @@
 
 }
 
-<script>
+            
+<script> @*move the script to angular.js *@
     function genPDF() {
         var pdf = new jsPDF('p', 'pt', 'letter');
 
@@ -15,7 +16,7 @@
         pdf.fromHTML($('.include2').get(0), 50, 140, { 'width': 500 });      // 20 yung default x-y
         pdf.fromHTML($('.pdfCientName').get(0), 400, 115, { 'width': 500 });       // 20 yung default x-y
 
-
+         
         $.each($('#tableData tr'), function (i, row) {
             $.each($(row).find("td, th"), function (j, cell) {
                 var txt = $(cell).text().trim() || " ";
@@ -114,7 +115,7 @@
                         var y = clientWithholdingTax * invoiceSubtotal / 100;
                         document.getElementById("lessWithholdingTax").innerHTML = y.toLocaleString();
                     </script>
-                    </td>
+                  
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px"><b>Total payable for this invoice</b></td>
