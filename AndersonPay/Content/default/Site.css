@@ -43,6 +43,13 @@ ul.attachment li a.deleteItem
     width: auto;
     margin: auto;
 }
+
+.ui-select-match-text > span {
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+}
 /*========================================================== _Client*/
 
 div.page_Client {

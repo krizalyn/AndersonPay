@@ -11,18 +11,9 @@
         
         <div style="width:100%; display: table;position: relative;">
             <div style="width:300px; float:left;">
-                @*<label for="ClientName">Client Name</label>
-                <ui-select ng-model="model.Client" ng-change="model.ClientChange()"  >
-                    <ui-select-match placeholder="Select Client">
-                        <label ng-bind="$select.selected.Name"></label>
-                    </ui-select-match>
-                    <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
-                        <span ng-bind="client.Name"></span>
-                    </ui-select-choices>
-                </ui-select>*@
                 <div class="dropClient">
-                    <ui-select ng-model="model.Client">
-                        <ui-select-match placeholder="Select Client @Model.Name">
+                    <ui-select ng-model="model.Client" ng-change="model.ClientChange()">
+                        <ui-select-match placeholder="Select Client">
                             <label ng-bind="$select.selected.Name"></label>
                         </ui-select-match>
                         <ui-select-choices repeat="client in (model.Clients | filter: $select.search) track by $index">
@@ -48,8 +39,8 @@
         <table class="table table-bordered" style="border-style:solid; font-size: 12px; font-family:Arial, Helvetica, sans-serif;">
             <thead>
                 <tr>
+                    <th width="5%"><input type="checkbox" checked="checked" ng-click="model.ToggleAll()" ng-model="model.isAllSelected" /></th>
                     <th width="20%"><center>SI No.</center></th>
-                    @*<th width="20%"><center>Description</center></th>*@
                     <th width="20%"><center>Payment</center></th>
                     <th width="20%"><center>Discount</center></th>
                     <th width="20%"><center>Balance</center></th>
@@ -57,32 +48,13 @@
                 </tr>
             </thead>
             <tbody>
-
-                @foreach (var service in Model.Services)
-                {
-                    foreach (var typeOfService in Model.TypeOfServices)
-                    {
-                        if (service.TypeOfServiceId == typeOfService.TypeOfServiceId)
-                        {
-                            <tr>
-                                <td style="font-size: 12px">
-                                    @typeOfService.Name - @typeOfService.Description (@service.Quantity x @service.Rate)
-                                </td>
-                                <td style="font-size: 12px">
-                                    @String.Format(@service.Subtotal % 1 == 0 ? "{0:N0}" : "{0:N2}", @service.Subtotal)
-                                </td>
-                            </tr>
-                        }
-                    }
-                }
-
                 <tr style="border:none" ng-repeat="invoice in model.Invoices track by $index">
+                    <td>
+                        <input type="checkbox" class="form-control" ng-model="invoice.Selected" ng-change="model.CheckboxToggled()">
+                    </td>
                     <td>
                         <input type="text" class="form-control" readonly="readonly" value="{{invoice.SINo}}{{invoice.InvoiceId}}" placeholder="Sales Invoice No.">
                     </td>
-                    @*<td>
-                            <input type="text" class="form-control" readonly="readonly" value="">
-                    </td>*@
                     <td>
                         <input class="form-control" type="number" name="invoice.Invoices[{{$index}}].Payments" ng-model="invoice.Payment" placeholder="0.00" min="0">
                     </td>
@@ -112,7 +84,7 @@
         <div class="form-group">
             @*<label for="TotalBalance">Total Balance: <span>{{model.TotalBalance(invoice)}}</span></label>*@
         </div>
-        <div class="form-group">
+        <div class="form-group"> 
             <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
     </div>

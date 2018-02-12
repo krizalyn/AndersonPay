@@ -11,19 +11,18 @@
         var vm = this;
 
         vm.Currencies;
-        vm.CurrencyId;
+        vm.CurrencyCodes;
         vm.Initialise = Initialise;
 
-        function Initialise(currencyId) {
+        function Initialise() {
             Read();
-            vm.CurrencyId = currencyId;
         }
 
         function Read() {
             CurrencyService.Read()
                 .then(function (response) {
                     vm.Currencies = response.data;
-                    var currency = $filter('filter')(vm.Currencies, { CurrencyId: vm.CurrencyId })[0];
+                    var currency = $filter('filter')(vm.Currencies, { CurrencyCodes: vm.CurrencyCodes })[0];
                     if (currency)
                         vm.Currency = currency;
                 })

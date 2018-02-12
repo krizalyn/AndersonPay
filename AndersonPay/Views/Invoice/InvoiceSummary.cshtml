@@ -34,7 +34,6 @@
 
     <div class="include" align="right" style="padding-right: 80px; padding-top:80px;">
         <h4><b>Billing Statement</b></h4>
-        @* Change the SINo ID generation *@
         <h6><b>Sales Invoice No.</b> @Model.SINo@Model.InvoiceId</h6>
         <h6><b>TIN No: </b>@Model.TIN</h6>
     </div>
@@ -109,17 +108,18 @@
                 <tr>
                     <td style="font-size: 12px">Less: @Model.Client.WithHoldingTax% Withholding TAX</td>
                     <td style="font-size: 12px" id="lessWithholdingTax">@Model.Client.TaxType</td>
-                    <script>
-                        var invoiceSubtotal = @Model.Subtotal;
-                        var clientWithholdingTax = @Model.Tax;
-                        var y = clientWithholdingTax * invoiceSubtotal / 100;
-                        document.getElementById("lessWithholdingTax").innerHTML = y.toLocaleString();
-                    </script>
-                  
+                    <td style="display:none">
+                        <script>
+                            var invoiceSubtotal = @Model.Subtotal;   ////////////////////////////
+                            var clientWithholdingTax = @Model.Tax;
+                            var y = clientWithholdingTax * invoiceSubtotal / 100;
+                            document.getElementById("lessWithholdingTax").innerHTML = y.toLocaleString();
+                        </script>
+                    </td>
                 </tr>
                 <tr style="height: 40px">
                     <td style="font-size: 12px"><b>Total payable for this invoice</b></td>
-                    <td style="font-size: 12px"><b>@Model.Currency</b> &nbsp; @String.Format(@Model.AmountDue % 1 == 0 ? "{0:N0}" : "{0:N2}", @Model.AmountDue) </td>
+                    <td style="font-size: 12px"><b></b> &nbsp; @String.Format(@Model.AmountDue % 1 == 0 ? "{0:N0}" : "{0:N2}", @Model.AmountDue) </td>
                 </tr>
             </tbody>
         </table>

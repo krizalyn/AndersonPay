@@ -27,14 +27,20 @@ namespace AndersonPayEntity
         public int InvoiceId { get; set; }
 
         public decimal Tax { get; set; }
-        public string Currency { get; set; }
+
+        public int CurrencyId { get; set; }
+        public ECurrencyCode CurrencyCode { get; set; }
+
         [ForeignKey("Client")]
         public int ClientId { get; set; }
         public EClient Client { get; set; }
         public virtual ICollection<EService> Services { get; set; }
 
         public string Name { get; set; }
-        public string TaxTypes { get; set; }
+
+        public int TaxTypeId { get; set; }
+        public ETaxType TaxType { get; set; }
+
         public decimal Subtotal { get; set; }
         public string SINo { get; set; }
         public string TIN { get; set; }
