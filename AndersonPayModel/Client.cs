@@ -14,18 +14,17 @@ namespace AndersonPayModel
         public string EmailAddress { get; set; }
 
         public int CompanyId { get; set; }
-        
-        public int EmailId { get; set; }
+
         public int WithHoldingTax { get; set; }
 
         public int TaxTypeId { get; set; }
         public TaxType TaxType { get; set; }
 
-        //public string TaxTypes { get; set; }
-
         public int CurrencyCodeId { get; set; }
         public CurrencyCode CurrencyCode { get; set; }
 
-        //public string CurrencyCodes { get; set; }
+        //public int EmailId { get; set; }
+        //public ClientEmail ClientEmail { get; set; }
+
     }
 }

@@ -29,6 +29,11 @@
     <input type="text" autocomplete="off" class="form-control" id="client.RegistrationNo" name="client.RegistrationNo" placeholder="Registration Number" value="@Model.RegistrationNo">
 </div>
 
+@*<div class="form-group">
+    <label for="EmailAddress">Email Address</label>
+    <input type="email" autocomplete="off" class="form-control" id="client.EmailAddress" name="client.EmailAddress" placeholder="e.g., johndoe@outlook.com" value="@Model.EmailAddress">
+</div>*@
+
 <div class="form-group" ng-controller="CurrencyController as model" ng-init="model.Initialise()">
   <label for="CurrencyCode">Currency Code</label>
     <ui-select ng-model="model.Currency">
@@ -64,10 +69,10 @@
      <input type="number" autocomplete="off" class="form-control" id="client.WithHoldingTax" name="client.WithHoldingTax" min="0" placeholder="WithHolding Tax" value="@Model.WithHoldingTax">
 </div>
 
-<div class="form-group">
-      <label for="TaxTypeId"></label>
-      <input type="hidden" class="form-control" id="TaxTypeId" name="TaxTypeId" placeholder="TaxType Id" value="1">
-</div>
+@*<div class="form-group">
+    <label for="EmailId"></label>
+    <input type="hidden" class="form-control" id="EmailId" name="client.EmailId" value="@Model.EmailId">
+</div>*@
 
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />

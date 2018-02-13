@@ -72,9 +72,8 @@ namespace AndersonPayFunction
                 RegistrationNo = client.RegistrationNo,
                 TaxTypeId = client.TaxTypeId,
                 CurrencyCodeId = client.CurrencyCodeId,
+                //EmailId = client.EmailId,
                 WithHoldingTax = client.WithHoldingTax,
-                //TaxTypes = client.TaxTypes,
-                //CurrencyCodes = client.CurrencyCodes
  
             };
             return returnEClient;
@@ -93,9 +92,8 @@ namespace AndersonPayFunction
                 RegistrationNo = eClient.RegistrationNo,
                 TaxTypeId = eClient.TaxTypeId,
                 CurrencyCodeId = eClient.CurrencyCodeId,
+                //EmailId = eClient.EmailId,
                 WithHoldingTax = eClient.WithHoldingTax,
-                //TaxTypes = eClient.TaxTypes,
-                //CurrencyCodes = eClient.CurrencyCodes
 
             };
             return returnClient;
@@ -114,9 +112,8 @@ namespace AndersonPayFunction
                 RegistrationNo = a.RegistrationNo,
                 TaxTypeId = a.TaxTypeId,
                 CurrencyCodeId = a.CurrencyCodeId,
+                //EmailId = a.EmailId,
                 WithHoldingTax = a.WithHoldingTax,
-                //TaxTypes = a.TaxTypes,
-                //CurrencyCodes = a.CurrencyCodes
 
             });
 

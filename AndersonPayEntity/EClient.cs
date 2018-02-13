@@ -24,12 +24,12 @@ namespace AndersonPayEntity
         public int TaxTypeId { get; set; }
         public ETaxType TaxType { get; set; }
 
-        //public string TaxTypes { get; set; }
-
         [ForeignKey("CurrencyCode")]
         public int CurrencyCodeId { get; set; }
         public ECurrencyCode CurrencyCode { get; set; }
 
-        //public string CurrencyCodes { get; set; }
+        //[ForeignKey("ClientEmail")]
+        //public int EmailId { get; set; }
+        //public EClientEmail ClientEmail { get; set; }
     }
 }
