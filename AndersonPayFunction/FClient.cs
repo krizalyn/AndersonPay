@@ -74,6 +74,7 @@ namespace AndersonPayFunction
                 CurrencyCodeId = client.CurrencyCodeId,
                 //EmailId = client.EmailId,
                 WithHoldingTax = client.WithHoldingTax,
+                EmailAddress = client.EmailAddress
  
             };
             return returnEClient;
@@ -94,6 +95,7 @@ namespace AndersonPayFunction
                 CurrencyCodeId = eClient.CurrencyCodeId,
                 //EmailId = eClient.EmailId,
                 WithHoldingTax = eClient.WithHoldingTax,
+                EmailAddress = eClient.EmailAddress
 
             };
             return returnClient;
@@ -114,6 +116,7 @@ namespace AndersonPayFunction
                 CurrencyCodeId = a.CurrencyCodeId,
                 //EmailId = a.EmailId,
                 WithHoldingTax = a.WithHoldingTax,
+                EmailAddress = a.EmailAddress
 
             });
 

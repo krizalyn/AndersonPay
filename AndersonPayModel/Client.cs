@@ -11,7 +11,6 @@ namespace AndersonPayModel
         public string Name { get; set; }
         public string Address { get; set; }
         public string RegistrationNo { get; set; }
-        public string EmailAddress { get; set; } 
 
         public int CompanyId { get; set; }
 
@@ -22,6 +21,8 @@ namespace AndersonPayModel
 
         public int CurrencyCodeId { get; set; }
         public CurrencyCode CurrencyCode { get; set; }
+
+        public string EmailAddress { get; set; }
 
         //public int EmailId { get; set; }
         //public ClientEmail ClientEmail { get; set; }

@@ -28,6 +28,8 @@ namespace AndersonPayEntity
         public int CurrencyCodeId { get; set; }
         public ECurrencyCode CurrencyCode { get; set; }
 
+        public string EmailAddress { get; set; } //pansamantala
+
         //[ForeignKey("ClientEmail")]
         //public int EmailId { get; set; }
         //public EClientEmail ClientEmail { get; set; }
